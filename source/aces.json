@@ -1,0 +1,86 @@
+﻿{
+  "localization": {
+    "conditions": [],
+    "actions": [
+      {
+        "id": "switch-localization-language",
+        "scriptName": "SwitchLanguage",
+        "highlight": true,
+        "params": [
+          {
+            "id": "lang",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "id": "set-default-localization-language",
+        "scriptName": "SetDefaultLanguage",
+        "highlight": true,
+        "params": [
+          {
+            "id": "lang",
+            "type": "string"
+          }
+        ]
+      }
+    ],
+    "expressions": [
+      {
+        "id": "current-localization-language",
+        "expressionName": "CurrentLanguage",
+        "returnType": "string"
+      }
+    ]
+  },
+
+  "environment": {
+    "conditions": [],
+    "actions": [],
+    "expressions": [
+      {
+        "id": "get-language",
+        "expressionName": "GetLanguage",
+        "returnType": "string"
+      },
+      {
+        "id": "get-tld",
+        "expressionName": "GetDomain",
+        "returnType": "string"
+      },
+      {
+        "id": "get-payload",
+        "expressionName": "GetPayload",
+        "returnType": "string"
+      },
+      {
+        "id": "get-app-id",
+        "expressionName": "GetAppID",
+        "returnType": "string"
+      }
+    ]
+  },
+
+  "deviceInfo": {
+    "conditions": [
+      {
+        "id": "is-mobile",
+        "scriptName": "IsMobile"
+      },
+      {
+        "id": "is-desktop",
+        "scriptName": "IsDesktop"
+      },
+      {
+        "id": "is-tablet",
+        "scriptName": "IsTablet"
+      },
+      {
+        "id": "is-tv",
+        "scriptName": "IsTV"
+      }
+    ],
+    "actions": [],
+    "expressions": []
+  }
+}

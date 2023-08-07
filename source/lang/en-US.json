@@ -1,0 +1,109 @@
+{
+  "languageTag": "en-US",
+  "fileDescription": "Strings for YandexGamesSDK.",
+  "text": {
+    "plugins": {
+      "yagames_sdk": {
+        "name": "YandexGamesSDK",
+        "description": "Plugin for developing games for Yandex.Games platform.",
+        "help-url": "https://www.construct.net",
+        "properties": {},
+        "aceCategories": {
+          "localization": "Localization",
+          "environment": "Environment",
+          "deviceInfo": "Device Info"
+        },
+        "conditions": {
+          "is-mobile": {
+            "list-name": "Game is running on mobile",
+            "display-text": "Game is running on mobile",
+            "description": "Checks if game is running on mobile."
+          },
+          "is-desktop": {
+            "list-name": "Game is running on desktop",
+            "display-text": "Game is running on desktop",
+            "description": "Checks if game is running on desktop."
+          },
+          "is-tablet": {
+            "list-name": "Game is running on tablet",
+            "display-text": "Game is running on tablet",
+            "description": "Checks if game is running on tablet."
+          },
+          "is-tv": {
+            "list-name": "Game is running on TV",
+            "display-text": "Game is running on TV",
+            "description": "Checks if game is running on TV."
+          }
+        },
+        "actions": {
+          "switch-localization-language": {
+            "list-name": "Switch localization language",
+            "display-text": "Switch localization language to [b]{0}[/b]",
+            "description": "Changes current localization language.",
+            "params": {
+              "lang": {
+                "name": "Language code",
+                "desc": "Language code in ISO-639-1 format."
+              }
+            }
+          },
+          "set-default-localization-language": {
+            "list-name": "Set default localization language",
+            "display-text": "Set default localization language to [b]{0}[/b]",
+            "description": "Sets default localization language.",
+            "params": {
+              "lang": {
+                "name": "Language code",
+                "desc": "Language code in ISO-639-1 format."
+              }
+            }
+          },
+
+          "emulate-mobile": {
+            "list-name": "Emulate mobile",
+            "display-text": "Emulate mobile",
+            "description": "Useful for testing game in mobile mode. (will be ignored in production)"
+          },
+          "emulate-tablet": {
+            "list-name": "Emulate tablet",
+            "display-text": "Emulate tablet",
+            "description": "Useful for testing game in tablet mode. (will be ignored in production)"
+          },
+          "emulate-desktop": {
+            "list-name": "Emulate desktop",
+            "display-text": "Emulate desktop",
+            "description": "Useful for testing game in desktop mode. (will be ignored in production)"
+          },
+          "emulate-tv": {
+            "list-name": "Emulate TV",
+            "display-text": "Emulate TV",
+            "description": "Useful for testing game in TV mode. (will be ignored in production)"
+          }
+        },
+        "expressions": {
+          "current-localization-language": {
+            "translated-name": "Current localization language",
+            "description": "Returns current localization language."
+          },
+
+          "get-language": {
+            "translated-name": "Interface Language",
+            "description": "Yandex Games interface language in ISO 639-1 format. For example, \"tr\" means that the game is currently running under the Yandex Games Turkish interface. We recommend using this parameter to determine the user's language in the game."
+          },
+          "get-tld": {
+            "translated-name": "Top-level domain",
+            "description": "Top-level domain. For example, \"com\" means that the game is currently running under the Yandex Games international domain. When hosting a game in your domain, please keep in mind that it must open correctly under any Yandex domain."
+          },
+          "get-payload": {
+            "translated-name": "Payload",
+            "description": "The value of the payload parameter from the game's address. Optional. For example, in https://yandex.ru/games/app/123?payload=test you can return test as follows: ysdk.environment.payload."
+          },
+          "get-app-id": {
+            "translated-name": "App ID",
+            "description": "App ID."
+          }
+        }
+      }
+    }
+  }
+}
