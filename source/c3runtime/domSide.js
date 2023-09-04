@@ -43,6 +43,39 @@
           InitYSDK(ysdk);
         });
       });
+
+      this.AddRuntimeMessageHandler("ysdk-show-fullscreen-ad", ({ id }) => {
+        this.ysdk.adv.showFullscreenAdv({
+          callbacks: {
+            onClose: (wasShown) => {
+              this.PostToRuntime("ysdk-fullscreen-ad-callback", {
+                id,
+                type: "onClose",
+                wasShown,
+              });
+            },
+            onOpen: () => {
+              this.PostToRuntime("ysdk-fullscreen-ad-callback", {
+                id,
+                type: "onOpen",
+              });
+            },
+            onError: (error) => {
+              this.PostToRuntime("ysdk-fullscreen-ad-callback", {
+                id,
+                type: "onError",
+                error: JSON.stringify(error),
+              });
+            },
+            onOffline: () => {
+              this.PostToRuntime("ysdk-fullscreen-ad-callback", {
+                id,
+                type: "onOffline",
+              });
+            },
+          },
+        });
+      });
     }
   };
 

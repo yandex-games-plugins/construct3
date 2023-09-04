@@ -1,11 +1,11 @@
-﻿{
+{
   "localization": {
     "conditions": [],
     "actions": [
       {
         "id": "switch-localization-language",
         "scriptName": "SwitchLanguage",
-        "highlight": true,
+        "highlight": false,
         "params": [
           {
             "id": "lang",
@@ -16,7 +16,7 @@
       {
         "id": "set-default-localization-language",
         "scriptName": "SetDefaultLanguage",
-        "highlight": true,
+        "highlight": false,
         "params": [
           {
             "id": "lang",
@@ -29,6 +29,87 @@
       {
         "id": "current-localization-language",
         "expressionName": "CurrentLanguage",
+        "returnType": "string"
+      }
+    ]
+  },
+
+  "fullscreen-ad": {
+    "conditions": [
+      {
+        "id": "on-fullscreen-ad-close",
+        "scriptName": "OnFullscreenADClose",
+        "isFakeTrigger": true,
+        "isInvertible": false,
+        "isCompatibleWithTriggers": false,
+        "params": [
+          {
+            "id": "id",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "id": "fullscreen-ad-was-shown",
+        "scriptName": "FullscreenADWasShown"
+      },
+      {
+        "id": "on-fullscreen-ad-open",
+        "scriptName": "OnFullscreenADOpen",
+        "isFakeTrigger": true,
+        "isInvertible": false,
+        "isCompatibleWithTriggers": false,
+        "params": [
+          {
+            "id": "id",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "id": "on-fullscreen-ad-error",
+        "scriptName": "OnFullscreenADError",
+        "isFakeTrigger": true,
+        "isInvertible": false,
+        "isCompatibleWithTriggers": false,
+        "params": [
+          {
+            "id": "id",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "id": "on-fullscreen-ad-offline",
+        "scriptName": "OnFullscreenADOffline",
+        "isFakeTrigger": true,
+        "isInvertible": false,
+        "isCompatibleWithTriggers": false,
+        "params": [
+          {
+            "id": "id",
+            "type": "string"
+          }
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "id": "show-fullscreen-ad",
+        "scriptName": "ShowFullscreenAD",
+        "highlight": true,
+        "params": [
+          {
+            "id": "id",
+            "type": "string"
+          }
+        ]
+      }
+    ],
+    "expressions": [
+      {
+        "id": "fullscreen-ad-error",
+        "expressionName": "FullscreenADError",
         "returnType": "string"
       }
     ]

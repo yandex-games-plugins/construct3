@@ -11,9 +11,60 @@
         "aceCategories": {
           "localization": "Localization",
           "environment": "Environment",
-          "deviceInfo": "Device Info"
+          "deviceInfo": "Device Info",
+          "fullscreen-ad": "Fullscreen AD"
         },
         "conditions": {
+          "on-fullscreen-ad-close": {
+            "list-name": "Fullscreen ad closed",
+            "display-text": "Fullscreen ad [b]{0}[/b] closed",
+            "description": "Executes when fullscreen ad was closed.",
+            "params": {
+              "id": {
+                "name": "ID",
+                "desc": "ID of the ad."
+              }
+            }
+          },
+          "fullscreen-ad-was-shown": {
+            "list-name": "Fullscreen ad was shown",
+            "display-text": "Fullscreen ad was shown",
+            "description": "Indicates that fullscreen ad was shown. (Works only with \"Fullscreen ad closed\" condition)"
+          },
+          "on-fullscreen-ad-open": {
+            "list-name": "Fullscreen ad opened",
+            "display-text": "Fullscreen ad [b]{0}[/b] opened",
+            "description": "Executes when fullscreen ad was opened.",
+            "params": {
+              "id": {
+                "name": "ID",
+                "desc": "ID of the ad."
+              }
+            }
+          },
+          "on-fullscreen-ad-error": {
+            "list-name": "On Fullscreen ad error",
+            "display-text": "On Fullscreen ad [b]{0}[/b] error",
+            "description": "Exectues when fullscreen ad error occured.",
+            "params": {
+              "id": {
+                "name": "ID",
+                "desc": "ID of the ad."
+              }
+            }
+          },
+          "on-fullscreen-ad-offline": {
+            "list-name": "On Fullscreen ad offline",
+            "display-text": "On Fullscreen ad [b]{0}[/b] offline",
+            "description": "Exectues when there is not internet connection to show fullscreen ad.",
+            "params": {
+              "id": {
+                "name": "ID",
+                "desc": "ID of the ad."
+              }
+            }
+          },
+
           "is-mobile": {
             "list-name": "Game is running on mobile",
             "display-text": "Game is running on mobile",

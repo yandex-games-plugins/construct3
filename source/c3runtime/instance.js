@@ -111,6 +111,46 @@ class YandexGamesSDKInstance extends C3.SDKInstanceBase {
 
     //#endregion
 
+    //#region Fullscreen AD
+
+    /**
+     * @type {{
+     *  [id: string]: {
+     *  "onClose": {killSID:number, wasShown: boolean},
+     *  "onOpen": {killSID:number},
+     *  "onError": {killSID:number, error: string},
+     *  "onOffline": {killSID:number},
+     *  }
+     * }}
+     */
+    this.fullscreenADCallbacks = {};
+
+    this.AddDOMMessageHandler(
+      "ysdk-fullscreen-ad-callback",
+      /** @param {{type: "onClose" | "onOpen" | "onError" | "onOffline", id: string, wasShown?: boolean, error?: string}} data  */
+      (data) => {
+        if (!this.fullscreenADCallbacks[data.id]) {
+          this.fullscreenADCallbacks[data.id] = {
+            onClose: {},
+            onOpen: {},
+            onError: {},
+            onOffline: {},
+          };
+        }
+
+        if (data.type === "onClose") {
+          this.fullscreenADCallbacks[data.id][data.type].wasShown =
+            data.wasShown;
+        } else if (data.type === "onError") {
+          this.fullscreenADCallbacks[data.id][data.type].error = data.error;
+        }
+
+        this.fullscreenADCallbacks[data.id][data.type].killSID = 0;
+      }
+    );
+
+    //#endregion
+
     this.AddDOMMessageHandler("ysdk-init", (e) => this.initCallback(e));
     this.PostToDOM("ysdk-init");
   }
