@@ -117,12 +117,10 @@ class YandexGamesSDKInstance extends C3.SDKInstanceBase {
 
   /**
    * Callback for sdk initialization.
-   * @param {{isPreview: boolean, environment?: import("../types").Environment, deviceInfo?: import("../types").DeviceInfo}} data - Does sdk exists?
+   * @param {{environment?: import("../types").Environment, deviceInfo?: import("../types").DeviceInfo}} data - Does sdk exists?
    */
   initCallback(data) {
     console.log("YandexGamesSDKInstance.initCallback:", data);
-
-    this.isPreview = data.isPreview;
 
     /** @type {import("../types").Environment} */
     this.environment = JSON.parse(data.environment);

@@ -35,16 +35,15 @@ const Actions = {
    */
   async SwitchLanguage(lang) {
     const runtime = this.GetRuntime();
-    const assetsManager = runtime.GetAssetManager();
+    const assetManager = runtime.GetAssetManager();
     console.log(lang);
 
     /** @type {(lang:string) => Promise<string | undefined>} */
     const findTranslations = async (lang) => {
       let url;
       try {
-        console.log(runtime, runtime._exportType, assetsManager);
         if (runtime._exportType === "preview") {
-          const blobs = assetsManager._localUrlBlobs;
+          const blobs = assetManager._localUrlBlobs;
           blobs.forEach((_, k) => {
             if (k.includes(`${lang}.json`)) {
               url = k;
@@ -54,11 +53,12 @@ const Actions = {
         } else {
           url =
             runtime._runtimeBaseUrl +
-            (assetsManager._fileStructure == "flat" ? "" : "i18n/") +
+            (assetManager._fileStructure == "flat" ? "" : "i18n/") +
             `${lang}.json`;
           return await (await fetch(url)).text();
         }
       } catch (e) {
+        console.error(e);
         console.log(url);
         return undefined;
       }
