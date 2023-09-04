@@ -6,6 +6,11 @@
     constructor(iRuntime) {
       super(iRuntime, DOM_COMPONENT_ID);
 
+      /**
+       * @type {import("../types.d.ts").YSDK}
+       */
+      this.ysdk = {};
+
       this.AddRuntimeMessageHandler("ysdk-init", () => {
         const InitYSDK = (ysdk) => {
           this.PostToRuntime("ysdk-init", {
@@ -34,7 +39,7 @@
 
         // eslint-disable-next-line no-undef
         YaGames.init().then((ysdk) => {
-          window.ysdk = ysdk;
+          this.ysdk = ysdk;
           InitYSDK(ysdk);
         });
       });
