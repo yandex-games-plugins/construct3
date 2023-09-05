@@ -12,7 +12,8 @@
           "localization": "Localization",
           "environment": "Environment",
           "deviceInfo": "Device Info",
-          "fullscreen-ad": "Fullscreen AD"
+          "fullscreen-ad": "Fullscreen AD",
+          "rewarded-ad": "Rewarded AD"
         },
         "conditions": {
           "on-fullscreen-ad-close": {
@@ -65,6 +66,51 @@
             }
           },
 
+          "on-rewarded-ad-open": {
+            "list-name": "Rewarded ad opened",
+            "display-text": "Rewarded ad [b]{0}[/b] opened",
+            "description": "Executes when rewarded ad was opened.",
+            "params": {
+              "id": {
+                "name": "ID",
+                "desc": "ID of the ad."
+              }
+            }
+          },
+          "on-rewarded-ad-rewarded": {
+            "list-name": "Rewarded ad watched",
+            "display-text": "Rewarded ad [b]{0}[/b] watched",
+            "description": "Executes when rewarded ad was fully watched.",
+            "params": {
+              "id": {
+                "name": "ID",
+                "desc": "ID of the ad."
+              }
+            }
+          },
+          "on-rewarded-ad-close": {
+            "list-name": "Rewarded ad closed",
+            "display-text": "Rewarded ad [b]{0}[/b] closed",
+            "description": "Executes when rewarded ad was closed.",
+            "params": {
+              "id": {
+                "name": "ID",
+                "desc": "ID of the ad."
+              }
+            }
+          },
+          "on-rewarded-ad-error": {
+            "list-name": "On rewarded ad error",
+            "display-text": "On rewarded ad [b]{0}[/b] error",
+            "description": "Exectues when rewarded ad error occured.",
+            "params": {
+              "id": {
+                "name": "ID",
+                "desc": "ID of the ad."
+              }
+            }
+          },
+
           "is-mobile": {
             "list-name": "Game is running on mobile",
             "display-text": "Game is running on mobile",
@@ -87,6 +133,30 @@
           }
         },
         "actions": {
+          "show-fullscreen-ad": {
+            "list-name": "Show fullscreen ad",
+            "display-text": "Show fullscreen ad [b]{0}[/b]",
+            "description": "Initiates fullscreen ad.",
+            "params": {
+              "id": {
+                "name": "ID",
+                "desc": "ID of the ad."
+              }
+            }
+          },
+
+          "show-rewarded-ad": {
+            "list-name": "Show rewarded ad",
+            "display-text": "Show rewarded ad [b]{0}[/b]",
+            "description": "Initiates rewarded ad.",
+            "params": {
+              "id": {
+                "name": "ID",
+                "desc": "ID of the ad."
+              }
+            }
+          },
+
           "switch-localization-language": {
             "list-name": "Switch localization language",
             "display-text": "Switch localization language to [b]{0}[/b]",
@@ -132,6 +202,16 @@
           }
         },
         "expressions": {
+          "fullscreen-ad-error": {
+            "translated-name": "Fullscreen ad error",
+            "description": "Contains error message if error occured while showing fullscreen ad. (Works only with \"Fullscreen ad error\" condition)"
+          },
+
+          "rewarded-ad-error": {
+            "translated-name": "Rewarded ad error",
+            "description": "Contains error message if error occured while showing rewarded ad. (Works only with \"Rewarded ad error\" condition)"
+          },
+
           "current-localization-language": {
             "translated-name": "Current localization language",
             "description": "Returns current localization language."

@@ -76,6 +76,38 @@
           },
         });
       });
+
+      this.AddRuntimeMessageHandler("ysdk-show-rewarded-ad", ({ id }) => {
+        this.ysdk.adv.showFullscreenAdv({
+          callbacks: {
+            onOpen: () => {
+              this.PostToRuntime("ysdk-rewarded-ad-callback", {
+                id,
+                type: "onOpen",
+              });
+            },
+            onRewarded: () => {
+              this.PostToRuntime("ysdk-rewarded-ad-callback", {
+                id,
+                type: "onRewarded",
+              });
+            },
+            onClose: () => {
+              this.PostToRuntime("ysdk-rewarded-ad-callback", {
+                id,
+                type: "onClose",
+              });
+            },
+            onError: (error) => {
+              this.PostToRuntime("ysdk-rewarded-ad-callback", {
+                id,
+                type: "onError",
+                error: JSON.stringify(error),
+              });
+            },
+          },
+        });
+      });
     }
   };
 

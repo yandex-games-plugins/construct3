@@ -1,4 +1,4 @@
-{
+﻿{
   "localization": {
     "conditions": [],
     "actions": [
@@ -110,6 +110,83 @@
       {
         "id": "fullscreen-ad-error",
         "expressionName": "FullscreenADError",
+        "returnType": "string"
+      }
+    ]
+  },
+
+  "rewarded-ad": {
+    "conditions": [
+      {
+        "id": "on-rewarded-ad-open",
+        "scriptName": "OnRewardedADOpen",
+        "isFakeTrigger": true,
+        "isInvertible": false,
+        "isCompatibleWithTriggers": false,
+        "params": [
+          {
+            "id": "id",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "id": "on-rewarded-ad-rewarded",
+        "scriptName": "OnRewardedADRewarded",
+        "isFakeTrigger": true,
+        "isInvertible": false,
+        "isCompatibleWithTriggers": false,
+        "params": [
+          {
+            "id": "id",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "id": "on-rewarded-ad-close",
+        "scriptName": "OnRewardedADClose",
+        "isFakeTrigger": true,
+        "isInvertible": false,
+        "isCompatibleWithTriggers": false,
+        "params": [
+          {
+            "id": "id",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "id": "on-rewarded-ad-error",
+        "scriptName": "OnRewardedADError",
+        "isFakeTrigger": true,
+        "isInvertible": false,
+        "isCompatibleWithTriggers": false,
+        "params": [
+          {
+            "id": "id",
+            "type": "string"
+          }
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "id": "show-rewarded-ad",
+        "scriptName": "ShowRewardedAD",
+        "highlight": true,
+        "params": [
+          {
+            "id": "id",
+            "type": "string"
+          }
+        ]
+      }
+    ],
+    "expressions": [
+      {
+        "id": "rewarded-ad-error",
+        "expressionName": "RewardedADError",
         "returnType": "string"
       }
     ]

@@ -37,6 +37,35 @@ self.C3.Plugins.yagames_sdk.Exps = {
 
   //#endregion
 
+  //#region Rewarded AD
+
+  /** @this {YandexGamesSDKInstance} */
+  RewardedADError() {
+    const runtime = this.GetRuntime();
+
+    let event = runtime.GetCurrentEvent();
+    while (
+      event &&
+      !event
+        .GetConditions()
+        .some((cond) => cond._func === this.conditions.OnRewardedADError)
+    ) {
+      event = event.GetParent();
+    }
+
+    if (!event) return "";
+
+    const condition = event
+      .GetConditions()
+      .find((cond) => cond._func === this.conditions.OnRewardedADError);
+
+    const error = condition.$error || "";
+
+    return error;
+  },
+
+  //#endregion
+
   //#region Environment
 
   GetLanguage() {

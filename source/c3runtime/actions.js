@@ -294,6 +294,18 @@ const Actions = {
 
   //#endregion
 
+  //#region Rewarded AD
+
+  /**
+   * @this {YandexGamesSDKInstance}
+   * @param {string} id
+   */
+  ShowRewardedAD(id) {
+    this.PostToDOM("ysdk-show-rewarded-ad", { id });
+  },
+
+  //#endregion
+
   //#region DeviceInfo
 
   /** @this {YandexGamesSDKInstance} */

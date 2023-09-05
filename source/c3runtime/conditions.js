@@ -163,6 +163,117 @@ const Conditions = {
   },
 
   //#endregion
+
+  //#region Rewarded AD
+
+  /**
+   * @this {YandexGamesSDKInstance}
+   * @param {string} id
+   */
+  OnRewardedADOpen(id) {
+    const _callbacks = this.rewardedADCallbacks[id];
+
+    if (!_callbacks) return false;
+
+    const callback = _callbacks["onOpen"];
+
+    if (!callback) return false;
+
+    const SID = this.GetRuntime().GetCurrentEvent().GetSID();
+
+    if (callback.killSID === SID) {
+      this.rewardedADCallbacks[id]["onOpen"] = undefined;
+      return false;
+    } else if (callback.killSID === 0) {
+      callback.killSID = SID;
+    }
+
+    return true;
+  },
+
+  /**
+   * @this {YandexGamesSDKInstance}
+   * @param {string} id
+   */
+  OnRewardedADRewarded(id) {
+    const _callbacks = this.rewardedADCallbacks[id];
+
+    if (!_callbacks) return false;
+
+    const callback = _callbacks["onRewarded"];
+
+    if (!callback) return false;
+
+    const SID = this.GetRuntime().GetCurrentEvent().GetSID();
+
+    if (callback.killSID === SID) {
+      this.rewardedADCallbacks[id]["onRewarded"] = undefined;
+      return false;
+    } else if (callback.killSID === 0) {
+      callback.killSID = SID;
+    }
+
+    return true;
+  },
+
+  /**
+   * @this {YandexGamesSDKInstance}
+   * @param {string} id
+   */
+  OnRewardedADClose(id) {
+    const _callbacks = this.rewardedADCallbacks[id];
+
+    if (!_callbacks) return false;
+
+    const callback = _callbacks["onClose"];
+
+    if (!callback) return false;
+
+    const SID = this.GetRuntime().GetCurrentEvent().GetSID();
+
+    if (callback.killSID === SID) {
+      this.rewardedADCallbacks[id]["onClose"] = undefined;
+      return false;
+    } else if (callback.killSID === 0) {
+      callback.killSID = SID;
+    }
+
+    return true;
+  },
+
+  /**
+   * @this {YandexGamesSDKInstance}
+   * @param {string} id
+   */
+  OnRewardedADError(id) {
+    const _callbacks = this.rewardedADCallbacks[id];
+
+    if (!_callbacks) return false;
+
+    const callback = _callbacks["onError"];
+
+    if (!callback) return false;
+
+    const SID = this.GetRuntime().GetCurrentEvent().GetSID();
+
+    if (callback.killSID === SID) {
+      this.rewardedADCallbacks[id]["onError"] = undefined;
+      return false;
+    } else if (callback.killSID === 0) {
+      callback.killSID = SID;
+    }
+
+    const condition = this.GetRuntime()
+      .GetCurrentEvent()
+      .GetConditions()
+      .find((cond) => cond._func === this.conditions.OnRewardedADError);
+
+    condition.$error = callback.error;
+
+    return true;
+  },
+
+  //#endregion
 };
 
 self.C3.Plugins.yagames_sdk.Cnds = Conditions;

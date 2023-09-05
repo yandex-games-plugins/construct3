@@ -151,6 +151,42 @@ class YandexGamesSDKInstance extends C3.SDKInstanceBase {
 
     //#endregion
 
+    //#region Rewarded AD
+    /**
+     * @type {{
+     *  [id: string]: {
+     *  "onOpen": {killSID:number},
+     *  "onRewarded": {killSID:number},
+     *  "onClose": {killSID:number},
+     *  "onError": {killSID:number, error: string},
+     *  }
+     * }}
+     */
+    this.rewardedADCallbacks = {};
+
+    this.AddDOMMessageHandler(
+      "ysdk-rewarded-ad-callback",
+      /** @param {{type: "onOpen" | "onRewarded" | "onClose" | "onError", id: string, error?: string}} data  */
+      (data) => {
+        if (!this.rewardedADCallbacks[data.id]) {
+          this.rewardedADCallbacks[data.id] = {
+            onOpen: {},
+            onRewarded: {},
+            onClose: {},
+            onError: {},
+          };
+        }
+
+        if (data.type === "onError") {
+          this.rewardedADCallbacks[data.id][data.type].error = data.error;
+        }
+
+        this.rewardedADCallbacks[data.id][data.type].killSID = 0;
+      }
+    );
+
+    //#endregion
+
     this.AddDOMMessageHandler("ysdk-init", (e) => this.initCallback(e));
     this.PostToDOM("ysdk-init");
   }
