@@ -17,6 +17,18 @@ function deepFindPropertyDescriptor(obj, key) {
   return desc;
 }
 
+/**
+ * Debug method for displaying errors in preview mode and console.error in runtime mode.
+ * Ment to notify developers about their wrong plugin usage.
+ */
+function developerAlert(runtime, message) {
+  if (runtime._exportType === "preview") {
+    alert("[YandexGamesSDK] " + message);
+  }
+
+  console.warn("[YandexGamesSDK] " + message);
+}
+
 /** @class */
 const Actions = {
   //#region Translations
@@ -85,9 +97,11 @@ const Actions = {
     try {
       this.translations = JSON.parse(rawTranslations);
     } catch (e) {
-      console.error(
+      developerAlert(
+        runtime,
         "Error while parsing translations. Make sure that translations exist and are valid JSON."
       );
+
       console.debug(
         "rawTranslations:",
         rawTranslations,
@@ -121,6 +135,11 @@ const Actions = {
         // Return translated text
         return _text;
       } catch (e) {
+        developerAlert(
+          runtime,
+          `Wasn't able to translate text: ${text}. Make sure that translations exists.`
+        );
+
         console.error(e);
         return text;
       }
