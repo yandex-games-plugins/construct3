@@ -101,24 +101,29 @@ const Actions = {
 
     /** @type {(text:string) => string} */
     const trasnlate = (text) => {
-      // Remove previous translations
-      text = text.replace(/\[(\{[\w\d.]*\})\].*\[\1\]/g, "$1");
+      try {
+        // Remove previous translations
+        let _text = text.replace(/\[(\{[\w\d.]*\})\].*\[\1\]/g, "$1");
 
-      // Translate
-      text.match(/\{[\w\d.]*\}/g)?.forEach((match) => {
-        const path = match.slice(1, -1);
-        const translated = path
-          .split(".")
-          .reduce(
-            (acc, key) => (acc[key] ? acc[key] : undefined),
-            this.translations ?? {}
-          );
-        const wrapper = `[{${path}}]`;
-        text = text.replace(match, wrapper + translated + wrapper);
-      });
+        // Translate
+        _text.match(/\{[\w\d.]*\}/g)?.forEach((match) => {
+          const path = match.slice(1, -1);
+          const translated = path
+            .split(".")
+            .reduce(
+              (acc, key) => (acc[key] ? acc[key] : undefined),
+              this.translations ?? {}
+            );
+          const wrapper = `[{${path}}]`;
+          _text = _text.replace(match, wrapper + translated + wrapper);
+        });
 
-      // Return translated text
-      return text;
+        // Return translated text
+        return _text;
+      } catch (e) {
+        console.error(e);
+        return text;
+      }
     };
 
     runtime
