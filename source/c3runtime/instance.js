@@ -152,6 +152,7 @@ class YandexGamesSDKInstance extends C3.SDKInstanceBase {
     //#endregion
 
     //#region Rewarded AD
+
     /**
      * @type {{
      *  [id: string]: {
@@ -193,7 +194,7 @@ class YandexGamesSDKInstance extends C3.SDKInstanceBase {
 
   /**
    * Callback for sdk initialization.
-   * @param {{environment?: import("../types").Environment, deviceInfo?: import("../types").DeviceInfo}} data - Does sdk exists?
+   * @param {{environment?: import("../types").Environment, deviceInfo?: import("../types").DeviceInfo}} data
    */
   initCallback(data) {
     console.log("YandexGamesSDKInstance.initCallback:", data);
