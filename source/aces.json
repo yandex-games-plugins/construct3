@@ -192,6 +192,25 @@
     ]
   },
 
+  "sticky-banner": {
+    "conditions": [],
+    "actions": [
+      {
+        "id": "show-sticky-banner",
+        "scriptName": "ShowStickyBanner",
+        "highlight": false,
+        "params": []
+      },
+      {
+        "id": "hide-sticky-banner",
+        "scriptName": "HideStickyBanner",
+        "highlight": false,
+        "params": []
+      }
+    ],
+    "expressions": []
+  },
+
   "environment": {
     "conditions": [],
     "actions": [],

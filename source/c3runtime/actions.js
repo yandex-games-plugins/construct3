@@ -330,6 +330,18 @@ const Actions = {
 
   //#endregion
 
+  //#region Sticky Banner
+
+  ShowStickyBanner() {
+    this.PostToDOM("ysdk-show-sticky-banner");
+  },
+
+  HideStickyBanner() {
+    this.PostToDOM("ysdk-hide-sticky-banner");
+  },
+
+  //#endregion
+
   //#region DeviceInfo
 
   /** @this {YandexGamesSDKInstance} */

@@ -10,10 +10,11 @@
         "properties": {},
         "aceCategories": {
           "localization": "Localization",
-          "environment": "Environment",
-          "deviceInfo": "Device Info",
           "fullscreen-ad": "Fullscreen AD",
-          "rewarded-ad": "Rewarded AD"
+          "rewarded-ad": "Rewarded AD",
+          "sticky-banner": "Sticky Banner",
+          "environment": "Environment",
+          "deviceInfo": "Device Info"
         },
         "conditions": {
           "on-fullscreen-ad-close": {
@@ -155,6 +156,17 @@
                 "desc": "ID of the ad."
               }
             }
+          },
+
+          "show-sticky-banner": {
+            "list-name": "Show sticky banner",
+            "display-text": "Show sticky banner",
+            "description": "Initiates sticky banner."
+          },
+          "hide-sticky-banner": {
+            "list-name": "Hide sticky banner",
+            "display-text": "Hide sticky banner.",
+            "description": "Hides sticky banner."
           },
 
           "switch-localization-language": {

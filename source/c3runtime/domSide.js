@@ -108,6 +108,14 @@
           },
         });
       });
+
+      this.AddRuntimeMessageHandler("ysdk-show-sticky-banner", () => {
+        this.ysdk.adv.showBannerAdv();
+      });
+
+      this.AddRuntimeMessageHandler("ysdk-hide-sticky-banner", () => {
+        this.ysdk.adv.hideBannerAdv();
+      });
     }
   };
 

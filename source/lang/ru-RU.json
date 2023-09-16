@@ -10,10 +10,11 @@
         "properties": {},
         "aceCategories": {
           "localization": "Локализация",
-          "environment": "Переменные Среды",
-          "deviceInfo": "Информация Об Устройстве",
           "fullscreen-ad": "Полноэкранная Реклама",
-          "rewarded-ad": "Реклама с вознаграждением"
+          "rewarded-ad": "Реклама с вознаграждением",
+          "sticky-banner": "Sticky-баннер",
+          "environment": "Переменные Среды",
+          "deviceInfo": "Информация Об Устройстве"
         },
         "conditions": {
           "on-fullscreen-ad-close": {
@@ -155,6 +156,17 @@
                 "desc": "Индентификатор рекламы."
               }
             }
+          },
+
+          "show-sticky-banner": {
+            "list-name": "Показать Sticky-баннер",
+            "display-text": "Показать Sticky-баннер",
+            "description": "Инициализирует показ Sticky-баннера."
+          },
+          "hide-sticky-banner": {
+            "list-name": "Скрыть Sticky-баннер",
+            "display-text": "Скрыть Sticky-баннер",
+            "description": "Инициализирует скрытие Sticky-баннера."
           },
 
           "switch-localization-language": {
