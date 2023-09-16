@@ -1,6 +1,6 @@
 /** @type {YandexGamesSDKInstance} */
 self.C3.Plugins.yagames_sdk.Exps = {
-  //#region Translations
+  //#region Localization
 
   CurrentLanguage() {
     return this.currentLanguage ?? "";

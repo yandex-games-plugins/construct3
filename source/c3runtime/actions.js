@@ -31,7 +31,7 @@ function developerAlert(runtime, message) {
 
 /** @class */
 const Actions = {
-  //#region Translations
+  //#region Localization
 
   /**
    * @this {YandexGamesSDKInstance}
@@ -46,12 +46,13 @@ const Actions = {
    * @param {string} lang
    */
   async SwitchLanguage(lang) {
+    console.debug("Switch Language", lang);
+
     const runtime = this.GetRuntime();
     const assetManager = runtime.GetAssetManager();
-    console.log(lang);
 
     /** @type {(lang:string) => Promise<string | undefined>} */
-    const findTranslations = async (lang) => {
+    const findLocalizations = async (lang) => {
       let url;
       try {
         if (runtime._exportType === "preview") {
@@ -71,52 +72,52 @@ const Actions = {
         }
       } catch (e) {
         console.error(e);
-        console.log(url);
+        console.debug(url);
         return undefined;
       }
     };
 
     let checkLang = lang;
-    let rawTranslations = await findTranslations(lang);
-    if (rawTranslations === undefined && this.defaultLanguage != null) {
-      console.log(
-        `Can't find translations for ${lang}. Switching to default ${this.defaultLanguage}.`
+    let rawLocalizations = await findLocalizations(lang);
+    if (rawLocalizations === undefined && this.defaultLanguage != null) {
+      console.debug(
+        `Can't find localizations for ${lang}. Switching to default ${this.defaultLanguage}.`
       );
 
       checkLang = this.defaultLanguage;
       this.currentLanguage = this.defaultLanguage;
-      rawTranslations = await findTranslations(this.defaultLanguage);
-      if (rawTranslations === "") {
+      rawLocalizations = await findLocalizations(this.defaultLanguage);
+      if (rawLocalizations === "") {
         checkLang = "";
-        rawTranslations = "{}";
+        rawLocalizations = "{}";
       }
     }
 
     this.currentLanguage = checkLang;
 
     try {
-      this.translations = JSON.parse(rawTranslations);
+      this.localizations = JSON.parse(rawLocalizations);
     } catch (e) {
       developerAlert(
         runtime,
-        "Error while parsing translations. Make sure that translations exist and are valid JSON."
+        "Error while parsing localizations. Make sure that localizations exist and are valid JSON."
       );
 
       console.debug(
-        "rawTranslations:",
-        rawTranslations,
+        "rawLocalizations:",
+        rawLocalizations,
         "lang:",
         this.currentLanguage
       );
       console.error(e);
-      this.translations = {};
+      this.localizations = {};
       return;
     }
 
     /** @type {(text:string) => string} */
     const trasnlate = (text) => {
       try {
-        // Remove previous translations
+        // Remove previous localizations
         let _text = text.replace(/\[(\{[\w\d.]*\})\].*\[\1\]/g, "$1");
 
         // Translate
@@ -126,7 +127,7 @@ const Actions = {
             .split(".")
             .reduce(
               (acc, key) => (acc[key] ? acc[key] : undefined),
-              this.translations ?? {}
+              this.localizations ?? {}
             );
           const wrapper = `[{${path}}]`;
           _text = _text.replace(match, wrapper + translated + wrapper);
@@ -137,7 +138,7 @@ const Actions = {
       } catch (e) {
         developerAlert(
           runtime,
-          `Wasn't able to translate text: ${text}. Make sure that translations exists.`
+          `Wasn't able to translate text: ${text}. Make sure that localizations exists.`
         );
 
         console.error(e);
@@ -160,7 +161,7 @@ const Actions = {
 
           const setTextMethodName = "_SetText";
 
-          // Decorate _SetText method of sdkInstance for auto-translation feature
+          // Decorate _SetText method of sdkInstance for auto-localization feature
           if (!this.decoratedInstances.has(sdkInstance)) {
             const setTextDescriptor = deepFindPropertyDescriptor(
               sdkInstance,
@@ -253,7 +254,7 @@ const Actions = {
               sdkInstance._currentFrameIndex
             );
           } else if (animationsByName.has(this.defaultLanguage)) {
-            console.log(
+            console.debug(
               "Animation for current language not found",
               sdkInstance
             );
@@ -348,7 +349,7 @@ const Actions = {
   EmulateMobile() {
     if (!this.deviceInfo) {
       this.emulatedDevice = "mobile";
-      console.log("Emulation mode: mobile");
+      console.debug("Emulation mode: mobile");
     }
   },
 
@@ -356,7 +357,7 @@ const Actions = {
   EmulateTablet() {
     if (!this.deviceInfo) {
       this.emulatedDevice = "tablet";
-      console.log("Emulation mode: tablet");
+      console.debug("Emulation mode: tablet");
     }
   },
 
@@ -364,7 +365,7 @@ const Actions = {
   EmulateDesktop() {
     if (!this.deviceInfo) {
       this.emulatedDevice = "desktop";
-      console.log("Emulation mode: desktop");
+      console.debug("Emulation mode: desktop");
     }
   },
 
@@ -372,7 +373,7 @@ const Actions = {
   EmulateTV() {
     if (!this.deviceInfo) {
       this.emulatedDevice = "tv";
-      console.log("Emulation mode: tv");
+      console.debug("Emulation mode: tv");
     }
   },
 

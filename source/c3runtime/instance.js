@@ -14,15 +14,15 @@ class YandexGamesSDKInstance extends C3.SDKInstanceBase {
     /** @type {Actions} */
     this.actions = C3.Plugins.yagames_sdk.Acts;
 
-    //#region Translations
+    //#region Localization
 
     /**
-     * Storage for current game translations.
+     * Storage for current game localizations.
      */
 
     /** @typedef {{[key: string]: string | StringKeysObject | undefined}} StringKeysObject */
     /** @type {StringKeysObject} */
-    this.translations = {};
+    this.localizations = {};
 
     /** @type {string} */
     this.defaultLanguage = "en";
