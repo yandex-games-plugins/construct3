@@ -17,11 +17,11 @@ export interface YSDK {
 
   deviceInfo: DeviceInfo;
 
-  features: {
+  features: Partial<{
     LoadingAPI: {
       ready(): void;
     };
-  };
+  }>;
 
   clipboard: {
     writeText(text: string): void;

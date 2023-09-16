@@ -10,9 +10,10 @@
         "properties": {},
         "aceCategories": {
           "localization": "Localization",
+          "analytics": "Analytics",
           "fullscreen-ad": "Fullscreen AD",
           "rewarded-ad": "Rewarded AD",
-          "sticky-banner": "Sticky Banner",
+          "sticky-banner": "Sticky-Banner",
           "environment": "Environment",
           "deviceInfo": "Device Info"
         },
@@ -134,6 +135,12 @@
           }
         },
         "actions": {
+          "loading-api-ready": {
+            "list-name": "Game loading is complete",
+            "display-text": "Game loading is complete",
+            "description": "Sends information to Yandex.Games that the game download is complete."
+          },
+
           "show-fullscreen-ad": {
             "list-name": "Show fullscreen ad",
             "display-text": "Show fullscreen ad [b]{0}[/b]",

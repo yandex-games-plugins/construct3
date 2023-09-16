@@ -307,6 +307,14 @@ const Actions = {
 
   //#endregion
 
+  //#region Game Start
+
+  LoadingAPIReady() {
+    this.PostToDOM("ysdk-loading-api-ready");
+  },
+
+  //#endregion
+
   //#region Fullscreen AD
 
   /**

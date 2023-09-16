@@ -44,6 +44,10 @@
         });
       });
 
+      this.AddRuntimeMessageHandler("ysdk-loading-api-ready", () => {
+        this.ysdk.features.LoadingAPI?.ready();
+      });
+
       this.AddRuntimeMessageHandler("ysdk-show-fullscreen-ad", ({ id }) => {
         this.ysdk.adv.showFullscreenAdv({
           callbacks: {
