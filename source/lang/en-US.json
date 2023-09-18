@@ -10,12 +10,12 @@
         "properties": {},
         "aceCategories": {
           "localization": "Localization",
-          "analytics": "Analytics",
           "fullscreen-ad": "Fullscreen AD",
           "rewarded-ad": "Rewarded AD",
           "sticky-banner": "Sticky-Banner",
           "environment": "Environment",
-          "deviceInfo": "Device Info"
+          "deviceInfo": "Device Info",
+          "misc": "Misc"
         },
         "conditions": {
           "on-fullscreen-ad-close": {

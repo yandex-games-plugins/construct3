@@ -307,14 +307,6 @@ const Actions = {
 
   //#endregion
 
-  //#region Game Start
-
-  LoadingAPIReady() {
-    this.PostToDOM("ysdk-loading-api-ready");
-  },
-
-  //#endregion
-
   //#region Fullscreen AD
 
   /**
@@ -383,6 +375,14 @@ const Actions = {
       this.emulatedDevice = "tv";
       console.debug("Emulation mode: tv");
     }
+  },
+
+  //#endregion
+
+  //#region Misc
+
+  LoadingAPIReady() {
+    this.PostToDOM("ysdk-loading-api-ready");
   },
 
   //#endregion

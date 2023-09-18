@@ -10,12 +10,12 @@
         "properties": {},
         "aceCategories": {
           "localization": "Локализация",
-          "analytics": "Аналитика",
           "fullscreen-ad": "Полноэкранная Реклама",
           "rewarded-ad": "Реклама с вознаграждением",
           "sticky-banner": "Sticky-баннер",
           "environment": "Переменные Среды",
-          "deviceInfo": "Информация Об Устройстве"
+          "deviceInfo": "Информация Об Устройстве",
+          "misc": "Разное"
         },
         "conditions": {
           "on-fullscreen-ad-close": {

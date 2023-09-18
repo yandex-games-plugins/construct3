@@ -34,18 +34,6 @@
     ]
   },
 
-  "analytics": {
-    "conditions": [],
-    "actions": [
-      {
-        "id": "loading-api-ready",
-        "scriptName": "LoadingAPIReady",
-        "highlight": true
-      }
-    ],
-    "expressions": []
-  },
-
   "fullscreen-ad": {
     "conditions": [
       {
@@ -270,6 +258,18 @@
       }
     ],
     "actions": [],
+    "expressions": []
+  },
+
+  "misc": {
+    "conditions": [],
+    "actions": [
+      {
+        "id": "loading-api-ready",
+        "scriptName": "LoadingAPIReady",
+        "highlight": true
+      }
+    ],
     "expressions": []
   }
 }
