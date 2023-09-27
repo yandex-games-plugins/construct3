@@ -117,21 +117,40 @@ const Actions = {
     /** @type {(text:string) => string} */
     const trasnlate = (text) => {
       try {
-        // Remove previous localizations
-        let _text = text.replace(/\[(\{[\w\d.]*\})\].*\[\1\]/g, "$1");
+        // Regex for finding {path.to.translation} in text that wrapped in []
+        const wrappedPaths = /\[(\{[\w\d.]*\})\].*\[\1\]/g;
 
-        // Translate
-        _text.match(/\{[\w\d.]*\}/g)?.forEach((match) => {
+        /**
+         * Remove previous localizations
+         * "[{path}]Value[{path}]" -> "{path}"
+         */
+        let _text = text.replace(wrappedPaths, "$1");
+
+        // Regex for finding {path.to.translation} in text that not wrapped in []
+        const nonWrappedPaths = /(?<!\[)\{[\w\d.]*\}(?!\])/;
+
+        /**
+         * Replace all matches
+         * "{path}" -> "[{path}]Value[{path}]"
+         */
+        let matches;
+        while (
+          (matches = _text.match(nonWrappedPaths) || matches?.lenght > 0)
+        ) {
+          const match = matches[0];
+          try {
           const path = match.slice(1, -1);
-          const translated = path
+            const translation = path
             .split(".")
-            .reduce(
-              (acc, key) => (acc[key] ? acc[key] : undefined),
-              this.localizations ?? {}
+              .reduce((obj, key) => obj[key], this.localizations);
+            _text = _text.replace(match, translation);
+          } catch (e) {
+            developerAlert(
+              `Can't apply translation for ${match} in ${this.currentLanguage}. More info in console.`
             );
-          const wrapper = `[{${path}}]`;
-          _text = _text.replace(match, wrapper + translated + wrapper);
-        });
+            console.error(e);
+          }
+        }
 
         // Return translated text
         return _text;
