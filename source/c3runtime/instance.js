@@ -200,10 +200,10 @@ class YandexGamesSDKInstance extends C3.SDKInstanceBase {
     console.log("YandexGamesSDKInstance.initCallback:", data);
 
     /** @type {import("../types").Environment} */
-    this.environment = JSON.parse(data.environment);
+    this.environment = data.environment;
 
     /** @type {import("../types").DeviceInfo} */
-    this.deviceInfo = JSON.parse(data.deviceInfo);
+    this.deviceInfo = data.deviceInfo;
 
     this.actions.SwitchLanguage.apply(this, [this.environment.i18n.lang]);
   }

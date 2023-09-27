@@ -7,14 +7,49 @@
       super(iRuntime, DOM_COMPONENT_ID);
 
       /**
-       * @type {import("../types.d.ts").YSDK}
+       * @type {import("../types.d.ts").YSDK | null}
        */
       this.ysdk = {};
 
       this.AddRuntimeMessageHandler("ysdk-init", () => {
-        const InitYSDK = (ysdk) => {
+        // For some rason, Construct 3 debug mode breaks Yandex Games SDK.
+        // I dunno how to fix it so we just don't initialize it in debug mode. :(
+        if (
+          window.location.href ===
+          "https://preview.construct.net/local.html?debug="
+        ) {
+          const debugLanguage = window.navigator.language.slice(0, 2);
+
           this.PostToRuntime("ysdk-init", {
-            environment: JSON.stringify({
+            environment: {
+              app: {
+                id: "0",
+              },
+              browser: {
+                lang: debugLanguage,
+              },
+              i18n: {
+                lang: debugLanguage,
+                tld: ".com",
+              },
+              payload: "",
+            },
+            deviceInfo: {
+              type: "desktop",
+              isMobile: false,
+              isTablet: false,
+              isDesktop: true,
+              isTV: false,
+            },
+          });
+
+          return;
+        }
+
+        YaGames.init().then((ysdk) => {
+          this.ysdk = ysdk;
+          this.PostToRuntime("ysdk-init", {
+            environment: {
               app: {
                 id: ysdk.environment.app.id,
               },
@@ -26,29 +61,27 @@
                 tld: ysdk.environment.i18n.tld,
               },
               payload: ysdk.environment.payload,
-            }),
-            deviceInfo: JSON.stringify({
+            },
+            deviceInfo: {
               type: ysdk.deviceInfo.type,
               isMobile: ysdk.deviceInfo.isMobile(),
               isTablet: ysdk.deviceInfo.isTablet(),
               isDesktop: ysdk.deviceInfo.isDesktop(),
               isTV: ysdk.deviceInfo.isTV(),
-            }),
+            },
           });
-        };
-
-        // eslint-disable-next-line no-undef
-        YaGames.init().then((ysdk) => {
-          this.ysdk = ysdk;
-          InitYSDK(ysdk);
         });
       });
 
       this.AddRuntimeMessageHandler("ysdk-loading-api-ready", () => {
+        if (!this.ysdk) return;
+
         this.ysdk.features.LoadingAPI?.ready();
       });
 
       this.AddRuntimeMessageHandler("ysdk-show-fullscreen-ad", ({ id }) => {
+        if (!this.ysdk) return;
+
         this.ysdk.adv.showFullscreenAdv({
           callbacks: {
             onClose: (wasShown) => {
@@ -82,6 +115,8 @@
       });
 
       this.AddRuntimeMessageHandler("ysdk-show-rewarded-ad", ({ id }) => {
+        if (!this.ysdk) return;
+
         this.ysdk.adv.showFullscreenAdv({
           callbacks: {
             onOpen: () => {
@@ -114,10 +149,14 @@
       });
 
       this.AddRuntimeMessageHandler("ysdk-show-sticky-banner", () => {
+        if (!this.ysdk) return;
+
         this.ysdk.adv.showBannerAdv();
       });
 
       this.AddRuntimeMessageHandler("ysdk-hide-sticky-banner", () => {
+        if (!this.ysdk) return;
+
         this.ysdk.adv.hideBannerAdv();
       });
     }
