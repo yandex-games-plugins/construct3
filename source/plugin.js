@@ -11,7 +11,7 @@ const SDK = self.SDK;
 const PLUGIN_ID = "yagames_sdk";
 ////////////////////////////////////////////
 
-const PLUGIN_VERSION = "1.0.1.0";
+const PLUGIN_VERSION = "1.0.2.0";
 const PLUGIN_CATEGORY = "platform-specific";
 
 const PLUGIN_CLASS = (SDK.Plugins.yagames_sdk = class YandexGamesSDK extends (
