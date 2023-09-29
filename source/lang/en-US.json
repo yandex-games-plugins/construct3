@@ -181,6 +181,28 @@
             "display-text": "current-player-is-authorized",
             "description": "current-player-is-authorized"
           },
+
+          "throttle": {
+            "list-name": "Not more than once in a while",
+            "display-text": "Not more than once in [b]{0}[/b] seconds",
+            "description": "Skips subsequent executions for some time after the last condition check.",
+            "params": {
+              "seconds": {
+                "name": "Seconds",
+                "desc": "Time for which subsequent executions will be ignored."
+              }
+            }
+          },
+          "debounce": {
+            "list-name": "Delay for a while",
+            "display-text": "Delay for [b]{0}[/b] seconds",
+            "description": "Delays the execution of the code for some time after the last condition check.",
+            "params": {
+              "seconds": {
+                "name": "Seconds",
+                "desc": "Time after which the code will work after the last condition check"
+              }
+            }
           }
         },
         "actions": {

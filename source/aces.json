@@ -1,4 +1,4 @@
-{
+﻿{
   "localization": {
     "conditions": [],
     "actions": [
@@ -330,7 +330,24 @@
   },
 
   "misc": {
-    "conditions": [],
+    "conditions": [
+      {
+        "id": "throttle",
+        "scriptName": "Throttle",
+        "highlight": false,
+        "isLooping": true,
+        "isCompatibleWithTriggers": false,
+        "params": [{ "id": "seconds", "type": "number" }]
+      },
+      {
+        "id": "debounce",
+        "scriptName": "Debounce",
+        "highlight": false,
+        "isLooping": true,
+        "isCompatibleWithTriggers": false,
+        "params": [{ "id": "seconds", "type": "number" }]
+      }
+    ],
     "actions": [
       {
         "id": "loading-api-ready",

@@ -389,6 +389,72 @@ const Conditions = {
 
   //#endregion
 
+  //#region Misc
+
+  /**
+   * @this {YandexGamesSDKInstance}
+   * @param {number} seconds
+   */
+  Throttle(seconds) {
+    const runtime = this.GetRuntime();
+    const eventSheetManager = runtime.GetEventSheetManager();
+    const currentEvent = runtime.GetCurrentEvent();
+    const solModifiers = currentEvent.GetSolModifiers();
+    const eventStack = runtime.GetEventStack();
+
+    if (this.throttleTimers.has(currentEvent)) {
+      return false;
+    }
+
+    const oldFrame = eventStack.GetCurrentStackFrame();
+    const newFrame = eventStack.Push(currentEvent);
+    eventSheetManager.PushCopySol(solModifiers);
+    currentEvent.Retrigger(oldFrame, newFrame);
+    eventSheetManager.PopSol(solModifiers);
+    eventStack.Pop();
+
+    this.throttleTimers.set(
+      currentEvent,
+      setTimeout(() => {
+        clearTimeout(this.throttleTimers.get(currentEvent));
+        this.throttleTimers.delete(currentEvent);
+      }, seconds * 1000)
+    );
+
+    return false;
+  },
+
+  /**
+   * @this {YandexGamesSDKInstance}
+   * @param {number} seconds
+   */
+  Debounce(seconds) {
+    const runtime = this.GetRuntime();
+    const eventSheetManager = runtime.GetEventSheetManager();
+    const currentEvent = runtime.GetCurrentEvent();
+    const solModifiers = currentEvent.GetSolModifiers();
+    const eventStack = runtime.GetEventStack();
+
+    if (this.debounceTimers.has(currentEvent)) {
+      clearTimeout(this.debounceTimers.get(currentEvent));
+      this.debounceTimers.delete(currentEvent);
+    }
+
+    this.debounceTimers.set(
+      currentEvent,
+      setTimeout(() => {
+        const oldFrame = eventStack.GetCurrentStackFrame();
+        const newFrame = eventStack.Push(currentEvent);
+        eventSheetManager.PushCopySol(solModifiers);
+        currentEvent.Retrigger(oldFrame, newFrame);
+        eventSheetManager.PopSol(solModifiers);
+        eventStack.Pop();
+      }, seconds * 1000)
+    );
+
+    return false;
+  },
+
   //#endregion
 };
 

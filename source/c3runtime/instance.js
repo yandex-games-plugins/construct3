@@ -217,6 +217,14 @@ class YandexGamesSDKInstance extends C3.SDKInstanceBase {
 
     //#endregion
 
+    //#region Misc
+
+    /** @type {Map<any, number>} */
+    this.throttleTimers = new Map();
+
+    /** @type {Map<any, number>} */
+    this.debounceTimers = new Map();
+
     //#endregion
 
     this.AddDOMMessageHandler("ysdk-init", (e) => this.initCallback(e));
