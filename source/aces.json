@@ -1,4 +1,4 @@
-﻿{
+{
   "localization": {
     "conditions": [],
     "actions": [
@@ -42,12 +42,7 @@
         "isFakeTrigger": true,
         "isInvertible": false,
         "isCompatibleWithTriggers": false,
-        "params": [
-          {
-            "id": "id",
-            "type": "string"
-          }
-        ]
+        "params": [{ "id": "id", "type": "string" }]
       },
       {
         "id": "fullscreen-ad-was-shown",
@@ -59,12 +54,7 @@
         "isFakeTrigger": true,
         "isInvertible": false,
         "isCompatibleWithTriggers": false,
-        "params": [
-          {
-            "id": "id",
-            "type": "string"
-          }
-        ]
+        "params": [{ "id": "id", "type": "string" }]
       },
       {
         "id": "on-fullscreen-ad-error",
@@ -72,12 +62,7 @@
         "isFakeTrigger": true,
         "isInvertible": false,
         "isCompatibleWithTriggers": false,
-        "params": [
-          {
-            "id": "id",
-            "type": "string"
-          }
-        ]
+        "params": [{ "id": "id", "type": "string" }]
       },
       {
         "id": "on-fullscreen-ad-offline",
@@ -85,12 +70,7 @@
         "isFakeTrigger": true,
         "isInvertible": false,
         "isCompatibleWithTriggers": false,
-        "params": [
-          {
-            "id": "id",
-            "type": "string"
-          }
-        ]
+        "params": [{ "id": "id", "type": "string" }]
       }
     ],
     "actions": [
@@ -98,12 +78,7 @@
         "id": "show-fullscreen-ad",
         "scriptName": "ShowFullscreenAD",
         "highlight": true,
-        "params": [
-          {
-            "id": "id",
-            "type": "string"
-          }
-        ]
+        "params": [{ "id": "id", "type": "string" }]
       }
     ],
     "expressions": [
@@ -123,12 +98,7 @@
         "isFakeTrigger": true,
         "isInvertible": false,
         "isCompatibleWithTriggers": false,
-        "params": [
-          {
-            "id": "id",
-            "type": "string"
-          }
-        ]
+        "params": [{ "id": "id", "type": "string" }]
       },
       {
         "id": "on-rewarded-ad-rewarded",
@@ -136,12 +106,7 @@
         "isFakeTrigger": true,
         "isInvertible": false,
         "isCompatibleWithTriggers": false,
-        "params": [
-          {
-            "id": "id",
-            "type": "string"
-          }
-        ]
+        "params": [{ "id": "id", "type": "string" }]
       },
       {
         "id": "on-rewarded-ad-close",
@@ -149,12 +114,7 @@
         "isFakeTrigger": true,
         "isInvertible": false,
         "isCompatibleWithTriggers": false,
-        "params": [
-          {
-            "id": "id",
-            "type": "string"
-          }
-        ]
+        "params": [{ "id": "id", "type": "string" }]
       },
       {
         "id": "on-rewarded-ad-error",
@@ -162,12 +122,7 @@
         "isFakeTrigger": true,
         "isInvertible": false,
         "isCompatibleWithTriggers": false,
-        "params": [
-          {
-            "id": "id",
-            "type": "string"
-          }
-        ]
+        "params": [{ "id": "id", "type": "string" }]
       }
     ],
     "actions": [
@@ -175,12 +130,7 @@
         "id": "show-rewarded-ad",
         "scriptName": "ShowRewardedAD",
         "highlight": true,
-        "params": [
-          {
-            "id": "id",
-            "type": "string"
-          }
-        ]
+        "params": [{ "id": "id", "type": "string" }]
       }
     ],
     "expressions": [
@@ -209,6 +159,124 @@
       }
     ],
     "expressions": []
+  },
+
+  "leaderboards": {
+    "conditions": [
+      {
+        "id": "for-each-leaderboard-entry",
+        "scriptName": "ForEachLeaderboardEntry",
+        "highlight": false,
+        "isCompatibleWithTriggers": false,
+        "isLooping": true,
+        "params": [
+          { "id": "leaderboardName", "type": "string" },
+          { "id": "quantityTop", "type": "number", "initialValue": "5" },
+          { "id": "includeUser", "type": "boolean", "initialValue": "false" },
+          { "id": "quantityAround", "type": "number", "initialValue": "5" }
+        ]
+      },
+      {
+        "id": "current-leadeboard-description-invert-order",
+        "scriptName": "CurrentLeaderboardDescriptionInvertOrder",
+        "highlight": false
+      }
+    ],
+    "actions": [
+      {
+        "id": "set-leaderboard-score",
+        "scriptName": "SetLeaderboardScore",
+        "highlight": false,
+        "params": [
+          { "id": "leaderboardName", "type": "string" },
+          { "id": "score", "type": "number" },
+          { "id": "extraData", "type": "string", "initialValue": "" }
+        ]
+      }
+    ],
+    "expressions": [
+      {
+        "id": "current-leadeboard-entry-rank",
+        "expressionName": "GetCurrentLeaderboardEntryRank",
+        "returnType": "number"
+      },
+      {
+        "id": "current-leadeboard-entry-score",
+        "expressionName": "GetCurrentLeaderboardEntryScore",
+        "returnType": "number"
+      },
+      {
+        "id": "current-leadeboard-entry-extra-data",
+        "expressionName": "GetCurrentLeaderboardEntryExtraData",
+        "returnType": "string"
+      },
+      {
+        "id": "current-leadeboard-entry-range-index",
+        "expressionName": "GetCurrentLeaderboardEntryRangeIndex",
+        "returnType": "number"
+      },
+      {
+        "id": "current-leadeboard-description-name",
+        "expressionName": "GetCurrentLeaderboardDescriptionName",
+        "returnType": "string"
+      },
+      {
+        "id": "current-leadeboard-description-type",
+        "expressionName": "GetCurrentLeaderboardDescriptionType",
+        "returnType": "string"
+      },
+      {
+        "id": "current-leadeboard-description-title",
+        "expressionName": "GetCurrentLeaderboardDescriptionTitle",
+        "params": [{ "id": "lang", "type": "string" }],
+        "returnType": "string"
+      },
+      {
+        "id": "current-leadeboard-description-decimal-offset",
+        "expressionName": "GetCurrentLeaderboardDescriptionDecimalOffset",
+        "params": [{ "id": "lang", "type": "string" }],
+        "returnType": "string"
+      }
+    ]
+  },
+
+  "player": {
+    "conditions": [
+      {
+        "id": "for-player-info",
+        "scriptName": "ForPlayerInfo",
+        "highlight": false,
+        "isCompatibleWithTriggers": false,
+        "isLooping": true,
+        "params": [{ "id": "signed", "type": "boolean" }]
+      },
+      {
+        "id": "current-player-is-authorized",
+        "scriptName": "CurrentPlayerIsAuthorized",
+        "highlight": false
+      }
+    ],
+    "actions": [],
+    "expressions": [
+      {
+        "id": "current-player-unique-id",
+        "expressionName": "GetCurrentPlayerUniqueID",
+        "returnType": "string"
+      },
+      {
+        "id": "current-player-name",
+        "expressionName": "GetCurrentPlayerName",
+        "returnType": "string"
+      },
+      {
+        "id": "current-player-avatar",
+        "expressionName": "GetCurrentPlayerAvatar",
+        "params": [
+          { "id": "size", "type": "string", "initialValue": "medium" }
+        ],
+        "returnType": "string"
+      }
+    ]
   },
 
   "environment": {

@@ -139,13 +139,14 @@ const Actions = {
         ) {
           const match = matches[0];
           try {
-          const path = match.slice(1, -1);
+            const path = match.slice(1, -1);
             const translation = path
-            .split(".")
+              .split(".")
               .reduce((obj, key) => obj[key], this.localizations);
             _text = _text.replace(match, translation);
           } catch (e) {
             developerAlert(
+              runtime,
               `Can't apply translation for ${match} in ${this.currentLanguage}. More info in console.`
             );
             console.error(e);
@@ -161,6 +162,7 @@ const Actions = {
         );
 
         console.error(e);
+
         return text;
       }
     };
@@ -358,6 +360,19 @@ const Actions = {
 
   HideStickyBanner() {
     this.PostToDOM("ysdk-hide-sticky-banner");
+  },
+
+  //#endregion
+
+  //#region Leaderboards
+
+  /** @this {YandexGamesSDKInstance} */
+  SetLeaderboardScore(leaderboardName, score, extraData) {
+    this.PostToDOM("ysdk-set-leaderboard-score", {
+      leaderboardName,
+      score,
+      extraData,
+    });
   },
 
   //#endregion

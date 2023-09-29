@@ -35,7 +35,10 @@ const Conditions = {
 
     if (!callback) return false;
 
-    const SID = this.GetRuntime().GetCurrentEvent().GetSID();
+    const runtime = this.GetRuntime();
+    const currentEvent = runtime.GetCurrentEvent();
+
+    const SID = currentEvent.GetSID();
 
     if (callback.killSID === SID) {
       this.fullscreenADCallbacks[id]["onClose"] = undefined;
@@ -44,8 +47,7 @@ const Conditions = {
       callback.killSID = SID;
     }
 
-    const condition = this.GetRuntime()
-      .GetCurrentEvent()
+    const condition = currentEvent
       .GetConditions()
       .find((cond) => cond._func === this.conditions.OnFullscreenADClose);
 
@@ -118,7 +120,10 @@ const Conditions = {
 
     if (!callback) return false;
 
-    const SID = this.GetRuntime().GetCurrentEvent().GetSID();
+    const runtime = this.GetRuntime();
+    const currentEvent = runtime.GetCurrentEvent();
+
+    const SID = currentEvent.GetSID();
 
     if (callback.killSID === SID) {
       this.fullscreenADCallbacks[id]["onError"] = undefined;
@@ -127,8 +132,7 @@ const Conditions = {
       callback.killSID = SID;
     }
 
-    const condition = this.GetRuntime()
-      .GetCurrentEvent()
+    const condition = currentEvent
       .GetConditions()
       .find((cond) => cond._func === this.conditions.OnFullscreenADError);
 
@@ -254,7 +258,10 @@ const Conditions = {
 
     if (!callback) return false;
 
-    const SID = this.GetRuntime().GetCurrentEvent().GetSID();
+    const runtime = this.GetRuntime();
+    const currentEvent = runtime.GetCurrentEvent();
+
+    const SID = currentEvent.GetSID();
 
     if (callback.killSID === SID) {
       this.rewardedADCallbacks[id]["onError"] = undefined;
@@ -263,8 +270,7 @@ const Conditions = {
       callback.killSID = SID;
     }
 
-    const condition = this.GetRuntime()
-      .GetCurrentEvent()
+    const condition = currentEvent
       .GetConditions()
       .find((cond) => cond._func === this.conditions.OnRewardedADError);
 
@@ -272,6 +278,116 @@ const Conditions = {
 
     return true;
   },
+
+  //#endregion
+
+  //#region Leaderboards
+
+  /**
+   * @this {YandexGamesSDKInstance}
+   * @param {string} leaderboardName
+   * @param {number} quantityTop
+   * @param {boolean} includeUser
+   * @param {number} quantityAround
+   */
+  ForEachLeaderboardEntry(
+    leaderboardName,
+    quantityTop,
+    includeUser,
+    quantityAround
+  ) {
+    const runtime = this.GetRuntime();
+    const eventSheetManager = runtime.GetEventSheetManager();
+    const currentEvent = runtime.GetCurrentEvent();
+    const solModifiers = currentEvent.GetSolModifiers();
+    const eventStack = runtime.GetEventStack();
+
+    this.PostToDOMAsync("ysdk-request-leaderboard-entries", {
+      leaderboardName,
+      options: {
+        quantityTop,
+        includeUser,
+        quantityAround,
+      },
+    }).then((entriesDataJSON) => {
+      /** @type {import("../types").LeaderboardEntriesData} */
+      const entriesData = JSON.parse(entriesDataJSON);
+
+      this.forEachLeaderbordEntryLoopData = {};
+      this.forEachLeaderbordEntryLoopData.entriesData = entriesData;
+
+      const oldFrame = eventStack.GetCurrentStackFrame();
+      const newFrame = eventStack.Push(currentEvent);
+
+      for (let i = 0; i < entriesData.entries.length; i++) {
+        eventSheetManager.PushCopySol(solModifiers);
+
+        this.forEachLeaderbordEntryLoopData.currentIndex = i;
+
+        currentEvent.Retrigger(oldFrame, newFrame);
+
+        eventSheetManager.PopSol(solModifiers);
+      }
+
+      eventStack.Pop();
+
+      this.forEachLeaderbordEntryLoopData = null;
+    });
+
+    return false;
+  },
+
+  /** @this {YandexGamesSDKInstance} */
+  CurrentLeaderboardDescriptionInvertOrder() {
+    if (!this.forEachLeaderbordEntryLoopData) return "";
+    const leaderboard =
+      this.forEachLeaderbordEntryLoopData.entriesData.leaderboard;
+    return leaderboard.description.invert_sort_order ? "true" : "false";
+  },
+
+  //#endregion
+
+  //#region Player
+
+  /**
+   * @this {YandexGamesSDKInstance}
+   * @param {boolean} signed
+   */
+  ForPlayerInfo(signed) {
+    const runtime = this.GetRuntime();
+    const eventSheetManager = runtime.GetEventSheetManager();
+    const currentEvent = runtime.GetCurrentEvent();
+    const solModifiers = currentEvent.GetSolModifiers();
+    const eventStack = runtime.GetEventStack();
+
+    this.PostToDOMAsync("ysdk-request-player-data", {
+      signed,
+    }).then((playerDataJSON) => {
+      this.forPlayerInfo = JSON.parse(playerDataJSON);
+
+      const oldFrame = eventStack.GetCurrentStackFrame();
+      const newFrame = eventStack.Push(currentEvent);
+      eventSheetManager.PushCopySol(solModifiers);
+      currentEvent.Retrigger(oldFrame, newFrame);
+      eventSheetManager.PopSol(solModifiers);
+      eventStack.Pop();
+
+      this.forPlayerInfo = null;
+    });
+
+    return false;
+  },
+
+  /** @this {YandexGamesSDKInstance} */
+  CurrentPlayerIsAuthorized() {
+    if (this.forPlayerInfo) {
+      return !!this.forPlayerInfo.isAuthorized;
+    } else {
+      return false;
+    }
+  },
+
+  //#endregion
 
   //#endregion
 };

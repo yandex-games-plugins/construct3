@@ -188,6 +188,37 @@ class YandexGamesSDKInstance extends C3.SDKInstanceBase {
 
     //#endregion
 
+    //#region Leaderboards
+
+    /** @type {{entriesData: import("../types").LeaderboardEntriesData; currentIndex: number} | null} */
+    this.forEachLeaderbordEntryLoopData = null;
+
+    //#endregion
+
+    //#region Player
+
+    /**
+     * @typedef {Object} PlayerAvatars
+     * @property {string} small
+     * @property {string} medium
+     * @property {string} large
+     */
+
+    /**
+     * @typedef {Object} ForPlayerInfo
+     * @property {boolean} isAuthorized
+     * @property {string} uniqueID
+     * @property {string} publicName
+     * @property {PlayerAvatars} avatars
+     */
+
+    /** @type {ForPlayerInfo | null} */
+    this.forPlayerInfo = null;
+
+    //#endregion
+
+    //#endregion
+
     this.AddDOMMessageHandler("ysdk-init", (e) => this.initCallback(e));
     this.PostToDOM("ysdk-init");
   }

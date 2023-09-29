@@ -159,6 +159,56 @@
 
         this.ysdk.adv.hideBannerAdv();
       });
+
+      this.AddRuntimeMessageHandler(
+        "ysdk-request-leaderboard-entries",
+        async ({ leaderboardName, options }) => {
+          if (!this.ysdk) return;
+
+          const lb = await this.ysdk.getLeaderboards();
+
+          const entries = await lb.getLeaderboardEntries(
+            leaderboardName,
+            options
+          );
+
+          return JSON.stringify(entries);
+        }
+      );
+
+      this.AddRuntimeMessageHandler(
+        "ysdk-set-leaderboard-score",
+        async ({ leaderboardName, score, extraData }) => {
+          if (!this.ysdk) return;
+
+          const lb = await this.ysdk.getLeaderboards();
+
+          await lb.setLeaderboardScore(
+            leaderboardName,
+            score,
+            extraData || undefined
+          );
+        }
+      );
+
+      this.AddRuntimeMessageHandler(
+        "ysdk-request-player-data",
+        async ({ signed }) => {
+          if (!this.ysdk) return;
+
+          const player = await this.ysdk.getPlayer({ signed });
+          return JSON.stringify({
+            isAuthorized: player.getMode() !== "lite",
+            uniqueID: player.getUniqueID(),
+            publicName: player.getName(),
+            avatars: {
+              small: player.getAvatarSrc("small"),
+              medium: player.getAvatarSrc("medium"),
+              large: player.getAvatarSrc("large"),
+            },
+          });
+        }
+      );
     }
   };
 

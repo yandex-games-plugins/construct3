@@ -66,20 +66,149 @@ self.C3.Plugins.yagames_sdk.Exps = {
 
   //#endregion
 
+  //#region Leaderboards
+
+  /** @this {YandexGamesSDKInstance} */
+  GetCurrentLeaderboardEntryRank() {
+    if (!this.forEachLeaderbordEntryLoopData) return -1;
+    const loopData = this.forEachLeaderbordEntryLoopData;
+    const currentEntry = loopData.entriesData.entries[loopData.currentIndex];
+    return currentEntry.rank;
+  },
+
+  /** @this {YandexGamesSDKInstance} */
+  GetCurrentLeaderboardEntryScore() {
+    if (!this.forEachLeaderbordEntryLoopData) return -1;
+    const loopData = this.forEachLeaderbordEntryLoopData;
+    const currentEntry = loopData.entriesData.entries[loopData.currentIndex];
+    return currentEntry.score;
+  },
+
+  /** @this {YandexGamesSDKInstance} */
+  GetCurrentLeaderboardEntryExtraData() {
+    if (!this.forEachLeaderbordEntryLoopData) return "";
+    const loopData = this.forEachLeaderbordEntryLoopData;
+    const currentEntry = loopData.entriesData.entries[loopData.currentIndex];
+    return currentEntry.extraData || "";
+  },
+
+  /** @this {YandexGamesSDKInstance} */
+  GetCurrentLeaderboardEntryRangeIndex() {
+    if (!this.forEachLeaderbordEntryLoopData) return 0;
+    const loopData = this.forEachLeaderbordEntryLoopData;
+
+    for (
+      let entriesAmount = 0, i = 0;
+      i < loopData.entriesData.ranges.length;
+      i++
+    ) {
+      entriesAmount += loopData.entriesData.ranges[i].size;
+      if (loopData.currentIndex < entriesAmount) {
+        return i;
+      }
+    }
+
+    return 0;
+  },
+
+  /** @this {YandexGamesSDKInstance} */
+  GetCurrentLeaderboardDescriptionName() {
+    if (!this.forEachLeaderbordEntryLoopData) return "";
+    const leaderboard =
+      this.forEachLeaderbordEntryLoopData.entriesData.leaderboard;
+    return leaderboard.name || "";
+  },
+
+  /** @this {YandexGamesSDKInstance} */
+  GetCurrentLeaderboardDescriptionType() {
+    if (!this.forEachLeaderbordEntryLoopData) return "";
+    const loopData = this.forEachLeaderbordEntryLoopData;
+    const currentEntry = loopData.entriesData.entries[loopData.currentIndex];
+    return currentEntry.extraData || "";
+  },
+
+  /** @this {YandexGamesSDKInstance} */
+  GetCurrentLeaderboardDescriptionTitle() {
+    if (!this.forEachLeaderbordEntryLoopData) return "";
+    const loopData = this.forEachLeaderbordEntryLoopData;
+    const currentEntry = loopData.entriesData.entries[loopData.currentIndex];
+    return currentEntry.extraData || "";
+  },
+
+  /** @this {YandexGamesSDKInstance} */
+  GetCurrentLeaderboardDescriptionDecimalOffset() {
+    if (!this.forEachLeaderbordEntryLoopData) return "";
+    const loopData = this.forEachLeaderbordEntryLoopData;
+    const currentEntry = loopData.entriesData.entries[loopData.currentIndex];
+    return currentEntry.extraData || "";
+  },
+
+  //#endregion
+
+  //#region Player
+
+  /** @this {YandexGamesSDKInstance} */
+  GetCurrentPlayerUniqueID() {
+    if (this.forEachLeaderbordEntryLoopData) {
+      const loopData = this.forEachLeaderbordEntryLoopData;
+      const currentEntry = loopData.entriesData.entries[loopData.currentIndex];
+      return currentEntry.player.uniqueID;
+    } else if (this.forPlayerInfo) {
+      return this.forPlayerInfo.uniqueID;
+    } else {
+      return "";
+    }
+  },
+
+  /** @this {YandexGamesSDKInstance} */
+  GetCurrentPlayerName() {
+    if (this.forEachLeaderbordEntryLoopData) {
+      const loopData = this.forEachLeaderbordEntryLoopData;
+      const currentEntry = loopData.entriesData.entries[loopData.currentIndex];
+      return currentEntry.player.publicName;
+    } else if (this.forPlayerInfo) {
+      return this.forPlayerInfo.publicName;
+    } else {
+      return "";
+    }
+  },
+
+  /**
+   * @this {YandexGamesSDKInstance}
+   * @param {"small"|"medium"|"large"} size
+   */
+  GetCurrentPlayerAvatar(size) {
+    if (this.forEachLeaderbordEntryLoopData) {
+      const loopData = this.forEachLeaderbordEntryLoopData;
+      const currentEntry = loopData.entriesData.entries[loopData.currentIndex];
+      return currentEntry.player.getAvatarSrc(size);
+    } else if (this.forPlayerInfo) {
+      return this.forPlayerInfo.avatars[size];
+    } else {
+      return "";
+    }
+  },
+
+  //#endregion
+
   //#region Environment
 
+  /** @this {YandexGamesSDKInstance} */
   GetLanguage() {
     return this.environment?.i18n.lang ?? "en";
   },
 
+  /** @this {YandexGamesSDKInstance} */
   GetDomain() {
     return this.environment?.i18n.tld ?? "com";
   },
 
+  /** @this {YandexGamesSDKInstance} */
   GetPayload() {
     return this.environment?.payload ?? "";
   },
 
+  /** @this {YandexGamesSDKInstance} */
   GetAppID() {
     return this.environment?.app_id ?? "0";
   },

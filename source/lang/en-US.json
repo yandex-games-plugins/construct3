@@ -13,6 +13,8 @@
           "fullscreen-ad": "Fullscreen AD",
           "rewarded-ad": "Rewarded AD",
           "sticky-banner": "Sticky-Banner",
+          "leaderboards": "Leaderboards",
+          "player": "Player",
           "environment": "Environment",
           "deviceInfo": "Device Info",
           "misc": "Misc"
@@ -132,6 +134,53 @@
             "list-name": "Game is running on TV",
             "display-text": "Game is running on TV",
             "description": "Checks if game is running on TV."
+          },
+
+          "for-each-leaderboard-entry": {
+            "list-name": "For each player in leaderboard",
+            "display-text": "For each player in leaderboard: [b]{0}[/b]",
+            "description": "Requests and iterates through Yandex.Games leaderboard entries.",
+            "params": {
+              "leaderboardName": {
+                "name": "Leaderboard Name",
+                "desc": "Name of requested leaderboard."
+              },
+              "quantityTop": {
+                "name": "Quantity Top",
+                "desc": "Number of entries from the top of the leaderboard."
+              },
+              "includeUser": {
+                "name": "Include User",
+                "desc": "Defines whether to include the logged-in user in the response."
+              },
+              "quantityAround": {
+                "name": "Quantity Around",
+                "desc": "Number of entries to return below and above the user in the leaderboard."
+              }
+            }
+          },
+          "current-leadeboard-description-invert-order": {
+            "list-name": "current-leadeboard-description-invert-order",
+            "display-text": "current-leadeboard-description-invert-order",
+            "description": "current-leadeboard-description-invert-order"
+          },
+
+          "for-player-info": {
+            "list-name": "for-player-info",
+            "display-text": "for-player-info",
+            "description": "for-player-info",
+            "params": {
+              "signed": {
+                "name": "signed",
+                "desc": "signed"
+              }
+            }
+          },
+          "current-player-is-authorized": {
+            "list-name": "current-player-is-authorized",
+            "display-text": "current-player-is-authorized",
+            "description": "current-player-is-authorized"
+          },
           }
         },
         "actions": {
@@ -174,6 +223,12 @@
             "list-name": "Hide sticky banner",
             "display-text": "Hide sticky banner.",
             "description": "Hides sticky banner."
+          },
+
+          "player-get-data": {
+            "list-name": "Get player data",
+            "display-text": "Get player data",
+            "description": "Requests player data from Yandex.Games."
           },
 
           "switch-localization-language": {
@@ -251,6 +306,68 @@
           "get-app-id": {
             "translated-name": "App ID",
             "description": "App ID."
+          },
+
+          "current-leadeboard-entry-rank": {
+            "translated-name": "Player position in leaderboard",
+            "description": "The position obtained by comparing the score of all players."
+          },
+          "current-leadeboard-entry-score": {
+            "translated-name": "Player score in leaderboard",
+            "description": "The score obtained by the player in the game."
+          },
+          "current-leadeboard-entry-extra-data": {
+            "translated-name": "Player extra data in leaderboard",
+            "description": "Optional metadata sent with the game score."
+          },
+          "current-leadeboard-entry-range-index": {
+            "translated-name": "Range index of requested leaderboard",
+            "description": "When requesting positions from the leaderboard, several intervals of values can be formed. For example, if you request 5 positions from the top of the table and 3 around the player, and the player is ranked 100th, then you will request positions from 1 to 5 (the first interval of 5) and from 97 to 103 (the second interval of 7)."
+          },
+          "current-leadeboard-description-name": {
+            "translated-name": "Leaderboad name",
+            "description": "Technical name of the leaderboard. (not intended for users to see)"
+          },
+          "current-leadeboard-description-type": {
+            "translated-name": "Leaderboard type",
+            "description": "Leaderboard result type. Available parameters: numeric (number), time (seconds)."
+          },
+          "current-leadeboard-description-title": {
+            "translated-name": "Display title of leaderboard",
+            "description": "Localized display title of leaderboard. (intended for users to see)",
+            "params": {
+              "lang": {
+                "name": "Language code",
+                "desc": "Language code in ISO-639-1 format."
+              }
+            }
+          },
+          "current-leadeboard-description-decimal-offset": {
+            "translated-name": "Decimal offset of leaderboard",
+            "description": "Score offset. For example, when decimal_offset: 2 1234 will be displayed as 12.34."
+          },
+
+          "current-player-is-authorized": {
+            "translated-name": "Player is authorized",
+            "description": "Indicates whether gave your game permission to access the player's data."
+          },
+          "current-player-unique-id": {
+            "translated-name": "Player unique ID",
+            "description": "Unique indentificator of player."
+          },
+          "current-player-name": {
+            "translated-name": "Player name",
+            "description": "Name, that player set in Yandex."
+          },
+          "current-player-avatar": {
+            "translated-name": "Player avatar",
+            "description": "URLs of player avatar.",
+            "params": {
+              "size": {
+                "name": "Size",
+                "desc": "Size of avatar. (small/medium/large)"
+              }
+            }
           }
         }
       }

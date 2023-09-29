@@ -217,12 +217,14 @@ export interface Leaderboards {
       quantityAround?: number;
       quantityTop?: number;
     }
-  ): Promise<{
-    leaderboard: LeaderboardDescription;
-    ranges: { start: number; size: number }[];
-    userRank: number;
-    entries: LeaderboardEntry[];
-  }>;
+  ): Promise<LeaderboardEntriesData>;
+}
+
+export interface LeaderboardEntriesData {
+  leaderboard: LeaderboardDescription;
+  ranges: { start: number; size: number }[];
+  userRank: number;
+  entries: LeaderboardEntry[];
 }
 
 export interface LeaderboardEntry {
