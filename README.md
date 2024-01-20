@@ -17,7 +17,7 @@ these games is added to the device cache during the first gaming session).
 
 ### 1. Installation
 
-You can proceed to [Releases](https://github.com/yandex-games-plugins/construct3/releases) section to download
+You can proceed to [Tags](https://github.com/yandex-games-plugins/construct3/tags) section to download
 latest versions of plugins and add them to your Construct 3 editor.
 
 ### 2. Documentation
