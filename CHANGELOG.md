@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.0.0] - 2024.1.13
+
+### Added
+
+- Complete coverage of Yandex.Games SDK with visual methods
+- TV Controls conditions for better DX
+- TV Remote Emulator
+- New aditional plugin `adaptivetext`
+- BBCode independent translations
+- `set-default-localization-language` action deprecated in favor of addon `default-localization-language`
+  parameter.
+
+### Fixed
+
+- Broken translations when BBCode is disabled.
+- `ysdk is not defined` error in scripts.
+- Inconsistent sdk initialization.
+
 ## [1.0.2.0] - 2023.09.30
 
 ### Added

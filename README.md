@@ -1,12 +1,30 @@
-# Документация
+[![YaGames Logo](cover.png)](https://github.com/yandex-games-plugins/construct3)
 
-- [Установка плагина](docs/install.md)
+# Yandex.Games SDK for Construct 3
 
-## Методы СДК <a href="#docs/sdk-method" id="sdk-method"></a>
+[Yandex Games](https://yandex.com/games/) is a catalog of browser-based online games that can be played on
+smartphones or desktop devices and require no installation. Most games are also available offline (code for
+these games is added to the device cache during the first gaming session).
 
-- [Использование API](docs/sdk-method/api-usage.md)
+## Repository plugins
 
-## Локализация <a href="#localizaton" id="localizaton"></a>
+- **YandexGamesSDK**, main plugin that allows you to interact with Yandex.Games SDKs, easily localise your
+  games and more!
 
-- [Локализация текста](docs/localizaton/text.md)
-- [Локализация спрайтов](docs/localizaton/sprites.md)
+- **AdaptiveText**, additional plugin for auto-scaling text visualisations.
+
+## Getting Started
+
+### 1. Installation
+
+You can proceed to [Releases](https://github.com/yandex-games-plugins/construct3/releases) section to download
+latest versions of plugins and add them to your Construct 3 editor.
+
+### 2. Documentation
+
+Check out the [Documentation](https://lisgames.gitbook.io/ysdk-construct) to get more info about how to work with plugins.
+
+### 3. Community
+
+Feel free to join our [Telegram Chat](https://t.me/yandexgamesplugins) to keep in touch with us, get the
+latest development news and take part in surveys!

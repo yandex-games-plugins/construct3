@@ -1,0 +1,16 @@
+{
+  "json.schemas": [
+    {
+      "fileMatch": ["addon.json"],
+      "url": "https://raw.githubusercontent.com/Scirra/Construct-Addon-SDK/main/plugin-sdk/plugin.addon.schema.json"
+    },
+    {
+      "fileMatch": ["aces.json"],
+      "url": "https://raw.githubusercontent.com/Scirra/Construct-Addon-SDK/main/plugin-sdk/aces.schema.json"
+    },
+    {
+      "fileMatch": ["**/lang/*.json"],
+      "url": "https://raw.githubusercontent.com/Scirra/Construct-Addon-SDK/main/plugin-sdk/plugin.lang.schema.json"
+    }
+  ]
+}
