@@ -30,6 +30,7 @@ const PLUGIN_CLASS = (SDK.Plugins.yagames_adaptivetext = class AdaptiveTextPlugi
     this._info.AddCommonPositionACEs();
     this._info.AddCommonSizeACEs();
     this._info.AddCommonAppearanceACEs();
+    this._info.AddCommonZOrderACEs();
 
     SDK.Lang.PushContext('.properties');
 
