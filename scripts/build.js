@@ -1,30 +1,36 @@
-const fs = require("fs");
+const fs = require('fs');
 
-const addonJSON = require("../source/addon.json");
+fs.readdirSync('./plugins', { withFileTypes: true })
+  .filter((dirent) => dirent.isDirectory())
+  .map((dirent, index) => ({
+    addon: require(`../plugins/${dirent.name}/addon.json`),
+    directory: `plugins/${dirent.name}/`,
+  }))
+  .forEach((config) => {
+    const fileName = `${config.addon.name}-${config.addon.version}.c3addon`;
 
-const fileName = `${addonJSON.name}-${addonJSON.version}.c3addon`;
+    if (!fs.existsSync('dist/')) {
+      fs.mkdirSync('dist/');
+    }
 
-if (!fs.existsSync("dist/")) {
-  fs.mkdirSync("dist/");
-}
+    const output = fs.createWriteStream(`dist/${fileName}`, { flags: 'w' });
 
-const output = fs.createWriteStream(`dist/${fileName}`, { flags: "w" });
+    const archiver = require('archiver')('zip', {
+      zlib: { level: 9 },
+    });
 
-const archiver = require("archiver")("zip", {
-  zlib: { level: 9 },
-});
+    output.on('error', () => {
+      console.log(`[${fileName}] Build: Error`);
+    });
 
-output.on("error", function () {
-  console.log(`[${fileName}] Build: Error`);
-});
+    output.on('finish', () => {
+      const kib = (archiver.pointer() / 1024).toPrecision(2);
+      console.log(`[${fileName}] Build: Success (${kib} KiB)`);
+    });
 
-output.on("finish", function () {
-  const kib = (archiver.pointer() / 1024).toPrecision(2);
-  console.log(`[${fileName}] Build: Success (${kib} KiB)`);
-});
+    archiver.pipe(output);
 
-archiver.pipe(output);
+    archiver.directory(config.directory, false);
 
-archiver.directory("source/", false);
-
-archiver.finalize();
+    archiver.finalize();
+  });

@@ -1,0 +1,509 @@
+﻿{
+  "localization": {
+    "conditions": [],
+    "actions": [
+      {
+        "id": "switch-localization-language",
+        "scriptName": "SwitchLanguage",
+        "highlight": false,
+        "params": [
+          {
+            "id": "lang",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "id": "set-default-localization-language",
+        "scriptName": "SetDefaultLanguage",
+        "highlight": false,
+        "isDeprecated": true,
+        "params": [
+          {
+            "id": "lang",
+            "type": "string"
+          }
+        ]
+      }
+    ],
+    "expressions": [
+      {
+        "id": "current-localization-language",
+        "expressionName": "CurrentLanguage",
+        "returnType": "string"
+      }
+    ]
+  },
+
+  "fullscreen-ad": {
+    "conditions": [
+      {
+        "id": "on-fullscreen-ad-close",
+        "scriptName": "OnFullscreenADClose",
+        "isFakeTrigger": true,
+        "isInvertible": false,
+        "isCompatibleWithTriggers": false,
+        "params": [{ "id": "id", "type": "string" }]
+      },
+      {
+        "id": "fullscreen-ad-was-shown",
+        "scriptName": "FullscreenADWasShown"
+      },
+      {
+        "id": "on-fullscreen-ad-open",
+        "scriptName": "OnFullscreenADOpen",
+        "isFakeTrigger": true,
+        "isInvertible": false,
+        "isCompatibleWithTriggers": false,
+        "params": [{ "id": "id", "type": "string" }]
+      },
+      {
+        "id": "on-fullscreen-ad-error",
+        "scriptName": "OnFullscreenADError",
+        "isFakeTrigger": true,
+        "isInvertible": false,
+        "isCompatibleWithTriggers": false,
+        "params": [{ "id": "id", "type": "string" }]
+      },
+      {
+        "id": "on-fullscreen-ad-offline",
+        "scriptName": "OnFullscreenADOffline",
+        "isFakeTrigger": true,
+        "isInvertible": false,
+        "isCompatibleWithTriggers": false,
+        "params": [{ "id": "id", "type": "string" }]
+      }
+    ],
+    "actions": [
+      {
+        "id": "show-fullscreen-ad",
+        "scriptName": "ShowFullscreenAD",
+        "highlight": true,
+        "params": [{ "id": "id", "type": "string" }]
+      }
+    ],
+    "expressions": [
+      {
+        "id": "fullscreen-ad-error",
+        "expressionName": "FullscreenADError",
+        "returnType": "string"
+      }
+    ]
+  },
+
+  "rewarded-ad": {
+    "conditions": [
+      {
+        "id": "on-rewarded-ad-open",
+        "scriptName": "OnRewardedADOpen",
+        "isFakeTrigger": true,
+        "isInvertible": false,
+        "isCompatibleWithTriggers": false,
+        "params": [{ "id": "id", "type": "string" }]
+      },
+      {
+        "id": "on-rewarded-ad-rewarded",
+        "scriptName": "OnRewardedADRewarded",
+        "isFakeTrigger": true,
+        "isInvertible": false,
+        "isCompatibleWithTriggers": false,
+        "params": [{ "id": "id", "type": "string" }]
+      },
+      {
+        "id": "on-rewarded-ad-close",
+        "scriptName": "OnRewardedADClose",
+        "isFakeTrigger": true,
+        "isInvertible": false,
+        "isCompatibleWithTriggers": false,
+        "params": [{ "id": "id", "type": "string" }]
+      },
+      {
+        "id": "on-rewarded-ad-error",
+        "scriptName": "OnRewardedADError",
+        "isFakeTrigger": true,
+        "isInvertible": false,
+        "isCompatibleWithTriggers": false,
+        "params": [{ "id": "id", "type": "string" }]
+      }
+    ],
+    "actions": [
+      {
+        "id": "show-rewarded-ad",
+        "scriptName": "ShowRewardedAD",
+        "highlight": true,
+        "params": [{ "id": "id", "type": "string" }]
+      }
+    ],
+    "expressions": [
+      {
+        "id": "rewarded-ad-error",
+        "expressionName": "RewardedADError",
+        "returnType": "string"
+      }
+    ]
+  },
+
+  "sticky-banner": {
+    "conditions": [],
+    "actions": [
+      {
+        "id": "show-sticky-banner",
+        "scriptName": "ShowStickyBanner",
+        "highlight": false,
+        "params": []
+      },
+      {
+        "id": "hide-sticky-banner",
+        "scriptName": "HideStickyBanner",
+        "highlight": false,
+        "params": []
+      }
+    ],
+    "expressions": []
+  },
+
+  "leaderboards": {
+    "conditions": [
+      {
+        "id": "for-each-leaderboard-entry",
+        "scriptName": "ForEachLeaderboardEntry",
+        "highlight": false,
+        "isCompatibleWithTriggers": false,
+        "isLooping": true,
+        "params": [
+          { "id": "leaderboardName", "type": "string" },
+          { "id": "quantityTop", "type": "number", "initialValue": "5" },
+          { "id": "includeUser", "type": "boolean", "initialValue": "false" },
+          { "id": "quantityAround", "type": "number", "initialValue": "5" }
+        ]
+      },
+      {
+        "id": "current-leadeboard-description-invert-order",
+        "scriptName": "CurrentLeaderboardDescriptionInvertOrder",
+        "highlight": false
+      }
+    ],
+    "actions": [
+      {
+        "id": "set-leaderboard-score",
+        "scriptName": "SetLeaderboardScore",
+        "highlight": false,
+        "params": [
+          { "id": "leaderboardName", "type": "string" },
+          { "id": "score", "type": "number" },
+          { "id": "extraData", "type": "string", "initialValue": "" }
+        ]
+      }
+    ],
+    "expressions": [
+      {
+        "id": "current-leadeboard-entry-rank",
+        "expressionName": "GetCurrentLeaderboardEntryRank",
+        "returnType": "number"
+      },
+      {
+        "id": "current-leadeboard-entry-score",
+        "expressionName": "GetCurrentLeaderboardEntryScore",
+        "returnType": "number"
+      },
+      {
+        "id": "current-leadeboard-entry-extra-data",
+        "expressionName": "GetCurrentLeaderboardEntryExtraData",
+        "returnType": "string"
+      },
+      {
+        "id": "current-leadeboard-entry-range-index",
+        "expressionName": "GetCurrentLeaderboardEntryRangeIndex",
+        "returnType": "number"
+      },
+      {
+        "id": "current-leadeboard-description-name",
+        "expressionName": "GetCurrentLeaderboardDescriptionName",
+        "returnType": "string"
+      },
+      {
+        "id": "current-leadeboard-description-type",
+        "expressionName": "GetCurrentLeaderboardDescriptionType",
+        "returnType": "string"
+      },
+      {
+        "id": "current-leadeboard-description-title",
+        "expressionName": "GetCurrentLeaderboardDescriptionTitle",
+        "params": [{ "id": "lang", "type": "string" }],
+        "returnType": "string"
+      },
+      {
+        "id": "current-leadeboard-description-decimal-offset",
+        "expressionName": "GetCurrentLeaderboardDescriptionDecimalOffset",
+        "params": [{ "id": "lang", "type": "string" }],
+        "returnType": "string"
+      }
+    ]
+  },
+
+  "player": {
+    "conditions": [
+      {
+        "id": "with-player-info",
+        "scriptName": "ForPlayerInfo",
+        "highlight": false,
+        "isCompatibleWithTriggers": false,
+        "isLooping": true,
+        "params": [{ "id": "requestAuthorization", "type": "boolean" }]
+      },
+      {
+        "id": "current-player-is-authorized",
+        "scriptName": "CurrentPlayerIsAuthorized",
+        "highlight": false,
+        "isTrigger": false
+      },
+      {
+        "id": "current-player-info-access-granted",
+        "scriptName": "CurrentPlayerInfoAccessGranted",
+        "highlight": false,
+        "isTrigger": false
+      }
+    ],
+    "actions": [
+      {
+        "id": "player-get-data",
+        "scriptName": "PlayerGetData",
+        "highlight": false,
+        "isAsync": true,
+        "params": [
+          { "id": "jsonObject", "type": "object", "allowedPluginIds": ["Json"] },
+          { "id": "keys", "type": "string" }
+        ]
+      },
+      {
+        "id": "player-get-stats",
+        "scriptName": "PlayerGetStats",
+        "highlight": false,
+        "isAsync": true,
+        "params": [{ "id": "jsonObject", "type": "object", "allowedPluginIds": ["Json"] }]
+      },
+      {
+        "id": "player-set-data",
+        "scriptName": "PlayerSetData",
+        "highlight": false,
+        "isAsync": true,
+        "params": [
+          { "id": "jsonObject", "type": "object", "allowedPluginIds": ["Json"] },
+          { "id": "flush", "type": "boolean", "initialValue": "false" }
+        ]
+      },
+      {
+        "id": "player-set-stats",
+        "scriptName": "PlayerSetStats",
+        "highlight": false,
+        "isAsync": true,
+        "params": [{ "id": "jsonObject", "type": "object", "allowedPluginIds": ["Json"] }]
+      },
+      {
+        "id": "player-increment-stats",
+        "scriptName": "PlayerIncrementStats",
+        "highlight": false,
+        "isAsync": true,
+        "params": [{ "id": "jsonObject", "type": "object", "allowedPluginIds": ["Json"] }]
+      }
+    ],
+    "expressions": [
+      {
+        "id": "current-player-unique-id",
+        "expressionName": "GetCurrentPlayerUniqueID",
+        "returnType": "string"
+      },
+      {
+        "id": "current-player-name",
+        "expressionName": "GetCurrentPlayerName",
+        "returnType": "string"
+      },
+      {
+        "id": "current-player-avatar",
+        "expressionName": "GetCurrentPlayerAvatar",
+        "params": [{ "id": "size", "type": "string", "initialValue": "medium" }],
+        "returnType": "string"
+      },
+      {
+        "id": "current-player-signature",
+        "expressionName": "GetCurrentPlayerSignature",
+        "returnType": "string"
+      }
+    ]
+  },
+
+  "environment": {
+    "conditions": [],
+    "actions": [],
+    "expressions": [
+      {
+        "id": "get-language",
+        "expressionName": "GetLanguage",
+        "returnType": "string"
+      },
+      {
+        "id": "get-tld",
+        "expressionName": "GetDomain",
+        "returnType": "string"
+      },
+      {
+        "id": "get-payload",
+        "expressionName": "GetPayload",
+        "returnType": "string"
+      },
+      {
+        "id": "get-app-id",
+        "expressionName": "GetAppID",
+        "returnType": "string"
+      }
+    ]
+  },
+
+  "deviceInfo": {
+    "conditions": [
+      {
+        "id": "is-mobile",
+        "scriptName": "IsMobile"
+      },
+      {
+        "id": "is-desktop",
+        "scriptName": "IsDesktop"
+      },
+      {
+        "id": "is-tablet",
+        "scriptName": "IsTablet"
+      },
+      {
+        "id": "is-tv",
+        "scriptName": "IsTV"
+      }
+    ],
+    "actions": [],
+    "expressions": []
+  },
+
+  "events": {
+    "conditions": [
+      {
+        "id": "on-history-back-event",
+        "scriptName": "OnHistoryBackEvent",
+        "isTrigger": true
+      }
+    ],
+    "actions": [
+      {
+        "id": "dispatch-event",
+        "scriptName": "DispatchEvent",
+        "highlight": false,
+        "params": [{ "id": "name", "type": "combo", "items": ["EXIT"] }]
+      }
+    ],
+    "expressions": []
+  },
+
+  "shortcut": {
+    "conditions": [
+      {
+        "id": "shortcut-can-show-prompt",
+        "scriptName": "ShortcutCanShowPrompt"
+      },
+      {
+        "id": "shortcut-added",
+        "scriptName": "OnShortcutAdded",
+        "isTrigger": true
+      }
+    ],
+    "actions": [
+      {
+        "id": "shortcut-show-prompt",
+        "scriptName": "ShortcutShowPrompt",
+        "highlight": false
+      }
+    ],
+    "expressions": []
+  },
+
+  "remote-config": {
+    "conditions": [
+      {
+        "id": "on-remote-config-ready",
+        "scriptName": "OnRemoteConfigReady",
+        "isTrigger": true
+      }
+    ],
+    "actions": [
+      {
+        "id": "remote-config-fetch",
+        "scriptName": "RemoteConfigFetch",
+        "highlight": false,
+        "params": [
+          { "id": "defaultFlags", "type": "string" },
+          { "id": "clientFeatures", "type": "string" }
+        ]
+      }
+    ],
+    "expressions": [
+      {
+        "id": "remote-config-get-flag",
+        "expressionName": "RemoteConfigGetFlag",
+        "params": [{ "id": "name", "type": "string" }],
+        "returnType": "string"
+      }
+    ]
+  },
+
+  "tv": {
+    "conditions": [
+      {
+        "id": "tv-button-pressed",
+        "scriptName": "IsTVRemoteButtonPressed",
+        "isTrigger": false,
+        "isCompatibleWithTriggers": true,
+        "params": [{ "id": "button", "type": "combo", "items": ["up", "down", "left", "right", "ok"] }]
+      },
+      {
+        "id": "on-tv-button-press",
+        "scriptName": "OnTVRemoteButtonPress",
+        "isTrigger": true,
+        "params": [{ "id": "button", "type": "combo", "items": ["up", "down", "left", "right", "ok"] }]
+      },
+      {
+        "id": "on-tv-button-release",
+        "scriptName": "OnTVRemoteButtonRelease",
+        "isTrigger": true,
+        "params": [{ "id": "button", "type": "combo", "items": ["up", "down", "left", "right", "ok"] }]
+      }
+    ],
+    "actions": [],
+    "expressions": []
+  },
+
+  "misc": {
+    "conditions": [
+      {
+        "id": "throttle",
+        "scriptName": "Throttle",
+        "highlight": false,
+        "isLooping": true,
+        "isCompatibleWithTriggers": false,
+        "params": [{ "id": "seconds", "type": "number" }]
+      },
+      {
+        "id": "debounce",
+        "scriptName": "Debounce",
+        "highlight": false,
+        "isLooping": true,
+        "isCompatibleWithTriggers": false,
+        "params": [{ "id": "seconds", "type": "number" }]
+      }
+    ],
+    "actions": [
+      {
+        "id": "loading-api-ready",
+        "scriptName": "LoadingAPIReady",
+        "highlight": true
+      }
+    ],
+    "expressions": []
+  }
+}

@@ -1,0 +1,69 @@
+﻿{
+  "text": {
+    "conditions": [],
+    "actions": [
+      {
+        "id": "set-text",
+        "scriptName": "SetText",
+        "params": [{ "id": "value", "type": "string" }]
+      },
+      {
+        "id": "set-font",
+        "scriptName": "SetFont",
+        "params": [{ "id": "value", "type": "string", "initialValue": "\"Arial\"" }]
+      },
+      {
+        "id": "set-base-font-size",
+        "scriptName": "SetBaseFontSize",
+        "params": [{ "id": "value", "type": "number" }]
+      },
+      {
+        "id": "set-bold",
+        "scriptName": "SetBold",
+        "params": [{ "id": "value", "type": "boolean" }]
+      },
+      {
+        "id": "set-italic",
+        "scriptName": "SetItalic",
+        "params": [{ "id": "value", "type": "boolean" }]
+      },
+      {
+        "id": "set-horizontal-align",
+        "scriptName": "SetHorizontalAlign",
+        "params": [{ "id": "value", "type": "combo", "items": ["left", "center", "right"] }]
+      },
+      {
+        "id": "set-vertical-align",
+        "scriptName": "SetVerticalAlign",
+        "params": [{ "id": "value", "type": "combo", "items": ["top", "center", "bottom"] }]
+      }
+    ],
+    "expressions": [
+      {
+        "id": "text",
+        "expressionName": "GetText",
+        "returnType": "string"
+      },
+      {
+        "id": "font",
+        "expressionName": "GetFont",
+        "returnType": "string"
+      },
+      {
+        "id": "baseFontSize",
+        "expressionName": "GetBaseFontSize",
+        "returnType": "number"
+      },
+      {
+        "id": "horizontalAlign",
+        "expressionName": "GetHorizontalAlign",
+        "returnType": "string"
+      },
+      {
+        "id": "verticalAlign",
+        "expressionName": "GetVerticalAlign",
+        "returnType": "string"
+      }
+    ]
+  }
+}
