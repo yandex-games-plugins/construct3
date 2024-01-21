@@ -361,7 +361,7 @@
 
           "player-get-data": {
             "list-name": "Get player data",
-            "display-text": "Get player data and store in {0}",
+            "display-text": "Get player data with keys: {1} and store in {0}",
             "description": "Requests player data from Yandex.Games.",
             "params": {
               "jsonObject": {
@@ -387,7 +387,7 @@
           },
           "player-set-data": {
             "list-name": "Set player data",
-            "display-text": "Set player data from {0}",
+            "display-text": "Set player data from {0}. Flush: {1}.",
             "description": "Sets player data in Yandex.Games.",
             "params": {
               "jsonObject": {

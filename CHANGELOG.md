@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.0.1] - 2024.1.21
+
+### Fixed
+
+- Wrong `display-text` properties for `player-get-data` and `player-set-data` language strings.
+
 ## [2.0.0] - 2024.1.13
 
 ### Added
