@@ -471,7 +471,7 @@ class YandexGamesSDKInstance extends C3.SDKInstanceBase {
      */
 
     /**
-     * @typedef {Object} ForPlayerInfo
+     * @typedef {Object} PlayerInfo
      * @property {boolean} isAuthorized
      * @property {boolean} isAccessGranted
      * @property {string} uniqueID
@@ -480,8 +480,8 @@ class YandexGamesSDKInstance extends C3.SDKInstanceBase {
      * @property {string | undefined} signature
      */
 
-    /** @type {ForPlayerInfo | null} */
-    this.forPlayerInfo = null;
+    /** @type {PlayerInfo | undefined} */
+    this.playerInfo = undefined;
 
     //#endregion
 

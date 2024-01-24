@@ -140,8 +140,8 @@ const Expressions = {
       const loopData = this.forEachLeaderbordEntryLoopData;
       const currentEntry = loopData.entriesData.entries[loopData.currentIndex];
       return currentEntry.player.uniqueID;
-    } else if (this.forPlayerInfo) {
-      return this.forPlayerInfo.uniqueID;
+    } else if (this.playerInfo) {
+      return this.playerInfo.uniqueID;
     } else {
       return '';
     }
@@ -153,8 +153,8 @@ const Expressions = {
       const loopData = this.forEachLeaderbordEntryLoopData;
       const currentEntry = loopData.entriesData.entries[loopData.currentIndex];
       return currentEntry.player.publicName;
-    } else if (this.forPlayerInfo) {
-      return this.forPlayerInfo.publicName;
+    } else if (this.playerInfo) {
+      return this.playerInfo.publicName;
     } else {
       return '';
     }
@@ -169,8 +169,8 @@ const Expressions = {
       const loopData = this.forEachLeaderbordEntryLoopData;
       const currentEntry = loopData.entriesData.entries[loopData.currentIndex];
       return currentEntry.player.avatarSrc[size];
-    } else if (this.forPlayerInfo) {
-      return this.forPlayerInfo.avatarSrc[size];
+    } else if (this.playerInfo) {
+      return this.playerInfo.avatars[size];
     } else {
       return '';
     }
@@ -178,8 +178,8 @@ const Expressions = {
 
   /** @this {YandexGamesSDKInstance} */
   GetCurrentPlayerSignature() {
-    if (this.forPlayerInfo) {
-      return this.forPlayerInfo.signature || '';
+    if (this.playerInfo) {
+      return this.playerInfo.signature || '';
     } else {
       return '';
     }

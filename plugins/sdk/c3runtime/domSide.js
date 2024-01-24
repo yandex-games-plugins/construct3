@@ -358,18 +358,18 @@
         player = await this.ysdk.getPlayer({ scopes: false });
       }
 
-      return JSON.stringify({
+      return {
         isAuthorized: player.getMode() !== 'lite',
         isAccessGranted: player.getName() !== '',
         uniqueID: player.getUniqueID(),
         publicName: player.getName(),
-        avatarSrc: {
-          small: player.getAvatarSrc('small'),
-          medium: player.getAvatarSrc('medium'),
-          large: player.getAvatarSrc('large'),
+        avatars: {
+          small: player.getPhoto('small'),
+          medium: player.getPhoto('medium'),
+          large: player.getPhoto('large'),
         },
         signature: player.signature,
-      });
+      };
     }
 
     YSDKDispatchEvent({ name }) {

@@ -175,8 +175,8 @@
           },
 
           "with-player-info": {
-            "list-name": "With player info",
-            "display-text": "With player info. requestAuthorization: [b]{0}[/b].",
+            "list-name": "Using player info",
+            "display-text": "Using player info. requestAuthorization: [b]{0}[/b].",
             "description": "Requests player info for further use",
             "params": {
               "requestAuthorization": {
