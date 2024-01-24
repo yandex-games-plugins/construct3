@@ -45,7 +45,9 @@ export interface YSDK {
     openAuthDialog(): Promise<void>;
   };
 
-  getPlayer(): Promise<Player>;
+  getPlayer<TSigned extends boolean = false>(opts: {
+    signed?: TSigned;
+  }): Promise<TSigned extends true ? Signed<Player> : Player>;
 
   feedback: {
     canReview(): Promise<{
@@ -98,10 +100,12 @@ export interface YSDK {
     showPrompt(): Promise<{ outcome: 'accepted' | 'rejected' }>;
   };
 
-  getPayments(opts?: { signed?: boolean }): Promise<Payments>;
+  getPayments<TSigned extends boolean = false>(opts?: { signed?: TSigned }): Promise<Payments<TSigned>>;
 
   getLeaderboards(): Promise<Leaderboards>;
 }
+
+type Signed<T> = T & { signature: string };
 
 export interface Environment {
   get app(): {
@@ -138,14 +142,12 @@ export interface Player {
   getStats<TStats>(keys?: (keyof TStats)[]): Promise<Partial<TStats>>;
   setStats<TStats extends Record<string, number>>(stats: Partial<TStats>): Promise<void>;
   incrementStats<TStats extends Record<string, number>>(stats: Partial<TStats>): Promise<Partial<TStats>>;
-  signature: string;
 }
 
 export interface Purchase {
   productID: string;
   purchaseToken: string;
   developerPayload?: string;
-  signature: string;
 }
 
 export interface Product {
@@ -162,10 +164,13 @@ export interface Product {
   getPriceCurrencyImage(size: ECurrencyImageSize): string;
 }
 
-export interface Payments {
-  getPurchases(): Promise<Purchase[]>;
+export interface Payments<TSigned extends boolean = false> {
+  getPurchases(): Promise<TSigned extends true ? Signed<Purchase[]> : Purchase[]>;
   getCatalog(): Promise<Product[]>;
-  purchase(opts?: { id: string; developerPayload?: string }): Promise<Purchase>;
+  purchase(opts?: {
+    id: string;
+    developerPayload?: string;
+  }): Promise<TSigned extends true ? Signed<Purchase> : Purchase>;
   consumePurchase(token: string): Promise<void>;
 }
 
