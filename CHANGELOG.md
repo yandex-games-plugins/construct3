@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.1.0] - 2024.1.25
+
+### Added
+
+- `With Player Info` renamed to more fitting `Using Player Info`
+- ACEs for interacting with puchases APIs
+
+### Fixed
+
+- `player.getAvatarSrc is not a function` error when using player info
+
 ## [2.0.1] - 2024.1.21
 
 ### Fixed
