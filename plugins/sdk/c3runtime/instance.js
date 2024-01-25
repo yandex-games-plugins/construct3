@@ -456,8 +456,81 @@ class YandexGamesSDKInstance extends C3.SDKInstanceBase {
 
     //#region Leaderboards
 
-    /** @type {{entriesData: import("../types").LeaderboardEntriesData; currentIndex: number} | null} */
-    this.forEachLeaderbordEntryLoopData = null;
+    //#endregion
+
+    //#region Payments
+
+    /** @type {{purchases: types.Signed<types.Purchase[]>, currentIndex: number} | undefined} */
+    this.forEachPurchaseLoopData = undefined;
+
+    /**
+     * @typedef {{
+     *   id: string;
+     *   title: string;
+     *   description: string;
+     *   imageURI: string;
+     *   price: string;
+     *   priceValue: string;
+     *   priceCurrencyCode: string;
+     *   priceCurrencyImage: {
+     *     small: string;
+     *     medium: string;
+     *     svg: string;
+     *   };
+     * }} RuntimeProduct
+     */
+
+    /** @type {{catalog: RuntimeProduct[], currentIndex: number} | undefined} */
+    this.forEachInCatalogLoopData = undefined;
+
+    /**
+     * @typedef {Object} PurchaseSuccessTriggerData
+     * @property {number} killSID
+     * @property {string} productID
+     * @property {string} purchaseToken
+     * @property {string|undefined} developerPayload
+     * @property {string|undefined} signature
+     */
+
+    /** @type {Map<string, PurchaseSuccessTriggerData>} */
+    this.purchaseSuccessTriggerPool = new Map();
+
+    /** @type {PurchaseSuccessTriggerData | undefined} */
+    this.purchaseSuccessTriggerData = undefined;
+
+    /**
+     * @typedef {Object} PurchaseFailureTriggerData
+     * @property {number} killSID
+     * @property {string} error
+     */
+
+    /** @type {Map<string, PurchaseFailureTriggerData>} */
+    this.purchaseFailureTriggerPool = new Map();
+
+    /** @type {PurchaseFailureTriggerData | undefined} */
+    this.purchaseFailureTriggerData = undefined;
+
+    this.AddDOMMessageHandler(
+      'ysdk-purchase-callback',
+      /** @param {{error?: string, productID: string, purchaseToken: string, developerPayload?: string, signature?: string}} data  */
+      (data) => {
+        if (data.error) {
+          this.purchaseFailureTriggerData.set(data.productID, {
+            killSID: Number.MAX_SAFE_INTEGER,
+            error: data.error,
+          });
+          return;
+        }
+
+        this.purchaseSuccessTriggerData.set(data.productID, {
+          killSID: Number.MAX_SAFE_INTEGER,
+          productID: data.productID,
+          purchaseToken: data.purchaseToken,
+          developerPayload: data.developerPayload,
+          signature: data.signature,
+        });
+      },
+    );
 
     //#endregion
 

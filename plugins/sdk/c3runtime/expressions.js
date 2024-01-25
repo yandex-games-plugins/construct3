@@ -132,6 +132,138 @@ const Expressions = {
 
   //#endregion
 
+  //#region Payments
+
+  /** @this {YandexGamesSDKInstance} */
+  PurchaseToken() {
+    if (this.purchaseSuccessTriggerData) {
+      return this.purchaseSuccessTriggerData.purchaseToken;
+    } else if (this.forEachPurchaseLoopData) {
+      const loopData = this.forEachPurchaseLoopData;
+      const purchaseEntry = loopData.purchases[loopData.currentIndex];
+      return purchaseEntry.purchaseToken;
+    } else {
+      return '';
+    }
+  },
+
+  /** @this {YandexGamesSDKInstance} */
+  PurchaseDeveloperPayload() {
+    if (this.purchaseSuccessTriggerData) {
+      return this.purchaseSuccessTriggerData.developerPayload;
+    } else if (this.forEachPurchaseLoopData) {
+      const loopData = this.forEachPurchaseLoopData;
+      const purchaseEntry = loopData.purchases[loopData.currentIndex];
+      return purchaseEntry.developerPayload;
+    } else {
+      return '';
+    }
+  },
+
+  /** @this {YandexGamesSDKInstance} */
+  PurchaseSignature() {
+    if (this.purchaseSuccessTriggerData) {
+      return this.purchaseSuccessTriggerData.signature;
+    } else {
+      return '';
+    }
+  },
+
+  /** @this {YandexGamesSDKInstance} */
+  PurchasesSignature() {
+    if (this.forEachPurchaseLoopData) {
+      return this.forEachPurchaseLoopData.purchases.signature;
+    } else {
+      return '';
+    }
+  },
+
+  /** @this {YandexGamesSDKInstance} */
+  PurchaseError() {
+    if (this.purchaseErrorTriggerData) {
+      return this.purchaseErrorTriggerData.error;
+    } else {
+      return '';
+    }
+  },
+
+  /** @this {YandexGamesSDKInstance} */
+  ProductID() {
+    if (this.purchaseSuccessTriggerData) {
+      return this.purchaseSuccessTriggerData.productID;
+    } else if (this.forEachPurchaseLoopData) {
+      const loopData = this.forEachPurchaseLoopData;
+      const purchaseEntry = loopData.purchases[loopData.currentIndex];
+      return purchaseEntry.productID;
+    } else if (this.forEachInCatalogLoopData) {
+      const loopData = this.forEachInCatalogLoopData;
+      const product = loopData.catalog[loopData.currentIndex];
+      return product.id;
+    } else {
+      return '';
+    }
+  },
+
+  /** @this {YandexGamesSDKInstance} */
+  ProductTitle() {
+    if (this.forEachInCatalogLoopData) {
+      const loopData = this.forEachInCatalogLoopData;
+      const product = loopData.catalog[loopData.currentIndex];
+      return product.title;
+    } else {
+      return '';
+    }
+  },
+
+  /** @this {YandexGamesSDKInstance} */
+  ProductDescription() {
+    if (this.forEachInCatalogLoopData) {
+      const loopData = this.forEachInCatalogLoopData;
+      const product = loopData.catalog[loopData.currentIndex];
+      return product.description;
+    } else {
+      return '';
+    }
+  },
+
+  /** @this {YandexGamesSDKInstance} */
+  ProductPrice() {
+    if (this.forEachInCatalogLoopData) {
+      const loopData = this.forEachInCatalogLoopData;
+      const product = loopData.catalog[loopData.currentIndex];
+      return product.price;
+    } else {
+      return '';
+    }
+  },
+
+  /** @this {YandexGamesSDKInstance} */
+  ProductPriceCurrencyСode() {
+    if (this.forEachInCatalogLoopData) {
+      const loopData = this.forEachInCatalogLoopData;
+      const product = loopData.catalog[loopData.currentIndex];
+      return product.priceCurrencyCode;
+    } else {
+      return '';
+    }
+  },
+
+  /**
+   * @this {YandexGamesSDKInstance}
+   * @param {"small"|"medium"|"svg"} size
+   */
+  ProductPriceCurrencyImage(size) {
+    if (this.forEachInCatalogLoopData) {
+      const loopData = this.forEachInCatalogLoopData;
+      const product = loopData.catalog[loopData.currentIndex];
+      return product.priceCurrencyImage[size] || '';
+    } else {
+      return '';
+    }
+  },
+
+  //#endregion
+
   //#region Player
 
   /** @this {YandexGamesSDKInstance} */

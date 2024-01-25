@@ -1,4 +1,4 @@
-﻿{
+{
   "localization": {
     "conditions": [],
     "actions": [
@@ -237,6 +237,121 @@
         "expressionName": "GetCurrentLeaderboardDescriptionDecimalOffset",
         "params": [{ "id": "lang", "type": "string" }],
         "returnType": "string"
+      }
+    ]
+  },
+
+  "purchases": {
+    "actions": [
+      {
+        "id": "purchase",
+        "scriptName": "Purchase",
+        "params": [
+          { "id": "productID", "type": "string" },
+          { "id": "developerPayload", "type": "string" }
+        ]
+      },
+      {
+        "id": "consume-purchase",
+        "scriptName": "ConsumePurchase",
+        "params": [{ "id": "productToken", "type": "string" }],
+        "isAsync": true
+      }
+    ],
+    "conditions": [
+      {
+        "id": "for-each-in-catalog",
+        "scriptName": "ForEachInCatalog",
+        "highlight": false,
+        "isCompatibleWithTriggers": false,
+        "isLooping": true
+      },
+      {
+        "id": "for-each-purchase",
+        "scriptName": "ForEach",
+        "highlight": false,
+        "isCompatibleWithTriggers": false,
+        "isLooping": true
+      },
+      {
+        "id": "on-purchase-success",
+        "scriptName": "OnPurchaseSuccess",
+        "isTrigger": true,
+        "params": [{ "id": "productID", "type": "string" }]
+      },
+      {
+        "id": "on-purchase-failure",
+        "scriptName": "OnPurchaseFailure",
+        "isTrigger": true,
+        "params": [{ "id": "productID", "type": "string" }]
+      }
+    ],
+    "expressions": [
+      {
+        "id": "purchase-token",
+        "expressionName": "PurchaseToken",
+        "returnType": "string"
+      },
+      {
+        "id": "purchase-developer-payload",
+        "expressionName": "PurchaseDeveloperPayload",
+        "returnType": "string"
+      },
+      {
+        "id": "purchase-signature",
+        "expressionName": "PurchaseSignature",
+        "returnType": "string"
+      },
+      {
+        "id": "purchase-error",
+        "expressionName": "PurchaseError",
+        "returnType": "string"
+      },
+      {
+        "id": "purchases-signature",
+        "expressionName": "PurchasesSignature",
+        "returnType": "string"
+      },
+      {
+        "id": "product-id",
+        "expressionName": "ProductID",
+        "returnType": "string"
+      },
+      {
+        "id": "product-title",
+        "expressionName": "ProductTitle",
+        "returnType": "string"
+      },
+      {
+        "id": "product-description",
+        "expressionName": "ProductDescription",
+        "returnType": "string"
+      },
+      {
+        "id": "product-image-uri",
+        "expressionName": "ProductImageURI",
+        "returnType": "string"
+      },
+      {
+        "id": "product-price",
+        "expressionName": "ProductPrice",
+        "returnType": "string"
+      },
+      {
+        "id": "product-price-value",
+        "expressionName": "ProductPriceValue",
+        "returnType": "number"
+      },
+      {
+        "id": "product-price-currency-code",
+        "expressionName": "ProductPriceCurrencyCode",
+        "returnType": "string"
+      },
+      {
+        "id": "product-price-currency-image",
+        "expressionName": "ProductPriceCurrencyImage",
+        "returnType": "string",
+        "params": [{ "id": "size", "type": "string", "initialValue": "medium" }]
       }
     ]
   },

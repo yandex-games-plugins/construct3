@@ -353,6 +353,142 @@ const Conditions = {
 
   //#endregion
 
+  //#region Payments
+
+  /** @this {YandexGamesSDKInstance} */
+  ForEachPurchase() {
+    const runtime = this.GetRuntime();
+    const eventSheetManager = runtime.GetEventSheetManager();
+    const currentEvent = runtime.GetCurrentEvent();
+    const solModifiers = currentEvent.GetSolModifiers();
+    const eventStack = runtime.GetEventStack();
+
+    this.PostToDOMAsync('ysdk-get-purchases').then(
+      (/** @type {typeof this.forEachPurchaseLoopData.purchases} */ purchases) => {
+        this.forEachPurchaseLoopData = {};
+        this.forEachPurchaseLoopData.purchases = purchases;
+
+        const oldFrame = eventStack.GetCurrentStackFrame();
+        const newFrame = eventStack.Push(currentEvent);
+
+        for (let i = 0; i < purchases.length; i++) {
+          eventSheetManager.PushCopySol(solModifiers);
+
+          this.forEachPurchaseLoopData.currentIndex = i;
+          currentEvent.Retrigger(oldFrame, newFrame);
+
+          eventSheetManager.PopSol(solModifiers);
+        }
+
+        eventStack.Pop();
+
+        this.forEachPurchaseLoopData = null;
+      },
+    );
+
+    return false;
+  },
+
+  /** @this {YandexGamesSDKInstance} */
+  ForEachInCatalog() {
+    const runtime = this.GetRuntime();
+    const eventSheetManager = runtime.GetEventSheetManager();
+    const currentEvent = runtime.GetCurrentEvent();
+    const solModifiers = currentEvent.GetSolModifiers();
+    const eventStack = runtime.GetEventStack();
+
+    this.PostToDOMAsync('ysdk-get-catalog').then(
+      (/** @type {typeof this.forEachInCatalogLoopData.catalog} */ catalog) => {
+        this.forEachInCatalogLoopData = {};
+        this.forEachInCatalogLoopData.catalog = catalog;
+
+        const oldFrame = eventStack.GetCurrentStackFrame();
+        const newFrame = eventStack.Push(currentEvent);
+
+        for (let i = 0; i < catalog.length; i++) {
+          eventSheetManager.PushCopySol(solModifiers);
+
+          this.forEachInCatalogLoopData.currentIndex = i;
+          currentEvent.Retrigger(oldFrame, newFrame);
+
+          eventSheetManager.PopSol(solModifiers);
+        }
+
+        eventStack.Pop();
+
+        this.forEachInCatalogLoopData = null;
+      },
+    );
+
+    return false;
+  },
+
+  /**
+   * @this {YandexGamesSDKInstance}
+   * @param {string} productID
+   */
+  OnPurchaseSuccess(productID) {
+    const havekillSID = this.purchaseSuccessTriggerPool.has(productID);
+
+    if (!havekillSID) return false;
+
+    const triggerData = this.purchaseSuccessTriggerPool.get(productID);
+    const killSID = triggerData.killSID;
+
+    const runtime = this.GetRuntime();
+    const currentEvent = runtime.GetCurrentEvent();
+
+    const SID = currentEvent.GetSID();
+
+    if (killSID === SID) {
+      this.purchaseSuccessTriggerPool.delete(productID);
+      this.purchaseSuccessTriggerEmitted = undefined;
+      return false;
+    }
+
+    if (killSID === Number.MAX_SAFE_INTEGER) {
+      triggerData.killSID = SID;
+    }
+
+    this.purchaseSuccessTriggerEmitted = triggerData;
+
+    return true;
+  },
+
+  /**
+   * @this {YandexGamesSDKInstance}
+   * @param {string} productID
+   */
+  OnPurchaseFailure(productID) {
+    const havekillSID = this.purchaseFailureTriggerPool.has(productID);
+
+    if (!havekillSID) return false;
+
+    const triggerData = this.purchaseFailureTriggerPool.get(productID);
+    const killSID = triggerData.killSID;
+
+    const runtime = this.GetRuntime();
+    const currentEvent = runtime.GetCurrentEvent();
+
+    const SID = currentEvent.GetSID();
+
+    if (killSID === SID) {
+      this.purchaseFailureTriggerPool.delete(productID);
+      this.purchaseFailureTriggerEmitted = undefined;
+      return false;
+    }
+
+    if (killSID === Number.MAX_SAFE_INTEGER) {
+      triggerData.killSID = SID;
+    }
+
+    this.purchaseFailureTriggerEmitted = triggerData;
+
+    return true;
+  },
+
+  //#endregion
+
   //#region Player
 
   /**

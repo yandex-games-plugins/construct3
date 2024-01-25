@@ -100,6 +100,14 @@
         this.YSDKSetLeaderboardScore.bind(this),
       );
 
+      this.domHandler.AddRuntimeMessageHandler('ysdk-purchase', this.YSDKPurchase.bind(this));
+
+      this.domHandler.AddRuntimeMessageHandler('ysdk-consume-purchase', this.YSDKConsumePurchase.bind(this));
+
+      this.domHandler.AddRuntimeMessageHandler('ysdk-get-purchases', this.YSDKGetPurchases.bind(this));
+
+      this.domHandler.AddRuntimeMessageHandler('ysdk-get-catalog', this.YSDKGetCatalog.bind(this));
+
       this.domHandler.AddRuntimeMessageHandler('ysdk-get-player', this.YSDKGetPlayer.bind(this));
 
       this.domHandler.AddRuntimeMessageHandler('ysdk-get-player-data', this.YSDKGetPlayerData.bind(this));
@@ -295,6 +303,91 @@
       const lb = await this.ysdk.getLeaderboards();
 
       await lb.setLeaderboardScore(leaderboardName, score, extraData || undefined);
+    }
+
+    async YSDKPurchase({ productID, developerPayload }) {
+      if (!this.ysdk) return;
+
+      try {
+        const payments = await this.ysdk.getPayments({ signed: true });
+
+        const purchase = await payments.purchase({ productID, developerPayload });
+
+        this.PostToRuntime('ysdk-purchase-callback', {
+          success: true,
+          productID: purchase.productID,
+          purchaseToken: purchase.purchaseToken,
+          developerPayload: purchase.developerPayload,
+          signature: purchase.signature,
+        });
+      } catch (error) {
+        console.error(error);
+
+        this.PostToRuntime('ysdk-purchase-callback', {
+          error: JSON.stringify(error),
+        });
+      }
+    }
+
+    async YSDKConsumePurchase({ productToken }) {
+      if (!this.ysdk) return;
+
+      const payments = await this.ysdk.getPayments({ signed: true });
+
+      await payments.consumePurchase(productToken);
+    }
+
+    async YSDKGetPurchases() {
+      if (!this.ysdk) return;
+
+      const payments = await this.ysdk.getPayments({ signed: true });
+
+      const purchases = await payments.getPurchases();
+
+      const _purchases = [];
+
+      for (let i = 0; i < purchases.length; i++) {
+        const purchase = purchases[i];
+        _purchases[i] = {
+          productID: purchase.productID,
+          purchaseToken: purchase.purchaseToken,
+          developerPayload: purchase.developerPayload,
+        };
+      }
+
+      _purchases.signature = purchases.signature;
+
+      return _purchases;
+    }
+
+    async YSDKGetCatalog() {
+      if (!this.ysdk) return;
+
+      const payments = await this.ysdk.getPayments({ signed: true });
+
+      const catalog = await payments.getCatalog();
+
+      const _catalog = [];
+
+      for (let i = 0; i < catalog.length; i++) {
+        const product = catalog[i];
+        _catalog[i] = {
+          id: product.id,
+          title: product.title,
+          description: product.description,
+          imageURI: product.imageURI,
+          price: product.price,
+          priceValue: product.priceValue,
+          priceCurrencyCode: product.priceCurrencyCode,
+          priceCurrencyImage: {
+            small: product.getPriceCurrencyImage('small'),
+            medium: product.getPriceCurrencyImage('medium'),
+            svg: product.getPriceCurrencyImage('svg'),
+          },
+        };
+      }
+
+      return _catalog;
     }
 
     async YSDKGetPlayerData(keys) {

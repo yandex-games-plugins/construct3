@@ -19,6 +19,7 @@
           "rewarded-ad": "Rewarded AD",
           "sticky-banner": "Sticky-Banner",
           "leaderboards": "Leaderboards",
+          "purchases": "Purchases",
           "player": "Player",
           "environment": "Environment",
           "deviceInfo": "Device Info",
@@ -172,6 +173,39 @@
             "list-name": "Invert order of leaderboard",
             "display-text": "Invert order of leaderboard",
             "description": "Inverts order of leaderboard. (Works only with \"For each player in leaderboard\" condition)"
+          },
+
+          "for-each-in-catalog": {
+            "list-name": "For each product in catalog",
+            "display-text": "For each product in catalog.",
+            "description": "Iterates through Yandex.Games catalog."
+          },
+          "for-each-purchase": {
+            "list-name": "For each purchase",
+            "display-text": "For each purchase.",
+            "description": "Iterates through player's purchases."
+          },
+          "on-purchase-success": {
+            "list-name": "On purchase success",
+            "display-text": "On purchase [b]{0}[/b] success",
+            "description": "Executes when purchase was successful.",
+            "params": {
+              "productId": {
+                "name": "Product ID",
+                "desc": "Unique identifier of the product."
+              }
+            }
+          },
+          "on-purchase-error": {
+            "list-name": "On purchase error",
+            "display-text": "On purchase [b]{0}[/b] error",
+            "description": "Executes when purchase was failed.",
+            "params": {
+              "productId": {
+                "name": "Product ID",
+                "desc": "Unique identifier of the product."
+              }
+            }
           },
 
           "with-player-info": {
@@ -355,6 +389,33 @@
               "extraData": {
                 "name": "Extra Data",
                 "desc": "Optional metadata sent with the game score."
+              }
+            }
+          },
+
+          "purchase": {
+            "list-name": "Purchase",
+            "display-text": "Purchase [b]{0}[/b] with payload [b]{1}[/b]",
+            "description": "Initiates purchase of product.",
+            "params": {
+              "productId": {
+                "name": "Product ID",
+                "desc": "ID of product to purchase."
+              },
+              "developerPayload": {
+                "name": "Payload",
+                "desc": "Optional payload to send with purchase."
+              }
+            }
+          },
+          "consume-purchase": {
+            "list-name": "Consume purchase",
+            "display-text": "Consume purchase [b]{0}[/b]",
+            "description": "Consumes purchase.",
+            "params": {
+              "purchaseToken": {
+                "name": "Purchase Token",
+                "desc": "Token of purchase to consume."
               }
             }
           },
@@ -582,13 +643,66 @@
             }
           },
 
+          "purchase-token": {
+            "translated-name": "Purchase token",
+            "description": "String, token for consuming the purchase (See actions `Consume purchase`)."
+          },
+          "purchase-developer-payload": {
+            "translated-name": "Purchase developer payload",
+            "description": "String, additional purchase data."
+          },
+          "purchase-signature": {
+            "translated-name": "Purchase signature",
+            "description": "String, purchase data and the signature for player authentication."
+          },
+          "purchase-error": {
+            "translated-name": "Purchase error",
+            "description": "String, error message if error occured while purchasing product. (Works only with \"On purchase error\" condition)"
+          },
+          "purchases-signature": {
+            "translated-name": "Purchases signature",
+            "description": "String, purchase data and the signature for player authentication."
+          },
+          "product-id": {
+            "translated-name": "Product ID",
+            "description": "String, the product ID."
+          },
+          "product-title": {
+            "translated-name": "Product title",
+            "description": "String, the product name."
+          },
+          "product-description": {
+            "translated-name": "Product description",
+            "description": "String, the product description."
+          },
+          "product-image-uri": {
+            "translated-name": "Product image URI",
+            "description": "String, the product image URI."
+          },
+          "product-price": {
+            "translated-name": "Product price",
+            "description": "String, the product price in the <price> <currency code> format. For example, \"25 YAN\"."
+          },
+          "product-price-value": {
+            "translated-name": "Product price value",
+            "description": "String, the product price in the <price> format. For example, \"25\"."
+          },
+          "product-price-currency-code": {
+            "translated-name": "Product price currency code",
+            "description": "String, the currency code (\"YAN\")."
+          },
+          "product-price-currency-image": {
+            "translated-name": "Product price currency image",
+            "description": "String, the icon address. You must specify \"medium\", \"small\", or \"svg\" as the size parameter."
+          },
+
           "current-player-is-authorized": {
             "translated-name": "Player is authorized",
             "description": "Indicates whether gave your game permission to access the player's data."
           },
           "current-player-unique-id": {
             "translated-name": "Player unique ID",
-            "description": "Unique indentificator of player."
+            "description": "Unique identifier of player."
           },
           "current-player-name": {
             "translated-name": "Player name",

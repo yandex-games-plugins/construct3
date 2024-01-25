@@ -19,6 +19,7 @@
           "rewarded-ad": "Реклама с Вознаграждением",
           "sticky-banner": "Sticky-Баннер",
           "leaderboards": "Таблицы Лидеров",
+          "purchases": "Покупки",
           "player": "Игрок",
           "environment": "Переменные Среды",
           "deviceInfo": "Информация Об Устройстве",
@@ -172,6 +173,39 @@
             "list-name": "Таблица лидеров отсортирована в обратном порядке",
             "display-text": "Таблица лидеров [b]{0}[/b] отсортирована в обратном порядке",
             "description": "Направление сортировки, обычный порядок - по убыванию, обратный порядок - по возрастанию."
+          },
+
+          "for-each-in-catalog": {
+            "list-name": "Для каждого продукта в каталоге",
+            "display-text": "Для каждого продукта в каталоге.",
+            "description": "Проходит через каталог Yandex.Games."
+          },
+          "for-each-purchase": {
+            "list-name": "Для каждой покупки",
+            "display-text": "Для каждой покупки.",
+            "description": "Проходит через покупки игрока."
+          },
+          "on-purchase-success": {
+            "list-name": "При успешной покупке",
+            "display-text": "При успешной покупке [b]{0}[/b]",
+            "description": "Выполняется, когда покупка была успешной.",
+            "params": {
+              "productId": {
+                "name": "ID продукта",
+                "desc": "Уникальный идентификатор продукта."
+              }
+            }
+          },
+          "on-purchase-error": {
+            "list-name": "При ошибке покупки",
+            "display-text": "При ошибке покупки [b]{0}[/b]",
+            "description": "Выполняется, когда покупка не удалась.",
+            "params": {
+              "productId": {
+                "name": "ID продукта",
+                "desc": "Уникальный идентификатор продукта."
+              }
+            }
           },
 
           "with-player-info": {
@@ -355,6 +389,33 @@
               "extraData": {
                 "name": "Дополнительные данные",
                 "desc": "Необязательные метаданные, отправляемые вместе со счётом."
+              }
+            }
+          },
+
+          "purchase": {
+            "list-name": "Покупка",
+            "display-text": "Покупка [b]{0}[/b] с данными [b]{1}[/b]",
+            "description": "Инициирует покупку продукта.",
+            "params": {
+              "productId": {
+                "name": "ID продукта",
+                "desc": "ID продукта для покупки."
+              },
+              "developerPayload": {
+                "name": "Данные",
+                "desc": "Необязательные данные, отправляемые вместе с покупкой."
+              }
+            }
+          },
+          "consume-purchase": {
+            "list-name": "Потребление покупки",
+            "display-text": "Потребление покупки [b]{0}[/b]",
+            "description": "Потребляет покупку.",
+            "params": {
+              "purchaseToken": {
+                "name": "Токен покупки",
+                "desc": "Токен покупки для потребления."
               }
             }
           },
@@ -576,10 +637,63 @@
             "description": "Размер десятичной части счета. Например, при decimal_offset: 2 число 1234 будет отображаться как 12.34.",
             "params": {
               "lang": {
-                "name": "Language code",
-                "desc": "Language code in ISO-639-1 format."
+                "name": "Код языка",
+                "desc": "Код языка в формате ISO-639-1."
               }
             }
+          },
+
+          "purchase-token": {
+            "translated-name": "Токен покупки",
+            "description": "Строка, токен для потребления покупки (см. действия `Потребить покупку`)."
+          },
+          "purchase-developer-payload": {
+            "translated-name": "Дополнительные данные покупки",
+            "description": "Строка, дополнительные данные покупки."
+          },
+          "purchase-signature": {
+            "translated-name": "Подпись покупки",
+            "description": "Строка, данные покупки и подпись для аутентификации игрока."
+          },
+          "purchase-error": {
+            "translated-name": "Ошибка покупки",
+            "description": "Строка, сообщение об ошибке, если произошла ошибка при покупке товара. (Работает только с условием \"При ошибке покупки\")"
+          },
+          "purchases-signature": {
+            "translated-name": "Подпись покупок",
+            "description": "Строка, данные покупок и подпись для аутентификации игрока."
+          },
+          "product-id": {
+            "translated-name": "Идентификатор товара",
+            "description": "Строка, идентификатор товара."
+          },
+          "product-title": {
+            "translated-name": "Название товара",
+            "description": "Строка, название товара."
+          },
+          "product-description": {
+            "translated-name": "Описание товара",
+            "description": "Строка, описание товара."
+          },
+          "product-image-uri": {
+            "translated-name": "URI изображения товара",
+            "description": "Строка, URI изображения товара."
+          },
+          "product-price": {
+            "translated-name": "Цена товара",
+            "description": "Строка, цена товара в формате <цена> <код валюты>. Например, \"25 YAN\"."
+          },
+          "product-price-value": {
+            "translated-name": "Значение цены товара",
+            "description": "Строка, значение цены товара в формате <цена>. Например, \"25\"."
+          },
+          "product-price-currency-code": {
+            "translated-name": "Код валюты цены товара",
+            "description": "Строка, код валюты (\"YAN\")."
+          },
+          "product-price-currency-image": {
+            "translated-name": "Изображение валюты цены товара",
+            "description": "Строка, адрес иконки. Вы должны указать \"medium\", \"small\" или \"svg\" в качестве параметра размера."
           },
 
           "current-player-is-authorized": {

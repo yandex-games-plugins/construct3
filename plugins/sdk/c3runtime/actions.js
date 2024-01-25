@@ -56,6 +56,27 @@ const Actions = {
 
   //#endregion
 
+  //#region Payments
+
+  /**
+   * @this {YandexGamesSDKInstance}
+   * @param {string} productID
+   * @param {string} developerPayload
+   */
+  Purchase(productID, developerPayload) {
+    this.PostToDOM('ysdk-purchase', { productID, developerPayload });
+  },
+
+  /**
+   * @this {YandexGamesSDKInstance}
+   * @param {string} purchaseToken
+   */
+  async ConsumePurchase(purchaseToken) {
+    await this.PostToDOMAsync('ysdk-consume-purchase', { purchaseToken });
+  },
+
+  //#endregion
+
   //#region Player
 
   /** @this {YandexGamesSDKInstance} */
