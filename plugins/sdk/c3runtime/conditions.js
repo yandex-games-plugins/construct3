@@ -492,7 +492,7 @@ const Conditions = {
    * @this {YandexGamesSDKInstance}
    * @param {boolean} requestAuthorization
    */
-  ForPlayerInfo(requestAuthorization) {
+  WithPlayerInfo(requestAuthorization) {
     const runtime = this.GetRuntime();
     const eventSheetManager = runtime.GetEventSheetManager();
     const currentEvent = runtime.GetCurrentEvent();
@@ -501,8 +501,8 @@ const Conditions = {
 
     this.PostToDOMAsync('ysdk-get-player', {
       requestAuthorization,
-    }).then((playerDataJSON) => {
-      this.forPlayerInfo = JSON.parse(playerDataJSON);
+    }).then((playerInfo) => {
+      this.playerInfo = playerInfo;
 
       const oldFrame = eventStack.GetCurrentStackFrame();
       const newFrame = eventStack.Push(currentEvent);
@@ -511,7 +511,7 @@ const Conditions = {
       eventSheetManager.PopSol(solModifiers);
       eventStack.Pop();
 
-      this.forPlayerInfo = null;
+      this.playerInfo = undefined;
     });
 
     return false;
@@ -519,8 +519,8 @@ const Conditions = {
 
   /** @this {YandexGamesSDKInstance} */
   CurrentPlayerIsAuthorized() {
-    if (this.forPlayerInfo) {
-      return !!this.forPlayerInfo.isAuthorized;
+    if (this.withPlayerInfo) {
+      return !!this.withPlayerInfo.isAuthorized;
     } else {
       return false;
     }
@@ -528,8 +528,8 @@ const Conditions = {
 
   /** @this {YandexGamesSDKInstance} */
   CurrentPlayerInfoAccessGranted() {
-    if (this.forPlayerInfo) {
-      return !!this.forPlayerInfo.isAccessGranted;
+    if (this.withPlayerInfo) {
+      return !!this.withPlayerInfo.isAccessGranted;
     } else {
       return false;
     }

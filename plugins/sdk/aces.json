@@ -1,4 +1,4 @@
-{
+﻿{
   "localization": {
     "conditions": [],
     "actions": [
@@ -360,7 +360,7 @@
     "conditions": [
       {
         "id": "with-player-info",
-        "scriptName": "ForPlayerInfo",
+        "scriptName": "WithPlayerInfo",
         "highlight": false,
         "isCompatibleWithTriggers": false,
         "isLooping": true,

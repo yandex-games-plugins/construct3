@@ -300,9 +300,9 @@ const Expressions = {
     if (this.forEachLeaderbordEntryLoopData) {
       const loopData = this.forEachLeaderbordEntryLoopData;
       const currentEntry = loopData.entriesData.entries[loopData.currentIndex];
-      return currentEntry.player.avatarSrc[size];
+      return currentEntry.player.avatarSrc[size] || '';
     } else if (this.playerInfo) {
-      return this.playerInfo.avatars[size];
+      return this.playerInfo.avatars[size] || '';
     } else {
       return '';
     }
