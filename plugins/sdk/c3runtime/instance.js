@@ -22,7 +22,7 @@ class Localization {
     this.defaultLanguage = 'en';
 
     /** @type {string} */
-    this.currentLanguage = null;
+    this.currentLanguage = undefined;
 
     /** @type {Set<any>} */
     this.decoratedSDKInstances = new Set();
@@ -307,7 +307,7 @@ class Localization {
 
     let languageJSON = await this.FindLanguageJSON(languageCode);
 
-    if (languageJSON === undefined && this.defaultLanguage != null) {
+    if (languageJSON === undefined && this.defaultLanguage !== undefined) {
       this.pluginInstance.Warn(
         `Can't find localizations for ${languageCode}. Switching to default ${this.defaultLanguage}.`,
       );
