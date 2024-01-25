@@ -254,7 +254,7 @@
       {
         "id": "consume-purchase",
         "scriptName": "ConsumePurchase",
-        "params": [{ "id": "productToken", "type": "string" }],
+        "params": [{ "id": "purchaseToken", "type": "string" }],
         "isAsync": true
       }
     ],
@@ -280,8 +280,8 @@
         "params": [{ "id": "productID", "type": "string" }]
       },
       {
-        "id": "on-purchase-failure",
-        "scriptName": "OnPurchaseFailure",
+        "id": "on-purchase-error",
+        "scriptName": "OnPurchaseError",
         "isTrigger": true,
         "params": [{ "id": "productID", "type": "string" }]
       }

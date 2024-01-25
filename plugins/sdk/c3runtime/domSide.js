@@ -329,12 +329,12 @@
       }
     }
 
-    async YSDKConsumePurchase({ productToken }) {
+    async YSDKConsumePurchase({ purchaseToken }) {
       if (!this.ysdk) return;
 
       const payments = await this.ysdk.getPayments({ signed: true });
 
-      await payments.consumePurchase(productToken);
+      await payments.consumePurchase(purchaseToken);
     }
 
     async YSDKGetPurchases() {

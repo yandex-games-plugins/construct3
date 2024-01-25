@@ -456,7 +456,7 @@ const Conditions = {
    * @this {YandexGamesSDKInstance}
    * @param {string} productID
    */
-  OnPurchaseFailure(productID) {
+  OnPurchaseError(productID) {
     const havekillSID = this.purchaseFailureTriggerPool.has(productID);
 
     if (!havekillSID) return false;
