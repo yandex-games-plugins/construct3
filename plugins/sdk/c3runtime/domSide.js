@@ -266,7 +266,7 @@
 
       const entries = await lb.getLeaderboardEntries(leaderboardName, options);
 
-      return JSON.stringify({
+      return {
         leaderboard: entries.leaderboard,
         ranges: entries.ranges,
         userRank: entries.userRank,
@@ -294,7 +294,7 @@
             formattedScore: entry.formattedScore,
           };
         }),
-      });
+      };
     }
 
     async YSDKSetLeaderboardScore({ leaderboardName, score, extraData }) {

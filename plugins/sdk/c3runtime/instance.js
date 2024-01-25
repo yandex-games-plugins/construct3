@@ -456,6 +456,42 @@ class YandexGamesSDKInstance extends C3.SDKInstanceBase {
 
     //#region Leaderboards
 
+    /**
+     * @typedef {{
+     *   leaderboard: types.LeaderboardDescription;
+     *   ranges: { start: number; size: number }[];
+     *   userRank: number;
+     *   entries: {
+     *    score: number;
+     *    extraData: string | undefined;
+     *    rank: number;
+     *    player: {
+     *      avatarSrc: {
+     *        small: string;
+     *        medium: string;
+     *        large: string;
+     *      };
+     *      avatarSrcSet: {
+     *        small: string;
+     *        medium: string;
+     *        large: string;
+     *      };
+     *      lang: string;
+     *      publicName: string;
+     *      scopePermissions: {
+     *        avatar: string;
+     *        public_name: string;
+     *      };
+     *      uniqueID: string;
+     *    };
+     *    formattedScore: string;
+     *   }[];
+     * }} RuntimeEntries
+     */
+
+    /** @type {{entriesData: RuntimeEntries; currentIndex: number} | undefined} */
+    this.forEachLeaderbordEntryLoopData = {};
+
     //#endregion
 
     //#region Payments

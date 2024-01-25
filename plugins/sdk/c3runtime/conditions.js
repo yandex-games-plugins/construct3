@@ -316,10 +316,7 @@ const Conditions = {
         includeUser,
         quantityAround,
       },
-    }).then((entriesDataJSON) => {
-      /** @type {import("../types").LeaderboardEntriesData} */
-      const entriesData = JSON.parse(entriesDataJSON);
-
+    }).then((/** @type {typeof this.forEachLeaderbordEntryLoopData.entriesData} */ entriesData) => {
       this.forEachLeaderbordEntryLoopData = {};
       this.forEachLeaderbordEntryLoopData.entriesData = entriesData;
 
@@ -338,7 +335,7 @@ const Conditions = {
 
       eventStack.Pop();
 
-      this.forEachLeaderbordEntryLoopData = null;
+      this.forEachLeaderbordEntryLoopData = undefined;
     });
 
     return false;
