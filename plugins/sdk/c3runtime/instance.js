@@ -673,9 +673,9 @@ class YandexGamesSDKInstance extends C3.SDKInstanceBase {
         this._triggerButton = TV_BUTTON.DOWN;
 
         if (data.downPressed) {
-          this.Trigger(this.conditions.OnTVRemoteButtonwnPress);
+          this.Trigger(this.conditions.OnTVRemoteButtonPress);
         } else {
-          this.Trigger(this.conditions.OnTVRemoteButtonwnRelease);
+          this.Trigger(this.conditions.OnTVRemoteButtonRelease);
         }
 
         this._tvButtons[TV_BUTTON.DOWN] = data.downPressed;
@@ -685,9 +685,9 @@ class YandexGamesSDKInstance extends C3.SDKInstanceBase {
         this._triggerButton = TV_BUTTON.LEFT;
 
         if (data.leftPressed) {
-          this.Trigger(this.conditions.OnTVRemoteButtonftPress);
+          this.Trigger(this.conditions.OnTVRemoteButtonPress);
         } else {
-          this.Trigger(this.conditions.OnTVRemoteButtonftRelease);
+          this.Trigger(this.conditions.OnTVRemoteButtonRelease);
         }
 
         this._tvButtons[TV_BUTTON.LEFT] = data.leftPressed;
@@ -697,9 +697,9 @@ class YandexGamesSDKInstance extends C3.SDKInstanceBase {
         this._triggerButton = TV_BUTTON.RIGHT;
 
         if (data.rightPressed) {
-          this.Trigger(this.conditions.OnTVRemoteButtonghtPress);
+          this.Trigger(this.conditions.OnTVRemoteButtonPress);
         } else {
-          this.Trigger(this.conditions.OnTVRemoteButtonghtRelease);
+          this.Trigger(this.conditions.OnTVRemoteButtonRelease);
         }
 
         this._tvButtons[TV_BUTTON.RIGHT] = data.rightPressed;

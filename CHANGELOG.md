@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.1.2] - 2024.1.27
+
+### Fixed
+
+- `On TV Remote button press` now behaves currectly. 
+
 ## [2.1.1] - 2024.1.27
 
 ### Added

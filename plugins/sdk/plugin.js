@@ -2,7 +2,7 @@ const SDK = self.SDK;
 
 const PLUGIN = {
   ID: 'yagames_sdk',
-  VERSION: '2.1.1',
+  VERSION: '2.1.2',
   CATEGORY: 'platform-specific',
 };
 

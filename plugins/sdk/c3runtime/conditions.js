@@ -649,18 +649,19 @@ const Conditions = {
 
   /**
    * @this {YandexGamesSDKInstance}
-   * @param {"up"|"down"|"left"|"right"|"ok"} type
+   * @param {0|1|2|3|4} type
    */
   OnTVRemoteButtonPress(type) {
-    return true;
+    console.log(type);
+    return this._triggerButton === type;
   },
 
   /**
    * @this {YandexGamesSDKInstance}
-   * @param {"up"|"down"|"left"|"right"|"ok"} type
+   * @param {0|1|2|3|4} type
    */
   OnTVRemoteButtonRelease(type) {
-    return true;
+    return this._triggerButton === type;
   },
 
   //#endregion
