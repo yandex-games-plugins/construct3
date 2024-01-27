@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.1.1] - 2024.1.27
+
+### Added
+
+- `Не чаще чем в какое-то время` renamed to `Не чаще чем в X секунд`
+- `Отложить на какое-то время` renamed to `Отложить на X секунд`
+
+### Fixed
+
+- Rewarded AD ACEs now triggers rewarded ad as they should, instead of fullscreen ad 
+
 ## [2.1.0] - 2024.1.25
 
 ### Added
