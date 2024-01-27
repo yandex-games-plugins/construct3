@@ -218,7 +218,7 @@
 
     YSDKShowRewardedAD({ id }) {
       if (!this.ysdk) return;
-      this.ysdk.adv.showFullscreenAdv({
+      this.ysdk.adv.showRewardedVideo({
         callbacks: {
           onOpen: () => {
             this.domHandler.PostToRuntime('ysdk-rewarded-ad-callback', {
