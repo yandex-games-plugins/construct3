@@ -14,14 +14,14 @@ class Localization {
 
     /**
      * Storage for current game localizations.
-     * @type {StringKeysObject}
+     * @type {StringKeysObject | undefined}
      */
-    this.localizations = {};
+    this.localizations = undefined;
 
     /** @type {string} */
     this.defaultLanguage = 'en';
 
-    /** @type {string} */
+    /** @type {string | undefined} */
     this.currentLanguage = undefined;
 
     /** @type {Set<any>} */
@@ -315,12 +315,11 @@ class Localization {
       this.currentLanguage = this.defaultLanguage;
       languageJSON = await this.FindLanguageJSON(this.defaultLanguage);
 
-      if (languageJSON === '') {
-        this.currentLanguage = '';
-        this.localizations = {};
-        this.pluginInstance.Warn(`Can't find localizations for default language (${this.defaultLanguage}).`);
-        this.pluginInstance.DeveloperAlert(
-          'Can\'t find localizations, make sure that you have localizations in "i18n" folder. More info in devtools console.',
+      if (!languageJSON) {
+        this.currentLanguage = undefined;
+        this.localizations = undefined;
+        this.pluginInstance.Warn(
+          `Can't find localizations for default language (${this.defaultLanguage}), make sure that you have localizations in "i18n" folder. More info in devtools console.`,
         );
         return;
       }
@@ -333,7 +332,7 @@ class Localization {
       this.pluginInstance.DeveloperAlert(
         `Error while parsing localizations for ${this.currentLanguage}. More info in devtools console.`,
       );
-      this.localizations = {};
+      this.localizations = undefined;
       return;
     }
 
