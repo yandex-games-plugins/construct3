@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.2.0] - 2024.1.31
+
+### Added
+
+- Having localization JSON files is now not necessary
+- More informative description for `ID` param in ad ACEs
+
 ## [2.1.2] - 2024.1.27
 
 ### Fixed
