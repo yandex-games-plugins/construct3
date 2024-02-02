@@ -551,7 +551,7 @@
 
           "remote-config-fetch": {
             "list-name": "Fetch remote config",
-            "display-text": "Fetch remote config. Default Flags: {0}, Client Features {1}.",
+            "display-text": "Fetch remote config. Default Flags: {0}. Client Features: {1}.",
             "description": "Fetches remote config for further use.",
             "params": {
               "defaultFlags": {
