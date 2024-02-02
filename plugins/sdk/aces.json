@@ -548,13 +548,27 @@
     ],
     "actions": [
       {
-        "id": "remote-config-fetch",
-        "scriptName": "RemoteConfigFetch",
+        "id": "remote-config-set-default",
+        "scriptName": "RemoteConfigSetDefault",
         "highlight": false,
         "params": [
-          { "id": "defaultFlags", "type": "string" },
-          { "id": "clientFeatures", "type": "string" }
+          { "id": "key", "type": "string" },
+          { "id": "value", "type": "string" }
         ]
+      },
+      {
+        "id": "remote-config-set-client-feature",
+        "scriptName": "RemoteConfigSetClientFeature",
+        "highlight": false,
+        "params": [
+          { "id": "name", "type": "string" },
+          { "id": "value", "type": "string" }
+        ]
+      },
+      {
+        "id": "remote-config-fetch",
+        "scriptName": "RemoteConfigFetch",
+        "highlight": false
       }
     ],
     "expressions": [

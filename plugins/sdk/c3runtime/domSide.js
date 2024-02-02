@@ -131,7 +131,7 @@
       );
 
       this.domHandler.AddRuntimeMessageHandler(
-        'ysdk-remove-config-fetch',
+        'ysdk-remote-config-fetch',
         this.YSDKRemoteConfigFetch.bind(this),
       );
     }
@@ -489,12 +489,20 @@
       });
     }
 
+    /**
+     * @param {{
+     *  defaultFlags: Record<string, boolean>,
+     *  clientFeatures: string[],
+     * }} params
+     */
     async YSDKRemoteConfigFetch(params) {
-      if (!this.ysdk) return;
+      if (!this.ysdk) {
+        return params.defaultFlags;
+      }
 
       const config = await this.ysdk.getFlags(params);
 
-      return JSON.stringify(config);
+      return config;
     }
   }
 

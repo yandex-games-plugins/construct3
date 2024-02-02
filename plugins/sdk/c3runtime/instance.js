@@ -638,6 +638,12 @@ class YandexGamesSDKInstance extends C3.SDKInstanceBase {
     /** @type {Record<string, string>} */
     this.flags = {};
 
+    /** @type {Record<string, string>} */
+    this.defaultFlags = {};
+
+    /** @type {{name: string, value: string}[]} */
+    this.clientFeatures = [];
+
     //#endregion
 
     //#region TV

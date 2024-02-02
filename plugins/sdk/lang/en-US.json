@@ -549,20 +549,40 @@
             "description": "Useful for testing game in TV mode. (will be ignored in production)"
           },
 
-          "remote-config-fetch": {
-            "list-name": "Fetch remote config",
-            "display-text": "Fetch remote config. Default Flags: {0}. Client Features: {1}.",
-            "description": "Fetches remote config for further use.",
+          "remote-config-set-default": {
+            "list-name": "Set default config key",
+            "display-text": "Remote config. Set key [b]{0}[/b] default value to [b]{1}[/b]",
+            "description": "Sets default remote config key, that will be used if remote config is fetch failed.",
             "params": {
-              "defaultFlags": {
-                "name": "Default Flags",
-                "desc": "Default flags in JSON format to return if server is not available. Example: {\"flag1\": \"value1\", \"flag2\": \"value2\"}"
+              "key": {
+                "name": "Key",
+                "desc": "Key of remote config."
               },
-              "clientFeatures": {
-                "name": "Client Features",
-                "desc": "Information about the client in JSON format to send to the server. Example: {\"inAppPurchaseUsed\": \"yes\"}"
+              "value": {
+                "name": "Value",
+                "desc": "Value of remote config key."
               }
             }
+          },
+          "remote-config-set-client-feature": {
+            "list-name": "Set client feature",
+            "display-text": "Remote config. Set client feature [b]{0}[/b] to [b]{1}[/b]",
+            "description": "Sets client feature key for further use in remote config fetch.",
+            "params": {
+              "name": {
+                "name": "Name",
+                "desc": "Name of client feature."
+              },
+              "value": {
+                "name": "Value",
+                "desc": "Value of client feature. Only string values are allowed."
+              }
+            }
+          },
+          "remote-config-fetch": {
+            "list-name": "Fetch remote config",
+            "display-text": "Fetch remote config",
+            "description": "Fetches remote config for further use."
           }
         },
         "expressions": {

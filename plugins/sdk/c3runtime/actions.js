@@ -194,10 +194,34 @@ const Actions = {
 
   //#region Remote Config
 
+  /**
+   * @this {YandexGamesSDKInstance}
+   * @param {string} key
+   * @param {string} value
+   */
+  RemoteConfigSetDefault(key, value) {
+    this.defaultFlags[key] = value;
+  },
+
+  /**
+   * @this {YandexGamesSDKInstance}
+   * @param {string} name
+   * @param {string} value
+   */
+  RemoteConfigSetClientFeature(name, value) {
+    this.clientFeatures.push({ name, value });
+  },
+
   /** @this {YandexGamesSDKInstance} */
-  RemoteConfigFetch(defaultConfig, clientFeatures) {
-    this.PostToDOMAsync('ysdk-remove-config-fetch', { defaultConfig, clientFeatures }).then((_flags) => {
-      this.flags = JSON.parse(_flags);
+  RemoteConfigFetch() {
+    this.PostToDOMAsync('ysdk-remote-config-fetch', {
+      defaultFlags: this.defaultFlags,
+      clientFeatures: this.clientFeatures,
+    }).then((flags) => {
+      this.flags = flags;
+      this.defaultFlags = {};
+      this.clientFeatures = [];
+
       this.Trigger(this.conditions.OnRemoteConfigReady);
     });
   },
