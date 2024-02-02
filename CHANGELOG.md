@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.3.0] - 2024.2.3
+
+### Added
+
+- New `remote-config-set-default` action
+- New `remote-config-set-client-feature` action
+
+### Removed
+
+- Parameters from `remote-config-fetch` action
+
+### Fixed
+
+- Incorrect remote config fetch logic 
+
 ## [2.2.0] - 2024.1.31
 
 ### Added
