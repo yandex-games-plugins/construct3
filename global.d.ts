@@ -103,6 +103,22 @@ export interface YSDK {
   getPayments<TSigned extends boolean = false>(opts?: { signed?: TSigned }): Promise<Payments<TSigned>>;
 
   getLeaderboards(): Promise<Leaderboards>;
+
+  getFlags(params?: GetFlagsParams): Promise<IFlags>;
+}
+
+interface IFlags {
+  [key: string]: string;
+}
+
+interface ClientFeature {
+  name: string;
+  value: string;
+}
+
+interface GetFlagsParams {
+  defaultFlags?: IFlags;
+  clientFeatures?: ClientFeature[];
 }
 
 type Signed<T> = T & { signature: string };
