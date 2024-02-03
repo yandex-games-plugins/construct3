@@ -146,7 +146,7 @@
         engineName: 'Construct',
         engineVersion: '3', // TODO: find a way to get version from runtime in "rXXX" format
         pluginName: 'yagames_sdk by LisGames',
-        pluginVersion: '2.3.0',
+        pluginVersion: '2.3.1',
       });
 
       return {

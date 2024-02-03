@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.3.1] - 2024.2.3
+
+### Removed
+
+- Parameter `ProductID` from `on-purchase-success` trigger
+- Parameter `ProductID` from `on-purchase-fail` trigger
+
+### Fixed
+
+- Incorrect script name in `for-each-purchase` condition 
+
 ## [2.3.0] - 2024.2.3
 
 ### Added
@@ -15,7 +26,7 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 
-- Incorrect remote config fetch logic 
+- Incorrect remote config fetch logic
 
 ## [2.2.0] - 2024.1.31
 
