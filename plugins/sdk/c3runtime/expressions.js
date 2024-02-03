@@ -180,8 +180,8 @@ const Expressions = {
 
   /** @this {YandexGamesSDKInstance} */
   PurchaseError() {
-    if (this.purchaseErrorTriggerData) {
-      return this.purchaseErrorTriggerData.error;
+    if (this.purchaseFailureTriggerData) {
+      return this.purchaseFailureTriggerData.error;
     } else {
       return '';
     }

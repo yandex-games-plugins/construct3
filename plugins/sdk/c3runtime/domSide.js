@@ -311,9 +311,9 @@
       try {
         const payments = await this.ysdk.getPayments({ signed: true });
 
-        const purchase = await payments.purchase({ productID, developerPayload });
+        const purchase = await payments.purchase({ id: productID, developerPayload });
 
-        this.PostToRuntime('ysdk-purchase-callback', {
+        this.domHandler.PostToRuntime('ysdk-purchase-callback', {
           success: true,
           productID: purchase.productID,
           purchaseToken: purchase.purchaseToken,
@@ -323,7 +323,7 @@
       } catch (error) {
         console.error(error);
 
-        this.PostToRuntime('ysdk-purchase-callback', {
+        this.domHandler.PostToRuntime('ysdk-purchase-callback', {
           error: JSON.stringify(error),
         });
       }

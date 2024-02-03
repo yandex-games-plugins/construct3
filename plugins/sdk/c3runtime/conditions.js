@@ -420,67 +420,13 @@ const Conditions = {
     return false;
   },
 
-  /**
-   * @this {YandexGamesSDKInstance}
-   * @param {string} productID
-   */
-  OnPurchaseSuccess(productID) {
-    const havekillSID = this.purchaseSuccessTriggerPool.has(productID);
-
-    if (!havekillSID) return false;
-
-    const triggerData = this.purchaseSuccessTriggerPool.get(productID);
-    const killSID = triggerData.killSID;
-
-    const runtime = this.GetRuntime();
-    const currentEvent = runtime.GetCurrentEvent();
-
-    const SID = currentEvent.GetSID();
-
-    if (killSID === SID) {
-      this.purchaseSuccessTriggerPool.delete(productID);
-      this.purchaseSuccessTriggerEmitted = undefined;
-      return false;
-    }
-
-    if (killSID === Number.MAX_SAFE_INTEGER) {
-      triggerData.killSID = SID;
-    }
-
-    this.purchaseSuccessTriggerEmitted = triggerData;
-
+  /** @this {YandexGamesSDKInstance} */
+  OnPurchaseSuccess() {
     return true;
   },
 
-  /**
-   * @this {YandexGamesSDKInstance}
-   * @param {string} productID
-   */
-  OnPurchaseError(productID) {
-    const havekillSID = this.purchaseFailureTriggerPool.has(productID);
-
-    if (!havekillSID) return false;
-
-    const triggerData = this.purchaseFailureTriggerPool.get(productID);
-    const killSID = triggerData.killSID;
-
-    const runtime = this.GetRuntime();
-    const currentEvent = runtime.GetCurrentEvent();
-
-    const SID = currentEvent.GetSID();
-
-    if (killSID === SID) {
-      this.purchaseFailureTriggerPool.delete(productID);
-      this.purchaseFailureTriggerEmitted = undefined;
-      return false;
-    }
-
-    if (killSID === Number.MAX_SAFE_INTEGER) {
-      triggerData.killSID = SID;
-    }
-
-    this.purchaseFailureTriggerEmitted = triggerData;
-
+  /** @this {YandexGamesSDKInstance} */
+  OnPurchaseError() {
     return true;
   },
 

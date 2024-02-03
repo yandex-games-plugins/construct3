@@ -520,27 +520,19 @@ class YandexGamesSDKInstance extends C3.SDKInstanceBase {
 
     /**
      * @typedef {Object} PurchaseSuccessTriggerData
-     * @property {number} killSID
      * @property {string} productID
      * @property {string} purchaseToken
      * @property {string|undefined} developerPayload
      * @property {string|undefined} signature
      */
 
-    /** @type {Map<string, PurchaseSuccessTriggerData>} */
-    this.purchaseSuccessTriggerPool = new Map();
-
     /** @type {PurchaseSuccessTriggerData | undefined} */
     this.purchaseSuccessTriggerData = undefined;
 
     /**
      * @typedef {Object} PurchaseFailureTriggerData
-     * @property {number} killSID
      * @property {string} error
      */
-
-    /** @type {Map<string, PurchaseFailureTriggerData>} */
-    this.purchaseFailureTriggerPool = new Map();
 
     /** @type {PurchaseFailureTriggerData | undefined} */
     this.purchaseFailureTriggerData = undefined;
@@ -550,20 +542,22 @@ class YandexGamesSDKInstance extends C3.SDKInstanceBase {
       /** @param {{error?: string, productID: string, purchaseToken: string, developerPayload?: string, signature?: string}} data  */
       (data) => {
         if (data.error) {
-          this.purchaseFailureTriggerData.set(data.productID, {
-            killSID: Number.MAX_SAFE_INTEGER,
+          this.purchaseFailureTriggerData = {
             error: data.error,
-          });
+          };
+          this.Trigger(this.conditions.OnPurchaseFailure);
+          this.purchaseFailureTriggerData = undefined;
           return;
         }
 
-        this.purchaseSuccessTriggerData.set(data.productID, {
-          killSID: Number.MAX_SAFE_INTEGER,
+        this.purchaseSuccessTriggerData = {
           productID: data.productID,
           purchaseToken: data.purchaseToken,
           developerPayload: data.developerPayload,
           signature: data.signature,
-        });
+        };
+        this.Trigger(this.conditions.OnPurchaseSuccess);
+        this.purchaseSuccessTriggerData = undefined;
       },
     );
 

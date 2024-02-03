@@ -187,25 +187,13 @@
           },
           "on-purchase-success": {
             "list-name": "On purchase success",
-            "display-text": "On purchase [b]{0}[/b] success",
-            "description": "Executes when purchase was successful.",
-            "params": {
-              "productID": {
-                "name": "Product ID",
-                "desc": "Unique identifier of the product."
-              }
-            }
+            "display-text": "On purchase success",
+            "description": "Executes when purchase was successful."
           },
           "on-purchase-error": {
             "list-name": "On purchase error",
-            "display-text": "On purchase [b]{0}[/b] error",
-            "description": "Executes when purchase was failed.",
-            "params": {
-              "productID": {
-                "name": "Product ID",
-                "desc": "Unique identifier of the product."
-              }
-            }
+            "display-text": "On purchase error",
+            "description": "Executes when purchase was failed."
           },
 
           "with-player-info": {

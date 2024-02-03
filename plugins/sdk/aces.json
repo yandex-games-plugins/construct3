@@ -268,7 +268,7 @@
       },
       {
         "id": "for-each-purchase",
-        "scriptName": "ForEach",
+        "scriptName": "ForEachPurchase",
         "highlight": false,
         "isCompatibleWithTriggers": false,
         "isLooping": true
@@ -276,14 +276,12 @@
       {
         "id": "on-purchase-success",
         "scriptName": "OnPurchaseSuccess",
-        "isTrigger": true,
-        "params": [{ "id": "productID", "type": "string" }]
+        "isTrigger": true
       },
       {
         "id": "on-purchase-error",
         "scriptName": "OnPurchaseError",
-        "isTrigger": true,
-        "params": [{ "id": "productID", "type": "string" }]
+        "isTrigger": true
       }
     ],
     "expressions": [
