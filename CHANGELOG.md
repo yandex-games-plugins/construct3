@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.3.2] - 2024.2.6
+
+### Fixed
+
+- Implemented missing `ProductImageURI` expression
+
 ## [2.3.1] - 2024.2.3
 
 ### Removed
