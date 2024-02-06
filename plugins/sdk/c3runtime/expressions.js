@@ -227,6 +227,17 @@ const Expressions = {
   },
 
   /** @this {YandexGamesSDKInstance} */
+  ProductImageURI() {
+    if (this.forEachInCatalogLoopData) {
+      const loopData = this.forEachInCatalogLoopData;
+      const product = loopData.catalog[loopData.currentIndex];
+      return product.imageURI;
+    } else {
+      return '';
+    }
+  },
+
+  /** @this {YandexGamesSDKInstance} */
   ProductPrice() {
     if (this.forEachInCatalogLoopData) {
       const loopData = this.forEachInCatalogLoopData;
