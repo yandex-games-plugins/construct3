@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.3.3] - 2024.2.10
+
+### Fixed
+
+- Fix `CurrentLanguage` expression
+
 ## [2.3.2] - 2024.2.6
 
 ### Fixed
