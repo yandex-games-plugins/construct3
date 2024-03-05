@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.3.4] - 2024.3.5
+
+### Fixed
+
+- Fix minification by removing public class field usage
+
 ## [2.3.3] - 2024.2.10
 
 ### Fixed
