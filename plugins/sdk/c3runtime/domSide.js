@@ -510,6 +510,12 @@
     constructor(domHandler) {
       this.domHandler = domHandler;
       this.enabled = false;
+      this.ArrowMap = {
+        ArrowUp: 12,
+        ArrowDown: 13,
+        ArrowLeft: 14,
+        ArrowRight: 15,
+      };
     }
 
     Start() {
@@ -586,13 +592,6 @@
 
       navigator.getGamepads = this._originalGetGamepads;
     }
-
-    ArrowMap = {
-      ArrowUp: 12,
-      ArrowDown: 13,
-      ArrowLeft: 14,
-      ArrowRight: 15,
-    };
 
     /** @param {MessageEvent} event */
     OnMessage(event) {

@@ -9,6 +9,7 @@ class Localization {
     this.pluginInstance = instance;
     this.runtime = instance.GetRuntime();
     this.assetManager = this.runtime.GetAssetManager();
+    this.textPluginsNames = new Set(['TextPlugin', 'SpriteFontPlugin', 'AdaptiveTextPlugin']);
 
     /** @typedef {{[key: string]: string | StringKeysObject | undefined}} StringKeysObject */
 
@@ -83,7 +84,6 @@ class Localization {
     return desc;
   }
 
-  textPluginsNames = new Set(['TextPlugin', 'SpriteFontPlugin', 'AdaptiveTextPlugin']);
   DecorateTextPlugins() {
     this.runtime
       .GetAllObjectClasses()
