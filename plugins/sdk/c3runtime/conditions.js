@@ -465,8 +465,8 @@ const Conditions = {
 
   /** @this {YandexGamesSDKInstance} */
   CurrentPlayerIsAuthorized() {
-    if (this.withPlayerInfo) {
-      return !!this.withPlayerInfo.isAuthorized;
+    if (this.playerInfo) {
+      return !!this.playerInfo.isAuthorized;
     } else {
       return false;
     }
@@ -474,8 +474,8 @@ const Conditions = {
 
   /** @this {YandexGamesSDKInstance} */
   CurrentPlayerInfoAccessGranted() {
-    if (this.withPlayerInfo) {
-      return !!this.withPlayerInfo.isAccessGranted;
+    if (this.playerInfo) {
+      return !!this.playerInfo.isAccessGranted;
     } else {
       return false;
     }
