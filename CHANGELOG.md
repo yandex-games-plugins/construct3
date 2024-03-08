@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.3.5] - 2024.3.8
+
+### Fixed
+
+- Fix `Player is authorized` condition
+- Fix `Player info access granted` condition
+
 ## [2.3.4] - 2024.3.5
 
 ### Fixed
