@@ -436,9 +436,9 @@ const Conditions = {
 
   /**
    * @this {YandexGamesSDKInstance}
-   * @param {boolean} requestAuthorization
+   * @param {boolean} requestPersonalInfo
    */
-  WithPlayerInfo(requestAuthorization) {
+  WithPlayerInfo(requestPersonalInfo) {
     const runtime = this.GetRuntime();
     const eventSheetManager = runtime.GetEventSheetManager();
     const currentEvent = runtime.GetCurrentEvent();
@@ -446,7 +446,7 @@ const Conditions = {
     const eventStack = runtime.GetEventStack();
 
     this.PostToDOMAsync('ysdk-get-player', {
-      requestAuthorization,
+      requestPersonalInfo,
     }).then((playerInfo) => {
       this.playerInfo = playerInfo;
 

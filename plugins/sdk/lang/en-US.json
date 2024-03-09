@@ -198,11 +198,11 @@
 
           "with-player-info": {
             "list-name": "Using player info",
-            "display-text": "Using player info. requestAuthorization: [b]{0}[/b].",
+            "display-text": "Using player info. Request Personal Info: [b]{0}[/b].",
             "description": "Requests player info for further use",
             "params": {
               "requestAuthorization": {
-                "name": "Request authorization",
+                "name": "Request personal info",
                 "desc": "If enabled, the player will see a window asking for permission to share their data with the game. Otherwise, you will only have access to the player's unique identifier."
               }
             }

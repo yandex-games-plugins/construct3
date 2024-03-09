@@ -434,13 +434,13 @@
       await player.incrementStats(data);
     }
 
-    async YSDKGetPlayer({ requestAuthorization }) {
+    async YSDKGetPlayer({ requestPersonalInfo }) {
       if (!this.ysdk) return;
 
       /** @type {import("../../../global").Player} */
       let player;
 
-      if (requestAuthorization) {
+      if (requestPersonalInfo) {
         player = await this.ysdk.getPlayer({ signed: true });
 
         if (player.getMode() === 'lite') {
