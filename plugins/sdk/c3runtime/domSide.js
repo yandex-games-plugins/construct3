@@ -149,6 +149,8 @@
         pluginVersion: '2.3.5',
       });
 
+      console.log('%c YandexGamesSDK for Construct 3 v2.3.5 ', 'background: #14151f; color: #fb923c');
+
       return {
         environment: {
           app: {
