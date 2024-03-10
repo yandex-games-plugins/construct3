@@ -489,7 +489,7 @@ class YandexGamesSDKInstance extends C3.SDKInstanceBase {
      */
 
     /** @type {{entriesData: RuntimeEntries; currentIndex: number} | undefined} */
-    this.forEachLeaderbordEntryLoopData = {};
+    this.forEachLeaderbordEntryLoopData = undefined;
 
     //#endregion
 
