@@ -443,12 +443,15 @@
       let player;
 
       if (requestPersonalInfo) {
-        player = await this.ysdk.getPlayer({ signed: true });
+        player = await this.ysdk.getPlayer({ signed: true, scopes: true });
 
         if (player.getMode() === 'lite') {
           await this.ysdk.auth.openAuthDialog();
-          player = await this.ysdk.getPlayer({ signed: true });
+          player = await this.ysdk.getPlayer({ signed: true, scopes: true });
         }
+
+        // Double request. The first one can return empty name even if the user provided personal info.
+        player = await this.ysdk.getPlayer({ signed: true, scopes: true });
       } else {
         player = await this.ysdk.getPlayer({ scopes: false });
       }
