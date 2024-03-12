@@ -782,6 +782,22 @@ class YandexGamesSDKInstance extends C3.SDKInstanceBase {
   Warn(message) {
     console.warn('[YandexGamesSDK] ' + message);
   }
+
+  /**
+   * Function to informate about developer mistakes 
+   * @param {string} message
+   */
+  logDeveloperMistake(message) {
+    let lines = message.split('\n');
+    const maxLength = lines.reduce((p, c) => (p < c.length ? c.length : p), 0);
+    const whitespaces = ''.padEnd(maxLength + 2, ' ');
+    const formattedMessage = lines.map((line) => line.padEnd(maxLength + 1, ' ')).join('\n');
+    console.log(
+      `${whitespaces}\n%cWarning\n%c${formattedMessage}\n\nPlease, check your events!\n${whitespaces}`,
+      'color:#fb3c3c;font-size:2rem;font-weight:bold',
+      'color:#fb3c3c',
+    );
+  }
 }
 
 C3.Plugins.yagames_sdk.Instance = YandexGamesSDKInstance;

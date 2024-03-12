@@ -1,19 +1,3 @@
-/**
- * Function to informate about developer mistakes
- * @param {string} message
- */
-function logDeveloperMistake(message) {
-  let lines = message.split('\n');
-  const maxLength = lines.reduce((p, c) => (p < c.length ? c.length : p), 0);
-  const whitespaces = ''.padEnd(maxLength + 2, ' ');
-  const formattedMessage = lines.map((line) => line.padEnd(maxLength + 1, ' ')).join('\n');
-  console.log(
-    `${whitespaces}\n%cWarning\n%c${formattedMessage}\n\nPlease, check your events!\n${whitespaces}`,
-    'color:#fb3c3c;font-size:2rem;font-weight:bold',
-    'color:#fb3c3c',
-  );
-}
-
 /** @class */
 const Expressions = {
   //#region Localization
@@ -80,7 +64,7 @@ const Expressions = {
   /** @this {YandexGamesSDKInstance} */
   GetCurrentLeaderboardEntryRank() {
     if (!this.forEachLeaderbordEntryLoopData) {
-      logDeveloperMistake(
+      this.logDeveloperMistake(
         `You are trying to use "Player position in leaderboard" expression outside of "For each player in leaderboard" loop!`,
       );
       return -1;
@@ -93,7 +77,7 @@ const Expressions = {
   /** @this {YandexGamesSDKInstance} */
   GetCurrentLeaderboardEntryScore() {
     if (!this.forEachLeaderbordEntryLoopData) {
-      logDeveloperMistake(
+      this.logDeveloperMistake(
         `You are trying to use "Player score in leaderboard" expression outside of "For each player in leaderboard" loop!`,
       );
       return -1;
@@ -106,7 +90,7 @@ const Expressions = {
   /** @this {YandexGamesSDKInstance} */
   GetCurrentLeaderboardEntryExtraData() {
     if (!this.forEachLeaderbordEntryLoopData) {
-      logDeveloperMistake(
+      this.logDeveloperMistake(
         `You are trying to use "Player extra data in leaderboard" expression outside of "For each player in leaderboard" loop!`,
       );
       return '';
@@ -119,7 +103,7 @@ const Expressions = {
   /** @this {YandexGamesSDKInstance} */
   GetCurrentLeaderboardEntryRangeIndex() {
     if (!this.forEachLeaderbordEntryLoopData) {
-      logDeveloperMistake(
+      this.logDeveloperMistake(
         `You are trying to use "Range index of requested leaderboard" expression outside of "For each player in leaderboard" loop!`,
       );
       return 0;
@@ -139,7 +123,7 @@ const Expressions = {
   /** @this {YandexGamesSDKInstance} */
   GetCurrentLeaderboardDescriptionName() {
     if (!this.forEachLeaderbordEntryLoopData) {
-      logDeveloperMistake(
+      this.logDeveloperMistake(
         `You are trying to use "Leaderboad name" expression outside of "For each player in leaderboard" loop!`,
       );
       return '';
@@ -151,7 +135,7 @@ const Expressions = {
   /** @this {YandexGamesSDKInstance} */
   GetCurrentLeaderboardDescriptionType() {
     if (!this.forEachLeaderbordEntryLoopData) {
-      logDeveloperMistake(
+      this.logDeveloperMistake(
         `You are trying to use "Leaderboad type" expression outside of "For each player in leaderboard" loop!`,
       );
       return '';
@@ -164,7 +148,7 @@ const Expressions = {
   /** @this {YandexGamesSDKInstance} */
   GetCurrentLeaderboardDescriptionTitle() {
     if (!this.forEachLeaderbordEntryLoopData) {
-      logDeveloperMistake(
+      this.logDeveloperMistake(
         `You are trying to use "Leaderboad title" expression outside of "For each player in leaderboard" loop!`,
       );
       return '';
@@ -177,7 +161,7 @@ const Expressions = {
   /** @this {YandexGamesSDKInstance} */
   GetCurrentLeaderboardDescriptionDecimalOffset() {
     if (!this.forEachLeaderbordEntryLoopData) {
-      logDeveloperMistake(
+      this.logDeveloperMistake(
         `You are trying to use "Leaderboad decimal offset" expression outside of "For each player in leaderboard" loop!`,
       );
       return '';
@@ -200,7 +184,7 @@ const Expressions = {
       const purchaseEntry = loopData.purchases[loopData.currentIndex];
       return purchaseEntry.purchaseToken;
     } else {
-      logDeveloperMistake(
+      this.logDeveloperMistake(
         `You are trying to use "Purchase token" expression outside of "For each purchase" or "On purchase success"!`,
       );
       return '';
@@ -216,7 +200,7 @@ const Expressions = {
       const purchaseEntry = loopData.purchases[loopData.currentIndex];
       return purchaseEntry.developerPayload;
     } else {
-      logDeveloperMistake(
+      this.logDeveloperMistake(
         `You are trying to use "Purchase developer payload" expression outside of "For each purchase" or "On purchase success"!`,
       );
       return '';
@@ -228,7 +212,7 @@ const Expressions = {
     if (this.purchaseSuccessTriggerData) {
       return this.purchaseSuccessTriggerData.signature;
     } else {
-      logDeveloperMistake(
+      this.logDeveloperMistake(
         `You are trying to use "Purchase signature" expression outside of "On purchase success" trigger!`,
       );
       return '';
@@ -240,7 +224,7 @@ const Expressions = {
     if (this.forEachPurchaseLoopData) {
       return this.forEachPurchaseLoopData.purchases.signature;
     } else {
-      logDeveloperMistake(
+      this.logDeveloperMistake(
         `You are trying to use "Purchases signature" expression outside of "On purchase success" trigger!`,
       );
       return '';
@@ -252,7 +236,7 @@ const Expressions = {
     if (this.purchaseFailureTriggerData) {
       return this.purchaseFailureTriggerData.error;
     } else {
-      logDeveloperMistake(
+      this.logDeveloperMistake(
         `You are trying to use "Purchase error" expression outside of "On purchase error" trigger!`,
       );
       return '';
@@ -272,7 +256,7 @@ const Expressions = {
       const product = loopData.catalog[loopData.currentIndex];
       return product.id;
     } else {
-      logDeveloperMistake(
+      this.logDeveloperMistake(
         `You are trying to use "Product ID" expression outside of "On purchase success", "For each product in catalog" or "For each purchase"!`,
       );
       return '';
@@ -286,7 +270,7 @@ const Expressions = {
       const product = loopData.catalog[loopData.currentIndex];
       return product.title;
     } else {
-      logDeveloperMistake(
+      this.logDeveloperMistake(
         `You are trying to use "Product title" expression outside of "On purchase success", "For each product in catalog" or "For each purchase"!`,
       );
       return '';
@@ -300,7 +284,7 @@ const Expressions = {
       const product = loopData.catalog[loopData.currentIndex];
       return product.description;
     } else {
-      logDeveloperMistake(
+      this.logDeveloperMistake(
         `You are trying to use "Product description" expression outside of "For each product in catalog" loop!`,
       );
       return '';
@@ -314,7 +298,7 @@ const Expressions = {
       const product = loopData.catalog[loopData.currentIndex];
       return product.imageURI;
     } else {
-      logDeveloperMistake(
+      this.logDeveloperMistake(
         `You are trying to use "Product image URI" expression outside of "For each product in catalog" loop!`,
       );
       return '';
@@ -328,7 +312,7 @@ const Expressions = {
       const product = loopData.catalog[loopData.currentIndex];
       return product.price;
     } else {
-      logDeveloperMistake(
+      this.logDeveloperMistake(
         `You are trying to use "Product price" expression outside of "For each product in catalog" loop!`,
       );
       return '';
@@ -342,7 +326,7 @@ const Expressions = {
       const product = loopData.catalog[loopData.currentIndex];
       return product.priceValue;
     } else {
-      logDeveloperMistake(
+      this.logDeveloperMistake(
         `You are trying to use "Product price value" expression outside of "For each product in catalog" loop!`,
       );
       return '';
@@ -356,7 +340,7 @@ const Expressions = {
       const product = loopData.catalog[loopData.currentIndex];
       return product.priceCurrencyCode;
     } else {
-      logDeveloperMistake(
+      this.logDeveloperMistake(
         `You are trying to use "Product price currency code" expression outside of "For each product in catalog" loop!`,
       );
       return '';
@@ -373,7 +357,7 @@ const Expressions = {
       const product = loopData.catalog[loopData.currentIndex];
       return product.priceCurrencyImage[size] || '';
     } else {
-      logDeveloperMistake(
+      this.logDeveloperMistake(
         `You are trying to use "Product price currency image" expression outside of "For each product in catalog" loop!`,
       );
       return '';
@@ -393,7 +377,7 @@ const Expressions = {
     } else if (this.playerInfo) {
       return this.playerInfo.uniqueID;
     } else {
-      logDeveloperMistake(
+      this.logDeveloperMistake(
         `You are trying to use "Player unique ID" expression outside of "For each product in catalog" or "Using player info"!`,
       );
       return '';
@@ -409,7 +393,7 @@ const Expressions = {
     } else if (this.playerInfo) {
       return this.playerInfo.publicName;
     } else {
-      logDeveloperMistake(
+      this.logDeveloperMistake(
         `You are trying to use "Player name" expression outside of "For each product in catalog" or "Using player info"!`,
       );
       return '';
@@ -428,7 +412,7 @@ const Expressions = {
     } else if (this.playerInfo) {
       return this.playerInfo.avatars[size] || '';
     } else {
-      logDeveloperMistake(
+      this.logDeveloperMistake(
         `You are trying to use "Player avatar" expression outside of "For each product in catalog" or "Using player info"!`,
       );
       return '';
@@ -440,7 +424,7 @@ const Expressions = {
     if (this.playerInfo) {
       return this.playerInfo.signature || '';
     } else {
-      logDeveloperMistake(
+      this.logDeveloperMistake(
         `You are trying to use "Player signature" expression outside of "Using player info" condition!`,
       );
       return '';

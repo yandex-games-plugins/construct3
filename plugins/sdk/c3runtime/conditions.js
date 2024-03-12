@@ -343,7 +343,12 @@ const Conditions = {
 
   /** @this {YandexGamesSDKInstance} */
   CurrentLeaderboardDescriptionInvertOrder() {
-    if (!this.forEachLeaderbordEntryLoopData) return '';
+    if (!this.forEachLeaderbordEntryLoopData) {
+      this.logDeveloperMistake(
+        `You are trying to use "Invert order of leaderboard" expression outside of "For each player in leaderboard" loop!`,
+      );
+      return '';
+    }
     const leaderboard = this.forEachLeaderbordEntryLoopData.entriesData.leaderboard;
     return leaderboard.description.invert_sort_order ? 'true' : 'false';
   },
