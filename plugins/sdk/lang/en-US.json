@@ -210,12 +210,12 @@
           "current-player-is-authorized": {
             "list-name": "Player is authorized",
             "display-text": "Player is authorized",
-            "description": "Checks if player is authorized in Yandex.Games. (Works only with \"With player info\" condition)"
+            "description": "Checks if player is authorized in Yandex.Games. (Works only with \"Using player info\" condition)"
           },
           "current-player-info-access-granted": {
             "list-name": "Player info access granted",
             "display-text": "Player info access granted",
-            "description": "Checks if player gave your game permission to access information about them. Works only with \"With player info\" condition."
+            "description": "Checks if player gave your game permission to access information about them. Works only with \"Using player info\" condition."
           },
 
           "on-history-back-event": {
@@ -710,10 +710,6 @@
             }
           },
 
-          "current-player-is-authorized": {
-            "translated-name": "Player is authorized",
-            "description": "Indicates whether gave your game permission to access the player's data."
-          },
           "current-player-unique-id": {
             "translated-name": "Player unique ID",
             "description": "Unique identifier of player."
