@@ -22,13 +22,15 @@ const PLUGIN_CLASS = (SDK.Plugins.yagames_adaptivetext = class AdaptiveTextPlugi
     this._info.SetHelpUrl(self.lang('.help-url'));
     this._info.SetPluginType('world');
     this._info.SetIsResizable(true);
-    // this._info.SetIsRotatable(true);
+    this._info.SetIsRotatable(true);
     this._info.SetSupportsColor(true);
     this._info.SetSupportsZElevation(true);
     this._info.SetSupportsEffects(true);
     this._info.SetMustPreDraw(true);
     this._info.AddCommonPositionACEs();
+    this._info.AddCommonSceneGraphACEs();
     this._info.AddCommonSizeACEs();
+    this._info.AddCommonAngleACEs();
     this._info.AddCommonAppearanceACEs();
     this._info.AddCommonZOrderACEs();
 

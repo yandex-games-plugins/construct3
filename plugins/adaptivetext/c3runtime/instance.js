@@ -86,7 +86,12 @@ C3.Plugins.yagames_adaptivetext.Instance = class AdaptiveTextInstance extends C3
     if (!texture) return;
 
     renderer.SetTexture(texture);
-    renderer.Quad3(worldInfo.GetBoundingQuad(), this._rendererText.GetTexRect());
+
+    let quad = worldInfo.GetBoundingQuad();
+    if (this._runtime.IsPixelRoundingEnabled()) {
+      quad = worldInfo.PixelRoundQuad(quad);
+    }
+    renderer.Quad3(quad, this._rendererText.GetTexRect());
   }
 
   SaveToJson() {
@@ -200,4 +205,3 @@ self.IAdaptiveTextInstance = class IAdaptiveTextInstance extends self.IWorldInst
     return map.get(this).GetText();
   }
 };
-
