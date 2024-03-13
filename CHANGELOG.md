@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.4.0] - 2024.3.13
+
+### Added
+
+- New `Any rewarded AD opened` trigger
+- New `Any rewarded AD closed` trigger
+- New `Any rewarded AD failed` trigger
+- Adaptive text now supports rotation ACEs
+- Adaptive text now supports hierarchy ACEs
+- Lots of logs for developers mistakes cases
+- Plugin version logging to console
+
+### Removed
+
+- No more IDs for Fullscreen AD ACEs
+
 ## [2.3.5] - 2024.3.8
 
 ### Fixed
