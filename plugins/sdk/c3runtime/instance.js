@@ -426,16 +426,19 @@ class YandexGamesSDKInstance extends C3.SDKInstanceBase {
         switch (data.type) {
           case 'onOpen':
             this.rewardedADOpenKillSID.set(data.id, Number.MAX_SAFE_INTEGER);
+            this.Trigger(this.conditions.OnAnyRewardedADOpen);
             break;
           case 'onRewarded':
             this.rewardedADRewardedKillSID.set(data.id, Number.MAX_SAFE_INTEGER);
             break;
           case 'onClose':
             this.rewardedADCloseKillSID.set(data.id, Number.MAX_SAFE_INTEGER);
+            this.Trigger(this.conditions.OnAnyRewardedADClose);
             break;
           case 'onError':
             this.rewardedADErrorKillSID.set(data.id, Number.MAX_SAFE_INTEGER);
             this.rewardedADErrorError.set(data.id, data.error);
+            this.Trigger(this.conditions.OnAnyRewardedADError);
             break;
         }
       },

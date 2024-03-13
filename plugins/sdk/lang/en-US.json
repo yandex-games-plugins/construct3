@@ -57,9 +57,9 @@
           },
 
           "on-rewarded-ad-open": {
-            "list-name": "Rewarded AD opened",
-            "display-text": "Rewarded AD [b]{0}[/b] opened",
-            "description": "Executes when rewarded ad was opened.",
+            "list-name": "Specific rewarded AD opened",
+            "display-text": "Specific rewarded AD [b]{0}[/b] opened",
+            "description": "Executes when specific rewarded ad was opened.",
             "params": {
               "id": {
                 "name": "ID",
@@ -68,9 +68,9 @@
             }
           },
           "on-rewarded-ad-rewarded": {
-            "list-name": "Rewarded AD watched",
-            "display-text": "Rewarded AD [b]{0}[/b] watched",
-            "description": "Executes when rewarded ad was fully watched.",
+            "list-name": "Specific rewarded AD watched",
+            "display-text": "Specific rewarded AD [b]{0}[/b] watched",
+            "description": "Executes when specific rewarded ad was fully watched.",
             "params": {
               "id": {
                 "name": "ID",
@@ -79,9 +79,9 @@
             }
           },
           "on-rewarded-ad-close": {
-            "list-name": "Rewarded AD closed",
-            "display-text": "Rewarded AD [b]{0}[/b] closed",
-            "description": "Executes when rewarded ad was closed.",
+            "list-name": "Specific rewarded AD closed",
+            "display-text": "Specific rewarded AD [b]{0}[/b] closed",
+            "description": "Executes when specific rewarded ad was closed.",
             "params": {
               "id": {
                 "name": "ID",
@@ -90,15 +90,30 @@
             }
           },
           "on-rewarded-ad-error": {
-            "list-name": "On rewarded ad error",
-            "display-text": "On rewarded ad [b]{0}[/b] error",
-            "description": "Exectues when rewarded ad error occured.",
+            "list-name": "Specific rewarded ad errored",
+            "display-text": "Specific rewarded ad [b]{0}[/b] error",
+            "description": "Exectues when specific rewarded ad error occured.",
             "params": {
               "id": {
                 "name": "ID",
                 "desc": "Identifier of ad used for managing ad events in game, it's not affiliated with Yandex Advertising Network."
               }
             }
+          },
+          "on-any-rewarded-ad-open": {
+            "list-name": "Any rewarded AD opened",
+            "display-text": "Any rewarded AD opened",
+            "description": "Executes when any rewarded ad was opened."
+          },
+          "on-any-rewarded-ad-close": {
+            "list-name": "Any rewarded AD closed",
+            "display-text": "Any rewarded AD closed",
+            "description": "Executes when any rewarded ad was closed."
+          },
+          "on-any-rewarded-ad-error": {
+            "list-name": "Any rewarded ad errored",
+            "display-text": "Any rewarded ad errored",
+            "description": "Exectues when any rewarded ad error occured."
           },
 
           "is-mobile": {

@@ -1,4 +1,4 @@
-{
+﻿{
   "localization": {
     "conditions": [],
     "actions": [
@@ -119,6 +119,27 @@
         "isInvertible": false,
         "isCompatibleWithTriggers": false,
         "params": [{ "id": "id", "type": "string" }]
+      },
+      {
+        "id": "on-any-rewarded-ad-open",
+        "scriptName": "OnAnyRewardedADOpen",
+        "isFakeTrigger": true,
+        "isInvertible": false,
+        "isCompatibleWithTriggers": false
+      },
+      {
+        "id": "on-any-rewarded-ad-close",
+        "scriptName": "OnAnyRewardedADClose",
+        "isFakeTrigger": true,
+        "isInvertible": false,
+        "isCompatibleWithTriggers": false
+      },
+      {
+        "id": "on-any-rewarded-ad-error",
+        "scriptName": "OnAnyRewardedADError",
+        "isFakeTrigger": true,
+        "isInvertible": false,
+        "isCompatibleWithTriggers": false
       }
     ],
     "actions": [

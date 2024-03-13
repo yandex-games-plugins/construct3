@@ -170,6 +170,21 @@ const Conditions = {
     return true;
   },
 
+  /** @this {YandexGamesSDKInstance} */
+  OnAnyRewardedADOpen() {
+    return true;
+  },
+
+  /** @this {YandexGamesSDKInstance} */
+  OnAnyRewardedADClose() {
+    return true;
+  },
+
+  /** @this {YandexGamesSDKInstance} */
+  OnAnyRewardedADError() {
+    return true;
+  },
+
   //#endregion
 
   //#region Leaderboards
