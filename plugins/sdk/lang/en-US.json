@@ -90,7 +90,7 @@
             }
           },
           "on-rewarded-ad-error": {
-            "list-name": "Specific rewarded ad errored",
+            "list-name": "Specific rewarded ad failed",
             "display-text": "Specific rewarded ad [b]{0}[/b] error",
             "description": "Exectues when specific rewarded ad error occured.",
             "params": {
@@ -111,8 +111,8 @@
             "description": "Executes when any rewarded ad was closed."
           },
           "on-any-rewarded-ad-error": {
-            "list-name": "Any rewarded ad errored",
-            "display-text": "Any rewarded ad errored",
+            "list-name": "Any rewarded ad failed",
+            "display-text": "Any rewarded ad failed",
             "description": "Exectues when any rewarded ad error occured."
           },
 
