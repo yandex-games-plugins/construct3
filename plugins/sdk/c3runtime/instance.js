@@ -372,40 +372,30 @@ class YandexGamesSDKInstance extends C3.SDKInstanceBase {
 
     //#region Fullscreen AD
 
-    /** @type {Map<string, number>} */
-    this.fullscreenADOpenKillSID = new Map();
+    /** @type {boolean} */
+    this.fullscreenADWasShown = false;
 
-    /** @type {Map<string, number>} */
-    this.fullscreenADCloseKillSID = new Map();
-    /** @type {Map<string, boolean>} */
-    this.fullscreenADCloseWasShown = new Map();
-
-    /** @type {Map<string, number>} */
-    this.fullscreenADErrorKillSID = new Map();
-    /** @type {Map<string, string>} */
-    this.fullscreenADErrorError = new Map();
-
-    /** @type {Map<string, number>} */
-    this.fullscreenADOfflineKillSID = new Map();
+    /** @type {string | undefined} */
+    this.fullscreenADError = undefined;
 
     this.AddDOMMessageHandler(
       'ysdk-fullscreen-ad-callback',
-      /** @param {{type: "onClose" | "onOpen" | "onError" | "onOffline", id: string, wasShown?: boolean, error?: string}} data  */
+      /** @param {{type: "onClose" | "onOpen" | "onError" | "onOffline", wasShown?: boolean, error?: string}} data  */
       (data) => {
         switch (data.type) {
           case 'onOpen':
-            this.fullscreenADOpenKillSID.set(data.id, Number.MAX_SAFE_INTEGER);
+            this.Trigger(this.conditions.OnFullscreenADOpen);
             break;
           case 'onClose':
-            this.fullscreenADCloseKillSID.set(data.id, Number.MAX_SAFE_INTEGER);
-            this.fullscreenADCloseWasShown.set(data.id, data.wasShown);
+            this.fullscreenADWasShown = data.wasShown;
+            this.Trigger(this.conditions.OnFullscreenADClose);
             break;
           case 'onError':
-            this.fullscreenADErrorKillSID.set(data.id, Number.MAX_SAFE_INTEGER);
-            this.fullscreenADErrorError.set(data.id, data.error);
+            this.fullscreenADError = data.error;
+            this.Trigger(this.conditions.OnFullscreenADError);
             break;
           case 'onOffline':
-            this.fullscreenADOfflineKillSID.set(data.id, Number.MAX_SAFE_INTEGER);
+            this.Trigger(this.conditions.OnFullscreenADOffline);
             break;
         }
       },

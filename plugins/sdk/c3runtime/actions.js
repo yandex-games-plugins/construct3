@@ -22,12 +22,9 @@ const Actions = {
 
   //#region Fullscreen AD
 
-  /**
-   * @this {YandexGamesSDKInstance}
-   * @param {string} id
-   */
-  ShowFullscreenAD(id) {
-    this.PostToDOM('ysdk-show-fullscreen-ad', { id });
+  /**  @this {YandexGamesSDKInstance} */
+  ShowFullscreenAD() {
+    this.PostToDOM('ysdk-show-fullscreen-ad');
   },
 
   //#endregion

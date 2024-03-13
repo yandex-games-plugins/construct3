@@ -1,4 +1,4 @@
-﻿{
+{
   "localization": {
     "conditions": [],
     "actions": [
@@ -40,10 +40,9 @@
       {
         "id": "on-fullscreen-ad-close",
         "scriptName": "OnFullscreenADClose",
-        "isFakeTrigger": true,
+        "isTrigger": true,
         "isInvertible": false,
-        "isCompatibleWithTriggers": false,
-        "params": [{ "id": "id", "type": "string" }]
+        "isCompatibleWithTriggers": false
       },
       {
         "id": "fullscreen-ad-was-shown",
@@ -52,34 +51,30 @@
       {
         "id": "on-fullscreen-ad-open",
         "scriptName": "OnFullscreenADOpen",
-        "isFakeTrigger": true,
+        "isTrigger": true,
         "isInvertible": false,
-        "isCompatibleWithTriggers": false,
-        "params": [{ "id": "id", "type": "string" }]
+        "isCompatibleWithTriggers": false
       },
       {
         "id": "on-fullscreen-ad-error",
         "scriptName": "OnFullscreenADError",
-        "isFakeTrigger": true,
+        "isTrigger": true,
         "isInvertible": false,
-        "isCompatibleWithTriggers": false,
-        "params": [{ "id": "id", "type": "string" }]
+        "isCompatibleWithTriggers": false
       },
       {
         "id": "on-fullscreen-ad-offline",
         "scriptName": "OnFullscreenADOffline",
-        "isFakeTrigger": true,
+        "isTrigger": true,
         "isInvertible": false,
-        "isCompatibleWithTriggers": false,
-        "params": [{ "id": "id", "type": "string" }]
+        "isCompatibleWithTriggers": false
       }
     ],
     "actions": [
       {
         "id": "show-fullscreen-ad",
         "scriptName": "ShowFullscreenAD",
-        "highlight": true,
-        "params": [{ "id": "id", "type": "string" }]
+        "highlight": true
       }
     ],
     "expressions": [

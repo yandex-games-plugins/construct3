@@ -184,33 +184,29 @@
       this.ysdk.features.LoadingAPI?.ready();
     }
 
-    YSDKShowFullscreenAD({ id }) {
+    YSDKShowFullscreenAD() {
       if (!this.ysdk) return;
       this.ysdk.adv.showFullscreenAdv({
         callbacks: {
           onClose: (wasShown) => {
             this.domHandler.PostToRuntime('ysdk-fullscreen-ad-callback', {
-              id,
               type: 'onClose',
               wasShown,
             });
           },
           onOpen: () => {
             this.domHandler.PostToRuntime('ysdk-fullscreen-ad-callback', {
-              id,
               type: 'onOpen',
             });
           },
           onError: (error) => {
             this.domHandler.PostToRuntime('ysdk-fullscreen-ad-callback', {
-              id,
               type: 'onError',
               error: JSON.stringify(error),
             });
           },
           onOffline: () => {
             this.domHandler.PostToRuntime('ysdk-fullscreen-ad-callback', {
-              id,
               type: 'onOffline',
             });
           },

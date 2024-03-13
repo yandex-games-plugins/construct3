@@ -32,14 +32,8 @@
         "conditions": {
           "on-fullscreen-ad-close": {
             "list-name": "Fullscreen AD closed",
-            "display-text": "Fullscreen AD [b]{0}[/b] closed",
-            "description": "Executes when fullscreen ad was closed.",
-            "params": {
-              "id": {
-                "name": "ID",
-                "desc": "Identifier of ad used for managing ad events in game, it's not affiliated with Yandex Advertising Network."
-              }
-            }
+            "display-text": "Fullscreen AD closed",
+            "description": "Executes when fullscreen ad was closed."
           },
           "fullscreen-ad-was-shown": {
             "list-name": "Fullscreen AD was shown",
@@ -48,36 +42,18 @@
           },
           "on-fullscreen-ad-open": {
             "list-name": "Fullscreen AD opened",
-            "display-text": "Fullscreen AD [b]{0}[/b] opened",
-            "description": "Executes when fullscreen ad was opened.",
-            "params": {
-              "id": {
-                "name": "ID",
-                "desc": "Identifier of ad used for managing ad events in game, it's not affiliated with Yandex Advertising Network."
-              }
-            }
+            "display-text": "Fullscreen AD opened",
+            "description": "Executes when fullscreen ad was opened."
           },
           "on-fullscreen-ad-error": {
             "list-name": "Fullscreen AD error",
-            "display-text": "Fullscreen AD [b]{0}[/b] error",
-            "description": "Exectues when fullscreen ad error occured.",
-            "params": {
-              "id": {
-                "name": "ID",
-                "desc": "Identifier of ad used for managing ad events in game, it's not affiliated with Yandex Advertising Network."
-              }
-            }
+            "display-text": "Fullscreen AD error",
+            "description": "Exectues when fullscreen ad error occured."
           },
           "on-fullscreen-ad-offline": {
             "list-name": "Fullscreen AD offline",
-            "display-text": "Fullscreen AD [b]{0}[/b] offline",
-            "description": "Exectues when there is not internet connection to show fullscreen ad.",
-            "params": {
-              "id": {
-                "name": "ID",
-                "desc": "Identifier of ad used for managing ad events in game, it's not affiliated with Yandex Advertising Network."
-              }
-            }
+            "display-text": "Fullscreen AD offline",
+            "description": "Exectues when there is not internet connection to show fullscreen ad."
           },
 
           "on-rewarded-ad-open": {
@@ -328,14 +304,8 @@
 
           "show-fullscreen-ad": {
             "list-name": "Show fullscreen ad",
-            "display-text": "Show fullscreen ad [b]{0}[/b]",
-            "description": "Initiates fullscreen ad.",
-            "params": {
-              "id": {
-                "name": "ID",
-                "desc": "Identifier of ad used for managing ad events in game, it's not affiliated with Yandex Advertising Network."
-              }
-            }
+            "display-text": "Show fullscreen ad",
+            "description": "Initiates fullscreen ad."
           },
 
           "show-rewarded-ad": {

@@ -30,149 +30,28 @@ const Conditions = {
 
   //#region Fullscreen AD
 
-  /**
-   * @this {YandexGamesSDKInstance}
-   * @param {string} id
-   */
-  OnFullscreenADClose(id) {
-    const havekillSID = this.fullscreenADCloseKillSID.has(id);
-
-    if (!havekillSID) return false;
-
-    const killSID = this.fullscreenADCloseKillSID.get(id);
-    const wasShown = this.fullscreenADCloseWasShown.get(id);
-
-    const runtime = this.GetRuntime();
-    const currentEvent = runtime.GetCurrentEvent();
-
-    const SID = currentEvent.GetSID();
-
-    if (killSID === SID) {
-      this.fullscreenADCloseKillSID.delete(id);
-      this.fullscreenADCloseWasShown.delete(id);
-      return false;
-    }
-
-    if (killSID === Number.MAX_SAFE_INTEGER) {
-      this.fullscreenADCloseKillSID.set(id, SID);
-    }
-
-    const condition = currentEvent
-      .GetConditions()
-      .find((cond) => cond._func === this.conditions.OnFullscreenADClose);
-
-    condition.$wasShown = wasShown;
-
+  /** @this {YandexGamesSDKInstance} */
+  OnFullscreenADClose() {
     return true;
   },
 
   /** @this {YandexGamesSDKInstance} */
   FullscreenADWasShown() {
-    const runtime = this.GetRuntime();
-
-    // Find event with OnFullscreenADClose condition
-    let event = runtime.GetCurrentEvent();
-    while (
-      event &&
-      !event.GetConditions().some((cond) => cond._func === this.conditions.OnFullscreenADClose)
-    ) {
-      event = event.GetParent();
-    }
-
-    if (!event) return false;
-
-    const condition = event
-      .GetConditions()
-      .find((cond) => cond._func === this.conditions.OnFullscreenADClose);
-
-    const wasShown = condition.$wasShown || false;
-
-    return wasShown;
+    return this.fullscreenADWasShown;
   },
 
-  /**
-   * @this {YandexGamesSDKInstance}
-   * @param {string} id
-   */
-  OnFullscreenADOpen(id) {
-    const havekillSID = this.fullscreenADOpenKillSID.has(id);
-
-    if (!havekillSID) return false;
-
-    const killSID = this.fullscreenADOpenKillSID.get(id);
-
-    const SID = this.GetRuntime().GetCurrentEvent().GetSID();
-
-    if (killSID === SID) {
-      this.fullscreenADOpenKillSID.delete(id);
-      return false;
-    }
-
-    if (killSID === Number.MAX_SAFE_INTEGER) {
-      this.fullscreenADOpenKillSID.set(id, SID);
-    }
-
+  /** @this {YandexGamesSDKInstance} */
+  OnFullscreenADOpen() {
     return true;
   },
 
-  /**
-   * @this {YandexGamesSDKInstance}
-   * @param {string} id
-   */
-  OnFullscreenADError(id) {
-    const havekillSID = this.fullscreenADErrorKillSID.has(id);
-
-    if (!havekillSID) return false;
-
-    const killSID = this.fullscreenADErrorKillSID.get(id);
-    const error = this.fullscreenADErrorError.get(id);
-
-    const runtime = this.GetRuntime();
-    const currentEvent = runtime.GetCurrentEvent();
-
-    const SID = currentEvent.GetSID();
-
-    if (killSID === SID) {
-      this.fullscreenADErrorKillSID.delete(id);
-      this.fullscreenADErrorError.delete(id);
-      return false;
-    }
-
-    if (killSID === Number.MAX_SAFE_INTEGER) {
-      this.fullscreenADErrorKillSID.set(id, SID);
-    }
-
-    const condition = currentEvent
-      .GetConditions()
-      .find((cond) => cond._func === this.conditions.OnFullscreenADError);
-
-    condition.$error = error;
-
+  /** @this {YandexGamesSDKInstance} */
+  OnFullscreenADError() {
     return true;
   },
 
-  /**
-   * @this {YandexGamesSDKInstance}
-   * @param {string} id
-   */
-  OnFullscreenADOffline(id) {
-    const havekillSID = this.fullscreenADOfflineKillSID.has(id);
-
-    if (!havekillSID) return false;
-
-    const killSID = this.fullscreenADOfflineKillSID.get(id);
-
-    const SID = this.GetRuntime().GetCurrentEvent().GetSID();
-
-    if (killSID === SID) {
-      this.fullscreenADOfflineKillSID.delete(id);
-      return false;
-    }
-
-    if (killSID === Number.MAX_SAFE_INTEGER) {
-      this.fullscreenADOfflineKillSID.set(id, SID);
-    }
-
+  /** @this {YandexGamesSDKInstance} */
+  OnFullscreenADOffline() {
     return true;
   },
 
