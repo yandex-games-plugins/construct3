@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.4.1] - 2024.3.13
+
+### Added
+
+- More logs for developers mistakes cases
+
 ## [2.4.0] - 2024.3.13
 
 ### Added
