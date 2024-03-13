@@ -367,6 +367,9 @@ const Conditions = {
     if (this.playerInfo) {
       return !!this.playerInfo.isAuthorized;
     } else {
+      this.logDeveloperMistake(
+        `You are trying to use "Player is authorized" expression outside of "Using player info" condition!`,
+      );
       return false;
     }
   },
@@ -376,6 +379,9 @@ const Conditions = {
     if (this.playerInfo) {
       return !!this.playerInfo.isAccessGranted;
     } else {
+      this.logDeveloperMistake(
+        `You are trying to use "Player info access granted" expression outside of "Using player info" condition!`,
+      );
       return false;
     }
   },
