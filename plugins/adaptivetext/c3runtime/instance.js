@@ -123,6 +123,7 @@ C3.Plugins.yagames_adaptivetext.Instance = class AdaptiveTextInstance extends C3
   _SetText(value) {
     this._text = value;
     this._dirtyText = true;
+    this._runtime.UpdateRender();
   }
 
   GetText() {
@@ -132,6 +133,7 @@ C3.Plugins.yagames_adaptivetext.Instance = class AdaptiveTextInstance extends C3
   _SetFont(value) {
     this._font = value;
     this._dirtyText = true;
+    this._runtime.UpdateRender();
   }
 
   GetFont() {
@@ -141,6 +143,7 @@ C3.Plugins.yagames_adaptivetext.Instance = class AdaptiveTextInstance extends C3
   _SetBaseFontSize(value) {
     this._baseFontSize = value;
     this._dirtyText = true;
+    this._runtime.UpdateRender();
   }
 
   GetBaseFontSize() {
@@ -150,6 +153,7 @@ C3.Plugins.yagames_adaptivetext.Instance = class AdaptiveTextInstance extends C3
   _SetBold(value) {
     this._bold = value;
     this._dirtyText = true;
+    this._runtime.UpdateRender();
   }
 
   GetBold() {
@@ -159,6 +163,7 @@ C3.Plugins.yagames_adaptivetext.Instance = class AdaptiveTextInstance extends C3
   _SetItalic(value) {
     this._italic = value;
     this._dirtyText = true;
+    this._runtime.UpdateRender();
   }
 
   GetItalic() {
@@ -168,6 +173,7 @@ C3.Plugins.yagames_adaptivetext.Instance = class AdaptiveTextInstance extends C3
   _SetHorizontalAlign(value) {
     this._horizontalAlign = HorizontalAlignments[value];
     this._dirtyText = true;
+    this._runtime.UpdateRender();
   }
 
   GetHorizontalAlign() {
@@ -177,6 +183,7 @@ C3.Plugins.yagames_adaptivetext.Instance = class AdaptiveTextInstance extends C3
   _SetVerticalAlign(value) {
     this._verticalAlign = VerticalAlignments[value];
     this._dirtyText = true;
+    this._runtime.UpdateRender();
   }
 
   GetVerticalAlign() {
