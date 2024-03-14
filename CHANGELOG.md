@@ -2,13 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
-## [2.4.1] - 2024.3.13
+## AdaptiveText - [1.1.1] - 2024.3.14
+
+### Fixes
+
+- Adaptive text now emits render on change
+
+## YandexGamesSDK - [2.4.1] - 2024.3.13
 
 ### Added
 
 - More logs for developers mistakes cases
 
-## [2.4.0] - 2024.3.13
+## YandexGamesSDK - [2.4.0] - 2024.3.13
 
 ### Added
 
@@ -24,32 +30,32 @@ All notable changes to this project will be documented in this file.
 
 - No more IDs for Fullscreen AD ACEs
 
-## [2.3.5] - 2024.3.8
+## YandexGamesSDK - [2.3.5] - 2024.3.8
 
 ### Fixed
 
 - Fix `Player is authorized` condition
 - Fix `Player info access granted` condition
 
-## [2.3.4] - 2024.3.5
+## YandexGamesSDK - [2.3.4] - 2024.3.5
 
 ### Fixed
 
 - Fix minification by removing public class field usage
 
-## [2.3.3] - 2024.2.10
+## YandexGamesSDK - [2.3.3] - 2024.2.10
 
 ### Fixed
 
 - Fix `CurrentLanguage` expression
 
-## [2.3.2] - 2024.2.6
+## YandexGamesSDK - [2.3.2] - 2024.2.6
 
 ### Fixed
 
 - Implemented missing `ProductImageURI` expression
 
-## [2.3.1] - 2024.2.3
+## YandexGamesSDK - [2.3.1] - 2024.2.3
 
 ### Removed
 
@@ -60,7 +66,7 @@ All notable changes to this project will be documented in this file.
 
 - Incorrect script name in `for-each-purchase` condition 
 
-## [2.3.0] - 2024.2.3
+## YandexGamesSDK - [2.3.0] - 2024.2.3
 
 ### Added
 
@@ -75,20 +81,20 @@ All notable changes to this project will be documented in this file.
 
 - Incorrect remote config fetch logic
 
-## [2.2.0] - 2024.1.31
+## YandexGamesSDK - [2.2.0] - 2024.1.31
 
 ### Added
 
 - Having localization JSON files is now not necessary
 - More informative description for `ID` param in ad ACEs
 
-## [2.1.2] - 2024.1.27
+## YandexGamesSDK - [2.1.2] - 2024.1.27
 
 ### Fixed
 
 - `On TV Remote button press` now behaves currectly. 
 
-## [2.1.1] - 2024.1.27
+## YandexGamesSDK - [2.1.1] - 2024.1.27
 
 ### Added
 
@@ -99,7 +105,7 @@ All notable changes to this project will be documented in this file.
 
 - Rewarded AD ACEs now triggers rewarded ad as they should, instead of fullscreen ad 
 
-## [2.1.0] - 2024.1.25
+## YandexGamesSDK - [2.1.0] - 2024.1.25
 
 ### Added
 
@@ -110,13 +116,13 @@ All notable changes to this project will be documented in this file.
 
 - `player.getAvatarSrc is not a function` error when using player info
 
-## [2.0.1] - 2024.1.21
+## YandexGamesSDK - [2.0.1] - 2024.1.21
 
 ### Fixed
 
 - Wrong `display-text` properties for `player-get-data` and `player-set-data` language strings.
 
-## [2.0.0] - 2024.1.13
+## YandexGamesSDK - [2.0.0] - 2024.1.13
 
 ### Added
 
@@ -134,7 +140,7 @@ All notable changes to this project will be documented in this file.
 - `ysdk is not defined` error in scripts.
 - Inconsistent sdk initialization.
 
-## [1.0.2.0] - 2023.09.30
+## YandexGamesSDK - [1.0.2.0] - 2023.09.30
 
 ### Added
 
@@ -153,7 +159,7 @@ All notable changes to this project will be documented in this file.
 - Disable SDK Initialization in debug mode
 - Crashes with non-existed translation paths
 
-## [1.0.1.0] - 2023.09.05
+## YandexGamesSDK - [1.0.1.0] - 2023.09.05
 
 ### Added
 
