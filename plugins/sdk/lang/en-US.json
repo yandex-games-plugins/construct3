@@ -58,7 +58,7 @@
 
           "on-rewarded-ad-open": {
             "list-name": "Specific rewarded AD opened",
-            "display-text": "Specific rewarded AD [b]{0}[/b] opened",
+            "display-text": "Rewarded AD [b]{0}[/b] opened",
             "description": "Executes when specific rewarded ad was opened.",
             "params": {
               "id": {
@@ -69,7 +69,7 @@
           },
           "on-rewarded-ad-rewarded": {
             "list-name": "Specific rewarded AD watched",
-            "display-text": "Specific rewarded AD [b]{0}[/b] watched",
+            "display-text": "Rewarded AD [b]{0}[/b] watched",
             "description": "Executes when specific rewarded ad was fully watched.",
             "params": {
               "id": {
@@ -80,7 +80,7 @@
           },
           "on-rewarded-ad-close": {
             "list-name": "Specific rewarded AD closed",
-            "display-text": "Specific rewarded AD [b]{0}[/b] closed",
+            "display-text": "Rewarded AD [b]{0}[/b] closed",
             "description": "Executes when specific rewarded ad was closed.",
             "params": {
               "id": {
@@ -91,7 +91,7 @@
           },
           "on-rewarded-ad-error": {
             "list-name": "Specific rewarded ad failed",
-            "display-text": "Specific rewarded ad [b]{0}[/b] error",
+            "display-text": "Rewarded ad [b]{0}[/b] error",
             "description": "Exectues when specific rewarded ad error occured.",
             "params": {
               "id": {
@@ -227,7 +227,7 @@
           },
 
           "throttle": {
-            "list-name": "Not more than once in a while",
+            "list-name": "Not more than once in X seconds",
             "display-text": "Not more than once in [b]{0}[/b] seconds",
             "description": "Skips subsequent executions for some time after the last condition check.",
             "params": {
@@ -238,7 +238,7 @@
             }
           },
           "debounce": {
-            "list-name": "Delay for a while",
+            "list-name": "Delay for X seconds",
             "display-text": "Delay for [b]{0}[/b] seconds",
             "description": "Delays the execution of the code for some time after the last condition check.",
             "params": {
