@@ -184,7 +184,7 @@
           "on-purchase-error": {
             "list-name": "On purchase error",
             "display-text": "On purchase error",
-            "description": "Executes when purchase was failed."
+            "description": "Executes when error accured while purchasing product."
           },
 
           "with-player-info": {
@@ -204,9 +204,9 @@
             "description": "Checks if player is authorized in Yandex.Games. (Works only with \"Using player info\" condition)"
           },
           "current-player-info-access-granted": {
-            "list-name": "Player info access granted",
-            "display-text": "Player info access granted",
-            "description": "Checks if player gave your game permission to access information about them. Works only with \"Using player info\" condition."
+            "list-name": "Player personal info access granted",
+            "display-text": "Player personal info access granted",
+            "description": "Checks if player gave your game permission to access personal information about them. Works only with \"Using player info\" condition."
           },
 
           "on-history-back-event": {
@@ -373,7 +373,7 @@
             "params": {
               "productID": {
                 "name": "Product ID",
-                "desc": "ID of product to purchase."
+                "desc": "Unique identifier of product to purchase. (See Yandex.Games console)"
               },
               "developerPayload": {
                 "name": "Payload",
@@ -388,7 +388,7 @@
             "params": {
               "purchaseToken": {
                 "name": "Purchase Token",
-                "desc": "Token of purchase to consume."
+                "desc": "Unique value set for each successful purchase of a product. Used in purchase consumption."
               }
             }
           },
@@ -638,7 +638,7 @@
 
           "purchase-token": {
             "translated-name": "Purchase token",
-            "description": "String, token for consuming the purchase (See actions `Consume purchase`)."
+            "description": "String, unique value set for each successful purchase of a product. Used in purchase consumption."
           },
           "purchase-developer-payload": {
             "translated-name": "Purchase developer payload",
