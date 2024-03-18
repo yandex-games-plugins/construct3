@@ -161,46 +161,40 @@ class Localization {
 
   /** @type {(string:string) => string} */
   TranslateString(string) {
-    try {
-      let _string = string;
+    let translatedString = string;
 
-      // Regex for finding {path.to.translation} in string that not wrapped in []
-      const nonWrappedPaths = /(?<!\[)\{[\w\d.]*\}(?!\])/;
+    const nonWrappedPaths = /\{[\w\d.]*\}/;
 
-      /**
-       * Replace all matches
-       * "{path}" -> "[{path}]Value[{path}]"
-       */
-      let matches;
-      while ((matches = _string.match(nonWrappedPaths) || matches?.lenght > 0)) {
-        const match = matches[0];
-        try {
-          const path = match.slice(1, -1);
-          const translation = path.split('.').reduce((obj, key) => obj[key], this.localizations);
+    let matches;
+    while ((matches = translatedString.match(nonWrappedPaths) || matches?.lenght > 0)) {
+      const match = matches[0];
+      try {
+        const path = match.slice(1, -1);
+        const translation = this.GetTranlationValue(path);
 
-          if (translation === undefined) {
-            throw new Error(`Translation for ${path} is undefined.`);
-          }
-
-          _string = _string.replace(match, translation);
-        } catch (e) {
-          console.error(e);
-          this.pluginInstance.DeveloperAlert(
-            `Can't apply translation for ${match} in ${this.currentLanguage}. More info in console.`,
-          );
-          break;
+        if (translation === undefined) {
+          throw new Error(`Translation for ${path} is undefined.`);
         }
-      }
 
-      // Return translated string
-      return _string;
-    } catch (e) {
-      console.error(e);
-      this.pluginInstance.DeveloperAlert(
-        `Wasn't able to translate string: ${string}. Make sure that key exists. More info in console.`,
-      );
-      return string;
+        translatedString = translatedString.replace(match, translation);
+      } catch (e) {
+        console.error(e);
+        this.pluginInstance.DeveloperAlert(
+          `Can't apply translation for ${match} in ${this.currentLanguage}. More info in console.`,
+        );
+        break;
+      }
     }
+
+    return translatedString;
+  }
+
+  /**
+   * @param {string} path
+   * @returns {string | undefined}
+   */
+  GetTranlationValue(path) {
+    return path.split('.').reduce((obj, key) => obj[key], this.localizations);
   }
 
   DecorateSpritePlugins() {
@@ -777,7 +771,7 @@ class YandexGamesSDKInstance extends C3.SDKInstanceBase {
   }
 
   /**
-   * Function to informate about developer mistakes 
+   * Function to informate about developer mistakes
    * @param {string} message
    */
   logDeveloperMistake(message) {

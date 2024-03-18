@@ -4,8 +4,12 @@ const Expressions = {
 
   /** @this {YandexGamesSDKInstance} */
   CurrentLanguage() {
-    console.log(this);
     return this.localization.currentLanguage ?? '';
+  },
+
+  /** @this {YandexGamesSDKInstance} */
+  LocalizationValue(path) {
+    return this.localization.GetTranlationValue(path) ?? '';
   },
 
   //#endregion

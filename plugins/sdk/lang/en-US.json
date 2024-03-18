@@ -573,6 +573,16 @@
             "translated-name": "Current localization language",
             "description": "Returns current localization language."
           },
+          "localization-value": {
+            "translated-name": "Localization value",
+            "description": "Returns value of specified key in current localization language.",
+            "params": {
+              "key": {
+                "name": "Key",
+                "desc": "Key of localization."
+              }
+            }
+          },
 
           "get-language": {
             "translated-name": "Interface Language",
