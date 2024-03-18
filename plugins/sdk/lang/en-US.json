@@ -348,7 +348,7 @@
 
           "set-leaderboard-score": {
             "list-name": "Set leaderboard score",
-            "display-text": "Set leaderboard score [b]{0}[/b] to [b]{1}[/b] with data [b]{2}[/b]",
+            "display-text": "Set leaderboard [b]{0}[/b] score to [b]{1}[/b] with data [b]{2}[/b]",
             "description": "Sets player score in Yandex.Games leaderboard.",
             "params": {
               "leaderboardName": {
