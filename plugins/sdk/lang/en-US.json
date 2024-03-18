@@ -605,7 +605,7 @@
           },
           "current-leadeboard-entry-range-index": {
             "translated-name": "Range index of requested leaderboard",
-            "description": "When requesting positions from the leaderboard, several intervals of values can be formed. For example, if you request 5 positions from the top of the table and 3 around the player, and the player is ranked 100th, then you will request positions from 1 to 5 (the first interval of 5) and from 97 to 103 (the second interval of 7)."
+            "description": "When requesting positions from the leaderboard, several intervals of values can be formed."
           },
           "current-leadeboard-description-name": {
             "translated-name": "Leaderboad name",
