@@ -454,6 +454,21 @@
         "returnType": "string"
       },
       {
+        "id": "current-player-avatar-small",
+        "expressionName": "PlayerAvatarSmall",
+        "returnType": "string"
+      },
+      {
+        "id": "current-player-avatar-medium",
+        "expressionName": "PlayerAvatarMedium",
+        "returnType": "string"
+      },
+      {
+        "id": "current-player-avatar-large",
+        "expressionName": "PlayerAvatarLarge",
+        "returnType": "string"
+      },
+      {
         "id": "current-player-signature",
         "expressionName": "GetCurrentPlayerSignature",
         "returnType": "string"

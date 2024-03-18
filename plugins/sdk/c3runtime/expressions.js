@@ -402,6 +402,54 @@ const Expressions = {
   },
 
   /** @this {YandexGamesSDKInstance} */
+  PlayerAvatarSmall() {
+    if (this.forEachLeaderbordEntryLoopData) {
+      const loopData = this.forEachLeaderbordEntryLoopData;
+      const currentEntry = loopData.entriesData.entries[loopData.currentIndex];
+      return currentEntry.player.avatarSrc.small || '';
+    } else if (this.playerInfo) {
+      return this.playerInfo.avatars.small || '';
+    } else {
+      this.logDeveloperMistake(
+        `You are trying to use "Small player avatar" expression outside of "For each product in catalog" or "Using player info"!`,
+      );
+      return '';
+    }
+  },
+
+  /** @this {YandexGamesSDKInstance} */
+  PlayerAvatarMedium() {
+    if (this.forEachLeaderbordEntryLoopData) {
+      const loopData = this.forEachLeaderbordEntryLoopData;
+      const currentEntry = loopData.entriesData.entries[loopData.currentIndex];
+      return currentEntry.player.avatarSrc.medium || '';
+    } else if (this.playerInfo) {
+      return this.playerInfo.avatars.medium || '';
+    } else {
+      this.logDeveloperMistake(
+        `You are trying to use "Medium player avatar" expression outside of "For each product in catalog" or "Using player info"!`,
+      );
+      return '';
+    }
+  },
+
+  /** @this {YandexGamesSDKInstance} */
+  PlayerAvatarLarge() {
+    if (this.forEachLeaderbordEntryLoopData) {
+      const loopData = this.forEachLeaderbordEntryLoopData;
+      const currentEntry = loopData.entriesData.entries[loopData.currentIndex];
+      return currentEntry.player.avatarSrc.large || '';
+    } else if (this.playerInfo) {
+      return this.playerInfo.avatars.large || '';
+    } else {
+      this.logDeveloperMistake(
+        `You are trying to use "Large player avatar" expression outside of "For each product in catalog" or "Using player info"!`,
+      );
+      return '';
+    }
+  },
+
+  /** @this {YandexGamesSDKInstance} */
   GetCurrentPlayerSignature() {
     if (this.playerInfo) {
       return this.playerInfo.signature || '';

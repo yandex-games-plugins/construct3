@@ -723,6 +723,18 @@
               }
             }
           },
+          "current-player-avatar-small": {
+            "translated-name": "Маленький аватар игрока",
+            "description": "Строка, ссылка на маленький аватар игрока."
+          },
+          "current-player-avatar-medium": {
+            "translated-name": "Средний аватар игрока",
+            "description": "Строка, ссылка на средний аватар игрока."
+          },
+          "current-player-avatar-large": {
+            "translated-name": "Большой аватар игрока",
+            "description": "Строка, ссылка на большой аватар игрока."
+          },
           "current-player-signature": {
             "translated-name": "Signature",
             "description": "Строка, содержащая данные пользователя из профиля Яндекса и подпись. Она состоит из двух строк, закодированных в формате Base64."

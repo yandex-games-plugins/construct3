@@ -705,13 +705,25 @@
           },
           "current-player-avatar": {
             "translated-name": "Player avatar",
-            "description": "URLs of player avatar.",
+            "description": "String, URL of player avatar of specified size.",
             "params": {
               "size": {
                 "name": "Size",
                 "desc": "Size of avatar. (small/medium/large)"
               }
             }
+          },
+          "current-player-avatar-small": {
+            "translated-name": "Small player avatar",
+            "description": "String, URL of small player avatar."
+          },
+          "current-player-avatar-medium": {
+            "translated-name": "Medium player avatar",
+            "description": "String, URL of medium player avatar."
+          },
+          "current-player-avatar-large": {
+            "translated-name": "Large player avatar",
+            "description": "String, URL of large player avatar."
           },
           "current-player-signature": {
             "translated-name": "Signature",
