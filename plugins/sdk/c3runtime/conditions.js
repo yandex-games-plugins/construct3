@@ -329,6 +329,56 @@ const Conditions = {
     return true;
   },
 
+  /** 
+   * @this {YandexGamesSDKInstance}
+   * @param {string} purchaseID 
+   */
+  OnSpecificPurchaseSuccess(purchaseID) {
+    const havekillSID = this.purchaseSuccessKillSID.has(id);
+
+    if (!havekillSID) return false;
+
+    const killSID = this.purchaseSuccessKillSID.get(id);
+
+    const SID = this.GetRuntime().GetCurrentEvent().GetSID();
+
+    if (killSID === SID) {
+      this.purchaseSuccessKillSID.delete(id);
+      return false;
+    }
+
+    if (killSID === Number.MAX_SAFE_INTEGER) {
+      this.purchaseSuccessKillSID.set(id, SID);
+    }
+
+    return true;
+  },
+
+  /** 
+   * @this {YandexGamesSDKInstance}
+   * @param {string} purchaseID 
+   */
+  OnSpecificPurchaseError(purchaseID) {
+    const havekillSID = this.purchaseErrorKillSID.has(id);
+
+    if (!havekillSID) return false;
+
+    const killSID = this.purchaseErrorKillSID.get(id);
+
+    const SID = this.GetRuntime().GetCurrentEvent().GetSID();
+
+    if (killSID === SID) {
+      this.purchaseErrorKillSID.delete(id);
+      return false;
+    }
+
+    if (killSID === Number.MAX_SAFE_INTEGER) {
+      this.purchaseErrorKillSID.set(id, SID);
+    }
+
+    return true;
+  },
+
   //#endregion
 
   //#region Player

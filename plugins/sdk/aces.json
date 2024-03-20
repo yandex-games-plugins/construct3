@@ -303,6 +303,18 @@
         "id": "on-purchase-error",
         "scriptName": "OnPurchaseError",
         "isTrigger": true
+      },
+      {
+        "id": "on-specific-purchase-success",
+        "scriptName": "OnSpecificPurchaseSuccess",
+        "params": [{ "id": "productID", "type": "string" }],
+        "isFakeTrigger": true
+      },
+      {
+        "id": "on-specific-purchase-error",
+        "scriptName": "OnSpecificPurchaseError",
+        "params": [{ "id": "productID", "type": "string" }],
+        "isFakeTrigger": true
       }
     ],
     "expressions": [

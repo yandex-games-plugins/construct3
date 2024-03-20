@@ -177,14 +177,36 @@
             "description": "Iterates through player's purchases."
           },
           "on-purchase-success": {
-            "list-name": "On purchase success",
-            "display-text": "On purchase success",
-            "description": "Executes when purchase was successful."
+            "list-name": "On any purchase success",
+            "display-text": "On any purchase success",
+            "description": "Executes when any purchase was successful."
           },
           "on-purchase-error": {
-            "list-name": "On purchase error",
-            "display-text": "On purchase error",
+            "list-name": "On any purchase error",
+            "display-text": "On any purchase error",
             "description": "Executes when error accured while purchasing product."
+          },
+          "on-specific-purchase-success": {
+            "list-name": "Specific product purchase success",
+            "display-text": "Purchase [b]{0}[/b] success",
+            "description": "Executes when specific product purchase was successful.",
+            "params": {
+              "productID": {
+                "name": "ID",
+                "desc": "Unique identifier of product in catalog."
+              }
+            }
+          },
+          "on-specific-purchase-error": {
+            "list-name": "Specific product purchase error",
+            "display-text": "Purchase [b]{0}[/b] error",
+            "description": "Executes when error accured while purchasing specific product.",
+            "params": {
+              "productID": {
+                "name": "ID",
+                "desc": "Unique identifier of product in catalog."
+              }
+            }
           },
 
           "with-player-info": {
@@ -367,8 +389,8 @@
           },
 
           "purchase": {
-            "list-name": "Purchase",
-            "display-text": "Purchase [b]{0}[/b] with payload [b]{1}[/b]",
+            "list-name": "Initialize purchase",
+            "display-text": "Initialize purchase [b]{0}[/b] with payload [b]{1}[/b]",
             "description": "Initiates purchase of product.",
             "params": {
               "productID": {

@@ -524,6 +524,13 @@ class YandexGamesSDKInstance extends C3.SDKInstanceBase {
     /** @type {PurchaseFailureTriggerData | undefined} */
     this.purchaseFailureTriggerData = undefined;
 
+    
+    /** @type {Map<string, number>} */
+    this.purchaseSuccessKillSID = new Map();
+
+    /** @type {Map<string, number>} */
+    this.purchaseErrorKillSID = new Map();
+
     this.AddDOMMessageHandler(
       'ysdk-purchase-callback',
       /** @param {{error?: string, productID: string, purchaseToken: string, developerPayload?: string, signature?: string}} data  */
@@ -532,8 +539,9 @@ class YandexGamesSDKInstance extends C3.SDKInstanceBase {
           this.purchaseFailureTriggerData = {
             error: data.error,
           };
+          this.purchaseErrorKillSID.set(data.productID, Number.MAX_SAFE_INTEGER);
           this.Trigger(this.conditions.OnPurchaseFailure);
-          this.purchaseFailureTriggerData = undefined;
+          this.purchaseSuccessTriggerData = undefined;
           return;
         }
 
@@ -543,8 +551,9 @@ class YandexGamesSDKInstance extends C3.SDKInstanceBase {
           developerPayload: data.developerPayload,
           signature: data.signature,
         };
+        this.purchaseSuccessKillSID.set(data.productID, Number.MAX_SAFE_INTEGER);
         this.Trigger(this.conditions.OnPurchaseSuccess);
-        this.purchaseSuccessTriggerData = undefined;
+        this.purchaseFailureTriggerData = undefined;
       },
     );
 
