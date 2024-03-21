@@ -198,8 +198,8 @@
             }
           },
           "on-specific-purchase-error": {
-            "list-name": "Specific product purchase error",
-            "display-text": "Purchase [b]{0}[/b] error",
+            "list-name": "Specific product purchase failure",
+            "display-text": "Purchase [b]{0}[/b] failure",
             "description": "Executes when error accured while purchasing specific product.",
             "params": {
               "productID": {
@@ -682,7 +682,7 @@
           },
           "purchase-error": {
             "translated-name": "Purchase error",
-            "description": "String, error message if error occured while purchasing product. (Works only with \"Any purchase error\" and \"Specific product purchase error\")"
+            "description": "String, error message if error occured while purchasing product. (Works only with \"Any purchase error\" and \"Specific product purchase failure\")"
           },
           "purchases-signature": {
             "translated-name": "Purchases list signature",
