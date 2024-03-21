@@ -177,13 +177,13 @@
             "description": "Iterates through player's purchases."
           },
           "on-purchase-success": {
-            "list-name": "On any purchase success",
-            "display-text": "On any purchase success",
+            "list-name": "Any purchase success",
+            "display-text": "Any purchase success",
             "description": "Executes when any purchase was successful."
           },
           "on-purchase-error": {
-            "list-name": "On any purchase error",
-            "display-text": "On any purchase error",
+            "list-name": "Any purchase error",
+            "display-text": "Any purchase error",
             "description": "Executes when error accured while purchasing product."
           },
           "on-specific-purchase-success": {
@@ -678,15 +678,15 @@
           },
           "purchase-signature": {
             "translated-name": "Purchase signature",
-            "description": "String, purchase data and the signature for player authentication."
+            "description": "String, signature of purchase. (Works only with \"Any purchase success\" and \"Specific product purchase success\")"
           },
           "purchase-error": {
             "translated-name": "Purchase error",
-            "description": "String, error message if error occured while purchasing product. (Works only with \"On purchase error\" condition)"
+            "description": "String, error message if error occured while purchasing product. (Works only with \"Any purchase error\" and \"Specific product purchase error\")"
           },
           "purchases-signature": {
-            "translated-name": "Purchases signature",
-            "description": "String, purchase data and the signature for player authentication."
+            "translated-name": "Purchases list signature",
+            "description": "String, signature of purchases list. (Works only with \"For each purchase\")"
           },
           "product-id": {
             "translated-name": "Product ID",
