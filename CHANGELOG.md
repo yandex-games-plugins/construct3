@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## YandexGamesSDK - [2.5.0] - 2024.3.21
+
+### Added
+
+- New `Specific product purchase success` trigger
+- New `Specific product purchase failure` trigger
+- New `Localization value` expression
+- New shorthand `Small player avatar` expression
+- New shorthand `Medium player avatar` expression
+- New shorthand `Large player avatar` expression
+- Multiple changes to ACEs titles/descriptions/display names
+
+### 
+
 ## AdaptiveText - [1.1.1] - 2024.3.14
 
 ### Fixes
