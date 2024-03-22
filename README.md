@@ -22,7 +22,7 @@ latest versions of plugins and add them to your Construct 3 editor.
 
 ### 2. Documentation
 
-Check out the [Documentation](https://lisgames.gitbook.io/ysdk-construct) to get more info about how to work with plugins.
+Check out the [Documentation](https://plugins.lisgames.ru/) to get more info about how to work with plugins.
 
 ### 3. Community
 
