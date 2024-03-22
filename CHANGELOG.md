@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## YandexGamesSDK - [2.7.1] - 2024.3.22
+
+### Fixes
+
+- Heisenbug for async loops
+- Incorrect ysdk initialization
+
 ## YandexGamesSDK - [2.7.0] - 2024.3.22
 
 ### Added
