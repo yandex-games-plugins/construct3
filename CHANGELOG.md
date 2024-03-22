@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## YandexGamesSDK - [2.7.0] - 2024.3.22
+
+### Added
+
+- Option to manually initialize Yandex.Games SDK
+
 ## YandexGamesSDK - [2.6.0] - 2024.3.22
 
 ### Added
