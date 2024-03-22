@@ -216,7 +216,6 @@ const Conditions = {
       this.forEachLeaderbordEntryLoopData = {};
       this.forEachLeaderbordEntryLoopData.entriesData = entriesData;
 
-      const currentEvent = runtime.GetCurrentEvent();
       const newFrame = eventStack.Push(currentEvent);
       const loopStack = eventSheetManager.GetLoopStack();
       const loop = loopStack.Push();
@@ -278,7 +277,6 @@ const Conditions = {
         this.forEachPurchaseLoopData = {};
         this.forEachPurchaseLoopData.purchases = purchases;
 
-        const currentEvent = runtime.GetCurrentEvent();
         const newFrame = eventStack.Push(currentEvent);
         const loopStack = eventSheetManager.GetLoopStack();
         const loop = loopStack.Push();
@@ -325,7 +323,6 @@ const Conditions = {
         this.forEachInCatalogLoopData = {};
         this.forEachInCatalogLoopData.catalog = catalog;
 
-        const currentEvent = runtime.GetCurrentEvent();
         const newFrame = eventStack.Push(currentEvent);
         const loopStack = eventSheetManager.GetLoopStack();
         const loop = loopStack.Push();
@@ -511,21 +508,28 @@ const Conditions = {
    * @param {number} seconds
    */
   Throttle(seconds) {
+    if (this.throttleTimers.has(currentEvent)) {
+      return false;
+    }
+
     const runtime = this.GetRuntime();
     const eventSheetManager = runtime.GetEventSheetManager();
     const currentEvent = runtime.GetCurrentEvent();
     const solModifiers = currentEvent.GetSolModifiers();
     const eventStack = runtime.GetEventStack();
+    const oldFrame = eventStack.GetCurrentStackFrame();
+    const isSolModifierAfterCnds = oldFrame.IsSolModifierAfterCnds();
 
-    if (this.throttleTimers.has(currentEvent)) {
-      return false;
+    const newFrame = eventStack.Push(currentEvent);
+
+    if (isSolModifierAfterCnds) {
+      eventSheetManager.PushCopySol(solModifiers);
+      currentEvent.Retrigger(oldFrame, newFrame);
+      eventSheetManager.PopSol(solModifiers);
+    } else {
+      currentEvent.Retrigger(oldFrame, newFrame);
     }
 
-    const oldFrame = eventStack.GetCurrentStackFrame();
-    const newFrame = eventStack.Push(currentEvent);
-    eventSheetManager.PushCopySol(solModifiers);
-    currentEvent.Retrigger(oldFrame, newFrame);
-    eventSheetManager.PopSol(solModifiers);
     eventStack.Pop();
 
     this.throttleTimers.set(
