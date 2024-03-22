@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## YandexGamesSDK - [2.6.0] - 2024.3.22
+
+### Added
+
+- Support for `loopindex` in `For each purchase` loop
+- Support for `loopindex` in `For each product in catalog` loop
+- Support for `loopindex` in `For each player in leaderboard` loop
+
 ## YandexGamesSDK - [2.5.0] - 2024.3.21
 
 ### Added
