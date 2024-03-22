@@ -202,6 +202,8 @@ const Conditions = {
     const currentEvent = runtime.GetCurrentEvent();
     const solModifiers = currentEvent.GetSolModifiers();
     const eventStack = runtime.GetEventStack();
+    const oldFrame = eventStack.GetCurrentStackFrame();
+    const isSolModifierAfterCnds = oldFrame.IsSolModifierAfterCnds();
 
     this.PostToDOMAsync('ysdk-get-leaderboard-entries', {
       leaderboardName,
@@ -214,20 +216,30 @@ const Conditions = {
       this.forEachLeaderbordEntryLoopData = {};
       this.forEachLeaderbordEntryLoopData.entriesData = entriesData;
 
-      const oldFrame = eventStack.GetCurrentStackFrame();
+      const currentEvent = runtime.GetCurrentEvent();
       const newFrame = eventStack.Push(currentEvent);
+      const loopStack = eventSheetManager.GetLoopStack();
+      const loop = loopStack.Push();
+      loop.SetEnd(entriesData.entries.length);
 
-      for (let i = 0; i < entriesData.entries.length; i++) {
-        eventSheetManager.PushCopySol(solModifiers);
-
-        this.forEachLeaderbordEntryLoopData.currentIndex = i;
-
-        currentEvent.Retrigger(oldFrame, newFrame);
-
-        eventSheetManager.PopSol(solModifiers);
+      if (isSolModifierAfterCnds) {
+        for (let i = 0; i < entriesData.entries.length; i++) {
+          eventSheetManager.PushCopySol(solModifiers);
+          loop.SetIndex(i);
+          this.forEachLeaderbordEntryLoopData.currentIndex = i;
+          currentEvent.Retrigger(oldFrame, newFrame);
+          eventSheetManager.PopSol(solModifiers);
+        }
+      } else {
+        for (let i = 0; i < entriesData.entries.length; i++) {
+          loop.SetIndex(i);
+          this.forEachLeaderbordEntryLoopData.currentIndex = i;
+          currentEvent.Retrigger(oldFrame, newFrame);
+        }
       }
 
       eventStack.Pop();
+      loopStack.Pop();
 
       this.forEachLeaderbordEntryLoopData = undefined;
     });
@@ -258,25 +270,38 @@ const Conditions = {
     const currentEvent = runtime.GetCurrentEvent();
     const solModifiers = currentEvent.GetSolModifiers();
     const eventStack = runtime.GetEventStack();
+    const oldFrame = eventStack.GetCurrentStackFrame();
+    const isSolModifierAfterCnds = oldFrame.IsSolModifierAfterCnds();
 
     this.PostToDOMAsync('ysdk-get-purchases').then(
       (/** @type {typeof this.forEachPurchaseLoopData.purchases} */ purchases) => {
         this.forEachPurchaseLoopData = {};
         this.forEachPurchaseLoopData.purchases = purchases;
 
-        const oldFrame = eventStack.GetCurrentStackFrame();
+        const currentEvent = runtime.GetCurrentEvent();
         const newFrame = eventStack.Push(currentEvent);
+        const loopStack = eventSheetManager.GetLoopStack();
+        const loop = loopStack.Push();
+        loop.SetEnd(purchases.length);
 
-        for (let i = 0; i < purchases.length; i++) {
-          eventSheetManager.PushCopySol(solModifiers);
-
-          this.forEachPurchaseLoopData.currentIndex = i;
-          currentEvent.Retrigger(oldFrame, newFrame);
-
-          eventSheetManager.PopSol(solModifiers);
+        if (isSolModifierAfterCnds) {
+          for (let i = 0; i < purchases.length; i++) {
+            eventSheetManager.PushCopySol(solModifiers);
+            this.forEachPurchaseLoopData.currentIndex = i;
+            loop.SetIndex(i);
+            currentEvent.Retrigger(oldFrame, newFrame);
+            eventSheetManager.PopSol(solModifiers);
+          }
+        } else {
+          for (let i = 0; i < purchases.length; i++) {
+            this.forEachPurchaseLoopData.currentIndex = i;
+            loop.SetIndex(i);
+            currentEvent.Retrigger(oldFrame, newFrame);
+          }
         }
 
         eventStack.Pop();
+        loopStack.Pop();
 
         this.forEachPurchaseLoopData = null;
       },
@@ -292,25 +317,38 @@ const Conditions = {
     const currentEvent = runtime.GetCurrentEvent();
     const solModifiers = currentEvent.GetSolModifiers();
     const eventStack = runtime.GetEventStack();
+    const oldFrame = eventStack.GetCurrentStackFrame();
+    const isSolModifierAfterCnds = oldFrame.IsSolModifierAfterCnds();
 
     this.PostToDOMAsync('ysdk-get-catalog').then(
       (/** @type {typeof this.forEachInCatalogLoopData.catalog} */ catalog) => {
         this.forEachInCatalogLoopData = {};
         this.forEachInCatalogLoopData.catalog = catalog;
 
-        const oldFrame = eventStack.GetCurrentStackFrame();
+        const currentEvent = runtime.GetCurrentEvent();
         const newFrame = eventStack.Push(currentEvent);
+        const loopStack = eventSheetManager.GetLoopStack();
+        const loop = loopStack.Push();
+        loop.SetEnd(catalog.length);
 
-        for (let i = 0; i < catalog.length; i++) {
-          eventSheetManager.PushCopySol(solModifiers);
-
-          this.forEachInCatalogLoopData.currentIndex = i;
-          currentEvent.Retrigger(oldFrame, newFrame);
-
-          eventSheetManager.PopSol(solModifiers);
+        if (isSolModifierAfterCnds) {
+          for (let i = 0; i < catalog.length; i++) {
+            eventSheetManager.PushCopySol(solModifiers);
+            loop.SetIndex(i);
+            this.forEachInCatalogLoopData.currentIndex = i;
+            currentEvent.Retrigger(oldFrame, newFrame);
+            eventSheetManager.PopSol(solModifiers);
+          }
+        } else {
+          for (let i = 0; i < catalog.length; i++) {
+            loop.SetIndex(i);
+            this.forEachInCatalogLoopData.currentIndex = i;
+            currentEvent.Retrigger(oldFrame, newFrame);
+          }
         }
 
         eventStack.Pop();
+        loopStack.Pop();
 
         this.forEachInCatalogLoopData = null;
       },
@@ -329,9 +367,9 @@ const Conditions = {
     return true;
   },
 
-  /** 
+  /**
    * @this {YandexGamesSDKInstance}
-   * @param {string} purchaseID 
+   * @param {string} purchaseID
    */
   OnSpecificPurchaseSuccess(purchaseID) {
     const havekillSID = this.purchaseSuccessKillSID.has(id);
@@ -354,9 +392,9 @@ const Conditions = {
     return true;
   },
 
-  /** 
+  /**
    * @this {YandexGamesSDKInstance}
-   * @param {string} purchaseID 
+   * @param {string} purchaseID
    */
   OnSpecificPurchaseError(purchaseID) {
     const havekillSID = this.purchaseErrorKillSID.has(id);
@@ -393,17 +431,22 @@ const Conditions = {
     const currentEvent = runtime.GetCurrentEvent();
     const solModifiers = currentEvent.GetSolModifiers();
     const eventStack = runtime.GetEventStack();
+    const oldFrame = eventStack.GetCurrentStackFrame();
+    const isSolModifierAfterCnds = oldFrame.IsSolModifierAfterCnds();
 
     this.PostToDOMAsync('ysdk-get-player', {
       requestPersonalInfo,
     }).then((playerInfo) => {
       this.playerInfo = playerInfo;
 
-      const oldFrame = eventStack.GetCurrentStackFrame();
       const newFrame = eventStack.Push(currentEvent);
-      eventSheetManager.PushCopySol(solModifiers);
-      currentEvent.Retrigger(oldFrame, newFrame);
-      eventSheetManager.PopSol(solModifiers);
+      if (isSolModifierAfterCnds) {
+        eventSheetManager.PushCopySol(solModifiers);
+        currentEvent.Retrigger(oldFrame, newFrame);
+        eventSheetManager.PopSol(solModifiers);
+      } else {
+        currentEvent.Retrigger(oldFrame, newFrame);
+      }
       eventStack.Pop();
 
       this.playerInfo = undefined;
