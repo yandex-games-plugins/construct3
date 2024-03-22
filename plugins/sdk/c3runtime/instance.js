@@ -346,6 +346,9 @@ class YandexGamesSDKInstance extends C3.SDKInstanceBase {
   constructor(inst, properties) {
     super(inst, DOM_COMPONENT_ID);
 
+    const defaultLanguage = properties[0];
+    const autoInitialization = properties[1];
+
     /** @type {types.YSDK["environment"]} */
     this.environment = undefined;
 
@@ -362,7 +365,7 @@ class YandexGamesSDKInstance extends C3.SDKInstanceBase {
     this.expressions = C3.Plugins.yagames_sdk.Exps;
 
     this.localization = new Localization(this);
-    this.localization.defaultLanguage = properties[0];
+    this.localization.defaultLanguage = defaultLanguage;
 
     //#region Fullscreen AD
 
@@ -524,7 +527,6 @@ class YandexGamesSDKInstance extends C3.SDKInstanceBase {
     /** @type {PurchaseFailureTriggerData | undefined} */
     this.purchaseFailureTriggerData = undefined;
 
-    
     /** @type {Map<string, number>} */
     this.purchaseSuccessKillSID = new Map();
 
@@ -722,7 +724,7 @@ class YandexGamesSDKInstance extends C3.SDKInstanceBase {
       this.PostToDOM('start-tv-remote-tracking');
       this.SetPlaceholders();
       this.actions.SwitchLanguage.call(this, 'en');
-    } else {
+    } else if (autoInitialization) {
       this._runtime.AddLoadPromise(this.InitializeYSDK());
     }
   }

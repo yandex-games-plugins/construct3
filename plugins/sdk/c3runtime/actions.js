@@ -183,6 +183,12 @@ const Actions = {
 
   //#region Misc
 
+  /** @this {YandexGamesSDKInstance} */
+  async InitializeYSDK() {
+    await this.InitializeYSDK();
+  },
+
+  /** @this {YandexGamesSDKInstance} */
   LoadingAPIReady() {
     this.PostToDOM('ysdk-loading-api-ready');
   },

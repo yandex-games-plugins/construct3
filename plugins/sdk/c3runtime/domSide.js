@@ -136,7 +136,18 @@
       );
     }
 
+    async LoadYSDKScript() {
+      return new Promise((resolve) => {
+        const head = document.getElementsByTagName('head')[0];
+        const script = document.createElement('script');
+        script.async = true;
+        script.onload = async () => resolve();
+        head.appendChild(script);
+      });
+    }
+
     async InitializeYSDK() {
+      await this.LoadYSDKScript();
       this.ysdk = await YaGames.init();
       window.ysdk = this.ysdk;
 

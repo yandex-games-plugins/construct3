@@ -23,8 +23,6 @@ SDK.Plugins.yagames_sdk = class YandexGamesSDK extends SDK.IPluginBase {
     // Set the domSide.js script to run in the context of the DOM
     this._info.SetDOMSideScripts(['c3runtime/domSide.js']);
 
-    this._info.AddRemoteScriptDependency('https://yandex.ru/games/sdk/v2');
-
     this._info.AddFileDependency({
       filename: 'deps/block_selection.css',
       type: 'external-css',
@@ -38,7 +36,10 @@ SDK.Plugins.yagames_sdk = class YandexGamesSDK extends SDK.IPluginBase {
 
     SDK.Lang.PushContext('.properties');
 
-    this._info.SetProperties([new SDK.PluginProperty('text', 'default-localization-language', 'en')]);
+    this._info.SetProperties([
+      new SDK.PluginProperty('text', 'default-localization-language', 'en'),
+      new SDK.PluginProperty('check', 'automatic-initialization', true),
+    ]);
 
     SDK.Lang.PopContext();
 

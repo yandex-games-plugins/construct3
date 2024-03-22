@@ -9,8 +9,12 @@
         "help-url": "https://www.construct.net",
         "properties": {
           "default-localization-language": {
-            "name": "Default localization language",
-            "desc": "Language, that will be used if current language is not supported. (ISO-639-1 format)"
+            "name": "Fallback localization language",
+            "desc": "Language, that will be used if selected language is not supported. (ISO-639-1 format)"
+          },
+          "automatic-initialization": {
+            "name": "automatic-initialization",
+            "desc": "If enabled, plugin will automatically initialize Yandex.Games SDK."
           }
         },
         "aceCategories": {
@@ -333,6 +337,11 @@
           }
         },
         "actions": {
+          "initialize-ysdk": {
+            "list-name": "Initialize Yandex.Games SDK",
+            "display-text": "Initialize Yandex.Games SDK",
+            "description": "Manually initializes Yandex.Games SDK. (use only if automatic initialization is disabled)"
+          },
           "loading-api-ready": {
             "list-name": "Game loading is complete",
             "display-text": "Game loading is complete",

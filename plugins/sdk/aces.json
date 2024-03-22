@@ -674,6 +674,12 @@
     ],
     "actions": [
       {
+        "id": "initialize-ysdk",
+        "scriptName": "InitializeYSDK",
+        "highlight": false,
+        "isAsync": true
+      },
+      {
         "id": "loading-api-ready",
         "scriptName": "LoadingAPIReady",
         "highlight": true
