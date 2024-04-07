@@ -35,30 +35,6 @@ class Localization {
     this.validLanguageCodes = new Set(['af', 'am', 'ar', 'az', 'be', 'bg', 'bn', 'ca', 'cs', 'da', 'de', 'el', 'en', 'es', 'et', 'eu', 'fa', 'fi', 'fr', 'gl', 'he', 'hi', 'hr', 'hu', 'hy', 'id', 'is', 'it', 'ja', 'ka', 'kk', 'km', 'kn', 'ko', 'ky', 'lo', 'lt', 'lv', 'mk', 'ml', 'mn', 'mr', 'ms', 'my', 'ne', 'nl', 'no', 'pl', 'pt', 'ro', 'ru', 'si', 'sk', 'sl', 'sr', 'sv', 'sw', 'ta', 'te', 'tg', 'th', 'tk', 'tl', 'tr', 'uk', 'ur', 'uz', 'vi', 'zh', 'zu']);
   }
 
-  InitLocalization() {
-    const TEXT_PLUGINS_NAMES = new Set(['TextPlugin', 'SpriteFontPlugin', 'AdaptiveTextPlugin']);
-
-    this.textPluginsNames = this.runtime
-      .GetAllObjectClasses()
-      .filter((objectClass) => TEXT_PLUGINS_NAMES.has(objectClass.GetPlugin().constructor.name));
-
-    this.DecorateTextPlugins();
-    this.TranslateTextPlugins();
-
-    this.spritePlugins = this.runtime.GetAllObjectClasses().filter((objectClass) => {
-      const pluginName = objectClass.GetPlugin().constructor.name;
-      return (
-        pluginName === 'SpritePlugin' &&
-        // Check that all animations names are valid language codes
-        objectClass._animations &&
-        objectClass._animations.every((animationInfo) => this.IsValidLanguageCode(animationInfo._name))
-      );
-    });
-
-    this.DecorateSpritePlugins();
-    this.DecorateTextPlugins();
-  }
-
   /**
    * @param {string} languageCode
    * @returns {boolean}
@@ -286,7 +262,8 @@ class Localization {
           url += 'i18n/';
         }
         url += `${lang}.json`;
-        return await (await fetch(url)).text();
+        const response = await fetch(url);
+        if (response.ok) return await response.text();
       }
     } catch (e) {
       console.error(e, url);

@@ -497,7 +497,7 @@
           "switch-localization-language": {
             "list-name": "Применить перевод",
             "display-text": "Применить перевод: [b]{0}[/b]",
-            "description": "Меняет текущий язык перевода.",
+            "description": "Меняет текущий язык перевода игры.",
             "params": {
               "lang": {
                 "name": "Язык",
