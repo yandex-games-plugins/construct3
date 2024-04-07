@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## YandexGamesSDK - [2.7.2] - 2024.4.7
+
+### Fixes
+
+- Localization detection for unsupported languages
+
 ## YandexGamesSDK - [2.7.1] - 2024.3.22
 
 ### Fixes
