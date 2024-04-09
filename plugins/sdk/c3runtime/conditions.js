@@ -369,21 +369,21 @@ const Conditions = {
    * @param {string} purchaseID
    */
   OnSpecificPurchaseSuccess(purchaseID) {
-    const havekillSID = this.purchaseSuccessKillSID.has(id);
+    const havekillSID = this.purchaseSuccessKillSID.has(purchaseID);
 
     if (!havekillSID) return false;
 
-    const killSID = this.purchaseSuccessKillSID.get(id);
+    const killSID = this.purchaseSuccessKillSID.get(purchaseID);
 
     const SID = this.GetRuntime().GetCurrentEvent().GetSID();
 
     if (killSID === SID) {
-      this.purchaseSuccessKillSID.delete(id);
+      this.purchaseSuccessKillSID.delete(purchaseID);
       return false;
     }
 
     if (killSID === Number.MAX_SAFE_INTEGER) {
-      this.purchaseSuccessKillSID.set(id, SID);
+      this.purchaseSuccessKillSID.set(purchaseID, SID);
     }
 
     return true;
@@ -394,21 +394,21 @@ const Conditions = {
    * @param {string} purchaseID
    */
   OnSpecificPurchaseError(purchaseID) {
-    const havekillSID = this.purchaseErrorKillSID.has(id);
+    const havekillSID = this.purchaseErrorKillSID.has(purchaseID);
 
     if (!havekillSID) return false;
 
-    const killSID = this.purchaseErrorKillSID.get(id);
+    const killSID = this.purchaseErrorKillSID.get(purchaseID);
 
     const SID = this.GetRuntime().GetCurrentEvent().GetSID();
 
     if (killSID === SID) {
-      this.purchaseErrorKillSID.delete(id);
+      this.purchaseErrorKillSID.delete(purchaseID);
       return false;
     }
 
     if (killSID === Number.MAX_SAFE_INTEGER) {
-      this.purchaseErrorKillSID.set(id, SID);
+      this.purchaseErrorKillSID.set(purchaseID, SID);
     }
 
     return true;
