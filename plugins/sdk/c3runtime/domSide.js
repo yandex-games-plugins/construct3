@@ -493,7 +493,7 @@
     async YSDKShortcutsShowPrompt() {
       if (!this.ysdk) return;
 
-      const result = await ysdk.shortcut.showPrompt();
+      const result = await this.ysdk.shortcut.showPrompt();
 
       await this.YSDKUpdateCanShowShortcutPrompt();
 
