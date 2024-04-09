@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## YandexGamesSDK - [2.7.3] - 2024.4.9
+
+### Fixes
+
+- Crashing Construct 3 build when using minification
+- Fixed `ShortcutShowPrompt` action
+- Fixed `OnSpecificPurchaseSuccess` and `OnSpecificPurchaseError` condition
+- Fixed `Throttle` condition
+
 ## YandexGamesSDK - [2.7.2] - 2024.4.7
 
 ### Fixes
