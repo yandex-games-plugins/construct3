@@ -508,13 +508,14 @@ const Conditions = {
    * @param {number} seconds
    */
   Throttle(seconds) {
+    const runtime = this.GetRuntime();
+    const eventSheetManager = runtime.GetEventSheetManager();
+    const currentEvent = runtime.GetCurrentEvent();
+
     if (this.throttleTimers.has(currentEvent)) {
       return false;
     }
 
-    const runtime = this.GetRuntime();
-    const eventSheetManager = runtime.GetEventSheetManager();
-    const currentEvent = runtime.GetCurrentEvent();
     const solModifiers = currentEvent.GetSolModifiers();
     const eventStack = runtime.GetEventStack();
     const oldFrame = eventStack.GetCurrentStackFrame();
