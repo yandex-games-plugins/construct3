@@ -1,3 +1,5 @@
+const C3 = self.C3;
+
 /** @class */
 const Actions = {
   //#region Localization

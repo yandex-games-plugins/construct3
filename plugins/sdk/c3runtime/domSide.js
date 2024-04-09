@@ -149,7 +149,7 @@
 
     async InitializeYSDK() {
       await this.LoadYSDKScript();
-      this.ysdk = await YaGames.init();
+      this.ysdk = await window.YaGames.init();
       window.ysdk = this.ysdk;
 
       await this.OnYSDKLoaded(this.ysdk);
@@ -480,7 +480,7 @@
 
     YSDKDispatchEvent({ name }) {
       if (!this.ysdk) return;
-      this.ysdk.dispatchEvent(ysdk.EVENTS[name]);
+      this.ysdk.dispatchEvent(this.ysdk.EVENTS[name]);
     }
 
     async YSDKUpdateCanShowShortcutPrompt() {
