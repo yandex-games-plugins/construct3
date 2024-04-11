@@ -212,27 +212,27 @@ const Conditions = {
         includeUser,
         quantityAround,
       },
-    }).then((/** @type {typeof this.forEachLeaderbordEntryLoopData.entriesData} */ entriesData) => {
+    }).then((/** @type {typeof this.forEachLeaderbordEntryLoopData["entriesData"]} */ entriesData) => {
       this.forEachLeaderbordEntryLoopData = {};
-      this.forEachLeaderbordEntryLoopData.entriesData = entriesData;
+      this.forEachLeaderbordEntryLoopData["entriesData"] = entriesData;
 
       const newFrame = eventStack.Push(currentEvent);
       const loopStack = eventSheetManager.GetLoopStack();
       const loop = loopStack.Push();
-      loop.SetEnd(entriesData.entries.length);
+      loop.SetEnd(entriesData["entries"].length);
 
       if (isSolModifierAfterCnds) {
-        for (let i = 0; i < entriesData.entries.length; i++) {
+        for (let i = 0; i < entriesData["entries"].length; i++) {
           eventSheetManager.PushCopySol(solModifiers);
           loop.SetIndex(i);
-          this.forEachLeaderbordEntryLoopData.currentIndex = i;
+          this.forEachLeaderbordEntryLoopData["currentIndex"] = i;
           currentEvent.Retrigger(oldFrame, newFrame);
           eventSheetManager.PopSol(solModifiers);
         }
       } else {
-        for (let i = 0; i < entriesData.entries.length; i++) {
+        for (let i = 0; i < entriesData["entries"].length; i++) {
           loop.SetIndex(i);
-          this.forEachLeaderbordEntryLoopData.currentIndex = i;
+          this.forEachLeaderbordEntryLoopData["currentIndex"] = i;
           currentEvent.Retrigger(oldFrame, newFrame);
         }
       }
@@ -254,8 +254,8 @@ const Conditions = {
       );
       return '';
     }
-    const leaderboard = this.forEachLeaderbordEntryLoopData.entriesData.leaderboard;
-    return leaderboard.description.invert_sort_order ? 'true' : 'false';
+    const leaderboard = this.forEachLeaderbordEntryLoopData["entriesData"]["leaderboard"];
+    return leaderboard["description"]["invert_sort_order"] ? 'true' : 'false';
   },
 
   //#endregion
@@ -273,9 +273,9 @@ const Conditions = {
     const isSolModifierAfterCnds = oldFrame.IsSolModifierAfterCnds();
 
     this.PostToDOMAsync('ysdk-get-purchases').then(
-      (/** @type {typeof this.forEachPurchaseLoopData.purchases} */ purchases) => {
+      (/** @type {typeof this.forEachPurchaseLoopData["purchases"]} */ purchases) => {
         this.forEachPurchaseLoopData = {};
-        this.forEachPurchaseLoopData.purchases = purchases;
+        this.forEachPurchaseLoopData["purchases"] = purchases;
 
         const newFrame = eventStack.Push(currentEvent);
         const loopStack = eventSheetManager.GetLoopStack();
@@ -285,14 +285,14 @@ const Conditions = {
         if (isSolModifierAfterCnds) {
           for (let i = 0; i < purchases.length; i++) {
             eventSheetManager.PushCopySol(solModifiers);
-            this.forEachPurchaseLoopData.currentIndex = i;
+            this.forEachPurchaseLoopData["currentIndex"] = i;
             loop.SetIndex(i);
             currentEvent.Retrigger(oldFrame, newFrame);
             eventSheetManager.PopSol(solModifiers);
           }
         } else {
           for (let i = 0; i < purchases.length; i++) {
-            this.forEachPurchaseLoopData.currentIndex = i;
+            this.forEachPurchaseLoopData["currentIndex"] = i;
             loop.SetIndex(i);
             currentEvent.Retrigger(oldFrame, newFrame);
           }
@@ -319,9 +319,9 @@ const Conditions = {
     const isSolModifierAfterCnds = oldFrame.IsSolModifierAfterCnds();
 
     this.PostToDOMAsync('ysdk-get-catalog').then(
-      (/** @type {typeof this.forEachInCatalogLoopData.catalog} */ catalog) => {
+      (/** @type {typeof this.forEachInCatalogLoopData["catalog"]} */ catalog) => {
         this.forEachInCatalogLoopData = {};
-        this.forEachInCatalogLoopData.catalog = catalog;
+        this.forEachInCatalogLoopData["catalog"] = catalog;
 
         const newFrame = eventStack.Push(currentEvent);
         const loopStack = eventSheetManager.GetLoopStack();
@@ -332,14 +332,14 @@ const Conditions = {
           for (let i = 0; i < catalog.length; i++) {
             eventSheetManager.PushCopySol(solModifiers);
             loop.SetIndex(i);
-            this.forEachInCatalogLoopData.currentIndex = i;
+            this.forEachInCatalogLoopData["currentIndex"] = i;
             currentEvent.Retrigger(oldFrame, newFrame);
             eventSheetManager.PopSol(solModifiers);
           }
         } else {
           for (let i = 0; i < catalog.length; i++) {
             loop.SetIndex(i);
-            this.forEachInCatalogLoopData.currentIndex = i;
+            this.forEachInCatalogLoopData["currentIndex"] = i;
             currentEvent.Retrigger(oldFrame, newFrame);
           }
         }
@@ -455,7 +455,7 @@ const Conditions = {
   /** @this {YandexGamesSDKInstance} */
   CurrentPlayerIsAuthorized() {
     if (this.playerInfo) {
-      return !!this.playerInfo.isAuthorized;
+      return !!this.playerInfo["isAuthorized"];
     } else {
       this.logDeveloperMistake(
         `You are trying to use "Player is authorized" expression outside of "Using player info" condition!`,
@@ -467,7 +467,7 @@ const Conditions = {
   /** @this {YandexGamesSDKInstance} */
   CurrentPlayerInfoAccessGranted() {
     if (this.playerInfo) {
-      return !!this.playerInfo.isAccessGranted;
+      return !!this.playerInfo["isAccessGranted"];
     } else {
       this.logDeveloperMistake(
         `You are trying to use "Player info access granted" expression outside of "Using player info" condition!`,
@@ -601,7 +601,6 @@ const Conditions = {
    * @param {0|1|2|3|4} type
    */
   OnTVRemoteButtonPress(type) {
-    console.log(type);
     return this._triggerButton === type;
   },
 

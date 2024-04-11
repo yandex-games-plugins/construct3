@@ -38,17 +38,26 @@
         image.addEventListener('pointerdown', (e) => {
           button = getButton(e.offsetX, e.offsetY);
           if (!button) return;
-          window.parent.postMessage({ event: 'tv-emulator-event', name: button, pressed: true }, '*');
+          window.parent.postMessage(
+            { ['event']: 'tv-emulator-event', ['name']: button, ['pressed']: true },
+            '*',
+          );
         });
 
         image.addEventListener('pointerup', (e) => {
           if (!button) return;
-          window.parent.postMessage({ event: 'tv-emulator-event', name: button, pressed: false }, '*');
+          window.parent.postMessage(
+            { ['event']: 'tv-emulator-event', ['name']: button, ['pressed']: false },
+            '*',
+          );
         });
 
         image.addEventListener('pointerout', (e) => {
           if (!button) return;
-          window.parent.postMessage({ event: 'tv-emulator-event', name: button, pressed: false }, '*');
+          window.parent.postMessage(
+            { ['event']: 'tv-emulator-event', ['name']: button, ['pressed']: false },
+            '*',
+          );
         });
       });
     </script>

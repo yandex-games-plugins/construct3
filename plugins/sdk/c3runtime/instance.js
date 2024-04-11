@@ -9,7 +9,7 @@ class Localization {
     this.pluginInstance = instance;
     this.runtime = instance.GetRuntime();
     this.assetManager = this.runtime.GetAssetManager();
-    this.textPluginsNames = new Set(['TextPlugin', 'SpriteFontPlugin', 'AdaptiveTextPlugin']);
+    this.textPluginsNames = new Set(['Text', 'SpriteFont', 'AdaptiveText']);
 
     /** @typedef {{[key: string]: string | StringKeysObject | undefined}} StringKeysObject */
 
@@ -64,7 +64,7 @@ class Localization {
     this.runtime
       .GetAllObjectClasses()
       .filter((objectClass) => {
-        const pluginName = objectClass.GetPlugin().constructor.name;
+        const pluginName = objectClass._name;
         return this.textPluginsNames.has(pluginName);
       })
       .forEach((objectClass) => {
@@ -78,7 +78,7 @@ class Localization {
             sdkInstance._SetText(this.TranslateString(sdkInstance.__realText));
           }
 
-          const setTextMethodName = '_SetText';
+          const setTextMethodName = sdkInstance._SetText.name;
 
           // Decorate _SetText method of sdkInstance for auto-localization feature
           if (!this.decoratedSDKInstances.has(sdkInstance)) {
@@ -96,7 +96,7 @@ class Localization {
                 },
               });
             } else {
-              console.error(`Can't find property descriptor ${setTextMethodName} of`, sdkInstance);
+              console.error(`Can't find property descriptor ${setTextMethodName} (_SetText) of`, sdkInstance);
             }
 
             this.decoratedSDKInstances.add(sdkInstance);
@@ -111,7 +111,7 @@ class Localization {
          * Decorate _AddInstance method of objectClass to auto-translate new instances
          */
         if (!this.decoratedObjects.has(objectClass)) {
-          const addInstanceMethodName = '_AddInstance';
+          const addInstanceMethodName = objectClass._AddInstance.name;
 
           const addInstanceDescriptior = this.DeepFindPropertyDescriptor(objectClass, addInstanceMethodName);
 
@@ -129,7 +129,10 @@ class Localization {
 
             this.decoratedObjects.add(objectClass);
           } else {
-            console.error(`Can't find property descriptor ${addInstanceMethodName} of`, objectClass);
+            console.error(
+              `Can't find property descriptor ${addInstanceMethodName} (_AddInstance) of`,
+              objectClass,
+            );
           }
         }
       });
@@ -174,12 +177,14 @@ class Localization {
   }
 
   DecorateSpritePlugins() {
+    console.log(this.runtime.GetAllObjectClasses());
     this.runtime
       .GetAllObjectClasses()
       .filter((objectClass) => {
-        const pluginName = objectClass.GetPlugin().constructor.name;
+        const pluginName = objectClass._name;
+        console.log(pluginName, objectClass._animations);
         return (
-          pluginName === 'SpritePlugin' &&
+          pluginName === 'Sprite' &&
           // Check that all animations names are valid language codes
           objectClass._animations &&
           objectClass._animations.every((animationInfo) => this.IsValidLanguageCode(animationInfo._name))
@@ -195,7 +200,7 @@ class Localization {
          * Decorate _AddInstance method of objectClass to auto-translate new instances
          */
         if (!this.decoratedObjects.has(objectClass)) {
-          const addInstanceMethodName = '_AddInstance';
+          const addInstanceMethodName = objectClass._AddInstance.name;
 
           const addInstanceDescriptior = this.DeepFindPropertyDescriptor(objectClass, addInstanceMethodName);
 
@@ -213,7 +218,10 @@ class Localization {
 
             this.decoratedObjects.add(objectClass);
           } else {
-            console.error(`Can't find property descriptor ${addInstanceMethodName} of`, objectClass);
+            console.error(
+              `Can't find property descriptor ${addInstanceMethodName} (_AddInstance) of`,
+              objectClass,
+            );
           }
         }
       });
@@ -221,27 +229,25 @@ class Localization {
 
   TranslateSprite(instance) {
     const sdkInstance = instance.GetSdkInstance();
-
+    
     // Get animations map
     const animationsByName = sdkInstance._objectClass?._animationsByName;
     if (!animationsByName) return;
 
+    const currentFrame = sdkInstance._currentFrameIndex;
+    const fromAnimation = sdkInstance._currentAnimation._name;
+
     // Apply current language animation if exists, otherwise apply default language animation if exists.
     // Make sure that we preserve current frame index.
     if (animationsByName.has(this.currentLanguage)) {
-      const currentFrame = sdkInstance._currentFrameIndex;
-      const fromAnimation = sdkInstance._currentAnimation._name;
       sdkInstance._SetAnim(this.currentLanguage, fromAnimation);
-      sdkInstance._SetAnimFrame(currentFrame);
     } else if (animationsByName.has(this.defaultLanguage)) {
       // TODO: Add DeveloperAlert here!
       console.warn('Animation for current language not found, fallback to default', sdkInstance);
-
-      const currentFrame = sdkInstance._currentFrameIndex;
-      const fromAnimation = sdkInstance._currentAnimation._name;
       sdkInstance._SetAnim(this.defaultLanguage, fromAnimation);
-      sdkInstance._SetAnimFrame(currentFrame);
     }
+
+    sdkInstance._SetAnimFrame(currentFrame);
   }
 
   /** @type {(lang:string) => Promise<string | undefined>} */
@@ -356,16 +362,16 @@ class YandexGamesSDKInstance extends C3.SDKInstanceBase {
       'ysdk-fullscreen-ad-callback',
       /** @param {{type: "onClose" | "onOpen" | "onError" | "onOffline", wasShown?: boolean, error?: string}} data  */
       (data) => {
-        switch (data.type) {
+        switch (data['type']) {
           case 'onOpen':
             this.Trigger(this.conditions.OnFullscreenADOpen);
             break;
           case 'onClose':
-            this.fullscreenADWasShown = data.wasShown;
+            this.fullscreenADWasShown = data['wasShown'];
             this.Trigger(this.conditions.OnFullscreenADClose);
             break;
           case 'onError':
-            this.fullscreenADError = data.error;
+            this.fullscreenADError = data['error'];
             this.Trigger(this.conditions.OnFullscreenADError);
             break;
           case 'onOffline':
@@ -397,21 +403,21 @@ class YandexGamesSDKInstance extends C3.SDKInstanceBase {
       'ysdk-rewarded-ad-callback',
       /** @param {{type: "onOpen" | "onRewarded" | "onClose" | "onError", id: string, error?: string}} data  */
       (data) => {
-        switch (data.type) {
+        switch (data['type']) {
           case 'onOpen':
-            this.rewardedADOpenKillSID.set(data.id, Number.MAX_SAFE_INTEGER);
+            this.rewardedADOpenKillSID.set(data['id'], Number.MAX_SAFE_INTEGER);
             this.Trigger(this.conditions.OnAnyRewardedADOpen);
             break;
           case 'onRewarded':
-            this.rewardedADRewardedKillSID.set(data.id, Number.MAX_SAFE_INTEGER);
+            this.rewardedADRewardedKillSID.set(data['id'], Number.MAX_SAFE_INTEGER);
             break;
           case 'onClose':
-            this.rewardedADCloseKillSID.set(data.id, Number.MAX_SAFE_INTEGER);
+            this.rewardedADCloseKillSID.set(data['id'], Number.MAX_SAFE_INTEGER);
             this.Trigger(this.conditions.OnAnyRewardedADClose);
             break;
           case 'onError':
-            this.rewardedADErrorKillSID.set(data.id, Number.MAX_SAFE_INTEGER);
-            this.rewardedADErrorError.set(data.id, data.error);
+            this.rewardedADErrorKillSID.set(data['id'], Number.MAX_SAFE_INTEGER);
+            this.rewardedADErrorError.set(data['id'], data['error']);
             this.Trigger(this.conditions.OnAnyRewardedADError);
             break;
         }
@@ -455,14 +461,14 @@ class YandexGamesSDKInstance extends C3.SDKInstanceBase {
      * }} RuntimeEntries
      */
 
-    /** @type {{entriesData: RuntimeEntries; currentIndex: number} | undefined} */
+    /** @type {{entriesData: RuntimeEntries;["currentIndex"]: number} | undefined} */
     this.forEachLeaderbordEntryLoopData = undefined;
 
     //#endregion
 
     //#region Payments
 
-    /** @type {{purchases: types.Signed<types.Purchase[]>, currentIndex: number} | undefined} */
+    /** @type {{purchases: types.Signed<types.Purchase[]>,["currentIndex"]: number} | undefined} */
     this.forEachPurchaseLoopData = undefined;
 
     /**
@@ -482,7 +488,7 @@ class YandexGamesSDKInstance extends C3.SDKInstanceBase {
      * }} RuntimeProduct
      */
 
-    /** @type {{catalog: RuntimeProduct[], currentIndex: number} | undefined} */
+    /** @type {{catalog: RuntimeProduct[],["currentIndex"]: number} | undefined} */
     this.forEachInCatalogLoopData = undefined;
 
     /**
@@ -514,23 +520,23 @@ class YandexGamesSDKInstance extends C3.SDKInstanceBase {
       'ysdk-purchase-callback',
       /** @param {{error?: string, productID: string, purchaseToken: string, developerPayload?: string, signature?: string}} data  */
       (data) => {
-        if (data.error) {
+        if (data['error']) {
           this.purchaseFailureTriggerData = {
-            error: data.error,
+            ['error']: data['error'],
           };
-          this.purchaseErrorKillSID.set(data.productID, Number.MAX_SAFE_INTEGER);
+          this.purchaseErrorKillSID.set(data['productID'], Number.MAX_SAFE_INTEGER);
           this.Trigger(this.conditions.OnPurchaseFailure);
           this.purchaseSuccessTriggerData = undefined;
           return;
         }
 
         this.purchaseSuccessTriggerData = {
-          productID: data.productID,
-          purchaseToken: data.purchaseToken,
-          developerPayload: data.developerPayload,
-          signature: data.signature,
+          ['productID']: data['productID'],
+          ['purchaseToken']: data['purchaseToken'],
+          ['developerPayload']: data['developerPayload'],
+          ['signature']: data['signature'],
         };
-        this.purchaseSuccessKillSID.set(data.productID, Number.MAX_SAFE_INTEGER);
+        this.purchaseSuccessKillSID.set(data['productID'], Number.MAX_SAFE_INTEGER);
         this.Trigger(this.conditions.OnPurchaseSuccess);
         this.purchaseFailureTriggerData = undefined;
       },
@@ -580,12 +586,12 @@ class YandexGamesSDKInstance extends C3.SDKInstanceBase {
     this.canShowShortcutPrompt = false;
 
     this.AddDOMMessageHandler('ysdk-update-can-show-shortcut-prompt', (data) => {
-      this.canShowShortcutPrompt = data.canShow;
+      this.canShowShortcutPrompt = data['canShow'];
       return true;
     });
 
     this.AddDOMMessageHandler('ysdk-shortcut-show-prompt-result', (data) => {
-      if (data.accepted) {
+      if (data['accepted']) {
         this.Trigger(this.conditions.OnShortcutAdded);
       }
     });
@@ -631,52 +637,52 @@ class YandexGamesSDKInstance extends C3.SDKInstanceBase {
     this._triggerButton = undefined;
 
     this.AddDOMMessageHandler('gamepads-update', (data) => {
-      if (this._tvButtons[TV_BUTTON.UP] !== data.upPressed) {
+      if (this._tvButtons[TV_BUTTON.UP] !== data['upPressed']) {
         this._triggerButton = TV_BUTTON.UP;
 
-        if (data.upPressed) {
+        if (data['upPressed']) {
           this.Trigger(this.conditions.OnTVRemoteButtonPress);
         } else {
           this.Trigger(this.conditions.OnTVRemoteButtonRelease);
         }
 
-        this._tvButtons[TV_BUTTON.UP] = data.upPressed;
+        this._tvButtons[TV_BUTTON.UP] = data['upPressed'];
       }
 
-      if (this._tvButtons[TV_BUTTON.DOWN] !== data.downPressed) {
+      if (this._tvButtons[TV_BUTTON.DOWN] !== data['downPressed']) {
         this._triggerButton = TV_BUTTON.DOWN;
 
-        if (data.downPressed) {
+        if (data['downPressed']) {
           this.Trigger(this.conditions.OnTVRemoteButtonPress);
         } else {
           this.Trigger(this.conditions.OnTVRemoteButtonRelease);
         }
 
-        this._tvButtons[TV_BUTTON.DOWN] = data.downPressed;
+        this._tvButtons[TV_BUTTON.DOWN] = data['downPressed'];
       }
 
-      if (this._tvButtons[TV_BUTTON.LEFT] !== data.leftPressed) {
+      if (this._tvButtons[TV_BUTTON.LEFT] !== data['leftPressed']) {
         this._triggerButton = TV_BUTTON.LEFT;
 
-        if (data.leftPressed) {
+        if (data['leftPressed']) {
           this.Trigger(this.conditions.OnTVRemoteButtonPress);
         } else {
           this.Trigger(this.conditions.OnTVRemoteButtonRelease);
         }
 
-        this._tvButtons[TV_BUTTON.LEFT] = data.leftPressed;
+        this._tvButtons[TV_BUTTON.LEFT] = data['leftPressed'];
       }
 
-      if (this._tvButtons[TV_BUTTON.RIGHT] !== data.rightPressed) {
+      if (this._tvButtons[TV_BUTTON.RIGHT] !== data['rightPressed']) {
         this._triggerButton = TV_BUTTON.RIGHT;
 
-        if (data.rightPressed) {
+        if (data['rightPressed']) {
           this.Trigger(this.conditions.OnTVRemoteButtonPress);
         } else {
           this.Trigger(this.conditions.OnTVRemoteButtonRelease);
         }
 
-        this._tvButtons[TV_BUTTON.RIGHT] = data.rightPressed;
+        this._tvButtons[TV_BUTTON.RIGHT] = data['rightPressed'];
       }
     });
 
@@ -696,13 +702,13 @@ class YandexGamesSDKInstance extends C3.SDKInstanceBase {
 
     //#endregion
 
-    if (this._runtime.IsPreview()) {
+    if (this.GetRuntime().IsPreview()) {
       this.PostToDOM('start-tv-remote-emulator');
       this.PostToDOM('start-tv-remote-tracking');
       this.SetPlaceholders();
       this.actions.SwitchLanguage.call(this, 'en');
     } else if (autoInitialization) {
-      this._runtime.AddLoadPromise(this.InitializeYSDK());
+      this.GetRuntime().AddLoadPromise(this.InitializeYSDK());
     }
   }
 
@@ -710,10 +716,10 @@ class YandexGamesSDKInstance extends C3.SDKInstanceBase {
     const debugLanguage = navigator.language.slice(0, 2);
 
     this.environment = {
-      app: { id: '0' },
-      browser: { lang: debugLanguage },
-      i18n: { lang: debugLanguage, tld: '.com' },
-      payload: '',
+      ['app']: { ['id']: '0' },
+      ['browser']: { ['lang']: debugLanguage },
+      ['i18n']: { ['lang']: debugLanguage, ['tld']: '.com' },
+      ['payload']: '',
     };
 
     this.deviceType = 'desktop';
@@ -728,10 +734,10 @@ class YandexGamesSDKInstance extends C3.SDKInstanceBase {
    * @param {{environment?: types.YSDK["environment"], deviceType?: types.YSDK["deviceInfo"]["type"]}} data
    */
   InitCallback(data) {
-    this.environment = data.environment;
-    this.deviceType = data.deviceType;
+    this.environment = data['environment'];
+    this.deviceType = data['deviceType'];
 
-    const yandexLanguage = this.environment.i18n.lang;
+    const yandexLanguage = this.environment['i18n']['lang'];
 
     this.actions.SwitchLanguage.call(this, yandexLanguage);
 
@@ -747,7 +753,7 @@ class YandexGamesSDKInstance extends C3.SDKInstanceBase {
    * Ment to notify developers about their wrong plugin usage.
    */
   DeveloperAlert(message) {
-    if (this._runtime._exportType === 'preview') {
+    if (this.GetRuntime()._exportType === 'preview') {
       alert('[YandexGamesSDK] ' + message);
     }
 

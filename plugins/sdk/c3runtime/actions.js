@@ -38,7 +38,7 @@ const Actions = {
    * @param {string} id
    */
   ShowRewardedAD(id) {
-    this.PostToDOM('ysdk-show-rewarded-ad', { id });
+    this.PostToDOM('ysdk-show-rewarded-ad', { ['id']: id });
   },
 
   //#endregion
@@ -63,7 +63,7 @@ const Actions = {
    * @param {string} developerPayload
    */
   Purchase(productID, developerPayload) {
-    this.PostToDOM('ysdk-purchase', { productID, developerPayload });
+    this.PostToDOM('ysdk-purchase', { ['productID']: productID, ['developerPayload']: developerPayload });
   },
 
   /**
@@ -71,7 +71,7 @@ const Actions = {
    * @param {string} purchaseToken
    */
   async ConsumePurchase(purchaseToken) {
-    await this.PostToDOMAsync('ysdk-consume-purchase', { purchaseToken });
+    await this.PostToDOMAsync('ysdk-consume-purchase', { ['purchaseToken']: purchaseToken });
   },
 
   //#endregion
@@ -80,7 +80,7 @@ const Actions = {
 
   /** @this {YandexGamesSDKInstance} */
   async PlayerGetData(jsonObject, keysString) {
-    const jsonSDKInstance = jsonObject._instances[0]._sdkInst;
+    const jsonSDKInstance = jsonObject.GetInstances()[0].GetSdkInstance();
     const keys = keysString ? keysString.split(',').map((key) => key.trim()) : undefined;
     const data = await this.PostToDOMAsync('ysdk-get-player-data', keys);
     jsonSDKInstance._SetData(data);
@@ -88,26 +88,29 @@ const Actions = {
 
   /** @this {YandexGamesSDKInstance} */
   async PlayerGetStats(jsonObject) {
-    const jsonSDKInstance = jsonObject._instances[0]._sdkInst;
+    const jsonSDKInstance = jsonObject.GetInstances()[0].GetSdkInstance();
     const stats = await this.PostToDOMAsync('ysdk-get-player-stats');
     jsonSDKInstance._SetData(stats);
   },
 
   /** @this {YandexGamesSDKInstance} */
   async PlayerSetData(jsonObject, flush) {
-    const jsonSDKInstance = jsonObject._instances[0]._sdkInst;
-    await this.PostToDOMAsync('ysdk-set-player-data', { data: jsonSDKInstance._GetData(), flush });
+    const jsonSDKInstance = jsonObject.GetInstances()[0].GetSdkInstance();
+    await this.PostToDOMAsync('ysdk-set-player-data', {
+      ['data']: jsonSDKInstance._GetData(),
+      ['flush']: flush,
+    });
   },
 
   /** @this {YandexGamesSDKInstance} */
   async PlayerSetStats(jsonObject) {
-    const jsonSDKInstance = jsonObject._instances[0]._sdkInst;
+    const jsonSDKInstance = jsonObject.GetInstances()[0].GetSdkInstance();
     await this.PostToDOMAsync('ysdk-set-player-stats', jsonSDKInstance._GetData());
   },
 
   /** @this {YandexGamesSDKInstance} */
   async PlayerIncrementStats(jsonObject) {
-    const jsonSDKInstance = jsonObject._instances[0]._sdkInst;
+    const jsonSDKInstance = jsonObject.GetInstances()[0].GetSdkInstance();
     await this.PostToDOMAsync('ysdk-increment-player-stats', jsonSDKInstance._GetData());
   },
 
@@ -118,9 +121,9 @@ const Actions = {
   /** @this {YandexGamesSDKInstance} */
   SetLeaderboardScore(leaderboardName, score, extraData) {
     this.PostToDOM('ysdk-set-leaderboard-score', {
-      leaderboardName,
-      score,
-      extraData,
+      ['leaderboardName']: leaderboardName,
+      ['score']: score,
+      ['extraData']: extraData,
     });
   },
 
@@ -169,7 +172,7 @@ const Actions = {
    * @param {string} name
    */
   DispatchEvent(name) {
-    this.PostToDOM('ysdk-dispatch-event', { name });
+    this.PostToDOM('ysdk-dispatch-event', { ['name']: name });
   },
 
   //#endregion
@@ -220,8 +223,8 @@ const Actions = {
   /** @this {YandexGamesSDKInstance} */
   RemoteConfigFetch() {
     this.PostToDOMAsync('ysdk-remote-config-fetch', {
-      defaultFlags: this.defaultFlags,
-      clientFeatures: this.clientFeatures,
+      ['defaultFlags']: this.defaultFlags,
+      ['clientFeatures']: this.clientFeatures,
     }).then((flags) => {
       this.flags = flags;
       this.defaultFlags = {};

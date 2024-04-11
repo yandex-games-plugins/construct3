@@ -21,13 +21,20 @@
         this._gamepadsUpdates = true;
 
         window.addEventListener('keydown', (event) => {
-          if (event.key === 'Enter') this.PostToRuntime('tv-remote-ok-click', true);
+          if (event['key'] === 'Enter') this.PostToRuntime('tv-remote-ok-click', true);
         });
 
         window.addEventListener('keyup', (event) => {
-          if (event.key === 'Enter') this.PostToRuntime('tv-remote-ok-click', false);
+          if (event['key'] === 'Enter') this.PostToRuntime('tv-remote-ok-click', false);
         });
       });
+
+      this.data = {
+        upPressed: false,
+        downPressed: false,
+        leftPressed: false,
+        rightPressed: false,
+      };
     }
 
     Tick() {
@@ -40,22 +47,15 @@
       const gamepads = navigator.getGamepads().filter((gamepad) => gamepad);
       if (!gamepads.length) return;
 
-      const data = {
-        upPressed: false,
-        downPressed: false,
-        leftPressed: false,
-        rightPressed: false,
-      };
-
       for (const gamepad of gamepads) {
         if (!gamepad) continue;
-        data.upPressed = data.upPressed || gamepad.buttons[12].pressed;
-        data.downPressed = data.downPressed || gamepad.buttons[13].pressed;
-        data.leftPressed = data.leftPressed || gamepad.buttons[14].pressed;
-        data.rightPressed = data.rightPressed || gamepad.buttons[15].pressed;
+        this.data['upPressed'] = this.data['upPressed'] || gamepad.buttons[12].pressed;
+        this.data['downPressed'] = this.data['downPressed'] || gamepad.buttons[13].pressed;
+        this.data['leftPressed'] = this.data['leftPressed'] || gamepad.buttons[14].pressed;
+        this.data['rightPressed'] = this.data['rightPressed'] || gamepad.buttons[15].pressed;
       }
 
-      this.PostToRuntime('gamepads-update', data);
+      this.PostToRuntime('gamepads-update', this.data);
     }
   };
 
@@ -67,7 +67,7 @@
       this.ysdk = undefined;
 
       // Prevent 'ysdk is not defined' error
-      window.ysdk = undefined;
+      window['ysdk'] = undefined;
 
       this.domHandler.AddRuntimeMessageHandler('ysdk-initialize', this.InitializeYSDK.bind(this));
 
@@ -149,43 +149,43 @@
 
     async InitializeYSDK() {
       await this.LoadYSDKScript();
-      this.ysdk = await window.YaGames.init();
-      window.ysdk = this.ysdk;
+      this.ysdk = await window['YaGames']['init']();
+      window['ysdk'] = this.ysdk;
 
       await this.OnYSDKLoaded(this.ysdk);
 
-      this.ysdk.features.PluginEngineDataReporterAPI?.report({
-        engineName: 'Construct',
-        engineVersion: '3', // TODO: find a way to get version from runtime in "rXXX" format
-        pluginName: 'yagames_sdk by LisGames',
-        pluginVersion: '2.7.3',
+      this.ysdk['PluginEngineDataReporterAPI']?.['report']({
+        ['engineName']: 'Construct',
+        ['engineVersion']: '3', // TODO: find a way to get version from runtime in "rXXX" format
+        ['pluginName']: 'yagames_sdk by LisGames',
+        ['pluginVersion']: '2.7.3',
       });
 
       console.log('%c YandexGamesSDK for Construct 3 v2.7.3 ', 'background: #14151f; color: #fb923c');
 
       return {
-        environment: {
-          app: {
-            id: this.ysdk.environment.app.id,
+        ['environment']: {
+          ['app']: {
+            ['id']: this.ysdk['environment']['app']['id'],
           },
-          browser: {
-            lang: this.ysdk.environment.browser.lang,
+          ['browser']: {
+            ['lang']: this.ysdk['environment']['browser']['lang'],
           },
-          i18n: {
-            lang: this.ysdk.environment.i18n.lang,
-            tld: this.ysdk.environment.i18n.tld,
+          ['i18n']: {
+            ['lang']: this.ysdk['environment']['i18n']['lang'],
+            ['tld']: this.ysdk['environment']['i18n']['tld'],
           },
-          payload: this.ysdk.environment.payload,
+          ['payload']: this.ysdk['environment']['payload'],
         },
-        deviceType: this.ysdk.deviceInfo.type,
+        ['deviceType']: this.ysdk['deviceInfo']['type'],
       };
     }
 
     async OnYSDKLoaded() {
       if (!this.ysdk) return;
 
-      this.ysdk.onEvent(this.ysdk.EVENTS.HISTORY_BACK, () => {
-        this.domHandler.PostToRuntime('ysdk-handle-event', { type: 'HISTORY_BACK' });
+      this.ysdk['onEvent'](this.ysdk['HISTORY_BACK'], () => {
+        this.domHandler.PostToRuntime('ysdk-handle-event', { ['type']: 'HISTORY_BACK' });
       });
 
       await this.YSDKUpdateCanShowShortcutPrompt();
@@ -193,33 +193,33 @@
 
     YSDKLoadingAPIReady() {
       if (!this.ysdk) return;
-      this.ysdk.features.LoadingAPI?.ready();
+      this.ysdk['LoadingAPI']?.ready();
     }
 
     YSDKShowFullscreenAD() {
       if (!this.ysdk) return;
-      this.ysdk.adv.showFullscreenAdv({
+      this.ysdk['showFullscreenAdv']({
         callbacks: {
           onClose: (wasShown) => {
             this.domHandler.PostToRuntime('ysdk-fullscreen-ad-callback', {
-              type: 'onClose',
-              wasShown,
+              ['type']: 'onClose',
+              ['wasShown']: wasShown,
             });
           },
           onOpen: () => {
             this.domHandler.PostToRuntime('ysdk-fullscreen-ad-callback', {
-              type: 'onOpen',
+              ['type']: 'onOpen',
             });
           },
           onError: (error) => {
             this.domHandler.PostToRuntime('ysdk-fullscreen-ad-callback', {
-              type: 'onError',
-              error: JSON.stringify(error),
+              ['type']: 'onError',
+              ['error']: JSON.stringify(error),
             });
           },
           onOffline: () => {
             this.domHandler.PostToRuntime('ysdk-fullscreen-ad-callback', {
-              type: 'onOffline',
+              ['type']: 'onOffline',
             });
           },
         },
@@ -228,31 +228,31 @@
 
     YSDKShowRewardedAD({ id }) {
       if (!this.ysdk) return;
-      this.ysdk.adv.showRewardedVideo({
+      this.ysdk['showRewardedVideo']({
         callbacks: {
           onOpen: () => {
             this.domHandler.PostToRuntime('ysdk-rewarded-ad-callback', {
-              id,
-              type: 'onOpen',
+              ['id']: id,
+              ['type']: 'onOpen',
             });
           },
           onRewarded: () => {
             this.domHandler.PostToRuntime('ysdk-rewarded-ad-callback', {
-              id,
-              type: 'onRewarded',
+              ['id']: id,
+              ['type']: 'onRewarded',
             });
           },
           onClose: () => {
             this.domHandler.PostToRuntime('ysdk-rewarded-ad-callback', {
-              id,
-              type: 'onClose',
+              ['id']: id,
+              ['type']: 'onClose',
             });
           },
           onError: (error) => {
             this.domHandler.PostToRuntime('ysdk-rewarded-ad-callback', {
-              id,
-              type: 'onError',
-              error: JSON.stringify(error),
+              ['id']: id,
+              ['type']: 'onError',
+              ['error']: JSON.stringify(error),
             });
           },
         },
@@ -261,47 +261,47 @@
 
     YSDKShowStickyBanner() {
       if (!this.ysdk) return;
-      this.ysdk.adv.showBannerAdv();
+      this.ysdk['showBannerAdv']();
     }
 
     YSDKHideStickyBanner() {
       if (!this.ysdk) return;
-      this.ysdk.adv.hideBannerAdv();
+      this.ysdk['hideBannerAdv']();
     }
 
     async YSDKGetLeaderboardEntries({ leaderboardName, options }) {
       if (!this.ysdk) return;
 
-      const lb = await this.ysdk.getLeaderboards();
+      const lb = await this.ysdk['getLeaderboards']();
 
-      const entries = await lb.getLeaderboardEntries(leaderboardName, options);
+      const entries = await lb['getLeaderboardEntries'](leaderboardName, options);
 
       return {
-        leaderboard: entries.leaderboard,
-        ranges: entries.ranges,
-        userRank: entries.userRank,
-        entries: entries.entries.map((entry) => {
+        ['leaderboard']: entries['leaderboard'],
+        ['ranges']: entries['ranges'],
+        ['userRank']: entries['userRank'],
+        ['entries']: entries['entries'].map((entry) => {
           return {
-            score: entry.score,
-            extraData: entry.extraData,
-            rank: entry.rank,
-            player: {
-              avatarSrc: {
-                small: entry.player.getAvatarSrc('small'),
-                medium: entry.player.getAvatarSrc('medium'),
-                large: entry.player.getAvatarSrc('large'),
+            ['score']: entry['score'],
+            ['extraData']: entry['extraData'],
+            ['rank']: entry['rank'],
+            ['player']: {
+              ['avatarSrc']: {
+                ['small']: entry['player']['getAvatarSrc']('small'),
+                ['medium']: entry['player']['getAvatarSrc']('medium'),
+                ['large']: entry['player']['getAvatarSrc']('large'),
               },
-              avatarSrcSet: {
-                small: entry.player.getAvatarSrcSet('small'),
-                medium: entry.player.getAvatarSrcSet('medium'),
-                large: entry.player.getAvatarSrcSet('large'),
+              ['avatarSrcSet']: {
+                ['small']: entry['player']['getAvatarSrcSet']('small'),
+                ['medium']: entry['player']['getAvatarSrcSet']('medium'),
+                ['large']: entry['player']['getAvatarSrcSet']('large'),
               },
-              lang: entry.player.lang,
-              publicName: entry.player.publicName,
-              scopePermissions: entry.player.scopePermissions,
-              uniqueID: entry.player.uniqueID,
+              ['lang']: entry['player']['lang'],
+              ['publicName']: entry['player']['publicName'],
+              ['scopePermissions']: entry['player']['scopePermissions'],
+              ['uniqueID']: entry['player']['uniqueID'],
             },
-            formattedScore: entry.formattedScore,
+            ['formattedScore']: entry['formattedScore'],
           };
         }),
       };
@@ -310,31 +310,34 @@
     async YSDKSetLeaderboardScore({ leaderboardName, score, extraData }) {
       if (!this.ysdk) return;
 
-      const lb = await this.ysdk.getLeaderboards();
+      const lb = await this.ysdk['getLeaderboards']();
 
-      await lb.setLeaderboardScore(leaderboardName, score, extraData || undefined);
+      await lb['setLeaderboardScore'](leaderboardName, score, extraData || undefined);
     }
 
     async YSDKPurchase({ productID, developerPayload }) {
       if (!this.ysdk) return;
 
       try {
-        const payments = await this.ysdk.getPayments({ signed: true });
+        const payments = await this.ysdk['getPayments']({ ['signed']: true });
 
-        const purchase = await payments.purchase({ id: productID, developerPayload });
+        const purchase = await payments['purchase']({
+          ['id']: productID,
+          ['developerPayload']: developerPayload,
+        });
 
         this.domHandler.PostToRuntime('ysdk-purchase-callback', {
-          success: true,
-          productID: purchase.productID,
-          purchaseToken: purchase.purchaseToken,
-          developerPayload: purchase.developerPayload,
-          signature: purchase.signature,
+          ['success']: true,
+          ['productID']: purchase['productID'],
+          ['purchaseToken']: purchase['purchaseToken'],
+          ['developerPayload']: purchase['developerPayload'],
+          ['signature']: purchase['signature'],
         });
       } catch (error) {
         console.error(error);
 
         this.domHandler.PostToRuntime('ysdk-purchase-callback', {
-          error: JSON.stringify(error),
+          ['error']: JSON.stringify(error),
         });
       }
     }
@@ -342,30 +345,30 @@
     async YSDKConsumePurchase({ purchaseToken }) {
       if (!this.ysdk) return;
 
-      const payments = await this.ysdk.getPayments({ signed: true });
+      const payments = await this.ysdk['getPayments']({ ['signed']: true });
 
-      await payments.consumePurchase(purchaseToken);
+      await payments['consumePurchase'](purchaseToken);
     }
 
     async YSDKGetPurchases() {
       if (!this.ysdk) return;
 
-      const payments = await this.ysdk.getPayments({ signed: true });
+      const payments = await this.ysdk['getPayments']({ ['signed']: true });
 
-      const purchases = await payments.getPurchases();
+      const purchases = await payments['getPurchases']();
 
       const _purchases = [];
 
       for (let i = 0; i < purchases.length; i++) {
         const purchase = purchases[i];
         _purchases[i] = {
-          productID: purchase.productID,
-          purchaseToken: purchase.purchaseToken,
-          developerPayload: purchase.developerPayload,
+          ['productID']: purchase['productID'],
+          ['purchaseToken']: purchase['purchaseToken'],
+          ['developerPayload']: purchase['developerPayload'],
         };
       }
 
-      _purchases.signature = purchases.signature;
+      _purchases['signature'] = purchases['signature'];
 
       return _purchases;
     }
@@ -373,26 +376,26 @@
     async YSDKGetCatalog() {
       if (!this.ysdk) return;
 
-      const payments = await this.ysdk.getPayments({ signed: true });
+      const payments = await this.ysdk['getPayments']({ ['signed']: true });
 
-      const catalog = await payments.getCatalog();
+      const catalog = await payments['getCatalog']();
 
       const _catalog = [];
 
       for (let i = 0; i < catalog.length; i++) {
         const product = catalog[i];
         _catalog[i] = {
-          id: product.id,
-          title: product.title,
-          description: product.description,
-          imageURI: product.imageURI,
-          price: product.price,
-          priceValue: product.priceValue,
-          priceCurrencyCode: product.priceCurrencyCode,
-          priceCurrencyImage: {
-            small: product.getPriceCurrencyImage('small'),
-            medium: product.getPriceCurrencyImage('medium'),
-            svg: product.getPriceCurrencyImage('svg'),
+          ['id']: product['id'],
+          ['title']: product['title'],
+          ['description']: product['description'],
+          ['imageURI']: product['imageURI'],
+          ['price']: product['price'],
+          ['priceValue']: product['priceValue'],
+          ['priceCurrencyCode']: product['priceCurrencyCode'],
+          ['priceCurrencyImage']: {
+            ['small']: product['getPriceCurrencyImage']('small'),
+            ['medium']: product['getPriceCurrencyImage']('medium'),
+            ['svg']: product['getPriceCurrencyImage']('svg'),
           },
         };
       }
@@ -403,9 +406,9 @@
     async YSDKGetPlayerData(keys) {
       if (!this.ysdk) return;
 
-      const player = await this.ysdk.getPlayer();
+      const player = await this.ysdk['getPlayer']();
 
-      const data = await player.getData(keys);
+      const data = await player['getData'](keys);
 
       return data;
     }
@@ -413,9 +416,9 @@
     async YSDKGetPlayerStats(keys) {
       if (!this.ysdk) return;
 
-      const player = await this.ysdk.getPlayer();
+      const player = await this.ysdk['getPlayer']();
 
-      const stats = await player.getStats(keys);
+      const stats = await player['getStats'](keys);
 
       return stats;
     }
@@ -423,25 +426,25 @@
     async YSDKSetPlayerData({ data, flush }) {
       if (!this.ysdk) return;
 
-      const player = await this.ysdk.getPlayer();
+      const player = await this.ysdk['getPlayer']();
 
-      await player.setData(data, flush);
+      await player['setData'](data, flush);
     }
 
     async YSDKSetPlayerStats(data) {
       if (!this.ysdk) return;
 
-      const player = await this.ysdk.getPlayer();
+      const player = await this.ysdk['getPlayer']();
 
-      await player.setStats(data);
+      await player['setStats'](data);
     }
 
     async YSDKIncrementPlayerStats(data) {
       if (!this.ysdk) return;
 
-      const player = await this.ysdk.getPlayer();
+      const player = await this.ysdk['getPlayer']();
 
-      await player.incrementStats(data);
+      await player['incrementStats'](data);
     }
 
     async YSDKGetPlayer({ requestPersonalInfo }) {
@@ -451,54 +454,54 @@
       let player;
 
       if (requestPersonalInfo) {
-        player = await this.ysdk.getPlayer({ signed: true, scopes: true });
+        player = await this.ysdk['getPlayer']({ ['signed']: true, ['scopes']: true });
 
-        if (player.getMode() === 'lite') {
-          await this.ysdk.auth.openAuthDialog();
-          player = await this.ysdk.getPlayer({ signed: true, scopes: true });
+        if (player['getMode']() === 'lite') {
+          await this.ysdk['openAuthDialog']();
+          player = await this.ysdk['getPlayer']({ ['signed']: true, ['scopes']: true });
         }
 
         // Double request. The first one can return empty name even if the user provided personal info.
-        player = await this.ysdk.getPlayer({ signed: true, scopes: true });
+        player = await this.ysdk['getPlayer']({ ['signed']: true, ['scopes']: true });
       } else {
-        player = await this.ysdk.getPlayer({ scopes: false });
+        player = await this.ysdk['getPlayer']({ ['scopes']: false });
       }
 
       return {
-        isAuthorized: player.getMode() !== 'lite',
-        isAccessGranted: player.getName() !== '',
-        uniqueID: player.getUniqueID(),
-        publicName: player.getName(),
-        avatars: {
-          small: player.getPhoto('small'),
-          medium: player.getPhoto('medium'),
-          large: player.getPhoto('large'),
+        ['isAuthorized']: player['getMode']() !== 'lite',
+        ['isAccessGranted']: player['getName']() !== '',
+        ['uniqueID']: player['getUniqueID'](),
+        ['publicName']: player['getName'](),
+        ['avatars']: {
+          ['small']: player['getPhoto']('small'),
+          ['medium']: player['getPhoto']('medium'),
+          ['large']: player['getPhoto']('large'),
         },
-        signature: player.signature,
+        ['signature']: player['signature'],
       };
     }
 
     YSDKDispatchEvent({ name }) {
       if (!this.ysdk) return;
-      this.ysdk.dispatchEvent(this.ysdk.EVENTS[name]);
+      this.ysdk['dispatchEvent'](this.ysdk['EVENTS'][name]);
     }
 
     async YSDKUpdateCanShowShortcutPrompt() {
-      const prompt = await this.ysdk.shortcut.canShowPrompt();
+      const prompt = await this.ysdk['shortcut']['canShowPrompt']();
       return this.domHandler.PostToRuntimeAsync('ysdk-update-can-show-shortcut-prompt', {
-        canShow: prompt.canShow,
+        ['canShow']: prompt['canShow'],
       });
     }
 
     async YSDKShortcutsShowPrompt() {
       if (!this.ysdk) return;
 
-      const result = await this.ysdk.shortcut.showPrompt();
+      const result = await this.ysdk['shortcut']['showPrompt']();
 
       await this.YSDKUpdateCanShowShortcutPrompt();
 
       this.domHandler.PostToRuntime('ysdk-shortcut-show-prompt-result', {
-        accepted: result.outcome === 'accepted',
+        ['accepted']: result['outcome'] === 'accepted',
       });
     }
 
@@ -513,7 +516,7 @@
         return params.defaultFlags;
       }
 
-      const config = await this.ysdk.getFlags(params);
+      const config = await this.ysdk['getFlags'](params);
 
       return config;
     }
@@ -571,7 +574,7 @@
 
     /** @param {KeyboardEvent} event */
     OnKeyDown(event) {
-      if (event.key !== 'F6') return;
+      if (event['key'] !== 'F6') return;
       if (this.iframe.style.display === 'none') {
         this.EnableGamepad();
       } else {
@@ -585,7 +588,7 @@
 
       const event = new Event('gamepadconnected');
       this.fakeController.connected = true;
-      event.gamepad = this.fakeController;
+      event['gamepad'] = this.fakeController;
       this.fakeController.timestamp = Math.floor(Date.now() / 1000);
       window.dispatchEvent(event);
 
@@ -599,7 +602,7 @@
 
       const event = new Event('gamepaddisconnected');
       this.fakeController.connected = false;
-      event.gamepad = this.fakeController;
+      event['gamepad'] = this.fakeController;
       this.fakeController.timestamp = Math.floor(Date.now() / 1000);
       window.dispatchEvent(event);
 
@@ -608,28 +611,28 @@
 
     /** @param {MessageEvent} event */
     OnMessage(event) {
-      if (event.data.event !== 'tv-emulator-event') return;
+      if (event['data']['event'] !== 'tv-emulator-event') return;
 
-      switch (event.data.name) {
+      switch (event['data']['name']) {
         case 'Enter':
           window.dispatchEvent(
-            new KeyboardEvent(event.data.pressed ? 'keydown' : 'keyup', {
-              key: 'Enter',
-              code: 'Enter',
-              keyCode: 13,
+            new KeyboardEvent(event['data']['pressed'] ? 'keydown' : 'keyup', {
+              ['key']: 'Enter',
+              ['code']: 'Enter',
+              ['keyCode']: 13,
             }),
           );
           break;
         case 'Back':
-          if (!event.data.pressed) {
-            this.domHandler.PostToRuntime('ysdk-handle-event', { type: 'HISTORY_BACK' });
+          if (!event['data']['pressed']) {
+            this.domHandler.PostToRuntime('ysdk-handle-event', { ['type']: 'HISTORY_BACK' });
           }
           break;
         default:
-          const button = this.fakeController.buttons[this.ArrowMap[event.data.name]];
-          button.pressed = event.data.pressed;
-          button.value = event.data.pressed ? 1 : 0;
-          button.touched = event.data.pressed;
+          const button = this.fakeController.buttons[this.ArrowMap[event['data']['name']]];
+          button.pressed = event['data']['pressed'];
+          button.value = event['data']['pressed'] ? 1 : 0;
+          button.touched = event['data']['pressed'];
           this.fakeController.timestamp = Math.floor(Date.now() / 1000);
           break;
       }
