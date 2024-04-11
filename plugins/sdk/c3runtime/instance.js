@@ -386,16 +386,16 @@ class YandexGamesSDKInstance extends C3.SDKInstanceBase {
     //#region Rewarded AD
 
     /** @type {string | undefined} */
-    this._currentRewardedID = undefined;
+    this.currentRewardedID = undefined;
 
     /** @type {string | undefined} */
-    this._currentRewardedError = undefined;
+    this.currentRewardedError = undefined;
 
     this.AddDOMMessageHandler(
       'ysdk-rewarded-ad-callback',
       /** @param {{type: "onOpen" | "onRewarded" | "onClose" | "onError", id: string, error?: string}} data  */
       async (data) => {
-        this._currentRewardedID = data['id'];
+        this.currentRewardedID = data['id'];
         switch (data['type']) {
           case 'onOpen':
             await this.TriggerAsync(this.conditions.OnRewardedADOpen);
@@ -409,13 +409,13 @@ class YandexGamesSDKInstance extends C3.SDKInstanceBase {
             await this.TriggerAsync(this.conditions.OnAnyRewardedADClose);
             break;
           case 'onError':
-            this._currentRewardedError = data['error'];
+            this.currentRewardedError = data['error'];
             await this.TriggerAsync(this.conditions.OnRewardedADError);
             await this.TriggerAsync(this.conditions.OnAnyRewardedADError);
-            this._currentRewardedError = undefined;
+            this.currentRewardedError = undefined;
             break;
         }
-        this._currentRewardedID = undefined;
+        this.currentRewardedID = undefined;
       },
     );
 
@@ -463,28 +463,8 @@ class YandexGamesSDKInstance extends C3.SDKInstanceBase {
 
     //#region Payments
 
-    /** @type {{purchases: types.Signed<types.Purchase[]>,["currentIndex"]: number} | undefined} */
-    this.forEachPurchaseLoopData = undefined;
-
-    /**
-     * @typedef {{
-     *   id: string;
-     *   title: string;
-     *   description: string;
-     *   imageURI: string;
-     *   price: string;
-     *   priceValue: string;
-     *   priceCurrencyCode: string;
-     *   priceCurrencyImage: {
-     *     small: string;
-     *     medium: string;
-     *     svg: string;
-     *   };
-     * }} RuntimeProduct
-     */
-
-    /** @type {{catalog: RuntimeProduct[],["currentIndex"]: number} | undefined} */
-    this.forEachInCatalogLoopData = undefined;
+    /** @type {string | undefined} */
+    this.currentPurchaseID = undefined;
 
     /**
      * @typedef {Object} PurchaseSuccessTriggerData
@@ -495,45 +475,50 @@ class YandexGamesSDKInstance extends C3.SDKInstanceBase {
      */
 
     /** @type {PurchaseSuccessTriggerData | undefined} */
-    this.purchaseSuccessTriggerData = undefined;
+    this.currentPurchaseSuccessData = undefined;
+
+    /** @type {string | undefined} */
+    this.currentPurchaseError = undefined;
+
+    /** @type {{purchases: types.Signed<types.Purchase[]>,["currentIndex"]: number} | undefined} */
+    this.currentPurchasesLoopData = undefined;
 
     /**
-     * @typedef {Object} PurchaseFailureTriggerData
-     * @property {string} error
+     * @typedef {Object} RuntimeProduct
+     * @property {string} id
+     * @property {string} title
+     * @property {string} description
+     * @property {string} imageURI
+     * @property {string} price
+     * @property {string} priceValue
+     * @property {string} priceCurrencyCode
+     * @property {{small: string; medium: string; svg: string;}} priceCurrencyImage
      */
 
-    /** @type {PurchaseFailureTriggerData | undefined} */
-    this.purchaseFailureTriggerData = undefined;
-
-    /** @type {Map<string, number>} */
-    this.purchaseSuccessKillSID = new Map();
-
-    /** @type {Map<string, number>} */
-    this.purchaseErrorKillSID = new Map();
+    /** @type {{catalog: RuntimeProduct[],["currentIndex"]: number} | undefined} */
+    this.currentCatalogLoopData = undefined;
 
     this.AddDOMMessageHandler(
       'ysdk-purchase-callback',
       /** @param {{error?: string, productID: string, purchaseToken: string, developerPayload?: string, signature?: string}} data  */
-      (data) => {
+      async (data) => {
         if (data['error']) {
-          this.purchaseFailureTriggerData = {
-            ['error']: data['error'],
-          };
-          this.purchaseErrorKillSID.set(data['productID'], Number.MAX_SAFE_INTEGER);
-          this.Trigger(this.conditions.OnPurchaseFailure);
-          this.purchaseSuccessTriggerData = undefined;
+          this.currentPurchaseError = data['error'];
+          await this.TriggerAsync(this.conditions.OnSpecificPurchaseError);
+          await this.TriggerAsync(this.conditions.OnPurchaseError);
+          this.currentPurchaseError = undefined;
           return;
         }
 
-        this.purchaseSuccessTriggerData = {
+        this.currentPurchaseSuccessData = {
           ['productID']: data['productID'],
           ['purchaseToken']: data['purchaseToken'],
           ['developerPayload']: data['developerPayload'],
           ['signature']: data['signature'],
         };
-        this.purchaseSuccessKillSID.set(data['productID'], Number.MAX_SAFE_INTEGER);
-        this.Trigger(this.conditions.OnPurchaseSuccess);
-        this.purchaseFailureTriggerData = undefined;
+        await this.TriggerAsync(this.conditions.OnSpecificPurchaseSuccess);
+        await this.TriggerAsync(this.conditions.OnPurchaseSuccess);
+        this.currentPurchaseSuccessData = undefined;
       },
     );
 

@@ -27,7 +27,7 @@ const Expressions = {
 
   /** @this {YandexGamesSDKInstance} */
   RewardedADError() {
-    return this._currentRewardedError || '';
+    return this.currentRewardedError || '';
   },
 
   //#endregion
@@ -150,10 +150,10 @@ const Expressions = {
 
   /** @this {YandexGamesSDKInstance} */
   PurchaseToken() {
-    if (this.purchaseSuccessTriggerData) {
-      return this.purchaseSuccessTriggerData["purchaseToken"];
-    } else if (this.forEachPurchaseLoopData) {
-      const loopData = this.forEachPurchaseLoopData;
+    if (this.currentPurchaseSuccessData) {
+      return this.currentPurchaseSuccessData["purchaseToken"];
+    } else if (this.currentPurchasesLoopData) {
+      const loopData = this.currentPurchasesLoopData;
       const purchaseEntry = loopData["purchases"][loopData["currentIndex"]];
       return purchaseEntry["purchaseToken"];
     } else {
@@ -166,10 +166,10 @@ const Expressions = {
 
   /** @this {YandexGamesSDKInstance} */
   PurchaseDeveloperPayload() {
-    if (this.purchaseSuccessTriggerData) {
-      return this.purchaseSuccessTriggerData["developerPayload"];
-    } else if (this.forEachPurchaseLoopData) {
-      const loopData = this.forEachPurchaseLoopData;
+    if (this.currentPurchaseSuccessData) {
+      return this.currentPurchaseSuccessData["developerPayload"];
+    } else if (this.currentPurchasesLoopData) {
+      const loopData = this.currentPurchasesLoopData;
       const purchaseEntry = loopData["purchases"][loopData["currentIndex"]];
       return purchaseEntry["developerPayload"];
     } else {
@@ -182,8 +182,8 @@ const Expressions = {
 
   /** @this {YandexGamesSDKInstance} */
   PurchaseSignature() {
-    if (this.purchaseSuccessTriggerData) {
-      return this.purchaseSuccessTriggerData["signature"];
+    if (this.currentPurchaseSuccessData) {
+      return this.currentPurchaseSuccessData["signature"];
     } else {
       this.logDeveloperMistake(
         `You are trying to use "Purchase signature" expression outside of "On purchase success" trigger!`,
@@ -194,8 +194,8 @@ const Expressions = {
 
   /** @this {YandexGamesSDKInstance} */
   PurchasesSignature() {
-    if (this.forEachPurchaseLoopData) {
-      return this.forEachPurchaseLoopData["purchases"]["signature"];
+    if (this.currentPurchasesLoopData) {
+      return this.currentPurchasesLoopData["purchases"]["signature"];
     } else {
       this.logDeveloperMistake(
         `You are trying to use "Purchases signature" expression outside of "On purchase success" trigger!`,
@@ -206,8 +206,8 @@ const Expressions = {
 
   /** @this {YandexGamesSDKInstance} */
   PurchaseError() {
-    if (this.purchaseFailureTriggerData) {
-      return this.purchaseFailureTriggerData["error"];
+    if (this.currentPurchaseError) {
+      return this.currentPurchaseError;
     } else {
       this.logDeveloperMistake(
         `You are trying to use "Purchase error" expression outside of "On purchase error" trigger!`,
@@ -218,14 +218,14 @@ const Expressions = {
 
   /** @this {YandexGamesSDKInstance} */
   ProductID() {
-    if (this.purchaseSuccessTriggerData) {
-      return this.purchaseSuccessTriggerData["productID"];
-    } else if (this.forEachPurchaseLoopData) {
-      const loopData = this.forEachPurchaseLoopData;
+    if (this.currentPurchaseSuccessData) {
+      return this.currentPurchaseSuccessData["productID"];
+    } else if (this.currentPurchasesLoopData) {
+      const loopData = this.currentPurchasesLoopData;
       const purchaseEntry = loopData["purchases"][loopData["currentIndex"]];
       return purchaseEntry["productID"];
-    } else if (this.forEachInCatalogLoopData) {
-      const loopData = this.forEachInCatalogLoopData;
+    } else if (this.currentCatalogLoopData) {
+      const loopData = this.currentCatalogLoopData;
       const product = loopData["catalog"][loopData["currentIndex"]];
       return product["id"];
     } else {
@@ -238,8 +238,8 @@ const Expressions = {
 
   /** @this {YandexGamesSDKInstance} */
   ProductTitle() {
-    if (this.forEachInCatalogLoopData) {
-      const loopData = this.forEachInCatalogLoopData;
+    if (this.currentCatalogLoopData) {
+      const loopData = this.currentCatalogLoopData;
       const product = loopData["catalog"][loopData["currentIndex"]];
       return product["title"];
     } else {
@@ -252,8 +252,8 @@ const Expressions = {
 
   /** @this {YandexGamesSDKInstance} */
   ProductDescription() {
-    if (this.forEachInCatalogLoopData) {
-      const loopData = this.forEachInCatalogLoopData;
+    if (this.currentCatalogLoopData) {
+      const loopData = this.currentCatalogLoopData;
       const product = loopData["catalog"][loopData["currentIndex"]];
       return product["description"];
     } else {
@@ -266,8 +266,8 @@ const Expressions = {
 
   /** @this {YandexGamesSDKInstance} */
   ProductImageURI() {
-    if (this.forEachInCatalogLoopData) {
-      const loopData = this.forEachInCatalogLoopData;
+    if (this.currentCatalogLoopData) {
+      const loopData = this.currentCatalogLoopData;
       const product = loopData["catalog"][loopData["currentIndex"]];
       return product["imageURI"];
     } else {
@@ -280,8 +280,8 @@ const Expressions = {
 
   /** @this {YandexGamesSDKInstance} */
   ProductPrice() {
-    if (this.forEachInCatalogLoopData) {
-      const loopData = this.forEachInCatalogLoopData;
+    if (this.currentCatalogLoopData) {
+      const loopData = this.currentCatalogLoopData;
       const product = loopData["catalog"][loopData["currentIndex"]];
       return product["price"];
     } else {
@@ -294,8 +294,8 @@ const Expressions = {
 
   /** @this {YandexGamesSDKInstance} */
   ProductPriceValue() {
-    if (this.forEachInCatalogLoopData) {
-      const loopData = this.forEachInCatalogLoopData;
+    if (this.currentCatalogLoopData) {
+      const loopData = this.currentCatalogLoopData;
       const product = loopData["catalog"][loopData["currentIndex"]];
       return product["priceValue"];
     } else {
@@ -308,8 +308,8 @@ const Expressions = {
 
   /** @this {YandexGamesSDKInstance} */
   ProductPriceCurrencyСode() {
-    if (this.forEachInCatalogLoopData) {
-      const loopData = this.forEachInCatalogLoopData;
+    if (this.currentCatalogLoopData) {
+      const loopData = this.currentCatalogLoopData;
       const product = loopData["catalog"][loopData["currentIndex"]];
       return product["priceCurrencyCode"];
     } else {
@@ -325,8 +325,8 @@ const Expressions = {
    * @param {"small"|"medium"|"svg"} size
    */
   ProductPriceCurrencyImage(size) {
-    if (this.forEachInCatalogLoopData) {
-      const loopData = this.forEachInCatalogLoopData;
+    if (this.currentCatalogLoopData) {
+      const loopData = this.currentCatalogLoopData;
       const product = loopData["catalog"][loopData["currentIndex"]];
       return product["priceCurrencyImage"][size] || '';
     } else {

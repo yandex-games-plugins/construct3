@@ -64,7 +64,7 @@ const Conditions = {
    * @param {string} id
    */
   OnRewardedADOpen(id) {
-    return self.C3.equalsNoCase(this._currentRewardedID, id);
+    return self.C3.equalsNoCase(this.currentRewardedID, id);
   },
 
   /**
@@ -72,7 +72,7 @@ const Conditions = {
    * @param {string} id
    */
   OnRewardedADRewarded(id) {
-    return self.C3.equalsNoCase(this._currentRewardedID, id);
+    return self.C3.equalsNoCase(this.currentRewardedID, id);
   },
 
   /**
@@ -80,7 +80,7 @@ const Conditions = {
    * @param {string} id
    */
   OnRewardedADClose(id) {
-    return self.C3.equalsNoCase(this._currentRewardedID, id);
+    return self.C3.equalsNoCase(this.currentRewardedID, id);
   },
 
   /**
@@ -88,7 +88,7 @@ const Conditions = {
    * @param {string} id
    */
   OnRewardedADError(id) {
-    return self.C3.equalsNoCase(this._currentRewardedID, id);
+    return self.C3.equalsNoCase(this.currentRewardedID, id);
   },
 
   /** @this {YandexGamesSDKInstance} */
@@ -194,9 +194,9 @@ const Conditions = {
     const isSolModifierAfterCnds = oldFrame.IsSolModifierAfterCnds();
 
     this.PostToDOMAsync('ysdk-get-purchases').then(
-      (/** @type {typeof this.forEachPurchaseLoopData["purchases"]} */ purchases) => {
-        this.forEachPurchaseLoopData = {};
-        this.forEachPurchaseLoopData["purchases"] = purchases;
+      (/** @type {typeof this.currentPurchasesLoopData["purchases"]} */ purchases) => {
+        this.currentPurchasesLoopData = {};
+        this.currentPurchasesLoopData["purchases"] = purchases;
 
         const newFrame = eventStack.Push(currentEvent);
         const loopStack = eventSheetManager.GetLoopStack();
@@ -206,14 +206,14 @@ const Conditions = {
         if (isSolModifierAfterCnds) {
           for (let i = 0; i < purchases.length; i++) {
             eventSheetManager.PushCopySol(solModifiers);
-            this.forEachPurchaseLoopData["currentIndex"] = i;
+            this.currentPurchasesLoopData["currentIndex"] = i;
             loop.SetIndex(i);
             currentEvent.Retrigger(oldFrame, newFrame);
             eventSheetManager.PopSol(solModifiers);
           }
         } else {
           for (let i = 0; i < purchases.length; i++) {
-            this.forEachPurchaseLoopData["currentIndex"] = i;
+            this.currentPurchasesLoopData["currentIndex"] = i;
             loop.SetIndex(i);
             currentEvent.Retrigger(oldFrame, newFrame);
           }
@@ -222,7 +222,7 @@ const Conditions = {
         eventStack.Pop();
         loopStack.Pop();
 
-        this.forEachPurchaseLoopData = null;
+        this.currentPurchasesLoopData = null;
       },
     );
 
@@ -240,9 +240,9 @@ const Conditions = {
     const isSolModifierAfterCnds = oldFrame.IsSolModifierAfterCnds();
 
     this.PostToDOMAsync('ysdk-get-catalog').then(
-      (/** @type {typeof this.forEachInCatalogLoopData["catalog"]} */ catalog) => {
-        this.forEachInCatalogLoopData = {};
-        this.forEachInCatalogLoopData["catalog"] = catalog;
+      (/** @type {typeof this.currentCatalogLoopData["catalog"]} */ catalog) => {
+        this.currentCatalogLoopData = {};
+        this.currentCatalogLoopData["catalog"] = catalog;
 
         const newFrame = eventStack.Push(currentEvent);
         const loopStack = eventSheetManager.GetLoopStack();
@@ -253,14 +253,14 @@ const Conditions = {
           for (let i = 0; i < catalog.length; i++) {
             eventSheetManager.PushCopySol(solModifiers);
             loop.SetIndex(i);
-            this.forEachInCatalogLoopData["currentIndex"] = i;
+            this.currentCatalogLoopData["currentIndex"] = i;
             currentEvent.Retrigger(oldFrame, newFrame);
             eventSheetManager.PopSol(solModifiers);
           }
         } else {
           for (let i = 0; i < catalog.length; i++) {
             loop.SetIndex(i);
-            this.forEachInCatalogLoopData["currentIndex"] = i;
+            this.currentCatalogLoopData["currentIndex"] = i;
             currentEvent.Retrigger(oldFrame, newFrame);
           }
         }
@@ -268,7 +268,7 @@ const Conditions = {
         eventStack.Pop();
         loopStack.Pop();
 
-        this.forEachInCatalogLoopData = null;
+        this.currentCatalogLoopData = null;
       },
     );
 
@@ -290,24 +290,7 @@ const Conditions = {
    * @param {string} purchaseID
    */
   OnSpecificPurchaseSuccess(purchaseID) {
-    const havekillSID = this.purchaseSuccessKillSID.has(purchaseID);
-
-    if (!havekillSID) return false;
-
-    const killSID = this.purchaseSuccessKillSID.get(purchaseID);
-
-    const SID = this.GetRuntime().GetCurrentEvent().GetSID();
-
-    if (killSID === SID) {
-      this.purchaseSuccessKillSID.delete(purchaseID);
-      return false;
-    }
-
-    if (killSID === Number.MAX_SAFE_INTEGER) {
-      this.purchaseSuccessKillSID.set(purchaseID, SID);
-    }
-
-    return true;
+    return self.C3.equalsNoCase(this.currentPurchaseID, purchaseID);
   },
 
   /**
@@ -315,24 +298,7 @@ const Conditions = {
    * @param {string} purchaseID
    */
   OnSpecificPurchaseError(purchaseID) {
-    const havekillSID = this.purchaseErrorKillSID.has(purchaseID);
-
-    if (!havekillSID) return false;
-
-    const killSID = this.purchaseErrorKillSID.get(purchaseID);
-
-    const SID = this.GetRuntime().GetCurrentEvent().GetSID();
-
-    if (killSID === SID) {
-      this.purchaseErrorKillSID.delete(purchaseID);
-      return false;
-    }
-
-    if (killSID === Number.MAX_SAFE_INTEGER) {
-      this.purchaseErrorKillSID.set(purchaseID, SID);
-    }
-
-    return true;
+    return self.C3.equalsNoCase(this.currentPurchaseID, purchaseID);
   },
 
   //#endregion
