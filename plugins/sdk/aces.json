@@ -102,7 +102,7 @@
       {
         "id": "on-rewarded-ad-open",
         "scriptName": "OnRewardedADOpen",
-        "isFakeTrigger": true,
+        "isTrigger": true,
         "isInvertible": false,
         "isCompatibleWithTriggers": false,
         "params": [{ "id": "id", "type": "string" }]
@@ -110,7 +110,7 @@
       {
         "id": "on-rewarded-ad-rewarded",
         "scriptName": "OnRewardedADRewarded",
-        "isFakeTrigger": true,
+        "isTrigger": true,
         "isInvertible": false,
         "isCompatibleWithTriggers": false,
         "params": [{ "id": "id", "type": "string" }]
@@ -118,7 +118,7 @@
       {
         "id": "on-rewarded-ad-close",
         "scriptName": "OnRewardedADClose",
-        "isFakeTrigger": true,
+        "isTrigger": true,
         "isInvertible": false,
         "isCompatibleWithTriggers": false,
         "params": [{ "id": "id", "type": "string" }]
@@ -126,7 +126,7 @@
       {
         "id": "on-rewarded-ad-error",
         "scriptName": "OnRewardedADError",
-        "isFakeTrigger": true,
+        "isTrigger": true,
         "isInvertible": false,
         "isCompatibleWithTriggers": false,
         "params": [{ "id": "id", "type": "string" }]
@@ -134,21 +134,21 @@
       {
         "id": "on-any-rewarded-ad-open",
         "scriptName": "OnAnyRewardedADOpen",
-        "isFakeTrigger": true,
+        "isTrigger": true,
         "isInvertible": false,
         "isCompatibleWithTriggers": false
       },
       {
         "id": "on-any-rewarded-ad-close",
         "scriptName": "OnAnyRewardedADClose",
-        "isFakeTrigger": true,
+        "isTrigger": true,
         "isInvertible": false,
         "isCompatibleWithTriggers": false
       },
       {
         "id": "on-any-rewarded-ad-error",
         "scriptName": "OnAnyRewardedADError",
-        "isFakeTrigger": true,
+        "isTrigger": true,
         "isInvertible": false,
         "isCompatibleWithTriggers": false
       }

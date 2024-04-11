@@ -229,7 +229,7 @@ class Localization {
 
   TranslateSprite(instance) {
     const sdkInstance = instance.GetSdkInstance();
-    
+
     // Get animations map
     const animationsByName = sdkInstance._objectClass?._animationsByName;
     if (!animationsByName) return;
@@ -385,42 +385,37 @@ class YandexGamesSDKInstance extends C3.SDKInstanceBase {
 
     //#region Rewarded AD
 
-    /** @type {Map<string, number>} */
-    this.rewardedADOpenKillSID = new Map();
+    /** @type {string | undefined} */
+    this._currentRewardedID = undefined;
 
-    /** @type {Map<string, number>} */
-    this.rewardedADRewardedKillSID = new Map();
-
-    /** @type {Map<string, number>} */
-    this.rewardedADCloseKillSID = new Map();
-
-    /** @type {Map<string, number>} */
-    this.rewardedADErrorKillSID = new Map();
-    /** @type {Map<string, string>} */
-    this.rewardedADErrorError = new Map();
+    /** @type {string | undefined} */
+    this._currentRewardedError = undefined;
 
     this.AddDOMMessageHandler(
       'ysdk-rewarded-ad-callback',
       /** @param {{type: "onOpen" | "onRewarded" | "onClose" | "onError", id: string, error?: string}} data  */
-      (data) => {
+      async (data) => {
+        this._currentRewardedID = data['id'];
         switch (data['type']) {
           case 'onOpen':
-            this.rewardedADOpenKillSID.set(data['id'], Number.MAX_SAFE_INTEGER);
-            this.Trigger(this.conditions.OnAnyRewardedADOpen);
+            await this.TriggerAsync(this.conditions.OnRewardedADOpen);
+            await this.TriggerAsync(this.conditions.OnAnyRewardedADOpen);
             break;
           case 'onRewarded':
-            this.rewardedADRewardedKillSID.set(data['id'], Number.MAX_SAFE_INTEGER);
+            await this.TriggerAsync(this.conditions.OnRewardedADRewarded);
             break;
           case 'onClose':
-            this.rewardedADCloseKillSID.set(data['id'], Number.MAX_SAFE_INTEGER);
-            this.Trigger(this.conditions.OnAnyRewardedADClose);
+            await this.TriggerAsync(this.conditions.OnRewardedADClose);
+            await this.TriggerAsync(this.conditions.OnAnyRewardedADClose);
             break;
           case 'onError':
-            this.rewardedADErrorKillSID.set(data['id'], Number.MAX_SAFE_INTEGER);
-            this.rewardedADErrorError.set(data['id'], data['error']);
-            this.Trigger(this.conditions.OnAnyRewardedADError);
+            this._currentRewardedError = data['error'];
+            await this.TriggerAsync(this.conditions.OnRewardedADError);
+            await this.TriggerAsync(this.conditions.OnAnyRewardedADError);
+            this._currentRewardedError = undefined;
             break;
         }
+        this._currentRewardedID = undefined;
       },
     );
 

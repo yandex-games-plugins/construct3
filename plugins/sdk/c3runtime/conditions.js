@@ -64,24 +64,7 @@ const Conditions = {
    * @param {string} id
    */
   OnRewardedADOpen(id) {
-    const havekillSID = this.rewardedADOpenKillSID.has(id);
-
-    if (!havekillSID) return false;
-
-    const killSID = this.rewardedADOpenKillSID.get(id);
-
-    const SID = this.GetRuntime().GetCurrentEvent().GetSID();
-
-    if (killSID === SID) {
-      this.rewardedADOpenKillSID.delete(id);
-      return false;
-    }
-
-    if (killSID === Number.MAX_SAFE_INTEGER) {
-      this.rewardedADOpenKillSID.set(id, SID);
-    }
-
-    return true;
+    return self.C3.equalsNoCase(this._currentRewardedID, id);
   },
 
   /**
@@ -89,24 +72,7 @@ const Conditions = {
    * @param {string} id
    */
   OnRewardedADRewarded(id) {
-    const havekillSID = this.rewardedADRewardedKillSID.has(id);
-
-    if (!havekillSID) return false;
-
-    const killSID = this.rewardedADRewardedKillSID.get(id);
-
-    const SID = this.GetRuntime().GetCurrentEvent().GetSID();
-
-    if (killSID === SID) {
-      this.rewardedADRewardedKillSID.delete(id);
-      return false;
-    }
-
-    if (killSID === Number.MAX_SAFE_INTEGER) {
-      this.rewardedADRewardedKillSID.set(id, SID);
-    }
-
-    return true;
+    return self.C3.equalsNoCase(this._currentRewardedID, id);
   },
 
   /**
@@ -114,24 +80,7 @@ const Conditions = {
    * @param {string} id
    */
   OnRewardedADClose(id) {
-    const havekillSID = this.rewardedADCloseKillSID.has(id);
-
-    if (!havekillSID) return false;
-
-    const killSID = this.rewardedADCloseKillSID.get(id);
-
-    const SID = this.GetRuntime().GetCurrentEvent().GetSID();
-
-    if (killSID === SID) {
-      this.rewardedADCloseKillSID.delete(id);
-      return false;
-    }
-
-    if (killSID === Number.MAX_SAFE_INTEGER) {
-      this.rewardedADCloseKillSID.set(id, SID);
-    }
-
-    return true;
+    return self.C3.equalsNoCase(this._currentRewardedID, id);
   },
 
   /**
@@ -139,35 +88,7 @@ const Conditions = {
    * @param {string} id
    */
   OnRewardedADError(id) {
-    const havekillSID = this.rewardedADErrorKillSID.has(id);
-
-    if (!havekillSID) return false;
-
-    const killSID = this.rewardedADErrorKillSID.get(id);
-    const error = this.rewardedADErrorError.get(id);
-
-    const runtime = this.GetRuntime();
-    const currentEvent = runtime.GetCurrentEvent();
-
-    const SID = currentEvent.GetSID();
-
-    if (killSID === SID) {
-      this.rewardedADErrorKillSID.delete(id);
-      this.rewardedADErrorError.delete(id);
-      return false;
-    }
-
-    if (killSID === Number.MAX_SAFE_INTEGER) {
-      this.rewardedADErrorKillSID.set(id, SID);
-    }
-
-    const condition = currentEvent
-      .GetConditions()
-      .find((cond) => cond._func === this.conditions.OnRewardedADError);
-
-    condition.$error = error;
-
-    return true;
+    return self.C3.equalsNoCase(this._currentRewardedID, id);
   },
 
   /** @this {YandexGamesSDKInstance} */
