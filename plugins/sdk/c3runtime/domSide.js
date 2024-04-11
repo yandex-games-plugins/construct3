@@ -154,7 +154,7 @@
 
       await this.OnYSDKLoaded(this.ysdk);
 
-      this.ysdk['PluginEngineDataReporterAPI']?.['report']({
+      this.ysdk['features']['PluginEngineDataReporterAPI']?.['report']({
         ['engineName']: 'Construct',
         ['engineVersion']: '3', // TODO: find a way to get version from runtime in "rXXX" format
         ['pluginName']: 'yagames_sdk by LisGames',
@@ -184,7 +184,7 @@
     async OnYSDKLoaded() {
       if (!this.ysdk) return;
 
-      this.ysdk['onEvent'](this.ysdk['HISTORY_BACK'], () => {
+      this.ysdk['onEvent'](this.ysdk['EVENTS']['HISTORY_BACK'], () => {
         this.domHandler.PostToRuntime('ysdk-handle-event', { ['type']: 'HISTORY_BACK' });
       });
 
@@ -193,31 +193,31 @@
 
     YSDKLoadingAPIReady() {
       if (!this.ysdk) return;
-      this.ysdk['LoadingAPI']?.ready();
+      this.ysdk['features']['LoadingAPI']?.["ready"]();
     }
 
     YSDKShowFullscreenAD() {
       if (!this.ysdk) return;
-      this.ysdk['showFullscreenAdv']({
-        callbacks: {
-          onClose: (wasShown) => {
+      this.ysdk['adv']['showFullscreenAdv']({
+        ['callbacks']: {
+          ['onClose']: (wasShown) => {
             this.domHandler.PostToRuntime('ysdk-fullscreen-ad-callback', {
               ['type']: 'onClose',
               ['wasShown']: wasShown,
             });
           },
-          onOpen: () => {
+          ['onOpen']: () => {
             this.domHandler.PostToRuntime('ysdk-fullscreen-ad-callback', {
               ['type']: 'onOpen',
             });
           },
-          onError: (error) => {
+          ['onError']: (error) => {
             this.domHandler.PostToRuntime('ysdk-fullscreen-ad-callback', {
               ['type']: 'onError',
               ['error']: JSON.stringify(error),
             });
           },
-          onOffline: () => {
+          ['onOffline']: () => {
             this.domHandler.PostToRuntime('ysdk-fullscreen-ad-callback', {
               ['type']: 'onOffline',
             });
@@ -228,27 +228,27 @@
 
     YSDKShowRewardedAD({ id }) {
       if (!this.ysdk) return;
-      this.ysdk['showRewardedVideo']({
-        callbacks: {
-          onOpen: () => {
+      this.ysdk['adv']['showRewardedVideo']({
+        ['callbacks']: {
+          ['onOpen']: () => {
             this.domHandler.PostToRuntime('ysdk-rewarded-ad-callback', {
               ['id']: id,
               ['type']: 'onOpen',
             });
           },
-          onRewarded: () => {
+          ['onRewarded']: () => {
             this.domHandler.PostToRuntime('ysdk-rewarded-ad-callback', {
               ['id']: id,
               ['type']: 'onRewarded',
             });
           },
-          onClose: () => {
+          ['onClose']: () => {
             this.domHandler.PostToRuntime('ysdk-rewarded-ad-callback', {
               ['id']: id,
               ['type']: 'onClose',
             });
           },
-          onError: (error) => {
+          ['onError']: (error) => {
             this.domHandler.PostToRuntime('ysdk-rewarded-ad-callback', {
               ['id']: id,
               ['type']: 'onError',
@@ -261,12 +261,12 @@
 
     YSDKShowStickyBanner() {
       if (!this.ysdk) return;
-      this.ysdk['showBannerAdv']();
+      this.ysdk['adv']['showBannerAdv']();
     }
 
     YSDKHideStickyBanner() {
       if (!this.ysdk) return;
-      this.ysdk['hideBannerAdv']();
+      this.ysdk['adv']['hideBannerAdv']();
     }
 
     async YSDKGetLeaderboardEntries({ leaderboardName, options }) {
