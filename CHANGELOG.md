@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## YandexGamesSDK - [2.8.0] - 2024.4.11
+
+### Added
+
+- Missing key parameter for `Localization value` expression
+- Rename parameter `ID`to `Tag` for Reward AD ACEs 
+- Experimental support for Construct 3 "Advanced" minification
+
+### Fixed
+
+- Incorrect behavior of `Any rewarded AD opened` trigger
+- Incorrect behavior of `Any rewarded AD closed` trigger
+- Incorrect behavior of `Any rewarded AD failed` trigger
+
 ## YandexGamesSDK - [2.7.3] - 2024.4.9
 
 ### Fixes
