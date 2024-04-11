@@ -66,8 +66,8 @@
             "description": "Executes when specific rewarded ad was opened.",
             "params": {
               "id": {
-                "name": "ID",
-                "desc": "Identifier of ad used for managing ad events in game, it's not affiliated with Yandex Advertising Network."
+                "name": "Tag",
+                "desc": "A tag used to distinguish advertising events from each other. (It's not affiliated with Yandex Advertising Network)"
               }
             }
           },
@@ -77,8 +77,8 @@
             "description": "Executes when specific rewarded ad was fully watched.",
             "params": {
               "id": {
-                "name": "ID",
-                "desc": "Identifier of ad used for managing ad events in game, it's not affiliated with Yandex Advertising Network."
+                "name": "Tag",
+                "desc": "A tag used to distinguish advertising events from each other. (It's not affiliated with Yandex Advertising Network)"
               }
             }
           },
@@ -88,8 +88,8 @@
             "description": "Executes when specific rewarded ad was closed.",
             "params": {
               "id": {
-                "name": "ID",
-                "desc": "Identifier of ad used for managing ad events in game, it's not affiliated with Yandex Advertising Network."
+                "name": "Tag",
+                "desc": "A tag used to distinguish advertising events from each other. (It's not affiliated with Yandex Advertising Network)"
               }
             }
           },
@@ -99,8 +99,8 @@
             "description": "Exectues when specific rewarded ad error occured.",
             "params": {
               "id": {
-                "name": "ID",
-                "desc": "Identifier of ad used for managing ad events in game, it's not affiliated with Yandex Advertising Network."
+                "name": "Tag",
+                "desc": "A tag used to distinguish advertising events from each other. (It's not affiliated with Yandex Advertising Network)"
               }
             }
           },
@@ -360,8 +360,8 @@
             "description": "Initiates rewarded ad.",
             "params": {
               "id": {
-                "name": "ID",
-                "desc": "Identifier of ad used for managing ad events in game, it's not affiliated with Yandex Advertising Network."
+                "name": "Tag",
+                "desc": "A tag used to distinguish advertising events from each other. (It's not affiliated with Yandex Advertising Network)"
               }
             }
           },
