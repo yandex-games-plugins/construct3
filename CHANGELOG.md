@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## YandexGamesSDK - [2.9.0] - 2024.4.12
+
+### Added
+
+- YSDK object reference for minified scripts
+
 ## YandexGamesSDK - [2.8.1] - 2024.4.12
 
 ### Fixed
