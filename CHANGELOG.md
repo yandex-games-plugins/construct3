@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## YandexGamesSDK - [2.8.1] - 2024.4.12
+
+### Fixed
+
+- Redundant logs removed
+- Fixed broken localization for renamed plugins
+- Errors inside sdk loops in preview mode
+- Fix minification issues for SDK request parameters
+
 ## YandexGamesSDK - [2.8.0] - 2024.4.11
 
 ### Added
@@ -64,7 +73,7 @@ All notable changes to this project will be documented in this file.
 - New shorthand `Large player avatar` expression
 - Multiple changes to ACEs titles/descriptions/display names
 
-###
+### 
 
 ## AdaptiveText - [1.1.1] - 2024.3.14
 
@@ -167,7 +176,8 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 
-- Rewarded AD ACEs now triggers rewarded ad as they should, instead of fullscreen ad
+- Rewarded AD ACEs now triggers rewarded ad as they should, instead of
+  fullscreen ad
 
 ## YandexGamesSDK - [2.1.0] - 2024.1.25
 
@@ -184,7 +194,8 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 
-- Wrong `display-text` properties for `player-get-data` and `player-set-data` language strings.
+- Wrong `display-text` properties for `player-get-data` and `player-set-data`
+  language strings.
 
 ## YandexGamesSDK - [2.0.0] - 2024.1.13
 
@@ -195,8 +206,8 @@ All notable changes to this project will be documented in this file.
 - TV Remote Emulator
 - New aditional plugin `adaptivetext`
 - BBCode independent translations
-- `set-default-localization-language` action deprecated in favor of addon `default-localization-language`
-  parameter.
+- `set-default-localization-language` action deprecated in favor of addon
+  `default-localization-language` parameter.
 
 ### Fixed
 
@@ -208,10 +219,13 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
-- Visual methods for [Sticky Banners](https://yandex.ru/dev/games/doc/ru/sdk/sdk-adv#sticky-banner)
-- Visual methods for [Leaderboards](https://yandex.ru/dev/games/doc/ru/sdk/sdk-leaderboard)
+- Visual methods for
+  [Sticky Banners](https://yandex.ru/dev/games/doc/ru/sdk/sdk-adv#sticky-banner)
+- Visual methods for
+  [Leaderboards](https://yandex.ru/dev/games/doc/ru/sdk/sdk-leaderboard)
 - Visual methods for [Player](https://yandex.ru/dev/games/doc/ru/sdk/sdk-player)
-- Visual methods for [Game Ready](https://yandex.ru/dev/games/doc/ru/sdk/sdk-gameready)
+- Visual methods for
+  [Game Ready](https://yandex.ru/dev/games/doc/ru/sdk/sdk-gameready)
 - Debounce and throttle visual methods
 - Debounce and throttle visual methods
 - Developer alerts in preview
@@ -227,5 +241,7 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
-- Visual methods for [Fullscreen AD](https://yandex.ru/dev/games/doc/ru/sdk/sdk-adv#full-screen-block)
-- Visual methods for [Rewarded AD](https://yandex.ru/dev/games/doc/ru/sdk/sdk-adv#rewarded-video)
+- Visual methods for
+  [Fullscreen AD](https://yandex.ru/dev/games/doc/ru/sdk/sdk-adv#full-screen-block)
+- Visual methods for
+  [Rewarded AD](https://yandex.ru/dev/games/doc/ru/sdk/sdk-adv#rewarded-video)
