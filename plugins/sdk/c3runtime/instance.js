@@ -64,8 +64,8 @@ class Localization {
     this.runtime
       .GetAllObjectClasses()
       .filter((objectClass) => {
-        const pluginName = objectClass._name;
-        return this.textPluginsNames.has(pluginName);
+        const prototype = objectClass._instSdkCtor.prototype;
+        return prototype && prototype.GetText && prototype._SetText;
       })
       .forEach((objectClass) => {
         const translateInstance = (instance) => {
@@ -180,9 +180,7 @@ class Localization {
     this.runtime
       .GetAllObjectClasses()
       .filter((objectClass) => {
-        const pluginName = objectClass._name;
         return (
-          pluginName === 'Sprite' &&
           // Check that all animations names are valid language codes
           objectClass._animations &&
           objectClass._animations.every((animationInfo) => this.IsValidLanguageCode(animationInfo._name))
