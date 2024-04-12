@@ -151,6 +151,7 @@
       await this.LoadYSDKScript();
       this.ysdk = await window['YaGames']['init']();
       window['ysdk'] = this.ysdk;
+      window.ysdk = this.ysdk;
 
       await this.OnYSDKLoaded(this.ysdk);
 
