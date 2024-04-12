@@ -9,4 +9,3 @@ C3.Plugins.yagames_adaptivetext = class AdaptiveTextPlugin extends C3.SDKPluginB
     super.Release();
   }
 };
-

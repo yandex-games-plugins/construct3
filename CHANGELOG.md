@@ -7,7 +7,7 @@ All notable changes to this project will be documented in this file.
 ### Added
 
 - Missing key parameter for `Localization value` expression
-- Rename parameter `ID`to `Tag` for Reward AD ACEs 
+- Rename parameter `ID`to `Tag` for Reward AD ACEs
 - Experimental support for Construct 3 "Advanced" minification
 
 ### Fixed
@@ -64,7 +64,7 @@ All notable changes to this project will be documented in this file.
 - New shorthand `Large player avatar` expression
 - Multiple changes to ACEs titles/descriptions/display names
 
-### 
+###
 
 ## AdaptiveText - [1.1.1] - 2024.3.14
 
@@ -128,7 +128,7 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 
-- Incorrect script name in `for-each-purchase` condition 
+- Incorrect script name in `for-each-purchase` condition
 
 ## YandexGamesSDK - [2.3.0] - 2024.2.3
 
@@ -156,7 +156,7 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 
-- `On TV Remote button press` now behaves currectly. 
+- `On TV Remote button press` now behaves currectly.
 
 ## YandexGamesSDK - [2.1.1] - 2024.1.27
 
@@ -167,7 +167,7 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 
-- Rewarded AD ACEs now triggers rewarded ad as they should, instead of fullscreen ad 
+- Rewarded AD ACEs now triggers rewarded ad as they should, instead of fullscreen ad
 
 ## YandexGamesSDK - [2.1.0] - 2024.1.25
 

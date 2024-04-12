@@ -11,4 +11,3 @@ C3.Plugins.yagames_adaptivetext.Type = class AdaptiveTextType extends C3.SDKType
 
   OnCreate() {}
 };
-

@@ -193,7 +193,7 @@
 
     YSDKLoadingAPIReady() {
       if (!this.ysdk) return;
-      this.ysdk['features']['LoadingAPI']?.["ready"]();
+      this.ysdk['features']['LoadingAPI']?.['ready']();
     }
 
     YSDKShowFullscreenAD() {
