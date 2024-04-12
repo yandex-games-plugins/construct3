@@ -134,6 +134,7 @@ const Conditions = {
         ['quantityAround']: quantityAround,
       },
     }).then((/** @type {typeof this.forEachLeaderbordEntryLoopData["entriesData"]} */ entriesData) => {
+      if (!entriesData) return;
       this.forEachLeaderbordEntryLoopData = {};
       this.forEachLeaderbordEntryLoopData['entriesData'] = entriesData;
 
@@ -195,6 +196,7 @@ const Conditions = {
 
     this.PostToDOMAsync('ysdk-get-purchases').then(
       (/** @type {typeof this.currentPurchasesLoopData["purchases"]} */ purchases) => {
+        if (!purchases) return;
         this.currentPurchasesLoopData = {};
         this.currentPurchasesLoopData['purchases'] = purchases;
 
@@ -241,6 +243,7 @@ const Conditions = {
 
     this.PostToDOMAsync('ysdk-get-catalog').then(
       (/** @type {typeof this.currentCatalogLoopData["catalog"]} */ catalog) => {
+        if (!catalog) return;
         this.currentCatalogLoopData = {};
         this.currentCatalogLoopData['catalog'] = catalog;
 
@@ -321,6 +324,7 @@ const Conditions = {
     this.PostToDOMAsync('ysdk-get-player', {
       ['requestPersonalInfo']: requestPersonalInfo,
     }).then((playerInfo) => {
+      if (!playerInfo) return;
       this.playerInfo = playerInfo;
 
       const newFrame = eventStack.Push(currentEvent);
