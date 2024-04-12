@@ -177,12 +177,10 @@ class Localization {
   }
 
   DecorateSpritePlugins() {
-    console.log(this.runtime.GetAllObjectClasses());
     this.runtime
       .GetAllObjectClasses()
       .filter((objectClass) => {
         const pluginName = objectClass._name;
-        console.log(pluginName, objectClass._animations);
         return (
           pluginName === 'Sprite' &&
           // Check that all animations names are valid language codes
