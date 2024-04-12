@@ -226,31 +226,31 @@
       });
     }
 
-    YSDKShowRewardedAD({ id }) {
+    YSDKShowRewardedAD(params) {
       if (!this.ysdk) return;
       this.ysdk['adv']['showRewardedVideo']({
         ['callbacks']: {
           ['onOpen']: () => {
             this.domHandler.PostToRuntime('ysdk-rewarded-ad-callback', {
-              ['id']: id,
+              ['id']: params['id'],
               ['type']: 'onOpen',
             });
           },
           ['onRewarded']: () => {
             this.domHandler.PostToRuntime('ysdk-rewarded-ad-callback', {
-              ['id']: id,
+              ['id']: params['id'],
               ['type']: 'onRewarded',
             });
           },
           ['onClose']: () => {
             this.domHandler.PostToRuntime('ysdk-rewarded-ad-callback', {
-              ['id']: id,
+              ['id']: params['id'],
               ['type']: 'onClose',
             });
           },
           ['onError']: (error) => {
             this.domHandler.PostToRuntime('ysdk-rewarded-ad-callback', {
-              ['id']: id,
+              ['id']: params['id'],
               ['type']: 'onError',
               ['error']: JSON.stringify(error),
             });
@@ -269,12 +269,12 @@
       this.ysdk['adv']['hideBannerAdv']();
     }
 
-    async YSDKGetLeaderboardEntries({ leaderboardName, options }) {
+    async YSDKGetLeaderboardEntries(params) {
       if (!this.ysdk) return;
 
       const lb = await this.ysdk['getLeaderboards']();
 
-      const entries = await lb['getLeaderboardEntries'](leaderboardName, options);
+      const entries = await lb['getLeaderboardEntries'](params['leaderboardName'], params['options']);
 
       return {
         ['leaderboard']: entries['leaderboard'],
@@ -307,23 +307,27 @@
       };
     }
 
-    async YSDKSetLeaderboardScore({ leaderboardName, score, extraData }) {
+    async YSDKSetLeaderboardScore(params) {
       if (!this.ysdk) return;
 
       const lb = await this.ysdk['getLeaderboards']();
 
-      await lb['setLeaderboardScore'](leaderboardName, score, extraData || undefined);
+      await lb['setLeaderboardScore'](
+        params['leaderboardName'],
+        params['score'],
+        params['extraData'] || undefined,
+      );
     }
 
-    async YSDKPurchase({ productID, developerPayload }) {
+    async YSDKPurchase(params) {
       if (!this.ysdk) return;
 
       try {
         const payments = await this.ysdk['getPayments']({ ['signed']: true });
 
         const purchase = await payments['purchase']({
-          ['id']: productID,
-          ['developerPayload']: developerPayload,
+          ['id']: params['productID'],
+          ['developerPayload']: params['developerPayload'],
         });
 
         this.domHandler.PostToRuntime('ysdk-purchase-callback', {
@@ -342,12 +346,12 @@
       }
     }
 
-    async YSDKConsumePurchase({ purchaseToken }) {
+    async YSDKConsumePurchase(params) {
       if (!this.ysdk) return;
 
       const payments = await this.ysdk['getPayments']({ ['signed']: true });
 
-      await payments['consumePurchase'](purchaseToken);
+      await payments['consumePurchase'](params['purchaseToken']);
     }
 
     async YSDKGetPurchases() {
@@ -423,12 +427,12 @@
       return stats;
     }
 
-    async YSDKSetPlayerData({ data, flush }) {
+    async YSDKSetPlayerData(params) {
       if (!this.ysdk) return;
 
       const player = await this.ysdk['getPlayer']();
 
-      await player['setData'](data, flush);
+      await player['setData'](params['data'], params['flush']);
     }
 
     async YSDKSetPlayerStats(data) {
@@ -447,13 +451,13 @@
       await player['incrementStats'](data);
     }
 
-    async YSDKGetPlayer({ requestPersonalInfo }) {
+    async YSDKGetPlayer(params) {
       if (!this.ysdk) return;
 
       /** @type {import("../../../global").Player} */
       let player;
 
-      if (requestPersonalInfo) {
+      if (params['requestPersonalInfo']) {
         player = await this.ysdk['getPlayer']({ ['signed']: true, ['scopes']: true });
 
         if (player['getMode']() === 'lite') {
@@ -481,9 +485,9 @@
       };
     }
 
-    YSDKDispatchEvent({ name }) {
+    YSDKDispatchEvent(params) {
       if (!this.ysdk) return;
-      this.ysdk['dispatchEvent'](this.ysdk['EVENTS'][name]);
+      this.ysdk['dispatchEvent'](this.ysdk['EVENTS'][params['name']]);
     }
 
     async YSDKUpdateCanShowShortcutPrompt() {

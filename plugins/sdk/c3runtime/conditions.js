@@ -127,11 +127,11 @@ const Conditions = {
     const isSolModifierAfterCnds = oldFrame.IsSolModifierAfterCnds();
 
     this.PostToDOMAsync('ysdk-get-leaderboard-entries', {
-      leaderboardName,
-      options: {
-        quantityTop,
-        includeUser,
-        quantityAround,
+      ['leaderboardName']: leaderboardName,
+      ['options']: {
+        ['quantityTop']: quantityTop,
+        ['includeUser']: includeUser,
+        ['quantityAround']: quantityAround,
       },
     }).then((/** @type {typeof this.forEachLeaderbordEntryLoopData["entriesData"]} */ entriesData) => {
       this.forEachLeaderbordEntryLoopData = {};
@@ -319,7 +319,7 @@ const Conditions = {
     const isSolModifierAfterCnds = oldFrame.IsSolModifierAfterCnds();
 
     this.PostToDOMAsync('ysdk-get-player', {
-      requestPersonalInfo,
+      ['requestPersonalInfo']: requestPersonalInfo,
     }).then((playerInfo) => {
       this.playerInfo = playerInfo;
 
