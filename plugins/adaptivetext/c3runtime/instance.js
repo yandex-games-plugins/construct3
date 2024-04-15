@@ -57,6 +57,8 @@ C3.Plugins.yagames_adaptivetext.Instance = class AdaptiveTextInstance extends C3
     this._rendererText.SetColorRgb(color.getR(), color.getG(), color.getB());
 
     if (this._dirtyText) {
+      if (this._text.length <= 0) return;
+
       this._rendererText.SetFontName(this._font);
       this._rendererText.SetText(this._text);
       this._rendererText.SetHorizontalAlignment(this._horizontalAlign);
