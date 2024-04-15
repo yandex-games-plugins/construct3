@@ -5,7 +5,7 @@
     "plugins": {
       "yagames_adaptivetext": {
         "name": "Adaptive Text",
-        "description": "",
+        "description": "Plugin to display text with adaptive font size and alignment inside a bounding box.",
         "help-url": "https://www.construct.net",
         "properties": {
           "text": {

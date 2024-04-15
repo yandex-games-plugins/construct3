@@ -5,7 +5,7 @@
     "plugins": {
       "yagames_adaptivetext": {
         "name": "Адаптивный Текст",
-        "description": "",
+        "description": "Плагин для отображения текста с адаптивным размером шрифта и выравниванием.",
         "help-url": "https://www.construct.net",
         "properties": {
           "text": {
