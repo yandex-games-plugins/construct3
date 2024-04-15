@@ -2,7 +2,7 @@ const SDK = self.SDK;
 
 const PLUGIN = {
   ID: 'yagames_adaptivetext',
-  VERSION: '1.1.1',
+  VERSION: '1.1.2',
   CATEGORY: 'general',
 };
 
@@ -37,7 +37,7 @@ const PLUGIN_CLASS = (SDK.Plugins.yagames_adaptivetext = class AdaptiveTextPlugi
     SDK.Lang.PushContext('.properties');
 
     this._info.SetProperties([
-      new SDK.PluginProperty('text', 'text', 'Text'),
+      new SDK.PluginProperty('longtext', 'text', 'Text'),
       new SDK.PluginProperty('font', 'font', 'Arial'),
       new SDK.PluginProperty('integer', 'baseFontSize', {
         initialValue: 12,
