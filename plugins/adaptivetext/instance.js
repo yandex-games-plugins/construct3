@@ -48,7 +48,10 @@ SDK.Plugins.yagames_adaptivetext.Instance = class AdaptiveTextInstance extends S
     this._webglText.SetColorRgb(color.getR(), color.getG(), color.getB());
 
     if (this._dirtyText) {
-      this._webglText.SetText(this._inst.GetPropertyValue('text'));
+      const text = this._inst.GetPropertyValue('text');
+      if (text.length <= 0) return;
+
+      this._webglText.SetText(text);
 
       this._webglText.SetFontName(this._inst.GetPropertyValue('font'));
       this._webglText.SetHorizontalAlignment(this._inst.GetPropertyValue('horizontalAlign'));
