@@ -2,7 +2,7 @@ const SDK = self.SDK;
 
 const PLUGIN = {
   ID: 'yagames_adaptivetext',
-  VERSION: '1.1.2',
+  VERSION: '1.1.3',
   CATEGORY: 'general',
 };
 

@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## AdaptiveText - [1.1.3] - 2024.3.15
+
+### Fixes
+
+- Crash when leaving `AdaptiveText` with empty text in runtime
+
 ## AdaptiveText - [1.1.2] - 2024.3.15
 
 ### Fixes
