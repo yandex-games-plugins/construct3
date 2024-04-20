@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## YandexGamesSDK - [2.9.1] - 2024.4.12
+
+### Fixed
+
+- Incorrect behavior of `Specific purchase success` trigger
+- Incorrect behavior of `Specific purchase failure` trigger
+
 ## AdaptiveText - [1.1.3] - 2024.3.15
 
 ### Fixes
