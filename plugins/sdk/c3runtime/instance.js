@@ -458,23 +458,17 @@ class YandexGamesSDKInstance extends C3.SDKInstanceBase {
     //#endregion
 
     //#region Payments
-
-    /** @type {string | undefined} */
-    this.currentPurchaseID = undefined;
-
     /**
-     * @typedef {Object} PurchaseSuccessTriggerData
+     * @typedef {Object} PurchaseTriggerData
      * @property {string} productID
      * @property {string} purchaseToken
      * @property {string|undefined} developerPayload
      * @property {string|undefined} signature
+     * @property {string|undefined} error
      */
 
-    /** @type {PurchaseSuccessTriggerData | undefined} */
-    this.currentPurchaseSuccessData = undefined;
-
-    /** @type {string | undefined} */
-    this.currentPurchaseError = undefined;
+    /** @type {PurchaseTriggerData | undefined} */
+    this.currentPurchaseData = undefined;
 
     /** @type {{purchases: types.Signed<types.Purchase[]>,["currentIndex"]: number} | undefined} */
     this.currentPurchasesLoopData = undefined;
@@ -498,23 +492,26 @@ class YandexGamesSDKInstance extends C3.SDKInstanceBase {
       'ysdk-purchase-callback',
       /** @param {{error?: string, productID: string, purchaseToken: string, developerPayload?: string, signature?: string}} data  */
       async (data) => {
-        if (data['error']) {
-          this.currentPurchaseError = data['error'];
-          await this.TriggerAsync(this.conditions.OnSpecificPurchaseError);
-          await this.TriggerAsync(this.conditions.OnPurchaseError);
-          this.currentPurchaseError = undefined;
-          return;
-        }
-
-        this.currentPurchaseSuccessData = {
+        this.currentPurchaseData = {
           ['productID']: data['productID'],
           ['purchaseToken']: data['purchaseToken'],
           ['developerPayload']: data['developerPayload'],
           ['signature']: data['signature'],
+          ['error']: data['error'],
         };
+
+        if (data['error']) {
+          await this.TriggerAsync(this.conditions.OnSpecificPurchaseError);
+          await this.TriggerAsync(this.conditions.OnPurchaseError);
+          console.error('Purchase error', data);
+          this.currentPurchaseData = undefined;
+          return;
+        }
+
         await this.TriggerAsync(this.conditions.OnSpecificPurchaseSuccess);
         await this.TriggerAsync(this.conditions.OnPurchaseSuccess);
-        this.currentPurchaseSuccessData = undefined;
+        console.log('Purchase success', data);
+        this.currentPurchaseData = undefined;
       },
     );
 

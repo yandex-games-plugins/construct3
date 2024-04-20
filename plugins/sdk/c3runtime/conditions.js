@@ -293,7 +293,7 @@ const Conditions = {
    * @param {string} purchaseID
    */
   OnSpecificPurchaseSuccess(purchaseID) {
-    return self.C3.equalsNoCase(this.currentPurchaseID, purchaseID);
+    return self.C3.equalsNoCase(this.currentPurchaseData?.['productID'], purchaseID);
   },
 
   /**
@@ -301,7 +301,7 @@ const Conditions = {
    * @param {string} purchaseID
    */
   OnSpecificPurchaseError(purchaseID) {
-    return self.C3.equalsNoCase(this.currentPurchaseID, purchaseID);
+    return self.C3.equalsNoCase(this.currentPurchaseData?.['productID'], purchaseID);
   },
 
   //#endregion

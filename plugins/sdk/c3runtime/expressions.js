@@ -150,8 +150,8 @@ const Expressions = {
 
   /** @this {YandexGamesSDKInstance} */
   PurchaseToken() {
-    if (this.currentPurchaseSuccessData) {
-      return this.currentPurchaseSuccessData['purchaseToken'];
+    if (this.currentPurchaseData) {
+      return this.currentPurchaseData['purchaseToken'];
     } else if (this.currentPurchasesLoopData) {
       const loopData = this.currentPurchasesLoopData;
       const purchaseEntry = loopData['purchases'][loopData['currentIndex']];
@@ -166,8 +166,8 @@ const Expressions = {
 
   /** @this {YandexGamesSDKInstance} */
   PurchaseDeveloperPayload() {
-    if (this.currentPurchaseSuccessData) {
-      return this.currentPurchaseSuccessData['developerPayload'];
+    if (this.currentPurchaseData) {
+      return this.currentPurchaseData['developerPayload'];
     } else if (this.currentPurchasesLoopData) {
       const loopData = this.currentPurchasesLoopData;
       const purchaseEntry = loopData['purchases'][loopData['currentIndex']];
@@ -182,8 +182,8 @@ const Expressions = {
 
   /** @this {YandexGamesSDKInstance} */
   PurchaseSignature() {
-    if (this.currentPurchaseSuccessData) {
-      return this.currentPurchaseSuccessData['signature'];
+    if (this.currentPurchaseData) {
+      return this.currentPurchaseData['signature'];
     } else {
       this.logDeveloperMistake(
         `You are trying to use "Purchase signature" expression outside of "On purchase success" trigger!`,
@@ -206,8 +206,8 @@ const Expressions = {
 
   /** @this {YandexGamesSDKInstance} */
   PurchaseError() {
-    if (this.currentPurchaseError) {
-      return this.currentPurchaseError;
+    if (this.currentPurchaseData) {
+      return this.currentPurchaseData['error'];
     } else {
       this.logDeveloperMistake(
         `You are trying to use "Purchase error" expression outside of "On purchase error" trigger!`,
@@ -218,8 +218,8 @@ const Expressions = {
 
   /** @this {YandexGamesSDKInstance} */
   ProductID() {
-    if (this.currentPurchaseSuccessData) {
-      return this.currentPurchaseSuccessData['productID'];
+    if (this.currentPurchaseData) {
+      return this.currentPurchaseData['productID'];
     } else if (this.currentPurchasesLoopData) {
       const loopData = this.currentPurchasesLoopData;
       const purchaseEntry = loopData['purchases'][loopData['currentIndex']];
