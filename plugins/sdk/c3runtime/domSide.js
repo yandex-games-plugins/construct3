@@ -458,7 +458,7 @@
       /** @type {import("../../../global").Player} */
       let player;
 
-      if (params['requestPersonalInfo']) {
+      if (params['requestPersonalInfo'] && this.ysdk['openAuthDialog']) {
         player = await this.ysdk['getPlayer']({ ['signed']: true, ['scopes']: true });
 
         if (player['getMode']() === 'lite') {
