@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## YandexGamesSDK - [2.9.2] - 2024.5.12
+
+### Fixed
+
+- Fix `this.ysdk.openAuthDialog is not a function` error in `Using player info`
+  when not logged in
+
 ## YandexGamesSDK - [2.9.1] - 2024.4.12
 
 ### Fixed
