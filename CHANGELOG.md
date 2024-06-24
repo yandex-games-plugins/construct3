@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## YandexGamesSDK - [2.10.1] - 2024.6.25
+
+### Fixed
+
+- Fix crash when using `Product price currency code` expression
+
+## YandexGamesSDK - [2.10.0] - 2024.5.27
+
+### Added
+
+- Added review API ACEs
+
 ## YandexGamesSDK - [2.9.2] - 2024.5.12
 
 ### Fixed

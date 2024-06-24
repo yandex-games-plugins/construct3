@@ -161,10 +161,10 @@
         ['engineName']: 'Construct',
         ['engineVersion']: '3', // TODO: find a way to get version from runtime in "rXXX" format
         ['pluginName']: 'yagames_sdk by LisGames',
-        ['pluginVersion']: '2.10.0-rc',
+        ['pluginVersion']: '2.10.1',
       });
 
-      console.log('%c YandexGamesSDK for Construct 3 v2.10.0-rc ', 'background: #14151f; color: #fb923c');
+      console.log('%c YandexGamesSDK for Construct 3 v2.10.1 ', 'background: #14151f; color: #fb923c');
 
       return {
         ['environment']: {
