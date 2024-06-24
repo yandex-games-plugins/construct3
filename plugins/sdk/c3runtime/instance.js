@@ -571,6 +571,18 @@ class YandexGamesSDKInstance extends C3.SDKInstanceBase {
 
     //#endregion
 
+    //#region Review
+
+    /** @type {boolean} */
+    this.canReview = false;
+
+    this.AddDOMMessageHandler('ysdk-update-can-review', (data) => {
+      this.canReview = data['value'];
+      return true;
+    });
+
+    //#endregion
+
     //#region Misc
 
     /** @type {Map<any, number>} */

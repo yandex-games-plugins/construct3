@@ -186,6 +186,21 @@ const Actions = {
 
   //#endregion
 
+  //#region Review
+
+  /** @this {YandexGamesSDKInstance} */
+  RequestReview() {
+    this.PostToDOMAsync('ysdk-request-review').then((props) => {
+      if (props['feedbackSent']) {
+        this.Trigger(this.conditions.OnReviewSuccess);
+      } else {
+        this.Trigger(this.conditions.OnReviewCancel);
+      }
+    });
+  },
+
+  //#endregion
+
   //#region Misc
 
   /** @this {YandexGamesSDKInstance} */

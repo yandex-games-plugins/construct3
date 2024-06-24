@@ -5,7 +5,6 @@
       {
         "id": "switch-localization-language",
         "scriptName": "SwitchLanguage",
-        "highlight": false,
         "params": [
           {
             "id": "lang",
@@ -16,7 +15,6 @@
       {
         "id": "set-default-localization-language",
         "scriptName": "SetDefaultLanguage",
-        "highlight": false,
         "isDeprecated": true,
         "params": [
           {
@@ -176,13 +174,11 @@
       {
         "id": "show-sticky-banner",
         "scriptName": "ShowStickyBanner",
-        "highlight": false,
         "params": []
       },
       {
         "id": "hide-sticky-banner",
         "scriptName": "HideStickyBanner",
-        "highlight": false,
         "params": []
       }
     ],
@@ -194,7 +190,6 @@
       {
         "id": "for-each-leaderboard-entry",
         "scriptName": "ForEachLeaderboardEntry",
-        "highlight": false,
         "isCompatibleWithTriggers": false,
         "isLooping": true,
         "params": [
@@ -214,7 +209,6 @@
       {
         "id": "set-leaderboard-score",
         "scriptName": "SetLeaderboardScore",
-        "highlight": false,
         "params": [
           { "id": "leaderboardName", "type": "string" },
           { "id": "score", "type": "number" },
@@ -289,14 +283,12 @@
       {
         "id": "for-each-in-catalog",
         "scriptName": "ForEachInCatalog",
-        "highlight": false,
         "isCompatibleWithTriggers": false,
         "isLooping": true
       },
       {
         "id": "for-each-purchase",
         "scriptName": "ForEachPurchase",
-        "highlight": false,
         "isCompatibleWithTriggers": false,
         "isLooping": true
       },
@@ -398,7 +390,6 @@
       {
         "id": "with-player-info",
         "scriptName": "WithPlayerInfo",
-        "highlight": false,
         "isCompatibleWithTriggers": false,
         "isLooping": true,
         "params": [{ "id": "requestAuthorization", "type": "boolean" }]
@@ -406,13 +397,11 @@
       {
         "id": "current-player-is-authorized",
         "scriptName": "CurrentPlayerIsAuthorized",
-        "highlight": false,
         "isTrigger": false
       },
       {
         "id": "current-player-info-access-granted",
         "scriptName": "CurrentPlayerInfoAccessGranted",
-        "highlight": false,
         "isTrigger": false
       }
     ],
@@ -420,7 +409,6 @@
       {
         "id": "player-get-data",
         "scriptName": "PlayerGetData",
-        "highlight": false,
         "isAsync": true,
         "params": [
           { "id": "jsonObject", "type": "object", "allowedPluginIds": ["Json"] },
@@ -430,14 +418,12 @@
       {
         "id": "player-get-stats",
         "scriptName": "PlayerGetStats",
-        "highlight": false,
         "isAsync": true,
         "params": [{ "id": "jsonObject", "type": "object", "allowedPluginIds": ["Json"] }]
       },
       {
         "id": "player-set-data",
         "scriptName": "PlayerSetData",
-        "highlight": false,
         "isAsync": true,
         "params": [
           { "id": "jsonObject", "type": "object", "allowedPluginIds": ["Json"] },
@@ -447,14 +433,12 @@
       {
         "id": "player-set-stats",
         "scriptName": "PlayerSetStats",
-        "highlight": false,
         "isAsync": true,
         "params": [{ "id": "jsonObject", "type": "object", "allowedPluginIds": ["Json"] }]
       },
       {
         "id": "player-increment-stats",
         "scriptName": "PlayerIncrementStats",
-        "highlight": false,
         "isAsync": true,
         "params": [{ "id": "jsonObject", "type": "object", "allowedPluginIds": ["Json"] }]
       }
@@ -561,7 +545,6 @@
       {
         "id": "dispatch-event",
         "scriptName": "DispatchEvent",
-        "highlight": false,
         "params": [{ "id": "name", "type": "combo", "items": ["EXIT"] }]
       }
     ],
@@ -602,7 +585,6 @@
       {
         "id": "remote-config-set-default",
         "scriptName": "RemoteConfigSetDefault",
-        "highlight": false,
         "params": [
           { "id": "key", "type": "string" },
           { "id": "value", "type": "string" }
@@ -611,7 +593,6 @@
       {
         "id": "remote-config-set-client-feature",
         "scriptName": "RemoteConfigSetClientFeature",
-        "highlight": false,
         "params": [
           { "id": "name", "type": "string" },
           { "id": "value", "type": "string" }
@@ -659,12 +640,37 @@
     "expressions": []
   },
 
+  "review": {
+    "actions": [
+      {
+        "id": "request-review",
+        "scriptName": "RequestReview"
+      }
+    ],
+    "conditions": [
+      {
+        "id": "can-review",
+        "scriptName": "CanReview"
+      },
+      {
+        "id": "on-review-success",
+        "scriptName": "OnReviewSuccess",
+        "isTrigger": true
+      },
+      {
+        "id": "on-review-cancel",
+        "scriptName": "OnReviewCancel",
+        "isTrigger": true
+      }
+    ],
+    "expressions": []
+  },
+
   "misc": {
     "conditions": [
       {
         "id": "throttle",
         "scriptName": "Throttle",
-        "highlight": false,
         "isLooping": true,
         "isCompatibleWithTriggers": false,
         "params": [{ "id": "seconds", "type": "number" }]
@@ -672,7 +678,6 @@
       {
         "id": "debounce",
         "scriptName": "Debounce",
-        "highlight": false,
         "isLooping": true,
         "isCompatibleWithTriggers": false,
         "params": [{ "id": "seconds", "type": "number" }]
@@ -682,7 +687,6 @@
       {
         "id": "initialize-ysdk",
         "scriptName": "InitializeYSDK",
-        "highlight": false,
         "isAsync": true
       },
       {

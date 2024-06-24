@@ -392,6 +392,25 @@ const Conditions = {
 
   //#endregion
 
+  //#region Review
+
+  /** @this {YandexGamesSDKInstance} */
+  CanReview() {
+    return this.canReview;
+  },
+
+  /** @this {YandexGamesSDKInstance} */
+  OnReviewSuccess() {
+    return true;
+  },
+
+  /** @this {YandexGamesSDKInstance} */
+  OnReviewCancel() {
+    return true;
+  },
+
+  //#endregion
+
   //#region Misc
 
   /**

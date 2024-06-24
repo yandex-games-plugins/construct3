@@ -31,13 +31,14 @@
           "shortcut": "Shortcut",
           "remote-config": "Remote Config",
           "tv": "TV",
+          "review": "Review",
           "misc": "Misc"
         },
         "conditions": {
           "on-fullscreen-ad-close": {
             "list-name": "Fullscreen AD closed",
             "display-text": "Fullscreen AD closed",
-            "description": "Executes when fullscreen ad was closed."
+            "description": "Runs when fullscreen ad was closed."
           },
           "fullscreen-ad-was-shown": {
             "list-name": "Fullscreen AD was shown",
@@ -47,7 +48,7 @@
           "on-fullscreen-ad-open": {
             "list-name": "Fullscreen AD opened",
             "display-text": "Fullscreen AD opened",
-            "description": "Executes when fullscreen ad was opened."
+            "description": "Runs when fullscreen ad was opened."
           },
           "on-fullscreen-ad-error": {
             "list-name": "Fullscreen AD error",
@@ -63,7 +64,7 @@
           "on-rewarded-ad-open": {
             "list-name": "Specific rewarded AD opened",
             "display-text": "Rewarded AD [b]{0}[/b] opened",
-            "description": "Executes when specific rewarded ad was opened.",
+            "description": "Runs when specific rewarded ad was opened.",
             "params": {
               "id": {
                 "name": "Tag",
@@ -74,7 +75,7 @@
           "on-rewarded-ad-rewarded": {
             "list-name": "Specific rewarded AD watched",
             "display-text": "Rewarded AD [b]{0}[/b] watched",
-            "description": "Executes when specific rewarded ad was fully watched.",
+            "description": "Runs when specific rewarded ad was fully watched.",
             "params": {
               "id": {
                 "name": "Tag",
@@ -85,7 +86,7 @@
           "on-rewarded-ad-close": {
             "list-name": "Specific rewarded AD closed",
             "display-text": "Rewarded AD [b]{0}[/b] closed",
-            "description": "Executes when specific rewarded ad was closed.",
+            "description": "Runs when specific rewarded ad was closed.",
             "params": {
               "id": {
                 "name": "Tag",
@@ -107,12 +108,12 @@
           "on-any-rewarded-ad-open": {
             "list-name": "Any rewarded AD opened",
             "display-text": "Any rewarded AD opened",
-            "description": "Executes when any rewarded ad was opened."
+            "description": "Runs when any rewarded ad was opened."
           },
           "on-any-rewarded-ad-close": {
             "list-name": "Any rewarded AD closed",
             "display-text": "Any rewarded AD closed",
-            "description": "Executes when any rewarded ad was closed."
+            "description": "Runs when any rewarded ad was closed."
           },
           "on-any-rewarded-ad-error": {
             "list-name": "Any rewarded AD failed",
@@ -183,17 +184,17 @@
           "on-purchase-success": {
             "list-name": "Any purchase success",
             "display-text": "Any purchase success",
-            "description": "Executes when any purchase was successful."
+            "description": "Runs when any purchase was successful."
           },
           "on-purchase-error": {
             "list-name": "Any purchase error",
             "display-text": "Any purchase error",
-            "description": "Executes when error accured while purchasing product."
+            "description": "Runs when error accured while purchasing product."
           },
           "on-specific-purchase-success": {
             "list-name": "Specific product purchase success",
             "display-text": "Purchase [b]{0}[/b] success",
-            "description": "Executes when specific product purchase was successful.",
+            "description": "Runs when specific product purchase was successful.",
             "params": {
               "productID": {
                 "name": "ID",
@@ -204,7 +205,7 @@
           "on-specific-purchase-error": {
             "list-name": "Specific product purchase failure",
             "display-text": "Purchase [b]{0}[/b] failure",
-            "description": "Executes when error accured while purchasing specific product.",
+            "description": "Runs when error accured while purchasing specific product.",
             "params": {
               "productID": {
                 "name": "ID",
@@ -238,7 +239,7 @@
           "on-history-back-event": {
             "list-name": "On History Back event",
             "display-text": "On [b]History back[/b] event",
-            "description": "Executes when user clicks on the Back button. (Works only on TV)"
+            "description": "Runs when user clicks on the Back button. (Works only on TV)"
           },
 
           "shortcut-can-show-prompt": {
@@ -250,6 +251,22 @@
             "list-name": "Shortcut added",
             "display-text": "Shortcut added",
             "description": "Indicates that shortcut was added to home screen."
+          },
+
+          "can-review": {
+            "list-name": "Review avaliable",
+            "display-text": "Review avaliable",
+            "description": "Checks if the user can leave a review."
+          },
+          "on-review-success": {
+            "list-name": "On review success",
+            "display-text": "On review success",
+            "description": "Runs when user exits review."
+          },
+          "on-review-cancel": {
+            "list-name": "On review cancel",
+            "display-text": "On review cancel",
+            "description": "Runs when user declines to leave a review"
           },
 
           "throttle": {
@@ -278,13 +295,13 @@
           "on-remote-config-ready": {
             "list-name": "On remote config ready",
             "display-text": "On remote config ready",
-            "description": "Executes when remote config is ready to use."
+            "description": "Runs when remote config is ready to use."
           },
 
           "tv-button-pressed": {
             "list-name": "TV Remote button pressed",
             "display-text": "TV Remote [b]{0}[/b] button pressed",
-            "description": "Executes when user holds specified button on TV remote.",
+            "description": "Runs when user holds specified button on TV remote.",
             "params": {
               "button": {
                 "name": "Button",
@@ -302,7 +319,7 @@
           "on-tv-button-press": {
             "list-name": "On TV Remote button press",
             "display-text": "On TV Remote [b]{0}[/b] button press",
-            "description": "Executes when user clicks specified button on TV remote.",
+            "description": "Runs when user clicks specified button on TV remote.",
             "params": {
               "button": {
                 "name": "Button",
@@ -320,7 +337,7 @@
           "on-tv-button-release": {
             "list-name": "On TV Remote button release",
             "display-text": "On TV Remote [b]{0}[/b] button release",
-            "description": "Executes when user releases specified button on TV remote.",
+            "description": "Runs when user releases specified button on TV remote.",
             "params": {
               "button": {
                 "name": "Button",
@@ -551,6 +568,12 @@
             "list-name": "Emulate TV",
             "display-text": "Emulate TV",
             "description": "Useful for testing game in TV mode. (will be ignored in production)"
+          },
+
+          "request-review": {
+            "list-name": "Request review",
+            "display-text": "Request review",
+            "description": "Requests review from user, if permission was granted."
           },
 
           "remote-config-set-default": {

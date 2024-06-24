@@ -134,6 +134,8 @@
         'ysdk-remote-config-fetch',
         this.YSDKRemoteConfigFetch.bind(this),
       );
+
+      this.domHandler.AddRuntimeMessageHandler('ysdk-request-review', this.YSDKRequestReview.bind(this));
     }
 
     async LoadYSDKScript() {
@@ -159,10 +161,10 @@
         ['engineName']: 'Construct',
         ['engineVersion']: '3', // TODO: find a way to get version from runtime in "rXXX" format
         ['pluginName']: 'yagames_sdk by LisGames',
-        ['pluginVersion']: '2.9.2',
+        ['pluginVersion']: '2.10.0-rc',
       });
 
-      console.log('%c YandexGamesSDK for Construct 3 v2.9.2 ', 'background: #14151f; color: #fb923c');
+      console.log('%c YandexGamesSDK for Construct 3 v2.10.0-rc ', 'background: #14151f; color: #fb923c');
 
       return {
         ['environment']: {
@@ -190,6 +192,7 @@
       });
 
       await this.YSDKUpdateCanShowShortcutPrompt();
+      await this.YSDKUpdateCanReview();
     }
 
     YSDKLoadingAPIReady() {
@@ -472,6 +475,8 @@
         player = await this.ysdk['getPlayer']({ ['scopes']: false });
       }
 
+      await this.YSDKUpdateCanReview();
+
       return {
         ['isAuthorized']: player['getMode']() !== 'lite',
         ['isAccessGranted']: player['getName']() !== '',
@@ -493,7 +498,7 @@
 
     async YSDKUpdateCanShowShortcutPrompt() {
       const prompt = await this.ysdk['shortcut']['canShowPrompt']();
-      return this.domHandler.PostToRuntimeAsync('ysdk-update-can-show-shortcut-prompt', {
+      await this.domHandler.PostToRuntimeAsync('ysdk-update-can-show-shortcut-prompt', {
         ['canShow']: prompt['canShow'],
       });
     }
@@ -524,6 +529,35 @@
       const config = await this.ysdk['getFlags'](params);
 
       return config;
+    }
+
+    async YSDKRequestReview() {
+      if (!this.ysdk) return;
+
+      const canReview = await this.ysdk['feedback']['canReview']();
+      console.log(canReview['value'], canReview['reason']);
+
+      if (canReview.value) {
+        const result = await this.ysdk['feedback']['requestReview']();
+
+        await this.YSDKUpdateCanReview();
+
+        return {
+          ['feedbackSent']: result['feedbackSent'],
+        };
+      } else {
+        return {
+          ['feedbackSent']: false,
+        };
+      }
+    }
+
+    async YSDKUpdateCanReview() {
+      const canReview = await this.ysdk['feedback']['canReview']();
+      console.log(canReview['value'], canReview['reason']);
+      await this.domHandler.PostToRuntimeAsync('ysdk-update-can-review', {
+        ['value']: canReview['value'],
+      });
     }
   }
 
