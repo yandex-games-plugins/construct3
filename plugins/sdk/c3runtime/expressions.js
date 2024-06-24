@@ -307,7 +307,7 @@ const Expressions = {
   },
 
   /** @this {YandexGamesSDKInstance} */
-  ProductPriceCurrencyСode() {
+  ProductPriceCurrencyCode() {
     if (this.currentCatalogLoopData) {
       const loopData = this.currentCatalogLoopData;
       const product = loopData['catalog'][loopData['currentIndex']];
