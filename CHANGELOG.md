@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## YandexGamesSDK - [2.10.2] - 2024.6.25
+
+### Fixed
+
+- Various descriptions and titles changes
+
 ## YandexGamesSDK - [2.10.1] - 2024.6.25
 
 ### Fixed
