@@ -27,7 +27,7 @@
     "expressions": [
       {
         "id": "current-localization-language",
-        "expressionName": "CurrentLanguage",
+        "expressionName": "LocalizationLanguage",
         "returnType": "string"
       },
       {
@@ -489,22 +489,22 @@
     "expressions": [
       {
         "id": "get-language",
-        "expressionName": "GetLanguage",
+        "expressionName": "EnvironmentLanguage",
         "returnType": "string"
       },
       {
         "id": "get-tld",
-        "expressionName": "GetDomain",
+        "expressionName": "EnvironmentDomain",
         "returnType": "string"
       },
       {
         "id": "get-payload",
-        "expressionName": "GetPayload",
+        "expressionName": "EnvironmentPayload",
         "returnType": "string"
       },
       {
         "id": "get-app-id",
-        "expressionName": "GetAppID",
+        "expressionName": "AppID",
         "returnType": "string"
       }
     ]

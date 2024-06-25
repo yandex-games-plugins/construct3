@@ -3,7 +3,7 @@ const Expressions = {
   //#region Localization
 
   /** @this {YandexGamesSDKInstance} */
-  CurrentLanguage() {
+  LocalizationLanguage() {
     return this.localization.currentLanguage ?? '';
   },
 
@@ -457,22 +457,22 @@ const Expressions = {
   //#region Environment
 
   /** @this {YandexGamesSDKInstance} */
-  GetLanguage() {
+  EnvironmentLanguage() {
     return this.environment?.['i18n']['lang'] ?? 'en';
   },
 
   /** @this {YandexGamesSDKInstance} */
-  GetDomain() {
+  EnvironmentDomain() {
     return this.environment?.['i18n']['tld'] ?? 'com';
   },
 
   /** @this {YandexGamesSDKInstance} */
-  GetPayload() {
+  EnvironmentPayload() {
     return this.environment?.['payload'] ?? '';
   },
 
   /** @this {YandexGamesSDKInstance} */
-  GetAppID() {
+  AppID() {
     return this.environment?.['app_id'] ?? '0';
   },
 
