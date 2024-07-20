@@ -31,6 +31,12 @@
         "returnType": "string"
       },
       {
+        "id": "old-current-localization-language",
+        "expressionName": "CurrentLanguage",
+        "returnType": "string",
+        "isDeprecated": true
+      },
+      {
         "id": "localization-value",
         "expressionName": "LocalizationValue",
         "returnType": "string",
@@ -487,6 +493,26 @@
     "conditions": [],
     "actions": [],
     "expressions": [
+      {
+        "id": "old-get-language",
+        "expressionName": "GetLanguage",
+        "returnType": "string"
+      },
+      {
+        "id": "old-get-tld",
+        "expressionName": "GetDomain",
+        "returnType": "string"
+      },
+      {
+        "id": "old-get-payload",
+        "expressionName": "GetPayload",
+        "returnType": "string"
+      },
+      {
+        "id": "old-get-app-id",
+        "expressionName": "GetAppID",
+        "returnType": "string"
+      },
       {
         "id": "get-language",
         "expressionName": "EnvironmentLanguage",

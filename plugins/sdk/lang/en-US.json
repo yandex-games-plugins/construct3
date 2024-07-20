@@ -627,6 +627,10 @@
             "translated-name": "Current localization language",
             "description": "Returns current localization language."
           },
+          "old-current-localization-language": {
+            "translated-name": "Current localization language",
+            "description": "Returns current localization language."
+          },
           "localization-value": {
             "translated-name": "Localization value",
             "description": "Returns value of specified key in current localization language.",
@@ -651,6 +655,22 @@
             "description": "The value of the payload parameter from the game's address. Optional. For example, in https://yandex.ru/games/app/123?payload=test you can return test as follows: ysdk.environment.payload."
           },
           "get-app-id": {
+            "translated-name": "App ID",
+            "description": "App ID."
+          },
+          "old-get-language": {
+            "translated-name": "Interface Language",
+            "description": "Yandex Games interface language in ISO 639-1 format. For example, \"tr\" means that the game is currently running under the Yandex Games Turkish interface. We recommend using this parameter to determine the user's language in the game."
+          },
+          "old-get-tld": {
+            "translated-name": "Top-level domain",
+            "description": "Top-level domain. For example, \"com\" means that the game is currently running under the Yandex Games international domain. When hosting a game in your domain, please keep in mind that it must open correctly under any Yandex domain."
+          },
+          "old-get-payload": {
+            "translated-name": "Payload",
+            "description": "The value of the payload parameter from the game's address. Optional. For example, in https://yandex.ru/games/app/123?payload=test you can return test as follows: ysdk.environment.payload."
+          },
+          "old-get-app-id": {
             "translated-name": "App ID",
             "description": "App ID."
           },
