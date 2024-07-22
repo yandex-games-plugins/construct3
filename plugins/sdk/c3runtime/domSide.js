@@ -152,7 +152,7 @@
       return new Promise((resolve) => {
         const head = document.getElementsByTagName('head')[0];
         const script = document.createElement('script');
-        script.src = 'https://yandex.ru/games/sdk/v2';
+        script.src = '/sdk.js';
         script.async = true;
         script.onload = async () => resolve();
         head.appendChild(script);
