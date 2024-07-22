@@ -329,10 +329,15 @@ class YandexGamesSDKInstance extends C3.SDKInstanceBase {
     const autoInitialization = properties[1];
 
     /** @type {types.YSDK["environment"]} */
-    this.environment = undefined;
+    this.environment = {
+      ['app']: { ['id']: '0' },
+      ['browser']: { ['lang']: defaultLanguage },
+      ['i18n']: { ['lang']: defaultLanguage, ['tld']: '.com' },
+      ['payload']: '',
+    };
 
     /** @type {"desktop" | "mobile" | "tablet" | "tv"} */
-    this.deviceType = undefined;
+    this.deviceType = 'desktop';
 
     /** @type {Conditions} */
     this.conditions = C3.Plugins.yagames_sdk.Cnds;
@@ -690,24 +695,10 @@ class YandexGamesSDKInstance extends C3.SDKInstanceBase {
     if (this.GetRuntime().IsPreview()) {
       this.PostToDOM('start-tv-remote-emulator');
       this.PostToDOM('start-tv-remote-tracking');
-      this.SetPlaceholders();
       this.actions.SwitchLanguage.call(this, 'en');
     } else if (autoInitialization) {
       this.GetRuntime().AddLoadPromise(this.InitializeYSDK());
     }
-  }
-
-  SetPlaceholders() {
-    const debugLanguage = navigator.language.slice(0, 2);
-
-    this.environment = {
-      ['app']: { ['id']: '0' },
-      ['browser']: { ['lang']: debugLanguage },
-      ['i18n']: { ['lang']: debugLanguage, ['tld']: '.com' },
-      ['payload']: '',
-    };
-
-    this.deviceType = 'desktop';
   }
 
   InitializeYSDK() {
@@ -719,6 +710,11 @@ class YandexGamesSDKInstance extends C3.SDKInstanceBase {
    * @param {{environment?: types.YSDK["environment"], deviceType?: types.YSDK["deviceInfo"]["type"]}} data
    */
   InitCallback(data) {
+    if (!data) {
+      this.actions.SwitchLanguage.call(this, 'en');
+      return;
+    }
+
     this.environment = data['environment'];
     this.deviceType = data['deviceType'];
 
