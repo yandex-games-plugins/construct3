@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+## YandexGamesSDK - [2.11.0] - 2024.7.22
+
+### Added
+
+- New expression `Server time`
+- New action `Gameplay API Start`
+- New action `Gameplay API Stop`
+- New expression `Player paying status`
+- New condition `Player paying status check`
+- Various descriptions and titles changes
+
+### Fixed
+
+- Migration issues beacuse of `2.10.2` update
+- Game crash when launched outside of Yandex.Games
+
 ## YandexGamesSDK - [2.10.2] - 2024.6.25
 
 ### Fixed
