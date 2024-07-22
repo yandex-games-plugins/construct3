@@ -364,6 +364,16 @@
             "display-text": "Game loading is complete",
             "description": "Sends information to Yandex.Games that the game download is complete."
           },
+          "gameplay-api-start": {
+            "list-name": "Mark gameplay start",
+            "display-text": "Mark gameplay start",
+            "description": "Sends information to Yandex.Games that the gameplay section has started."
+          },
+          "gameplay-api-stop": {
+            "list-name": "Mark gameplay stop",
+            "display-text": "Mark gameplay stop",
+            "description": "Sends information to Yandex.Games that the gameplay section has ended."
+          },
 
           "show-fullscreen-ad": {
             "list-name": "Show fullscreen ad",

@@ -723,6 +723,14 @@
         "id": "loading-api-ready",
         "scriptName": "LoadingAPIReady",
         "highlight": true
+      },
+      {
+        "id": "gameplay-api-start",
+        "scriptName": "GameplayAPIStart"
+      },
+      {
+        "id": "gameplay-api-stop",
+        "scriptName": "GameplayAPIStop"
       }
     ],
     "expressions": [

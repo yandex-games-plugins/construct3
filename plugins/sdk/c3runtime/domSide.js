@@ -77,6 +77,13 @@
       this.domHandler.AddRuntimeMessageHandler('ysdk-loading-api-ready', this.YSDKLoadingAPIReady.bind(this));
 
       this.domHandler.AddRuntimeMessageHandler(
+        'ysdk-gameplay-api-start',
+        this.YSDKGameplayAPIStart.bind(this),
+      );
+
+      this.domHandler.AddRuntimeMessageHandler('ysdk-gameplay-api-stop', this.YSDKGameplayAPIStop.bind(this));
+
+      this.domHandler.AddRuntimeMessageHandler(
         'ysdk-show-fullscreen-ad',
         this.YSDKShowFullscreenAD.bind(this),
       );
@@ -208,28 +215,49 @@
       this.ysdk['features']['LoadingAPI']?.['ready']();
     }
 
+    YSDKGameplayAPIStart() {
+      if (!this.ysdk) return;
+
+      this.ysdk['features']['GameplayAPI']?.['start']();
+    }
+
+    YSDKGameplayAPIStop() {
+      if (!this.ysdk) return;
+
+      this.ysdk['features']['GameplayAPI']?.['stop']();
+    }
+
     YSDKShowFullscreenAD() {
       if (!this.ysdk) return;
+
       this.ysdk['adv']['showFullscreenAdv']({
         ['callbacks']: {
           ['onClose']: (wasShown) => {
+            this.YSDKGameplayAPIStop();
+
             this.domHandler.PostToRuntime('ysdk-fullscreen-ad-callback', {
               ['type']: 'onClose',
               ['wasShown']: wasShown,
             });
           },
           ['onOpen']: () => {
+            this.YSDKGameplayAPIStart();
+
             this.domHandler.PostToRuntime('ysdk-fullscreen-ad-callback', {
               ['type']: 'onOpen',
             });
           },
           ['onError']: (error) => {
+            this.YSDKGameplayAPIStart();
+
             this.domHandler.PostToRuntime('ysdk-fullscreen-ad-callback', {
               ['type']: 'onError',
               ['error']: JSON.stringify(error),
             });
           },
           ['onOffline']: () => {
+            this.YSDKGameplayAPIStart();
+
             this.domHandler.PostToRuntime('ysdk-fullscreen-ad-callback', {
               ['type']: 'onOffline',
             });
@@ -240,27 +268,36 @@
 
     YSDKShowRewardedAD(params) {
       if (!this.ysdk) return;
+
       this.ysdk['adv']['showRewardedVideo']({
         ['callbacks']: {
           ['onOpen']: () => {
+            this.YSDKGameplayAPIStop();
+
             this.domHandler.PostToRuntime('ysdk-rewarded-ad-callback', {
               ['id']: params['id'],
               ['type']: 'onOpen',
             });
           },
           ['onRewarded']: () => {
+            this.YSDKGameplayAPIStart();
+
             this.domHandler.PostToRuntime('ysdk-rewarded-ad-callback', {
               ['id']: params['id'],
               ['type']: 'onRewarded',
             });
           },
           ['onClose']: () => {
+            this.YSDKGameplayAPIStart();
+
             this.domHandler.PostToRuntime('ysdk-rewarded-ad-callback', {
               ['id']: params['id'],
               ['type']: 'onClose',
             });
           },
           ['onError']: (error) => {
+            this.YSDKGameplayAPIStart();
+
             this.domHandler.PostToRuntime('ysdk-rewarded-ad-callback', {
               ['id']: params['id'],
               ['type']: 'onError',

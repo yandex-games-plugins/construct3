@@ -213,6 +213,16 @@ const Actions = {
     this.PostToDOM('ysdk-loading-api-ready');
   },
 
+  /** @this {YandexGamesSDKInstance} */
+  GameplayAPIStart() {
+    this.PostToDOM('ysdk-gameplay-api-start');
+  },
+
+  /** @this {YandexGamesSDKInstance} */
+  GameplayAPIStop() {
+    this.PostToDOM('ysdk-gameplay-api-stop');
+  },
+
   //#endregion
 
   //#region Remote Config
