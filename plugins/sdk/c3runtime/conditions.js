@@ -172,7 +172,7 @@ const Conditions = {
   CurrentLeaderboardDescriptionInvertOrder() {
     if (!this.forEachLeaderbordEntryLoopData) {
       this.logDeveloperMistake(
-        `You are trying to use "Invert order of leaderboard" expression outside of "For each player in leaderboard" loop!`,
+        `You are trying to use "Invert order of leaderboard" condition outside of "For each player in leaderboard" loop!`,
       );
       return '';
     }
@@ -349,7 +349,7 @@ const Conditions = {
       return !!this.playerInfo['isAuthorized'];
     } else {
       this.logDeveloperMistake(
-        `You are trying to use "Player is authorized" expression outside of "Using player info" condition!`,
+        `You are trying to use "Player is authorized" condition outside of "Using player info" condition!`,
       );
       return false;
     }
@@ -361,7 +361,22 @@ const Conditions = {
       return !!this.playerInfo['isAccessGranted'];
     } else {
       this.logDeveloperMistake(
-        `You are trying to use "Player info access granted" expression outside of "Using player info" condition!`,
+        `You are trying to use "Player info access granted" condition outside of "Using player info" condition!`,
+      );
+      return false;
+    }
+  },
+
+  /**
+   * @this {YandexGamesSDKInstance}
+   * @param {string} value
+   */
+  CurrentPlayerPayingStatusCheck(value) {
+    if (this.playerInfo) {
+      return this.playerInfo['payingStatus'] === value;
+    } else {
+      this.logDeveloperMistake(
+        `You are trying to use "Player paying status is" condition outside of "Using player info" condition!`,
       );
       return false;
     }

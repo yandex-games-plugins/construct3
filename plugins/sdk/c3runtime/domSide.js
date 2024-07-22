@@ -533,6 +533,7 @@
           ['large']: player['getPhoto']('large'),
         },
         ['signature']: player['signature'],
+        ['payingStatus']: player['getPayingStatus'](),
       };
     }
 

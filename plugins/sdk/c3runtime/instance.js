@@ -538,6 +538,7 @@ class YandexGamesSDKInstance extends C3.SDKInstanceBase {
      * @property {string} uniqueID
      * @property {string} publicName
      * @property {PlayerAvatars} avatars
+     * @property {string} payingStatus
      * @property {string | undefined} signature
      */
 

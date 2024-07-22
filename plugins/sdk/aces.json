@@ -1,4 +1,4 @@
-{
+﻿{
   "localization": {
     "conditions": [],
     "actions": [
@@ -409,6 +409,17 @@
         "id": "current-player-info-access-granted",
         "scriptName": "CurrentPlayerInfoAccessGranted",
         "isTrigger": false
+      },
+      {
+        "id": "current-player-paying-status-check",
+        "scriptName": "CurrentPlayerPayingStatusCheck",
+        "params": [
+          {
+            "id": "value",
+            "type": "combo",
+            "items": ["paying", "partially_paying", "not_paying", "unknown"]
+          }
+        ]
       }
     ],
     "actions": [
@@ -484,6 +495,11 @@
       {
         "id": "current-player-signature",
         "expressionName": "GetCurrentPlayerSignature",
+        "returnType": "string"
+      },
+      {
+        "id": "current-player-paying-status",
+        "expressionName": "GetCurrentPlayerPayingStatus",
         "returnType": "string"
       }
     ]

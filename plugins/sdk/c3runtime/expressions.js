@@ -460,6 +460,18 @@ const Expressions = {
     }
   },
 
+  /** @this {YandexGamesSDKInstance} */
+  GetCurrentPlayerPayingStatus() {
+    if (this.playerInfo) {
+      return this.playerInfo['payingStatus'] || '';
+    } else {
+      this.logDeveloperMistake(
+        `You are trying to use "Player paying status" expression outside of "Using player info" condition!`,
+      );
+      return '';
+    }
+  },
+
   //#endregion
 
   //#region Environment

@@ -235,6 +235,23 @@
             "display-text": "Player personal info access granted",
             "description": "Checks if player gave your game permission to access personal information about them. Works only with \"Using player info\" condition."
           },
+          "current-player-paying-status-check": {
+            "list-name": "Player paying status",
+            "display-text": "Player paying status is [b]{0}[/b]",
+            "description": "Condition to check paying status of player. (Works only with \"Using player info\" condition)",
+            "params": {
+              "value": {
+                "name": "Check value",
+                "desc": "Value to check. (Paying / Partially paying / Not paying / Unknown)",
+                "items": {
+                  "paying": "Paying",
+                  "partially_paying": "Partially paying",
+                  "not_paying": "Not paying",
+                  "unknown": "Unknown"
+                }
+              }
+            }
+          },
 
           "on-history-back-event": {
             "list-name": "On History Back event",
@@ -822,6 +839,10 @@
           "current-player-signature": {
             "translated-name": "Signature",
             "description": "String contains user data from the Yandex profile and the signature. It comprises two Base64-encoded strings"
+          },
+          "current-player-paying-status": {
+            "translated-name": "Paying status",
+            "description": "String, paying status of player. (paying / partially_paying / not_paying / unknown)"
           },
 
           "remote-config-get-flag": {
