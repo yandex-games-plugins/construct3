@@ -17,7 +17,6 @@
       });
 
       this.AddRuntimeMessageHandler('start-tv-remote-tracking', () => {
-        this._StartTicking();
         this._gamepadsUpdates = true;
 
         window.addEventListener('keydown', (event) => {
@@ -35,12 +34,16 @@
         leftPressed: false,
         rightPressed: false,
       };
+
+      this._StartTicking();
     }
 
     Tick() {
       if (this._gamepadsUpdates) {
         this.GamepadsUpdate();
       }
+
+      this.ysdkHandler.YSDKServerTimeUpdate();
     }
 
     GamepadsUpdate() {
@@ -563,6 +566,12 @@
       await this.domHandler.PostToRuntimeAsync('ysdk-update-can-review', {
         ['value']: canReview['value'],
       });
+    }
+
+    YSDKServerTimeUpdate() {
+      if (!this.ysdk) return;
+
+      this.domHandler.PostToRuntime('ysdk-server-time-update', this.ysdk.serverTime());
     }
   }
 

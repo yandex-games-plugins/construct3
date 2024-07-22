@@ -596,6 +596,13 @@ class YandexGamesSDKInstance extends C3.SDKInstanceBase {
     /** @type {Map<any, number>} */
     this.debounceTimers = new Map();
 
+    /** @type {number} */
+    this.serverTime = 0;
+
+    this.AddDOMMessageHandler('ysdk-server-time-update', (value) => {
+      this.serverTime = value;
+    });
+
     //#endregion
 
     //#region Remote Config

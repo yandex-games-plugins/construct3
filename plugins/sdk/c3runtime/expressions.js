@@ -486,6 +486,15 @@ const Expressions = {
   },
 
   //#endregion
+
+  //#region Misc
+
+  /** @this {YandexGamesSDKInstance} */
+  ServerTime() {
+    return this.serverTime ?? 0;
+  },
+
+  //#endregion
 };
 
 self.C3.Plugins.yagames_sdk.Exps = Expressions;

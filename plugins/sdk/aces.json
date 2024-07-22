@@ -1,4 +1,4 @@
-﻿{
+{
   "localization": {
     "conditions": [],
     "actions": [
@@ -721,6 +721,12 @@
         "highlight": true
       }
     ],
-    "expressions": []
+    "expressions": [
+      {
+        "id": "server-time",
+        "expressionName": "ServerTime",
+        "returnType": "number"
+      }
+    ]
   }
 }

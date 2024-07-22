@@ -823,6 +823,11 @@
                 "desc": "Name of the flag in Games Console."
               }
             }
+          },
+
+          "server-time": {
+            "translated-name": "Server time",
+            "description": "Returns the current time on the server in milliseconds."
           }
         }
       }
