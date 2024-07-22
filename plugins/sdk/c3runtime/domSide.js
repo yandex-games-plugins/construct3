@@ -146,6 +146,11 @@
       );
 
       this.domHandler.AddRuntimeMessageHandler('ysdk-request-review', this.YSDKRequestReview.bind(this));
+
+      this.domHandler.AddRuntimeMessageHandler(
+        'ysdk-update-can-show-shortcut-prompt',
+        this.YSDKUpdateCanShowShortcutPrompt.bind(this),
+      );
     }
 
     async LoadYSDKScript() {
@@ -212,6 +217,7 @@
 
     YSDKLoadingAPIReady() {
       if (!this.ysdk) return;
+
       this.ysdk['features']['LoadingAPI']?.['ready']();
     }
 
@@ -310,11 +316,13 @@
 
     YSDKShowStickyBanner() {
       if (!this.ysdk) return;
+
       this.ysdk['adv']['showBannerAdv']();
     }
 
     YSDKHideStickyBanner() {
       if (!this.ysdk) return;
+
       this.ysdk['adv']['hideBannerAdv']();
     }
 
@@ -539,11 +547,15 @@
 
     YSDKDispatchEvent(params) {
       if (!this.ysdk) return;
+
       this.ysdk['dispatchEvent'](this.ysdk['EVENTS'][params['name']]);
     }
 
     async YSDKUpdateCanShowShortcutPrompt() {
+      if (!this.ysdk) return;
+
       const prompt = await this.ysdk['shortcut']['canShowPrompt']();
+
       await this.domHandler.PostToRuntimeAsync('ysdk-update-can-show-shortcut-prompt', {
         ['canShow']: prompt['canShow'],
       });
@@ -581,7 +593,6 @@
       if (!this.ysdk) return;
 
       const canReview = await this.ysdk['feedback']['canReview']();
-      console.log(canReview['value'], canReview['reason']);
 
       if (canReview.value) {
         const result = await this.ysdk['feedback']['requestReview']();
@@ -599,8 +610,10 @@
     }
 
     async YSDKUpdateCanReview() {
+      if (!this.ysdk) return;
+
       const canReview = await this.ysdk['feedback']['canReview']();
-      console.log(canReview['value'], canReview['reason']);
+
       await this.domHandler.PostToRuntimeAsync('ysdk-update-can-review', {
         ['value']: canReview['value'],
       });
