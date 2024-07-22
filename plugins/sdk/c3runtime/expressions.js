@@ -7,6 +7,14 @@ const Expressions = {
     return this.localization.currentLanguage ?? '';
   },
 
+  /**
+   * @deprecated
+   * @this {YandexGamesSDKInstance}
+   */
+  CurrentLanguage() {
+    return this.localization.currentLanguage ?? '';
+  },
+
   /** @this {YandexGamesSDKInstance} */
   LocalizationValue(path) {
     return this.localization.GetTranlationValue(path) ?? '';
@@ -455,6 +463,38 @@ const Expressions = {
   //#endregion
 
   //#region Environment
+
+  /**
+   * @deprecated
+   * @this {YandexGamesSDKInstance}
+   */
+  GetLanguage() {
+    return this.environment?.['i18n']['lang'] ?? 'en';
+  },
+
+  /**
+   * @deprecated
+   * @this {YandexGamesSDKInstance}
+   */
+  GetDomain() {
+    return this.environment?.['i18n']['tld'] ?? 'com';
+  },
+
+  /**
+   * @deprecated
+   * @this {YandexGamesSDKInstance}
+   */
+  GetPayload() {
+    return this.environment?.['payload'] ?? '';
+  },
+
+  /**
+   * @deprecated
+   * @this {YandexGamesSDKInstance}
+   */
+  GetAppID() {
+    return this.environment?.['app_id'] ?? '0';
+  },
 
   /** @this {YandexGamesSDKInstance} */
   EnvironmentLanguage() {

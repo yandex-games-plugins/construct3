@@ -496,22 +496,26 @@
       {
         "id": "old-get-language",
         "expressionName": "GetLanguage",
-        "returnType": "string"
+        "returnType": "string",
+        "isDeprecated": true
       },
       {
         "id": "old-get-tld",
         "expressionName": "GetDomain",
-        "returnType": "string"
+        "returnType": "string",
+        "isDeprecated": true
       },
       {
         "id": "old-get-payload",
         "expressionName": "GetPayload",
-        "returnType": "string"
+        "returnType": "string",
+        "isDeprecated": true
       },
       {
         "id": "old-get-app-id",
         "expressionName": "GetAppID",
-        "returnType": "string"
+        "returnType": "string",
+        "isDeprecated": true
       },
       {
         "id": "get-language",
