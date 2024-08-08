@@ -47,16 +47,25 @@
     }
 
     GamepadsUpdate() {
-      const gamepads = navigator.getGamepads().filter((gamepad) => gamepad);
-      if (!gamepads.length) return;
+      const gamepads = navigator.getGamepads();
+
+      this.data['upPressed'] = false;
+      this.data['downPressed'] = false;
+      this.data['leftPressed'] = false;
+      this.data['rightPressed'] = false;
+
+      let shouldUpdate = false;
 
       for (const gamepad of gamepads) {
         if (!gamepad) continue;
+        shouldUpdate = true;
         this.data['upPressed'] = this.data['upPressed'] || gamepad.buttons[12].pressed;
         this.data['downPressed'] = this.data['downPressed'] || gamepad.buttons[13].pressed;
         this.data['leftPressed'] = this.data['leftPressed'] || gamepad.buttons[14].pressed;
         this.data['rightPressed'] = this.data['rightPressed'] || gamepad.buttons[15].pressed;
       }
+
+      if (!shouldUpdate) return;
 
       this.PostToRuntime('gamepads-update', this.data);
     }
