@@ -331,13 +331,66 @@
 
       const lb = await this.ysdk['getLeaderboards']();
 
-      const entries = await lb['getLeaderboardEntries'](params['leaderboardName'], params['options']);
+      // A bit of context:
+      // Yandex.Games Leaderboards API is a bit too low level for Construct 3
+      // so we hide some complexity from our developers.
+
+      // Step 1: prevent error, when developer request user's entry without authorization
+
+      if (params['options']['includeUser']) {
+        const loggedIn = await this.ysdk.isAvailableMethod('leaderboards.setLeaderboardScore');
+
+        if (!loggedIn) {
+          params['options']['includeUser'] = false;
+        }
+      }
+
+      // Step 2: Make sure developers get all the entries they expect.
+      //
+      // The problem is that developers usually expect to get some entries from top and some
+      // around user's entry, but there might be the case when user's entry is too high or too low
+      // and there are not enough entries to show on the screen.
+      //
+      // It brings the hustle to the developer to handle edge cases, so we do it for them.
+
+      const quantityTop = params['options']['quantityTop'] || 5;
+      const quantityBottom = (params['options']['quantityAround'] || 5) * 2;
+
+      if (params['options']['includeUser']) {
+        params['options']['quantityAround'] = quantityTop + quantityBottom;
+      } else {
+        params['options']['quantityTop'] = quantityTop + quantityBottom + 1;
+      }
+
+      const data = await lb['getLeaderboardEntries'](params['leaderboardName'], params['options']);
+
+      const ranges = [];
+      const entries = [];
+
+      for (let i = 0; i < quantityTop; i++) {
+        if (data['entries'][i]) {
+          entries.push(data['entries'][i]);
+        }
+      }
+      ranges.push({ start: 0, length: quantityTop });
+
+      const bottomStart = Math.max(
+        quantityTop,
+        Math.min(
+          data['entries'].findIndex((entry) => entry['rank'] === data['userRank']),
+          data['entries'].length - quantityBottom,
+        ),
+      );
+
+      for (let i = bottomStart; i < quantityBottom + 1; i++) {
+        entries.push(data['entries'][i]);
+      }
+      ranges.push({ start: bottomStart - 1, length: quantityBottom + 1 });
 
       return {
-        ['leaderboard']: entries['leaderboard'],
-        ['ranges']: entries['ranges'],
-        ['userRank']: entries['userRank'],
-        ['entries']: entries['entries'].map((entry) => {
+        ['leaderboard']: data['leaderboard'],
+        ['ranges']: ranges,
+        ['entries']: entries.map((entry) => {
           return {
             ['score']: entry['score'],
             ['extraData']: entry['extraData'],

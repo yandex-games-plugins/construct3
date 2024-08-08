@@ -428,7 +428,6 @@ class YandexGamesSDKInstance extends C3.SDKInstanceBase {
      * @typedef {{
      *   leaderboard: types.LeaderboardDescription;
      *   ranges: { start: number; size: number }[];
-     *   userRank: number;
      *   entries: {
      *    score: number;
      *    extraData: string | undefined;
