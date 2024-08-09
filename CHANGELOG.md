@@ -2,7 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
-## YandexGamesSDK - [2.12.0] - 2024.7.22
+## YandexGamesSDK - [2.12.1] - 2024.8.9
+
+### Fixed
+
+- Crash when requesting too many leaderboard entries
+
+## YandexGamesSDK - [2.12.0] - 2024.8.8
 
 ### Added
 
