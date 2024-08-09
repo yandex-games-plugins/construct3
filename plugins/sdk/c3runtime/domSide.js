@@ -362,8 +362,8 @@
       //
       // It brings the hustle to the developer to handle edge cases, so we do it for them.
 
-      const quantityTop = params['options']['quantityTop'] || 5;
-      const quantityBottom = (params['options']['quantityAround'] || 5) * 2;
+      const quantityTop = params['options']['quantityTop'] ?? 5;
+      const quantityBottom = (params['options']['quantityAround'] ?? 5) * 2;
 
       if (params['options']['includeUser']) {
         params['options']['quantityAround'] = quantityTop + quantityBottom;
@@ -381,7 +381,7 @@
           entries.push(data['entries'][i]);
         }
       }
-      ranges.push({ start: 0, length: quantityTop });
+      ranges.push({ start: 0, length: entries.length });
 
       const bottomStart = Math.max(
         quantityTop,
@@ -392,9 +392,11 @@
       );
 
       for (let i = bottomStart; i < quantityBottom + 1; i++) {
-        entries.push(data['entries'][i]);
+        if (data['entries'][i]) {
+          entries.push(data['entries'][i]);
+        }
       }
-      ranges.push({ start: bottomStart - 1, length: quantityBottom + 1 });
+      ranges.push({ start: ranges[0].length - 1, length: entries.length - ranges[0].length });
 
       return {
         ['leaderboard']: data['leaderboard'],
