@@ -248,7 +248,7 @@
       this.ysdk['adv']['showFullscreenAdv']({
         ['callbacks']: {
           ['onClose']: (wasShown) => {
-            this.YSDKGameplayAPIStop();
+            this.YSDKGameplayAPIStart();
 
             this.domHandler.PostToRuntime('ysdk-fullscreen-ad-callback', {
               ['type']: 'onClose',
@@ -256,7 +256,7 @@
             });
           },
           ['onOpen']: () => {
-            this.YSDKGameplayAPIStart();
+            this.YSDKGameplayAPIStop();
 
             this.domHandler.PostToRuntime('ysdk-fullscreen-ad-callback', {
               ['type']: 'onOpen',
