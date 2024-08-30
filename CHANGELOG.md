@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## YandexGamesSDK - [2.12.2] - 2024.8.30
+
+### Fixed
+
+- Wrong Gameplay API Start/Stop calls in fullscreen AD
+
 ## YandexGamesSDK - [2.12.1] - 2024.8.9
 
 ### Fixed
