@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## YandexGamesSDK - [2.13.0] - 2024.8.31
+
+### Removed
+
+- Automatic Gameplay API calls before and after advertisement units
+
 ## YandexGamesSDK - [2.12.3] - 2024.8.31
 
 ### Fixed
