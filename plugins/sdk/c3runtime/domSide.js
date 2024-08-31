@@ -248,31 +248,23 @@
       this.ysdk['adv']['showFullscreenAdv']({
         ['callbacks']: {
           ['onClose']: (wasShown) => {
-            this.YSDKGameplayAPIStart();
-
             this.domHandler.PostToRuntime('ysdk-fullscreen-ad-callback', {
               ['type']: 'onClose',
               ['wasShown']: wasShown,
             });
           },
           ['onOpen']: () => {
-            this.YSDKGameplayAPIStop();
-
             this.domHandler.PostToRuntime('ysdk-fullscreen-ad-callback', {
               ['type']: 'onOpen',
             });
           },
           ['onError']: (error) => {
-            this.YSDKGameplayAPIStart();
-
             this.domHandler.PostToRuntime('ysdk-fullscreen-ad-callback', {
               ['type']: 'onError',
               ['error']: JSON.stringify(error),
             });
           },
           ['onOffline']: () => {
-            this.YSDKGameplayAPIStart();
-
             this.domHandler.PostToRuntime('ysdk-fullscreen-ad-callback', {
               ['type']: 'onOffline',
             });
@@ -287,32 +279,24 @@
       this.ysdk['adv']['showRewardedVideo']({
         ['callbacks']: {
           ['onOpen']: () => {
-            this.YSDKGameplayAPIStop();
-
             this.domHandler.PostToRuntime('ysdk-rewarded-ad-callback', {
               ['id']: params['id'],
               ['type']: 'onOpen',
             });
           },
           ['onRewarded']: () => {
-            this.YSDKGameplayAPIStart();
-
             this.domHandler.PostToRuntime('ysdk-rewarded-ad-callback', {
               ['id']: params['id'],
               ['type']: 'onRewarded',
             });
           },
           ['onClose']: () => {
-            this.YSDKGameplayAPIStart();
-
             this.domHandler.PostToRuntime('ysdk-rewarded-ad-callback', {
               ['id']: params['id'],
               ['type']: 'onClose',
             });
           },
           ['onError']: (error) => {
-            this.YSDKGameplayAPIStart();
-
             this.domHandler.PostToRuntime('ysdk-rewarded-ad-callback', {
               ['id']: params['id'],
               ['type']: 'onError',
