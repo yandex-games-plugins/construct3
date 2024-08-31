@@ -364,6 +364,7 @@
 
       const quantityTop = params['options']['quantityTop'] ?? 5;
       const quantityBottom = (params['options']['quantityAround'] ?? 5) * 2;
+      const quantityAround = params['options']['quantityAround'];
 
       if (params['options']['includeUser']) {
         params['options']['quantityAround'] = quantityTop + quantityBottom;
@@ -383,17 +384,19 @@
       }
       ranges.push({ start: 0, length: entries.length });
 
-      const bottomStart = Math.max(
-        quantityTop,
-        Math.min(
-          data['entries'].findIndex((entry) => entry['rank'] === data['userRank']),
-          data['entries'].length - quantityBottom,
-        ),
-      );
+      const bottomStart =
+        Math.max(
+          quantityTop,
+          Math.min(
+            data['entries'].findIndex((entry) => entry['rank'] === data['userRank']),
+            data['entries'].length - quantityBottom,
+          ),
+        ) - quantityAround;
 
-      for (let i = bottomStart; i < quantityBottom + 1; i++) {
-        if (data['entries'][i]) {
-          entries.push(data['entries'][i]);
+      for (let i = 0; i < quantityBottom + 1; i++) {
+        const entry = data['entries'][bottomStart + i];
+        if (entry) {
+          entries.push(entry);
         }
       }
       ranges.push({ start: ranges[0].length - 1, length: entries.length - ranges[0].length });
