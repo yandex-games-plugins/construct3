@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## YandexGamesSDK - [2.12.3] - 2024.8.31
+
+### Fixed
+
+- Missing entries when using `For each player in leaderboard` loop
+
 ## YandexGamesSDK - [2.12.2] - 2024.8.30
 
 ### Fixed
