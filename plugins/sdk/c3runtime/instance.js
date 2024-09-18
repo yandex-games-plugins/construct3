@@ -17,7 +17,7 @@ class Localization {
      * Storage for current game localizations.
      * @type {StringKeysObject | undefined}
      */
-    this.localizations = undefined;
+    this.localizationMap = undefined;
 
     /** @type {string} */
     this.defaultLanguage = 'en';
@@ -173,7 +173,7 @@ class Localization {
    * @returns {string | undefined}
    */
   GetTranlationValue(path) {
-    return path.split('.').reduce((obj, key) => obj[key], this.localizations);
+    return path.split('.').reduce((obj, key) => obj[key], this.localizationMap);
   }
 
   DecorateSpritePlugins() {
@@ -246,30 +246,12 @@ class Localization {
     sdkInstance._SetAnimFrame(currentFrame);
   }
 
-  /** @type {(lang:string) => Promise<string | undefined>} */
-  async FindLanguageJSON(lang) {
-    let url;
-    try {
-      if (this.runtime._exportType === 'preview') {
-        const blobs = this.assetManager._localUrlBlobs;
-        blobs.forEach((_, k) => {
-          if (k.includes(`${lang}.json`)) {
-            url = k;
-          }
-        });
-        return await blobs.get(url).text();
-      } else {
-        url = this.runtime._runtimeBaseUrl;
-        if (this.assetManager._fileStructure !== 'flat') {
-          url += 'i18n/';
-        }
-        url += `${lang}.json`;
-        const response = await fetch(url);
-        if (response.ok) return await response.text();
-      }
-    } catch (e) {
-      console.error(e, url);
-      return undefined;
+  /** @type {(lang: string) => Promise<string | undefined>} */
+  async FetchLanguage(lang) {
+    if (this.assetManager.GetFileStructure() === 'flat') {
+      return this.assetManager.FetchJson(`${lang}.json`);
+    } else {
+      return this.assetManager.FetchJson(`i18n/${lang}.json`);
     }
   }
 
@@ -278,35 +260,24 @@ class Localization {
 
     this.currentLanguage = languageCode;
 
-    let languageJSON = await this.FindLanguageJSON(languageCode);
+    this.localizationMap = await this.FetchLanguage(languageCode);
 
-    if (languageJSON === undefined && this.defaultLanguage !== undefined) {
+    if (this.localizationMap === undefined && this.defaultLanguage !== undefined) {
       this.pluginInstance.Warn(
         `Can't find localizations for ${languageCode}. Switching to default ${this.defaultLanguage}.`,
       );
 
       this.currentLanguage = this.defaultLanguage;
-      languageJSON = await this.FindLanguageJSON(this.defaultLanguage);
+      this.localizationMap = await this.FetchLanguage(this.defaultLanguage);
 
-      if (!languageJSON) {
+      if (!map) {
         this.currentLanguage = undefined;
-        this.localizations = undefined;
+        this.localizationMap = undefined;
         this.pluginInstance.Warn(
           `Can't find localizations for default language (${this.defaultLanguage}), make sure that you have localizations in "i18n" folder. More info in devtools console.`,
         );
         return;
       }
-    }
-
-    try {
-      this.localizations = JSON.parse(languageJSON);
-    } catch (e) {
-      console.error(e);
-      this.pluginInstance.DeveloperAlert(
-        `Error while parsing localizations for ${this.currentLanguage}. More info in devtools console.`,
-      );
-      this.localizations = undefined;
-      return;
     }
 
     this.DecorateTextPlugins();
