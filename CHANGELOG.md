@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## YandexGamesSDK - [2.13.1] - 2024.9.18
+
+### Fixed
+
+- Localization files fetching for r4XX+ versions of Construct 3
+
 ## YandexGamesSDK - [2.13.0] - 2024.8.31
 
 ### Removed
