@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## YandexGamesSDK - [2.14.0] - 2024.9.28
+
+### Added
+
+- New trigger `On Pause event`
+- New trigger `On Resume event`
+
+### Fixed
+
+- Errors in console when localization system is not used
+
 ## YandexGamesSDK - [2.13.1] - 2024.9.18
 
 ### Fixed

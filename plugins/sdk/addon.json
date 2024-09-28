@@ -3,12 +3,16 @@
   "type": "plugin",
   "name": "YandexGamesSDK",
   "id": "yagames_sdk",
-  "version": "2.13.1",
+  "version": "2.14.0",
   "author": "LisGames",
   "website": "https://www.construct.net",
   "documentation": "https://www.construct.net",
   "description": "Plugin for interacting with Yandex.Games SDK.",
-  "editor-scripts": ["plugin.js", "type.js", "instance.js"],
+  "editor-scripts": [
+    "plugin.js",
+    "type.js",
+    "instance.js"
+  ],
   "file-list": [
     "c3runtime/plugin.js",
     "c3runtime/type.js",
