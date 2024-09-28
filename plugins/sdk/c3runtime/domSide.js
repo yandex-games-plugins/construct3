@@ -220,6 +220,14 @@
         this.domHandler.PostToRuntime('ysdk-handle-event', { ['type']: 'HISTORY_BACK' });
       });
 
+      this.ysdk['on']('game_api_pause', () => {
+        this.domHandler.PostToRuntime('ysdk-handle-event', { ['type']: 'game_api_pause' });
+      });
+
+      this.ysdk['on']('game_api_resume', () => {
+        this.domHandler.PostToRuntime('ysdk-handle-event', { ['type']: 'game_api_resume' });
+      });
+
       await this.YSDKUpdateCanShowShortcutPrompt();
       await this.YSDKUpdateCanReview();
     }

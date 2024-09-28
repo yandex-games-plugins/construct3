@@ -585,6 +585,16 @@
         "id": "on-history-back-event",
         "scriptName": "OnHistoryBackEvent",
         "isTrigger": true
+      },
+      {
+        "id": "on-game-api-pause",
+        "scriptName": "OnGameAPIPause",
+        "isTrigger": true
+      },
+      {
+        "id": "on-game-api-resume",
+        "scriptName": "OnGameAPIResume",
+        "isTrigger": true
       }
     ],
     "actions": [

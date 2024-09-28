@@ -570,6 +570,12 @@ class YandexGamesSDKInstance extends C3.SDKInstanceBase {
         case 'HISTORY_BACK':
           this.Trigger(this.conditions.OnHistoryBackEvent);
           break;
+        case 'game_api_pause':
+          this.Trigger(this.conditions.OnGameAPIPause);
+          break;
+        case 'game_api_resume':
+          this.Trigger(this.conditions.OnGameAPIResume);
+          break;
       }
     });
 

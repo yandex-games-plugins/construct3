@@ -256,7 +256,17 @@
           "on-history-back-event": {
             "list-name": "On History Back event",
             "display-text": "On [b]History back[/b] event",
-            "description": "Runs when user clicks on the Back button. (Works only on TV)"
+            "description": "Triggers when user clicks on the Back button. (Works only on TV)"
+          },
+          "on-game-api-pause": {
+            "list-name": "On Pause event",
+            "display-text": "On [b]Pause[/b] event",
+            "description": "Triggers when platform signals that the game is should be paused."
+          },
+          "on-game-api-resume": {
+            "list-name": "On Resume event",
+            "display-text": "On [b]Resume[/b] event",
+            "description": "Triggers when platform signals that the game is should be resumed."
           },
 
           "shortcut-can-show-prompt": {

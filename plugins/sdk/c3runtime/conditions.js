@@ -391,6 +391,20 @@ const Conditions = {
     return true;
   },
 
+  /**
+   * @this {YandexGamesSDKInstance}
+   */
+  OnGameAPIPause() {
+    return true;
+  },
+
+  /**
+   * @this {YandexGamesSDKInstance}
+   */
+  OnGameAPIResume() {
+    return true;
+  },
+
   //#endregion
 
   //#region Shortcut
