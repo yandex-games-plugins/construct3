@@ -17,7 +17,7 @@ const Expressions = {
 
   /** @this {YandexGamesSDKInstance} */
   LocalizationValue(path) {
-    return this.localization.GetTranlationValue(path) ?? '';
+    return this.localization.GetValue(path) ?? '';
   },
 
   //#endregion

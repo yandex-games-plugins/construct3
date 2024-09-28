@@ -14,10 +14,10 @@ class Localization {
     /** @typedef {{[key: string]: string | StringKeysObject | undefined}} StringKeysObject */
 
     /**
-     * Storage for current game localizations.
+     * Storage for current game translation map.
      * @type {StringKeysObject | undefined}
      */
-    this.localizationMap = undefined;
+    this.valueMap = undefined;
 
     /** @type {string} */
     this.defaultLanguage = 'en';
@@ -58,6 +58,51 @@ class Localization {
       desc = Object.getOwnPropertyDescriptor(obj, key);
     } while (!desc && (obj = Object.getPrototypeOf(obj)));
     return desc;
+  }
+
+  /** @type {(string:string) => string} */
+  TranslateString(string) {
+    let translatedString = string;
+
+    const nonWrappedPaths = /\{[\w\d.]*\}/;
+
+    let matches;
+    while ((matches = translatedString.match(nonWrappedPaths) || matches?.lenght > 0)) {
+      const match = matches[0];
+      try {
+        const path = match.slice(1, -1);
+        const translation = this.GetValue(path);
+
+        if (translation === undefined) {
+          throw new Error(`Translation for ${path} is undefined.`);
+        }
+
+        translatedString = translatedString.replace(match, translation);
+      } catch (e) {
+        console.error(e);
+        this.pluginInstance.DeveloperAlert(
+          `Can't apply translation for ${match} in ${this.currentLanguage}. More info in console.`,
+        );
+        break;
+      }
+    }
+
+    return translatedString;
+  }
+
+  /**
+   * @param {string} path
+   * @returns {string}
+   */
+  GetValue(path) {
+    return this.valueMap ? this.valueMap[path] : '';
+  }
+
+  DecoratePlugins() {
+    if (this.__pluginsDecorated) return;
+    this.__pluginsDecorated = true;
+    this.DecorateTextPlugins();
+    this.DecorateSpritePlugins();
   }
 
   DecorateTextPlugins() {
@@ -138,44 +183,6 @@ class Localization {
       });
   }
 
-  /** @type {(string:string) => string} */
-  TranslateString(string) {
-    let translatedString = string;
-
-    const nonWrappedPaths = /\{[\w\d.]*\}/;
-
-    let matches;
-    while ((matches = translatedString.match(nonWrappedPaths) || matches?.lenght > 0)) {
-      const match = matches[0];
-      try {
-        const path = match.slice(1, -1);
-        const translation = this.GetTranlationValue(path);
-
-        if (translation === undefined) {
-          throw new Error(`Translation for ${path} is undefined.`);
-        }
-
-        translatedString = translatedString.replace(match, translation);
-      } catch (e) {
-        console.error(e);
-        this.pluginInstance.DeveloperAlert(
-          `Can't apply translation for ${match} in ${this.currentLanguage}. More info in console.`,
-        );
-        break;
-      }
-    }
-
-    return translatedString;
-  }
-
-  /**
-   * @param {string} path
-   * @returns {string | undefined}
-   */
-  GetTranlationValue(path) {
-    return path.split('.').reduce((obj, key) => obj[key], this.localizationMap);
-  }
-
   DecorateSpritePlugins() {
     this.runtime
       .GetAllObjectClasses()
@@ -246,42 +253,81 @@ class Localization {
     sdkInstance._SetAnimFrame(currentFrame);
   }
 
-  /** @type {(lang: string) => Promise<string | undefined>} */
-  async FetchLanguage(lang) {
-    if (this.assetManager.GetFileStructure() === 'flat') {
-      return this.assetManager.FetchJson(`${lang}.json`);
-    } else {
-      return this.assetManager.FetchJson(`i18n/${lang}.json`);
-    }
-  }
+  FlattenTranslations(object) {
+    const parsedTranslations = {};
 
-  async SwitchLanguage(languageCode) {
-    console.debug('Switch Language', languageCode);
+    for (const key in object) {
+      const value = object[key];
 
-    this.currentLanguage = languageCode;
+      switch (typeof value) {
+        case 'object': {
+          const nestedTranslations = this.FlattenTranslations(value);
 
-    this.localizationMap = await this.FetchLanguage(languageCode);
+          for (const nestedKey in nestedTranslations) {
+            parsedTranslations[`${key}.${nestedKey}`] = nestedTranslations[nestedKey];
+          }
+          break;
+        }
 
-    if (this.localizationMap === undefined && this.defaultLanguage !== undefined) {
-      this.pluginInstance.Warn(
-        `Can't find localizations for ${languageCode}. Switching to default ${this.defaultLanguage}.`,
-      );
+        case 'string':
+          parsedTranslations[key] = value;
+          break;
 
-      this.currentLanguage = this.defaultLanguage;
-      this.localizationMap = await this.FetchLanguage(this.defaultLanguage);
-
-      if (!map) {
-        this.currentLanguage = undefined;
-        this.localizationMap = undefined;
-        this.pluginInstance.Warn(
-          `Can't find localizations for default language (${this.defaultLanguage}), make sure that you have localizations in "i18n" folder. More info in devtools console.`,
-        );
-        return;
+        default:
+          parsedTranslations[key] = value.toString();
+          break;
       }
     }
 
-    this.DecorateTextPlugins();
-    this.DecorateSpritePlugins();
+    return parsedTranslations;
+  }
+
+  /** @type {(lang: string) => Promise<string | undefined>} */
+  FetchLanguage(lang) {
+    let path;
+
+    if (this.assetManager.GetFileStructure() === 'flat') {
+      path = `${lang}.json`;
+    } else {
+      path = `i18n/${lang}.json`;
+    }
+
+    return this.assetManager
+      .FetchJson(path)
+      .then((json) => this.FlattenTranslations(json))
+      .catch(() => undefined);
+  }
+
+  async SwitchLanguage(languageCode) {
+    this.pluginInstance.Info(`Switching localization language (${languageCode})`);
+
+    this.valueMap = await this.FetchLanguage(languageCode);
+
+    if (this.valueMap !== undefined) {
+      this.currentLanguage = languageCode;
+      this.DecoratePlugins();
+      return;
+    }
+
+    if (this.defaultLanguage === undefined) return;
+
+    this.pluginInstance.Warn(
+      `Can't find translation map for ${languageCode}. Switching to default language "${this.defaultLanguage}".`,
+    );
+
+    this.valueMap = await this.FetchLanguage(this.defaultLanguage);
+
+    if (this.valueMap !== undefined) {
+      this.currentLanguage = languageCode;
+      this.DecoratePlugins();
+      return;
+    }
+
+    this.currentLanguage = undefined;
+    this.valueMap = undefined;
+    this.pluginInstance.Warn(
+      `Can't find translation map for default language "${this.defaultLanguage}", make sure that you have translation map in "i18n" folder.`,
+    );
   }
 }
 
@@ -717,6 +763,10 @@ class YandexGamesSDKInstance extends C3.SDKInstanceBase {
     }
 
     console.warn('[YandexGamesSDK] ' + message);
+  }
+
+  Info(message) {
+    console.log('[YandexGamesSDK] ' + message);
   }
 
   Warn(message) {
