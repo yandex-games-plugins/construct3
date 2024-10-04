@@ -98,13 +98,6 @@ class Localization {
     return this.valueMap ? this.valueMap[path] : '';
   }
 
-  DecoratePlugins() {
-    if (this.__pluginsDecorated) return;
-    this.__pluginsDecorated = true;
-    this.DecorateTextPlugins();
-    this.DecorateSpritePlugins();
-  }
-
   DecorateTextPlugins() {
     this.runtime
       .GetAllObjectClasses()
@@ -305,7 +298,8 @@ class Localization {
 
     if (this.valueMap !== undefined) {
       this.currentLanguage = languageCode;
-      this.DecoratePlugins();
+      this.DecorateTextPlugins();
+      this.DecorateSpritePlugins();
       return;
     }
 
@@ -319,7 +313,8 @@ class Localization {
 
     if (this.valueMap !== undefined) {
       this.currentLanguage = languageCode;
-      this.DecoratePlugins();
+      this.DecorateTextPlugins();
+      this.DecorateSpritePlugins();
       return;
     }
 
