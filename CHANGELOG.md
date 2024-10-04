@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## YandexGamesSDK - [2.14.1] - 2024.10.4
+
+### Fixed
+
+- Broken localization language switching
+- Leaderboard looping bugs when player is in top rankings
+
 ## YandexGamesSDK - [2.14.0] - 2024.9.28
 
 ### Added
