@@ -732,9 +732,9 @@ class YandexGamesSDKInstance extends C3.SDKInstanceBase {
    * Callback for sdk initialization.
    * @param {{environment?: types.YSDK["environment"], deviceType?: types.YSDK["deviceInfo"]["type"]}} data
    */
-  InitCallback(data) {
+  async InitCallback(data) {
     if (!data) {
-      this.localization.SwitchLanguage(this, this.localization.defaultLanguage);
+      await this.localization.SwitchLanguage(this, this.localization.defaultLanguage);
       return;
     }
 
@@ -743,7 +743,7 @@ class YandexGamesSDKInstance extends C3.SDKInstanceBase {
 
     const yandexLanguage = this.environment['i18n']['lang'];
 
-    this.localization.SwitchLanguage(this, yandexLanguage);
+    await this.localization.SwitchLanguage(this, yandexLanguage);
 
     this.PostToDOM('ysdk-init-finish');
 
