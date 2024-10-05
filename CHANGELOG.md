@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## YandexGamesSDK - [2.15.0] - 2024.10.5
+
+### Added
+
+- Switch language action is now asynchronous
+
+### Fixed
+
+- Broken localization fallback language option
+- Make Construct wait untill localizations are loaded
+
 ## YandexGamesSDK - [2.14.1] - 2024.10.4
 
 ### Fixed
