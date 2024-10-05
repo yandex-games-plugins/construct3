@@ -303,8 +303,6 @@ class Localization {
       return;
     }
 
-    if (this.defaultLanguage === undefined) return;
-
     this.pluginInstance.Warn(
       `Can't find translation map for ${languageCode}. Switching to default language "${this.defaultLanguage}".`,
     );
@@ -720,7 +718,7 @@ class YandexGamesSDKInstance extends C3.SDKInstanceBase {
     if (this.GetRuntime().IsPreview()) {
       this.PostToDOM('start-tv-remote-emulator');
       this.PostToDOM('start-tv-remote-tracking');
-      this.actions.SwitchLanguage.call(this, 'en');
+      this.localization.SwitchLanguage(this.localization.defaultLanguage);
     } else if (autoInitialization) {
       this.GetRuntime().AddLoadPromise(this.InitializeYSDK());
     }
@@ -736,7 +734,7 @@ class YandexGamesSDKInstance extends C3.SDKInstanceBase {
    */
   InitCallback(data) {
     if (!data) {
-      this.actions.SwitchLanguage.call(this, 'en');
+      this.localization.SwitchLanguage(this, this.localization.defaultLanguage);
       return;
     }
 
@@ -745,7 +743,7 @@ class YandexGamesSDKInstance extends C3.SDKInstanceBase {
 
     const yandexLanguage = this.environment['i18n']['lang'];
 
-    this.actions.SwitchLanguage.call(this, yandexLanguage);
+    this.localization.SwitchLanguage(this, yandexLanguage);
 
     this.PostToDOM('ysdk-init-finish');
 
