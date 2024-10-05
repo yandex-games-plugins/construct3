@@ -17,7 +17,7 @@ const Actions = {
    * @param {string} languageCode
    */
   async SwitchLanguage(languageCode) {
-    this.localization.SwitchLanguage(languageCode);
+    await this.localization.SwitchLanguage(languageCode);
   },
 
   //#endregion

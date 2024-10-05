@@ -5,6 +5,7 @@
       {
         "id": "switch-localization-language",
         "scriptName": "SwitchLanguage",
+        "isAsync": true,
         "params": [
           {
             "id": "lang",
@@ -49,7 +50,6 @@
       }
     ]
   },
-
   "fullscreen-ad": {
     "conditions": [
       {
@@ -100,7 +100,6 @@
       }
     ]
   },
-
   "rewarded-ad": {
     "conditions": [
       {
@@ -109,7 +108,12 @@
         "isTrigger": true,
         "isInvertible": false,
         "isCompatibleWithTriggers": false,
-        "params": [{ "id": "id", "type": "string" }]
+        "params": [
+          {
+            "id": "id",
+            "type": "string"
+          }
+        ]
       },
       {
         "id": "on-rewarded-ad-rewarded",
@@ -117,7 +121,12 @@
         "isTrigger": true,
         "isInvertible": false,
         "isCompatibleWithTriggers": false,
-        "params": [{ "id": "id", "type": "string" }]
+        "params": [
+          {
+            "id": "id",
+            "type": "string"
+          }
+        ]
       },
       {
         "id": "on-rewarded-ad-close",
@@ -125,7 +134,12 @@
         "isTrigger": true,
         "isInvertible": false,
         "isCompatibleWithTriggers": false,
-        "params": [{ "id": "id", "type": "string" }]
+        "params": [
+          {
+            "id": "id",
+            "type": "string"
+          }
+        ]
       },
       {
         "id": "on-rewarded-ad-error",
@@ -133,7 +147,12 @@
         "isTrigger": true,
         "isInvertible": false,
         "isCompatibleWithTriggers": false,
-        "params": [{ "id": "id", "type": "string" }]
+        "params": [
+          {
+            "id": "id",
+            "type": "string"
+          }
+        ]
       },
       {
         "id": "on-any-rewarded-ad-open",
@@ -162,7 +181,12 @@
         "id": "show-rewarded-ad",
         "scriptName": "ShowRewardedAD",
         "highlight": true,
-        "params": [{ "id": "id", "type": "string" }]
+        "params": [
+          {
+            "id": "id",
+            "type": "string"
+          }
+        ]
       }
     ],
     "expressions": [
@@ -173,7 +197,6 @@
       }
     ]
   },
-
   "sticky-banner": {
     "conditions": [],
     "actions": [
@@ -190,7 +213,6 @@
     ],
     "expressions": []
   },
-
   "leaderboards": {
     "conditions": [
       {
@@ -199,10 +221,25 @@
         "isCompatibleWithTriggers": false,
         "isLooping": true,
         "params": [
-          { "id": "leaderboardName", "type": "string" },
-          { "id": "quantityTop", "type": "number", "initialValue": "5" },
-          { "id": "includeUser", "type": "boolean", "initialValue": "false" },
-          { "id": "quantityAround", "type": "number", "initialValue": "5" }
+          {
+            "id": "leaderboardName",
+            "type": "string"
+          },
+          {
+            "id": "quantityTop",
+            "type": "number",
+            "initialValue": "5"
+          },
+          {
+            "id": "includeUser",
+            "type": "boolean",
+            "initialValue": "false"
+          },
+          {
+            "id": "quantityAround",
+            "type": "number",
+            "initialValue": "5"
+          }
         ]
       },
       {
@@ -216,9 +253,19 @@
         "id": "set-leaderboard-score",
         "scriptName": "SetLeaderboardScore",
         "params": [
-          { "id": "leaderboardName", "type": "string" },
-          { "id": "score", "type": "number" },
-          { "id": "extraData", "type": "string", "initialValue": "" }
+          {
+            "id": "leaderboardName",
+            "type": "string"
+          },
+          {
+            "id": "score",
+            "type": "number"
+          },
+          {
+            "id": "extraData",
+            "type": "string",
+            "initialValue": ""
+          }
         ]
       }
     ],
@@ -256,32 +303,52 @@
       {
         "id": "current-leadeboard-description-title",
         "expressionName": "GetCurrentLeaderboardDescriptionTitle",
-        "params": [{ "id": "lang", "type": "string" }],
+        "params": [
+          {
+            "id": "lang",
+            "type": "string"
+          }
+        ],
         "returnType": "string"
       },
       {
         "id": "current-leadeboard-description-decimal-offset",
         "expressionName": "GetCurrentLeaderboardDescriptionDecimalOffset",
-        "params": [{ "id": "lang", "type": "string" }],
+        "params": [
+          {
+            "id": "lang",
+            "type": "string"
+          }
+        ],
         "returnType": "string"
       }
     ]
   },
-
   "purchases": {
     "actions": [
       {
         "id": "purchase",
         "scriptName": "Purchase",
         "params": [
-          { "id": "productID", "type": "string" },
-          { "id": "developerPayload", "type": "string" }
+          {
+            "id": "productID",
+            "type": "string"
+          },
+          {
+            "id": "developerPayload",
+            "type": "string"
+          }
         ]
       },
       {
         "id": "consume-purchase",
         "scriptName": "ConsumePurchase",
-        "params": [{ "id": "purchaseToken", "type": "string" }],
+        "params": [
+          {
+            "id": "purchaseToken",
+            "type": "string"
+          }
+        ],
         "isAsync": true
       }
     ],
@@ -311,13 +378,23 @@
       {
         "id": "on-specific-purchase-success",
         "scriptName": "OnSpecificPurchaseSuccess",
-        "params": [{ "id": "productID", "type": "string" }],
+        "params": [
+          {
+            "id": "productID",
+            "type": "string"
+          }
+        ],
         "isTrigger": true
       },
       {
         "id": "on-specific-purchase-error",
         "scriptName": "OnSpecificPurchaseError",
-        "params": [{ "id": "productID", "type": "string" }],
+        "params": [
+          {
+            "id": "productID",
+            "type": "string"
+          }
+        ],
         "isTrigger": true
       }
     ],
@@ -386,11 +463,16 @@
         "id": "product-price-currency-image",
         "expressionName": "ProductPriceCurrencyImage",
         "returnType": "string",
-        "params": [{ "id": "size", "type": "string", "initialValue": "medium" }]
+        "params": [
+          {
+            "id": "size",
+            "type": "string",
+            "initialValue": "medium"
+          }
+        ]
       }
     ]
   },
-
   "player": {
     "conditions": [
       {
@@ -398,7 +480,12 @@
         "scriptName": "WithPlayerInfo",
         "isCompatibleWithTriggers": false,
         "isLooping": true,
-        "params": [{ "id": "requestAuthorization", "type": "boolean" }]
+        "params": [
+          {
+            "id": "requestAuthorization",
+            "type": "boolean"
+          }
+        ]
       },
       {
         "id": "current-player-is-authorized",
@@ -417,7 +504,12 @@
           {
             "id": "value",
             "type": "combo",
-            "items": ["paying", "partially_paying", "not_paying", "unknown"]
+            "items": [
+              "paying",
+              "partially_paying",
+              "not_paying",
+              "unknown"
+            ]
           }
         ]
       }
@@ -428,36 +520,79 @@
         "scriptName": "PlayerGetData",
         "isAsync": true,
         "params": [
-          { "id": "jsonObject", "type": "object", "allowedPluginIds": ["Json"] },
-          { "id": "keys", "type": "string" }
+          {
+            "id": "jsonObject",
+            "type": "object",
+            "allowedPluginIds": [
+              "Json"
+            ]
+          },
+          {
+            "id": "keys",
+            "type": "string"
+          }
         ]
       },
       {
         "id": "player-get-stats",
         "scriptName": "PlayerGetStats",
         "isAsync": true,
-        "params": [{ "id": "jsonObject", "type": "object", "allowedPluginIds": ["Json"] }]
+        "params": [
+          {
+            "id": "jsonObject",
+            "type": "object",
+            "allowedPluginIds": [
+              "Json"
+            ]
+          }
+        ]
       },
       {
         "id": "player-set-data",
         "scriptName": "PlayerSetData",
         "isAsync": true,
         "params": [
-          { "id": "jsonObject", "type": "object", "allowedPluginIds": ["Json"] },
-          { "id": "flush", "type": "boolean", "initialValue": "false" }
+          {
+            "id": "jsonObject",
+            "type": "object",
+            "allowedPluginIds": [
+              "Json"
+            ]
+          },
+          {
+            "id": "flush",
+            "type": "boolean",
+            "initialValue": "false"
+          }
         ]
       },
       {
         "id": "player-set-stats",
         "scriptName": "PlayerSetStats",
         "isAsync": true,
-        "params": [{ "id": "jsonObject", "type": "object", "allowedPluginIds": ["Json"] }]
+        "params": [
+          {
+            "id": "jsonObject",
+            "type": "object",
+            "allowedPluginIds": [
+              "Json"
+            ]
+          }
+        ]
       },
       {
         "id": "player-increment-stats",
         "scriptName": "PlayerIncrementStats",
         "isAsync": true,
-        "params": [{ "id": "jsonObject", "type": "object", "allowedPluginIds": ["Json"] }]
+        "params": [
+          {
+            "id": "jsonObject",
+            "type": "object",
+            "allowedPluginIds": [
+              "Json"
+            ]
+          }
+        ]
       }
     ],
     "expressions": [
@@ -474,7 +609,13 @@
       {
         "id": "current-player-avatar",
         "expressionName": "GetCurrentPlayerAvatar",
-        "params": [{ "id": "size", "type": "string", "initialValue": "medium" }],
+        "params": [
+          {
+            "id": "size",
+            "type": "string",
+            "initialValue": "medium"
+          }
+        ],
         "returnType": "string"
       },
       {
@@ -504,7 +645,6 @@
       }
     ]
   },
-
   "environment": {
     "conditions": [],
     "actions": [],
@@ -555,7 +695,6 @@
       }
     ]
   },
-
   "deviceInfo": {
     "conditions": [
       {
@@ -578,7 +717,6 @@
     "actions": [],
     "expressions": []
   },
-
   "events": {
     "conditions": [
       {
@@ -601,12 +739,19 @@
       {
         "id": "dispatch-event",
         "scriptName": "DispatchEvent",
-        "params": [{ "id": "name", "type": "combo", "items": ["EXIT"] }]
+        "params": [
+          {
+            "id": "name",
+            "type": "combo",
+            "items": [
+              "EXIT"
+            ]
+          }
+        ]
       }
     ],
     "expressions": []
   },
-
   "shortcut": {
     "conditions": [
       {
@@ -628,7 +773,6 @@
     ],
     "expressions": []
   },
-
   "remote-config": {
     "conditions": [
       {
@@ -642,16 +786,28 @@
         "id": "remote-config-set-default",
         "scriptName": "RemoteConfigSetDefault",
         "params": [
-          { "id": "key", "type": "string" },
-          { "id": "value", "type": "string" }
+          {
+            "id": "key",
+            "type": "string"
+          },
+          {
+            "id": "value",
+            "type": "string"
+          }
         ]
       },
       {
         "id": "remote-config-set-client-feature",
         "scriptName": "RemoteConfigSetClientFeature",
         "params": [
-          { "id": "name", "type": "string" },
-          { "id": "value", "type": "string" }
+          {
+            "id": "name",
+            "type": "string"
+          },
+          {
+            "id": "value",
+            "type": "string"
+          }
         ]
       },
       {
@@ -664,12 +820,16 @@
       {
         "id": "remote-config-get-flag",
         "expressionName": "RemoteConfigGetFlag",
-        "params": [{ "id": "name", "type": "string" }],
+        "params": [
+          {
+            "id": "name",
+            "type": "string"
+          }
+        ],
         "returnType": "string"
       }
     ]
   },
-
   "tv": {
     "conditions": [
       {
@@ -677,25 +837,60 @@
         "scriptName": "IsTVRemoteButtonPressed",
         "isTrigger": false,
         "isCompatibleWithTriggers": true,
-        "params": [{ "id": "button", "type": "combo", "items": ["up", "down", "left", "right", "ok"] }]
+        "params": [
+          {
+            "id": "button",
+            "type": "combo",
+            "items": [
+              "up",
+              "down",
+              "left",
+              "right",
+              "ok"
+            ]
+          }
+        ]
       },
       {
         "id": "on-tv-button-press",
         "scriptName": "OnTVRemoteButtonPress",
         "isTrigger": true,
-        "params": [{ "id": "button", "type": "combo", "items": ["up", "down", "left", "right", "ok"] }]
+        "params": [
+          {
+            "id": "button",
+            "type": "combo",
+            "items": [
+              "up",
+              "down",
+              "left",
+              "right",
+              "ok"
+            ]
+          }
+        ]
       },
       {
         "id": "on-tv-button-release",
         "scriptName": "OnTVRemoteButtonRelease",
         "isTrigger": true,
-        "params": [{ "id": "button", "type": "combo", "items": ["up", "down", "left", "right", "ok"] }]
+        "params": [
+          {
+            "id": "button",
+            "type": "combo",
+            "items": [
+              "up",
+              "down",
+              "left",
+              "right",
+              "ok"
+            ]
+          }
+        ]
       }
     ],
     "actions": [],
     "expressions": []
   },
-
   "review": {
     "actions": [
       {
@@ -721,7 +916,6 @@
     ],
     "expressions": []
   },
-
   "misc": {
     "conditions": [
       {
@@ -729,14 +923,24 @@
         "scriptName": "Throttle",
         "isLooping": true,
         "isCompatibleWithTriggers": false,
-        "params": [{ "id": "seconds", "type": "number" }]
+        "params": [
+          {
+            "id": "seconds",
+            "type": "number"
+          }
+        ]
       },
       {
         "id": "debounce",
         "scriptName": "Debounce",
         "isLooping": true,
         "isCompatibleWithTriggers": false,
-        "params": [{ "id": "seconds", "type": "number" }]
+        "params": [
+          {
+            "id": "seconds",
+            "type": "number"
+          }
+        ]
       }
     ],
     "actions": [
