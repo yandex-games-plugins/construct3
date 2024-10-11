@@ -1,4 +1,4 @@
-﻿{
+{
   "languageTag": "en-US",
   "fileDescription": "Strings for yagames_adaptivetext.",
   "text": {
@@ -41,6 +41,10 @@
           "forceAdapt": {
             "name": "Force adapt",
             "desc": "Force the text to adapt inside the object's bounding box."
+          },
+          "debugBorder": {
+            "name": "Debug Border",
+            "desc": "Draw a debug border around the object's bounding box. (works only in layout editor)"
           },
           "bold": {
             "name": "Bold",

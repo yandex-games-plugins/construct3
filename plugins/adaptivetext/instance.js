@@ -41,8 +41,10 @@ SDK.Plugins.yagames_adaptivetext.Instance = class AdaptiveTextInstance extends S
 
     const quad = this._inst.GetQuad();
 
-    iRenderer.SetColorRgba(0.1, 0.1, 0.1, 1);
-    iRenderer.LineQuad(quad);
+    if (this._inst.GetPropertyValue('debugBorder')) {
+      iRenderer.SetColorRgba(0.1, 0.1, 0.1, 1);
+      iRenderer.LineQuad(quad);
+    }
 
     const color = this._inst.GetColor();
     this._webglText.SetColorRgb(color.getR(), color.getG(), color.getB());

@@ -15,6 +15,7 @@ C3.Plugins.yagames_adaptivetext.Instance = class AdaptiveTextInstance extends C3
     this._horizontalAlign = 0;
     this._verticalAlign = 0;
     this._forceAdapt = true;
+    this._debugBorder = true;
 
     // Lazy-created renderer text object
     this._rendererText = null;
@@ -28,6 +29,7 @@ C3.Plugins.yagames_adaptivetext.Instance = class AdaptiveTextInstance extends C3
       this._horizontalAlign = HorizontalAlignments[properties[5]];
       this._verticalAlign = VerticalAlignments[properties[6]];
       this._forceAdapt = properties[7];
+      this._debugBorder = properties[8];
     }
   }
 
@@ -106,6 +108,7 @@ C3.Plugins.yagames_adaptivetext.Instance = class AdaptiveTextInstance extends C3
       horizontalAlign: this._horizontalAlign,
       verticalAlign: this._verticalAlign,
       forceAdapt: this._forceAdapt,
+      debugBorder: this._debugBorder,
     };
   }
 
@@ -118,6 +121,7 @@ C3.Plugins.yagames_adaptivetext.Instance = class AdaptiveTextInstance extends C3
     this._horizontalAlign = o['horizontalAlign'];
     this._verticalAlign = o['verticalAlign'];
     this._forceAdapt = o['forceAdapt'];
+    this._debugBorder = o['debugBorder'];
 
     this._dirtyText = true;
   }

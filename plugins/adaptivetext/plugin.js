@@ -55,6 +55,7 @@ const PLUGIN_CLASS = (SDK.Plugins.yagames_adaptivetext = class AdaptiveTextPlugi
         items: ['top', 'center', 'bottom'],
       }),
       new SDK.PluginProperty('check', 'forceAdapt', true),
+      new SDK.PluginProperty('check', 'debugBorder', true),
     ]);
 
     SDK.Lang.PopContext(); // .properties
