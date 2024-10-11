@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## AdaptiveText - [1.2.0] - 2024.10.11
+
+### Added
+
+- Option to disable debug border in layout editor.
+
 ## YandexGamesSDK - [2.15.0] - 2024.10.5
 
 ### Added
