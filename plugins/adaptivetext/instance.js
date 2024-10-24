@@ -94,6 +94,21 @@ SDK.Plugins.yagames_adaptivetext.Instance = class AdaptiveTextInstance extends S
     iRenderer.Quad3(quad, this._webglText.GetTexRect());
   }
 
+  HasDoubleTapHandler() {
+    return true;
+  }
+
+  OnDoubleTap() {
+    const currentText = this._inst.GetPropertyValue('text');
+    const dialogTitle = SDK.Lang.Get('plugins.yagames_adaptivetext.properties.text.name');
+
+    SDK.UI.Util.ShowLongTextPropertyDialog(currentText, dialogTitle).then((result) => {
+      if (result === null || result === currentText) return;
+      this.GetProject().UndoPointChangeObjectInstancesProperty(this._inst, 'text');
+      this._inst.SetPropertyValue('text', result);
+    });
+  }
+
   OnPropertyChanged(id, value) {
     if (!this._webglText) return;
     this._dirtyText = true;
