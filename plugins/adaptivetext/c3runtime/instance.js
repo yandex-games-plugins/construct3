@@ -71,8 +71,8 @@ C3.Plugins.yagames_adaptivetext.Instance = class AdaptiveTextInstance extends C3
 
       const width = worldInfo.GetWidth();
       const height = worldInfo.GetHeight();
-      const wrapWidth = this._rendererText._wrappedText.GetMaxLineWidth();
-      const wrapHeight = this._rendererText._wrappedText.GetTotalLineHeight();
+      const wrapWidth = this._rendererText.GetTextWidth();
+      const wrapHeight = this._rendererText.GetTextHeight();
 
       if (this._forceAdapt || width < wrapWidth || height < wrapHeight) {
         if (width / height < wrapWidth / wrapHeight) {
