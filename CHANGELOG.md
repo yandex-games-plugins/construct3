@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## AdaptiveText - [1.3.0] - 2024.10.24
+
+### Added
+
+- Double tap opens text editing window
+
+### Fixed
+
+- Font size inconsitency between editor and runtime
+
 ## AdaptiveText - [1.2.0] - 2024.10.11
 
 ### Added
