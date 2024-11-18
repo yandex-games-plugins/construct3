@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file.
 
+## YandexGamesSDK - [2.16.0] - 2024.11.18
+
+### Added
+
+- New `For each game` condition
+- New `Select Game By ID` condition
+- New `Current game is available` condition
+- New `Current game app ID` expression
+- New `Current game title` expression
+- New `Current game URL` expression
+- New `Current game cover URL` expression
+- New `Current game icon URL` expression
+- New `Developer URL` expression
+
+### Fixed
+
+- Localization initialization in production issues
+
 ## AdaptiveText - [1.3.0] - 2024.10.24
 
 ### Added
