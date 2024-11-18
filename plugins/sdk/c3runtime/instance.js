@@ -744,7 +744,7 @@ class YandexGamesSDKInstance extends C3.SDKInstanceBase {
    */
   async InitCallback(data) {
     if (!data) {
-      await this.localization.SwitchLanguage(this, this.localization.defaultLanguage);
+      await this.localization.SwitchLanguage(this.localization.defaultLanguage);
       return;
     }
 
@@ -754,7 +754,7 @@ class YandexGamesSDKInstance extends C3.SDKInstanceBase {
 
     const yandexLanguage = this.environment['i18n']['lang'];
 
-    await this.localization.SwitchLanguage(this, yandexLanguage);
+    await this.localization.SwitchLanguage(yandexLanguage);
 
     this.PostToDOM('ysdk-init-finish');
 
