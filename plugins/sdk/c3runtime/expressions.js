@@ -539,6 +539,70 @@ const Expressions = {
 
   //#endregion
 
+  //#region Game Linking
+
+  /** @this {YandexGamesSDKInstance} */
+  CurrentGameAppID() {
+    if (this.currentGameData === undefined) {
+      this.logDeveloperMistake(
+        `You are trying to use "CurrentGameAppID" expression outside of "Get All Games" or "Select Game" loop!`,
+      );
+    }
+
+    return this.currentGameData?.['game']?.['appID'] ?? '';
+  },
+
+  /** @this {YandexGamesSDKInstance} */
+  CurrentGameTitle() {
+    if (this.currentGameData === undefined) {
+      this.logDeveloperMistake(
+        `You are trying to use "CurrentGameTitle" expression outside of "Get All Games" or "Select Game" loop!`,
+      );
+    }
+
+    return this.currentGameData?.['game']?.['title'] ?? '';
+  },
+
+  /** @this {YandexGamesSDKInstance} */
+  CurrentGameURL() {
+    if (this.currentGameData === undefined) {
+      this.logDeveloperMistake(
+        `You are trying to use "CurrentGameURL" expression outside of "Get All Games" or "Select Game" loop!`,
+      );
+    }
+
+    return this.currentGameData?.['game']?.['url'] ?? '';
+  },
+
+  /** @this {YandexGamesSDKInstance} */
+  CurrentGameCoverURL() {
+    if (this.currentGameData === undefined) {
+      this.logDeveloperMistake(
+        `You are trying to use "CurrentGameCoverURL" expression outside of "Get All Games" or "Select Game" loop!`,
+      );
+    }
+
+    return this.currentGameData?.['game']?.['coverURL'] ?? '';
+  },
+
+  /** @this {YandexGamesSDKInstance} */
+  CurrentGameIconURL() {
+    if (this.currentGameData === undefined) {
+      this.logDeveloperMistake(
+        `You are trying to use "CurrentGameIconURL" expression outside of "Get All Games" or "Select Game" loop!`,
+      );
+    }
+
+    return this.currentGameData?.['game']?.['iconURL'] ?? '';
+  },
+
+  /** @this {YandexGamesSDKInstance} */
+  DeveloperURL() {
+    return this.developerURL;
+  },
+
+  //#endregion
+
   //#region Misc
 
   /** @this {YandexGamesSDKInstance} */

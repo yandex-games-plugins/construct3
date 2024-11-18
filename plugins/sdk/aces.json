@@ -916,6 +916,67 @@
     ],
     "expressions": []
   },
+  "games": {
+    "conditions": [
+      {
+        "id": "get-all-games",
+        "scriptName": "GetAllGames",
+        "isLooping": true,
+        "isCompatibleWithTriggers": false
+      },
+      {
+        "id": "get-game-by-id",
+        "scriptName": "GetGameByID",
+        "isLooping": true,
+        "isCompatibleWithTriggers": false,
+        "params": [
+          {
+            "id": "id",
+            "type": "number"
+          }
+        ]
+      },
+      {
+        "id": "is-current-game-available",
+        "scriptName": "IsCurrentGameAvailable",
+        "isInvertible": true,
+        "isCompatibleWithTriggers": false
+      }
+    ],
+    "actions": [],
+    "expressions": [
+      {
+        "id": "current-game-app-id",
+        "expressionName": "CurrentGameAppID",
+        "returnType": "string"
+      },
+      {
+        "id": "current-game-title",
+        "expressionName": "CurrentGameTitle",
+        "returnType": "string"
+      },
+      {
+        "id": "current-game-url",
+        "expressionName": "CurrentGameURL",
+        "returnType": "string"
+      },
+      {
+        "id": "current-game-coverURL",
+        "expressionName": "CurrentGameCoverURL",
+        "returnType": "string"
+      },
+      {
+        "id": "current-game-iconURL",
+        "expressionName": "CurrentGameIconURL",
+        "returnType": "string"
+      },
+      {
+        "id": "developerURL",
+        "expressionName": "DeveloperURL",
+        "returnType": "string"
+      }
+    ]
+  },
   "misc": {
     "conditions": [
       {

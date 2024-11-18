@@ -634,6 +634,16 @@ class YandexGamesSDKInstance extends C3.SDKInstanceBase {
 
     //#endregion
 
+    //#region Game Linking
+
+    /** @type {string} */
+    this.developerURL = '';
+
+    /** @type {{game: {appID: string, title: string, url: string, coverURL: string, iconURL: string}, isAvaliable: boolean} | undefined} */
+    this.currentGameData = undefined;
+
+    //#endregion
+
     //#region TV
 
     const TV_BUTTON = {
@@ -730,7 +740,7 @@ class YandexGamesSDKInstance extends C3.SDKInstanceBase {
 
   /**
    * Callback for sdk initialization.
-   * @param {{environment?: types.YSDK["environment"], deviceType?: types.YSDK["deviceInfo"]["type"]}} data
+   * @param {{environment?: types.YSDK["environment"], deviceType?: types.YSDK["deviceInfo"]["type"], developerURL?: string}} data
    */
   async InitCallback(data) {
     if (!data) {
@@ -740,6 +750,7 @@ class YandexGamesSDKInstance extends C3.SDKInstanceBase {
 
     this.environment = data['environment'];
     this.deviceType = data['deviceType'];
+    this.developerURL = data['developerURL'] ?? '';
 
     const yandexLanguage = this.environment['i18n']['lang'];
 

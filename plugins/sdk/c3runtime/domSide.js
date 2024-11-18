@@ -160,6 +160,10 @@
         'ysdk-update-can-show-shortcut-prompt',
         this.YSDKUpdateCanShowShortcutPrompt.bind(this),
       );
+
+      this.domHandler.AddRuntimeMessageHandler('ysdk-get-all-games', this.YSDKGetAllGames.bind(this));
+
+      this.domHandler.AddRuntimeMessageHandler('ysdk-get-game-by-id', this.YSDKGetGameByID.bind(this));
     }
 
     async LoadYSDKScript() {
@@ -184,7 +188,12 @@
       window['ysdk'] = this.ysdk;
       window.ysdk = this.ysdk;
 
-      await this.OnYSDKLoaded(this.ysdk);
+      const results = await Promise.all([
+        this.OnYSDKLoaded(this.ysdk),
+        this.ysdk['features']['GamesAPI']['getAllGames'](),
+      ]);
+
+      const developerURL = results[1].developerURL;
 
       this.ysdk['features']['PluginEngineDataReporterAPI']?.['report']({
         ['engineName']: 'Construct',
@@ -210,6 +219,7 @@
           ['payload']: this.ysdk['environment']['payload'],
         },
         ['deviceType']: this.ysdk['deviceInfo']['type'],
+        ['developerURL']: developerURL,
       };
     }
 
@@ -228,8 +238,7 @@
         this.domHandler.PostToRuntime('ysdk-handle-event', { ['type']: 'game_api_resume' });
       });
 
-      await this.YSDKUpdateCanShowShortcutPrompt();
-      await this.YSDKUpdateCanReview();
+      await Promise.all([this.YSDKUpdateCanShowShortcutPrompt(), this.YSDKUpdateCanReview()]);
     }
 
     YSDKLoadingAPIReady() {
@@ -616,6 +625,38 @@
       await this.domHandler.PostToRuntimeAsync('ysdk-update-can-show-shortcut-prompt', {
         ['canShow']: prompt['canShow'],
       });
+    }
+
+    async YSDKGetGameByID(params) {
+      if (!this.ysdk) return;
+
+      const result = await this.ysdk['features']['GamesAPI']['getGameByID'](params['id']);
+
+      if (result['game'] === undefined) {
+        console.log(
+          `No game found with the provided ID (${params['id']}). Please check the ID and try again.`,
+        );
+      }
+
+      return [
+        {
+          ['game']: result['game'],
+          ['isAvailable']: result['isAvailable'],
+        },
+      ];
+    }
+
+    async YSDKGetAllGames() {
+      if (!this.ysdk) return;
+
+      const result = await this.ysdk['features']['GamesAPI']['getAllGames']();
+
+      const games = result['games'];
+
+      return games.map((game) => ({
+        ['game']: game,
+        ['isAvailable']: true,
+      }));
     }
 
     async YSDKShortcutsShowPrompt() {

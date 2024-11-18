@@ -32,6 +32,7 @@
           "remote-config": "Remote Config",
           "tv": "TV",
           "review": "Review",
+          "games": "Games",
           "misc": "Misc"
         },
         "conditions": {
@@ -367,6 +368,27 @@
                 }
               }
             }
+          },
+          "get-all-games": {
+            "list-name": "For each game",
+            "display-text": "For each game",
+            "description": "Retrieves information about all your games that are available on the current platform and domain."
+          },
+          "get-game-by-id": {
+            "list-name": "Select Game By ID",
+            "display-text": "Select Game [b]{0}[/b]",
+            "description": "Retrieves data about a specific game and its availability on the current platform and domain.",
+            "params": {
+              "id": {
+                "name": "App ID",
+                "desc": "The game's identifier, as set in the developer console."
+              }
+            }
+          },
+          "is-current-game-available": {
+            "list-name": "Current game is available",
+            "display-text": "Current game is available",
+            "description": "Checks if currently selected game is currently avaible on the current platform and domain. (Works only with \"For each game\" and \"Select Game By ID\")"
           }
         },
         "actions": {
@@ -837,7 +859,31 @@
           },
           "server-time": {
             "translated-name": "Server time",
-            "description": "Returns the current time on the server in milliseconds."
+            "description": "Returns the current time on the server in milliseconds. (Works only with \"For each game\" and \"Select Game By ID\")"
+          },
+          "current-game-app-id": {
+            "translated-name": "Current game app ID",
+            "description": "Returns the unique identifier (App ID) of the current game. (Works only with \"For each game\" and \"Select Game by ID\")"
+          },
+          "current-game-title": {
+            "translated-name": "Current game title",
+            "description": "Returns the title of the current game. (Works only with \"For each game\" and \"Select Game by ID\")"
+          },
+          "current-game-url": {
+            "translated-name": "Current game URL",
+            "description": "Returns the URL of the current game. (Works only with \"For each game\" and \"Select Game by ID\")"
+          },
+          "current-game-coverURL": {
+            "translated-name": "Current game cover URL",
+            "description": "Returns the URL of the cover image for the current game. (Works only with \"For each game\" and \"Select Game by ID\")"
+          },
+          "current-game-iconURL": {
+            "translated-name": "Current game icon URL",
+            "description": "Returns the URL of the icon for the current game. (Works only with \"For each game\" and \"Select Game by ID\")"
+          },
+          "developerURL": {
+            "translated-name": "Developer URL",
+            "description": "Returns the URL of the developer's page."
           }
         }
       }

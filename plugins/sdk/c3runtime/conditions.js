@@ -525,6 +525,109 @@ const Conditions = {
 
   //#endregion
 
+  //#region Game Linking
+
+  /** @this {YandexGamesSDKInstance} */
+  GetAllGames() {
+    const runtime = this.GetRuntime();
+    const eventSheetManager = runtime.GetEventSheetManager();
+    const currentEvent = runtime.GetCurrentEvent();
+    const solModifiers = currentEvent.GetSolModifiers();
+    const eventStack = runtime.GetEventStack();
+    const oldFrame = eventStack.GetCurrentStackFrame();
+    const isSolModifierAfterCnds = oldFrame.IsSolModifierAfterCnds();
+
+    this.PostToDOMAsync('ysdk-get-all-games').then(
+      (/** @type {typeof this.currentGameData[]} */ gamesData) => {
+        if (!gamesData) return;
+
+        const newFrame = eventStack.Push(currentEvent);
+        const loopStack = eventSheetManager.GetLoopStack();
+        const loop = loopStack.Push();
+        loop.SetEnd(gamesData.length);
+
+        if (isSolModifierAfterCnds) {
+          for (let i = 0; i < gamesData.length; i++) {
+            eventSheetManager.PushCopySol(solModifiers);
+            loop.SetIndex(i);
+            this.currentGameData = gamesData[i];
+            currentEvent.Retrigger(oldFrame, newFrame);
+            eventSheetManager.PopSol(solModifiers);
+          }
+        } else {
+          for (let i = 0; i < gamesData.length; i++) {
+            loop.SetIndex(i);
+            this.currentGameData = gamesData[i];
+            currentEvent.Retrigger(oldFrame, newFrame);
+          }
+        }
+
+        eventStack.Pop();
+        loopStack.Pop();
+        this.currentGameData = undefined;
+      },
+    );
+
+    return false;
+  },
+
+  /**
+   * @this {YandexGamesSDKInstance}
+   * @param {number} id
+   */
+  GetGameByID(id) {
+    const runtime = this.GetRuntime();
+    const eventSheetManager = runtime.GetEventSheetManager();
+    const currentEvent = runtime.GetCurrentEvent();
+    const solModifiers = currentEvent.GetSolModifiers();
+    const eventStack = runtime.GetEventStack();
+    const oldFrame = eventStack.GetCurrentStackFrame();
+    const isSolModifierAfterCnds = oldFrame.IsSolModifierAfterCnds();
+
+    this.PostToDOMAsync('ysdk-get-game-by-id', { ['id']: id }).then(
+      (/** @type {typeof this.currentGameData[]} */ gamesData) => {
+        if (!gamesData) return;
+
+        const newFrame = eventStack.Push(currentEvent);
+        const loopStack = eventSheetManager.GetLoopStack();
+        const loop = loopStack.Push();
+        loop.SetEnd(gamesData.length);
+
+        if (isSolModifierAfterCnds) {
+          for (let i = 0; i < gamesData.length; i++) {
+            eventSheetManager.PushCopySol(solModifiers);
+            loop.SetIndex(i);
+            this.currentGameData = gamesData[i];
+            currentEvent.Retrigger(oldFrame, newFrame);
+            eventSheetManager.PopSol(solModifiers);
+          }
+        } else {
+          for (let i = 0; i < gamesData.length; i++) {
+            loop.SetIndex(i);
+            this.currentGameData = gamesData[i];
+            currentEvent.Retrigger(oldFrame, newFrame);
+          }
+        }
+
+        eventStack.Pop();
+        loopStack.Pop();
+        this.currentGameData = undefined;
+      },
+    );
+
+    return false;
+  },
+
+  /** @this {YandexGamesSDKInstance} */
+  IsCurrentGameAvailable() {
+    this.logDeveloperMistake(
+      `You are trying to use "IsCurrentGameAvailable" condition outside of "Get Games" loop!`,
+    );
+    return this.currentGameData.isAvaliable ?? false;
+  },
+
+  //#endregion
+
   //#region TV
 
   /**
