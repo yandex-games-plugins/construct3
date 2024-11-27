@@ -388,7 +388,7 @@
         quantityTop,
         Math.min(
           data['entries'].findIndex((entry) => entry['rank'] === data['userRank']),
-          data['entries'].length - quantityBottom,
+          data['entries'].length - quantityBottom - 1,
         ),
       );
 
