@@ -1,176 +1,176 @@
 {
-  "languageTag": "en-US",
-  "fileDescription": "Strings for yagames_adaptivetext.",
-  "text": {
-    "plugins": {
-      "yagames_adaptivetext": {
-        "name": "Adaptive Text",
-        "description": "Plugin to display text with adaptive font size and alignment inside a bounding box.",
-        "help-url": "https://www.construct.net",
-        "properties": {
-          "text": {
-            "name": "Text",
-            "desc": "The initial text to display."
-          },
-          "font": {
-            "name": "Font",
-            "desc": "The name of the font to display the text with."
-          },
-          "baseFontSize": {
-            "name": "Base size",
-            "desc": "The base font size to display, in pixels."
-          },
-          "horizontalAlign": {
-            "name": "Horizontal align",
-            "desc": "Horizontal alignment of the text inside its bounding box.",
-            "items": {
-              "left": "Left",
-              "center": "Center",
-              "right": "Right"
-            }
-          },
-          "verticalAlign": {
-            "name": "Vertical align",
-            "desc": "Vertical alignment of the text inside its bounding box.",
-            "items": {
-              "top": "Top",
-              "center": "Center",
-              "bottom": "Bottom"
-            }
-          },
-          "forceAdapt": {
-            "name": "Force adapt",
-            "desc": "Force the text to adapt inside the object's bounding box."
-          },
-          "debugBorder": {
-            "name": "Debug Border",
-            "desc": "Draw a debug border around the object's bounding box. (works only in layout editor)"
-          },
-          "bold": {
-            "name": "Bold",
-            "desc": "Display the font in a bold weight."
-          },
-          "italic": {
-            "name": "Italic",
-            "desc": "Display the font in a slanted italic style."
-          }
-        },
-        "aceCategories": {
-          "text": "Text"
-        },
-        "conditions": {},
-        "actions": {
-          "set-text": {
-            "list-name": "Set text",
-            "display-text": "Set text to [i]{0}[/i]",
-            "description": "Set the text of this object.",
-            "params": {
-              "value": {
-                "name": "Text",
-                "desc": "Type text, to set as display text."
-              }
-            }
-          },
-          "set-font": {
-            "list-name": "Set font",
-            "display-text": "Set font to [i]{0}[/i]",
-            "description": "Set the font face used to display text.",
-            "params": {
-              "value": {
-                "name": "Font",
-                "desc": "Type font name, to set as display font."
-              }
-            }
-          },
-          "set-base-font-size": {
-            "list-name": "Set base font size",
-            "display-text": "Set base font size to [i]{0}[/i]",
-            "description": "Sets the base font size, in pixels.",
-            "params": {
-              "value": {
-                "name": "Base font size",
-                "desc": "Type new base font size for text, in pixels."
-              }
-            }
-          },
-          "set-bold": {
-            "list-name": "Set bold",
-            "display-text": "Set bold to [i]{0}[/i]",
-            "description": "Sets the bold style of text.",
-            "params": {
-              "value": {
-                "name": "Bold",
-                "desc": "Type [b]true[/b] to set bold style, or [b]false[/b] to remove bold style."
-              }
-            }
-          },
-          "set-italic": {
-            "list-name": "Set italic",
-            "display-text": "Set italic to [i]{0}[/i]",
-            "description": "Sets the italic style of text.",
-            "params": {
-              "value": {
-                "name": "Italic",
-                "desc": "Type [b]true[/b] to set italic style, or [b]false[/b] to remove italic style."
-              }
-            }
-          },
-          "set-horizontal-align": {
-            "list-name": "Set horizontal align",
-            "display-text": "Set horizontal align to [i]{0}[/i]",
-            "description": "Sets the horizontal align of text.",
-            "params": {
-              "value": {
-                "name": "Horizontal align",
-                "desc": "Select new horizontal align for text.",
-                "items": {
-                  "left": "Left",
-                  "center": "Center",
-                  "right": "Right"
+    "languageTag": "en-US",
+    "fileDescription": "Strings for yagames_adaptivetext.",
+    "text": {
+        "plugins": {
+            "yagames_adaptivetext": {
+                "name": "Adaptive Text",
+                "description": "Plugin to display text with adaptive font size and alignment inside a bounding box.",
+                "help-url": "https://www.construct.net",
+                "properties": {
+                    "text": {
+                        "name": "Text",
+                        "desc": "The initial text to display."
+                    },
+                    "font": {
+                        "name": "Font",
+                        "desc": "The name of the font to display the text with."
+                    },
+                    "baseFontSize": {
+                        "name": "Base size",
+                        "desc": "The base font size to display, in pixels."
+                    },
+                    "horizontalAlign": {
+                        "name": "Horizontal align",
+                        "desc": "Horizontal alignment of the text inside its bounding box.",
+                        "items": {
+                            "left": "Left",
+                            "center": "Center",
+                            "right": "Right"
+                        }
+                    },
+                    "verticalAlign": {
+                        "name": "Vertical align",
+                        "desc": "Vertical alignment of the text inside its bounding box.",
+                        "items": {
+                            "top": "Top",
+                            "center": "Center",
+                            "bottom": "Bottom"
+                        }
+                    },
+                    "forceAdapt": {
+                        "name": "Force adapt",
+                        "desc": "Force the text to adapt inside the object's bounding box."
+                    },
+                    "debugBorder": {
+                        "name": "Debug Border",
+                        "desc": "Draw a debug border around the object's bounding box. (works only in layout editor)"
+                    },
+                    "bold": {
+                        "name": "Bold",
+                        "desc": "Display the font in a bold weight."
+                    },
+                    "italic": {
+                        "name": "Italic",
+                        "desc": "Display the font in a slanted italic style."
+                    }
+                },
+                "aceCategories": {
+                    "text": "Text"
+                },
+                "conditions": {},
+                "actions": {
+                    "set-text": {
+                        "list-name": "Set text",
+                        "display-text": "Set text to [i]{0}[/i]",
+                        "description": "Set the text of this object.",
+                        "params": {
+                            "value": {
+                                "name": "Text",
+                                "desc": "Type text, to set as display text."
+                            }
+                        }
+                    },
+                    "set-font": {
+                        "list-name": "Set font",
+                        "display-text": "Set font to [i]{0}[/i]",
+                        "description": "Set the font face used to display text.",
+                        "params": {
+                            "value": {
+                                "name": "Font",
+                                "desc": "Type font name, to set as display font."
+                            }
+                        }
+                    },
+                    "set-base-font-size": {
+                        "list-name": "Set base font size",
+                        "display-text": "Set base font size to [i]{0}[/i]",
+                        "description": "Sets the base font size, in pixels.",
+                        "params": {
+                            "value": {
+                                "name": "Base font size",
+                                "desc": "Type new base font size for text, in pixels."
+                            }
+                        }
+                    },
+                    "set-bold": {
+                        "list-name": "Set bold",
+                        "display-text": "Set bold to [i]{0}[/i]",
+                        "description": "Sets the bold style of text.",
+                        "params": {
+                            "value": {
+                                "name": "Bold",
+                                "desc": "Type [b]true[/b] to set bold style, or [b]false[/b] to remove bold style."
+                            }
+                        }
+                    },
+                    "set-italic": {
+                        "list-name": "Set italic",
+                        "display-text": "Set italic to [i]{0}[/i]",
+                        "description": "Sets the italic style of text.",
+                        "params": {
+                            "value": {
+                                "name": "Italic",
+                                "desc": "Type [b]true[/b] to set italic style, or [b]false[/b] to remove italic style."
+                            }
+                        }
+                    },
+                    "set-horizontal-align": {
+                        "list-name": "Set horizontal align",
+                        "display-text": "Set horizontal align to [i]{0}[/i]",
+                        "description": "Sets the horizontal align of text.",
+                        "params": {
+                            "value": {
+                                "name": "Horizontal align",
+                                "desc": "Select new horizontal align for text.",
+                                "items": {
+                                    "left": "Left",
+                                    "center": "Center",
+                                    "right": "Right"
+                                }
+                            }
+                        }
+                    },
+                    "set-vertical-align": {
+                        "list-name": "Set vertical align",
+                        "display-text": "Set vertical align to [i]{0}[/i]",
+                        "description": "Sets the vertical align of text.",
+                        "params": {
+                            "value": {
+                                "name": "Vertical align",
+                                "desc": "Select new vertical align for text.",
+                                "items": {
+                                    "top": "Top",
+                                    "center": "Center",
+                                    "bottom": "Bottom"
+                                }
+                            }
+                        }
+                    }
+                },
+                "expressions": {
+                    "text": {
+                        "description": "Get the object's text.",
+                        "translated-name": "Text"
+                    },
+                    "font": {
+                        "description": "Get the object's font.",
+                        "translated-name": "Font"
+                    },
+                    "baseFontSize": {
+                        "description": "Get the object's base font size.",
+                        "translated-name": "Base font size"
+                    },
+                    "horizontalAlign": {
+                        "description": "Get the object's horizontal align.",
+                        "translated-name": "Horizontal align"
+                    },
+                    "verticalAlign": {
+                        "description": "Get the object's vertical align.",
+                        "translated-name": "Vertical align"
+                    }
                 }
-              }
             }
-          },
-          "set-vertical-align": {
-            "list-name": "Set vertical align",
-            "display-text": "Set vertical align to [i]{0}[/i]",
-            "description": "Sets the vertical align of text.",
-            "params": {
-              "value": {
-                "name": "Vertical align",
-                "desc": "Select new vertical align for text.",
-                "items": {
-                  "top": "Top",
-                  "center": "Center",
-                  "bottom": "Bottom"
-                }
-              }
-            }
-          }
-        },
-        "expressions": {
-          "text": {
-            "description": "Get the object's text.",
-            "translated-name": "Text"
-          },
-          "font": {
-            "description": "Get the object's font.",
-            "translated-name": "Font"
-          },
-          "baseFontSize": {
-            "description": "Get the object's base font size.",
-            "translated-name": "Base font size"
-          },
-          "horizontalAlign": {
-            "description": "Get the object's horizontal align.",
-            "translated-name": "Horizontal align"
-          },
-          "verticalAlign": {
-            "description": "Get the object's vertical align.",
-            "translated-name": "Vertical align"
-          }
         }
-      }
     }
-  }
 }

@@ -1,1035 +1,1324 @@
 ﻿{
-  "localization": {
-    "conditions": [],
-    "actions": [
-      {
-        "id": "switch-localization-language",
-        "scriptName": "SwitchLanguage",
-        "isAsync": true,
-        "params": [
-          {
-            "id": "lang",
-            "type": "string"
-          }
-        ]
-      },
-      {
-        "id": "set-default-localization-language",
-        "scriptName": "SetDefaultLanguage",
-        "isDeprecated": true,
-        "params": [
-          {
-            "id": "lang",
-            "type": "string"
-          }
-        ]
-      }
-    ],
-    "expressions": [
-      {
-        "id": "current-localization-language",
-        "expressionName": "LocalizationLanguage",
-        "returnType": "string"
-      },
-      {
-        "id": "old-current-localization-language",
-        "expressionName": "CurrentLanguage",
-        "returnType": "string",
-        "isDeprecated": true
-      },
-      {
-        "id": "localization-value",
-        "expressionName": "LocalizationValue",
-        "returnType": "string",
-        "params": [
-          {
-            "id": "key",
-            "type": "string"
-          }
-        ]
-      }
-    ]
-  },
-  "fullscreen-ad": {
-    "conditions": [
-      {
-        "id": "on-fullscreen-ad-close",
-        "scriptName": "OnFullscreenADClose",
-        "isTrigger": true,
-        "isInvertible": false,
-        "isCompatibleWithTriggers": false
-      },
-      {
-        "id": "fullscreen-ad-was-shown",
-        "scriptName": "FullscreenADWasShown"
-      },
-      {
-        "id": "on-fullscreen-ad-open",
-        "scriptName": "OnFullscreenADOpen",
-        "isTrigger": true,
-        "isInvertible": false,
-        "isCompatibleWithTriggers": false
-      },
-      {
-        "id": "on-fullscreen-ad-error",
-        "scriptName": "OnFullscreenADError",
-        "isTrigger": true,
-        "isInvertible": false,
-        "isCompatibleWithTriggers": false
-      },
-      {
-        "id": "on-fullscreen-ad-offline",
-        "scriptName": "OnFullscreenADOffline",
-        "isTrigger": true,
-        "isInvertible": false,
-        "isCompatibleWithTriggers": false
-      }
-    ],
-    "actions": [
-      {
-        "id": "show-fullscreen-ad",
-        "scriptName": "ShowFullscreenAD",
-        "highlight": true
-      }
-    ],
-    "expressions": [
-      {
-        "id": "fullscreen-ad-error",
-        "expressionName": "FullscreenADError",
-        "returnType": "string"
-      }
-    ]
-  },
-  "rewarded-ad": {
-    "conditions": [
-      {
-        "id": "on-rewarded-ad-open",
-        "scriptName": "OnRewardedADOpen",
-        "isTrigger": true,
-        "isInvertible": false,
-        "isCompatibleWithTriggers": false,
-        "params": [
-          {
-            "id": "id",
-            "type": "string"
-          }
-        ]
-      },
-      {
-        "id": "on-rewarded-ad-rewarded",
-        "scriptName": "OnRewardedADRewarded",
-        "isTrigger": true,
-        "isInvertible": false,
-        "isCompatibleWithTriggers": false,
-        "params": [
-          {
-            "id": "id",
-            "type": "string"
-          }
-        ]
-      },
-      {
-        "id": "on-rewarded-ad-close",
-        "scriptName": "OnRewardedADClose",
-        "isTrigger": true,
-        "isInvertible": false,
-        "isCompatibleWithTriggers": false,
-        "params": [
-          {
-            "id": "id",
-            "type": "string"
-          }
-        ]
-      },
-      {
-        "id": "on-rewarded-ad-error",
-        "scriptName": "OnRewardedADError",
-        "isTrigger": true,
-        "isInvertible": false,
-        "isCompatibleWithTriggers": false,
-        "params": [
-          {
-            "id": "id",
-            "type": "string"
-          }
-        ]
-      },
-      {
-        "id": "on-any-rewarded-ad-open",
-        "scriptName": "OnAnyRewardedADOpen",
-        "isTrigger": true,
-        "isInvertible": false,
-        "isCompatibleWithTriggers": false
-      },
-      {
-        "id": "on-any-rewarded-ad-close",
-        "scriptName": "OnAnyRewardedADClose",
-        "isTrigger": true,
-        "isInvertible": false,
-        "isCompatibleWithTriggers": false
-      },
-      {
-        "id": "on-any-rewarded-ad-error",
-        "scriptName": "OnAnyRewardedADError",
-        "isTrigger": true,
-        "isInvertible": false,
-        "isCompatibleWithTriggers": false
-      }
-    ],
-    "actions": [
-      {
-        "id": "show-rewarded-ad",
-        "scriptName": "ShowRewardedAD",
-        "highlight": true,
-        "params": [
-          {
-            "id": "id",
-            "type": "string"
-          }
-        ]
-      }
-    ],
-    "expressions": [
-      {
-        "id": "rewarded-ad-error",
-        "expressionName": "RewardedADError",
-        "returnType": "string"
-      }
-    ]
-  },
-  "sticky-banner": {
-    "conditions": [],
-    "actions": [
-      {
-        "id": "show-sticky-banner",
-        "scriptName": "ShowStickyBanner",
-        "params": []
-      },
-      {
-        "id": "hide-sticky-banner",
-        "scriptName": "HideStickyBanner",
-        "params": []
-      }
-    ],
-    "expressions": []
-  },
-  "leaderboards": {
-    "conditions": [
-      {
-        "id": "for-each-leaderboard-entry",
-        "scriptName": "ForEachLeaderboardEntry",
-        "isCompatibleWithTriggers": false,
-        "isLooping": true,
-        "params": [
-          {
-            "id": "leaderboardName",
-            "type": "string"
-          },
-          {
-            "id": "quantityTop",
-            "type": "number",
-            "initialValue": "5"
-          },
-          {
-            "id": "includeUser",
-            "type": "boolean",
-            "initialValue": "false"
-          },
-          {
-            "id": "quantityAround",
-            "type": "number",
-            "initialValue": "5"
-          }
-        ]
-      },
-      {
-        "id": "current-leadeboard-description-invert-order",
-        "scriptName": "CurrentLeaderboardDescriptionInvertOrder",
-        "highlight": false
-      }
-    ],
-    "actions": [
-      {
-        "id": "set-leaderboard-score",
-        "scriptName": "SetLeaderboardScore",
-        "params": [
-          {
-            "id": "leaderboardName",
-            "type": "string"
-          },
-          {
-            "id": "score",
-            "type": "number"
-          },
-          {
-            "id": "extraData",
-            "type": "string",
-            "initialValue": ""
-          }
-        ]
-      }
-    ],
-    "expressions": [
-      {
-        "id": "current-leadeboard-entry-rank",
-        "expressionName": "GetCurrentLeaderboardEntryRank",
-        "returnType": "number"
-      },
-      {
-        "id": "current-leadeboard-entry-score",
-        "expressionName": "GetCurrentLeaderboardEntryScore",
-        "returnType": "number"
-      },
-      {
-        "id": "current-leadeboard-entry-extra-data",
-        "expressionName": "GetCurrentLeaderboardEntryExtraData",
-        "returnType": "string"
-      },
-      {
-        "id": "current-leadeboard-entry-range-index",
-        "expressionName": "GetCurrentLeaderboardEntryRangeIndex",
-        "returnType": "number"
-      },
-      {
-        "id": "current-leadeboard-description-name",
-        "expressionName": "GetCurrentLeaderboardDescriptionName",
-        "returnType": "string"
-      },
-      {
-        "id": "current-leadeboard-description-type",
-        "expressionName": "GetCurrentLeaderboardDescriptionType",
-        "returnType": "string"
-      },
-      {
-        "id": "current-leadeboard-description-title",
-        "expressionName": "GetCurrentLeaderboardDescriptionTitle",
-        "params": [
-          {
-            "id": "lang",
-            "type": "string"
-          }
+    "localization": {
+        "conditions": [],
+        "actions": [
+            {
+                "id": "switch-localization-language",
+                "scriptName": "SwitchLanguage",
+                "isAsync": true,
+                "params": [
+                    {
+                        "id": "lang",
+                        "type": "string"
+                    }
+                ]
+            },
+            {
+                "id": "set-default-localization-language",
+                "scriptName": "SetDefaultLanguage",
+                "isDeprecated": true,
+                "params": [
+                    {
+                        "id": "lang",
+                        "type": "string"
+                    }
+                ]
+            }
         ],
-        "returnType": "string"
-      },
-      {
-        "id": "current-leadeboard-description-decimal-offset",
-        "expressionName": "GetCurrentLeaderboardDescriptionDecimalOffset",
-        "params": [
-          {
-            "id": "lang",
-            "type": "string"
-          }
+        "expressions": [
+            {
+                "id": "current-localization-language",
+                "expressionName": "LocalizationLanguage",
+                "returnType": "string"
+            },
+            {
+                "id": "old-current-localization-language",
+                "expressionName": "CurrentLanguage",
+                "returnType": "string",
+                "isDeprecated": true
+            },
+            {
+                "id": "localization-value",
+                "expressionName": "LocalizationValue",
+                "returnType": "string",
+                "params": [
+                    {
+                        "id": "key",
+                        "type": "string"
+                    }
+                ]
+            }
+        ]
+    },
+    "fullscreen-ad": {
+        "conditions": [
+            {
+                "id": "on-fullscreen-ad-close",
+                "scriptName": "OnFullscreenADClose",
+                "isTrigger": true,
+                "isInvertible": false,
+                "isCompatibleWithTriggers": false
+            },
+            {
+                "id": "fullscreen-ad-was-shown",
+                "scriptName": "FullscreenADWasShown"
+            },
+            {
+                "id": "on-fullscreen-ad-open",
+                "scriptName": "OnFullscreenADOpen",
+                "isTrigger": true,
+                "isInvertible": false,
+                "isCompatibleWithTriggers": false
+            },
+            {
+                "id": "on-fullscreen-ad-error",
+                "scriptName": "OnFullscreenADError",
+                "isTrigger": true,
+                "isInvertible": false,
+                "isCompatibleWithTriggers": false
+            },
+            {
+                "id": "on-fullscreen-ad-offline",
+                "scriptName": "OnFullscreenADOffline",
+                "isTrigger": true,
+                "isInvertible": false,
+                "isCompatibleWithTriggers": false
+            }
         ],
-        "returnType": "string"
-      }
-    ]
-  },
-  "purchases": {
-    "actions": [
-      {
-        "id": "purchase",
-        "scriptName": "Purchase",
-        "params": [
-          {
-            "id": "productID",
-            "type": "string"
-          },
-          {
-            "id": "developerPayload",
-            "type": "string"
-          }
-        ]
-      },
-      {
-        "id": "consume-purchase",
-        "scriptName": "ConsumePurchase",
-        "params": [
-          {
-            "id": "purchaseToken",
-            "type": "string"
-          }
+        "actions": [
+            {
+                "id": "show-fullscreen-ad",
+                "scriptName": "ShowFullscreenAD",
+                "highlight": true
+            }
         ],
-        "isAsync": true
-      }
-    ],
-    "conditions": [
-      {
-        "id": "for-each-in-catalog",
-        "scriptName": "ForEachInCatalog",
-        "isCompatibleWithTriggers": false,
-        "isLooping": true
-      },
-      {
-        "id": "for-each-purchase",
-        "scriptName": "ForEachPurchase",
-        "isCompatibleWithTriggers": false,
-        "isLooping": true
-      },
-      {
-        "id": "on-purchase-success",
-        "scriptName": "OnPurchaseSuccess",
-        "isTrigger": true
-      },
-      {
-        "id": "on-purchase-error",
-        "scriptName": "OnPurchaseError",
-        "isTrigger": true
-      },
-      {
-        "id": "on-specific-purchase-success",
-        "scriptName": "OnSpecificPurchaseSuccess",
-        "params": [
-          {
-            "id": "productID",
-            "type": "string"
-          }
+        "expressions": [
+            {
+                "id": "fullscreen-ad-error",
+                "expressionName": "FullscreenADError",
+                "returnType": "string"
+            }
+        ]
+    },
+    "rewarded-ad": {
+        "conditions": [
+            {
+                "id": "on-rewarded-ad-open",
+                "scriptName": "OnRewardedADOpen",
+                "isTrigger": true,
+                "isInvertible": false,
+                "isCompatibleWithTriggers": false,
+                "params": [
+                    {
+                        "id": "id",
+                        "type": "string"
+                    }
+                ]
+            },
+            {
+                "id": "on-rewarded-ad-rewarded",
+                "scriptName": "OnRewardedADRewarded",
+                "isTrigger": true,
+                "isInvertible": false,
+                "isCompatibleWithTriggers": false,
+                "params": [
+                    {
+                        "id": "id",
+                        "type": "string"
+                    }
+                ]
+            },
+            {
+                "id": "on-rewarded-ad-close",
+                "scriptName": "OnRewardedADClose",
+                "isTrigger": true,
+                "isInvertible": false,
+                "isCompatibleWithTriggers": false,
+                "params": [
+                    {
+                        "id": "id",
+                        "type": "string"
+                    }
+                ]
+            },
+            {
+                "id": "on-rewarded-ad-error",
+                "scriptName": "OnRewardedADError",
+                "isTrigger": true,
+                "isInvertible": false,
+                "isCompatibleWithTriggers": false,
+                "params": [
+                    {
+                        "id": "id",
+                        "type": "string"
+                    }
+                ]
+            },
+            {
+                "id": "on-any-rewarded-ad-open",
+                "scriptName": "OnAnyRewardedADOpen",
+                "isTrigger": true,
+                "isInvertible": false,
+                "isCompatibleWithTriggers": false
+            },
+            {
+                "id": "on-any-rewarded-ad-close",
+                "scriptName": "OnAnyRewardedADClose",
+                "isTrigger": true,
+                "isInvertible": false,
+                "isCompatibleWithTriggers": false
+            },
+            {
+                "id": "on-any-rewarded-ad-error",
+                "scriptName": "OnAnyRewardedADError",
+                "isTrigger": true,
+                "isInvertible": false,
+                "isCompatibleWithTriggers": false
+            }
         ],
-        "isTrigger": true
-      },
-      {
-        "id": "on-specific-purchase-error",
-        "scriptName": "OnSpecificPurchaseError",
-        "params": [
-          {
-            "id": "productID",
-            "type": "string"
-          }
+        "actions": [
+            {
+                "id": "show-rewarded-ad",
+                "scriptName": "ShowRewardedAD",
+                "highlight": true,
+                "params": [
+                    {
+                        "id": "id",
+                        "type": "string"
+                    }
+                ]
+            }
         ],
-        "isTrigger": true
-      }
-    ],
-    "expressions": [
-      {
-        "id": "purchase-token",
-        "expressionName": "PurchaseToken",
-        "returnType": "string"
-      },
-      {
-        "id": "purchase-developer-payload",
-        "expressionName": "PurchaseDeveloperPayload",
-        "returnType": "string"
-      },
-      {
-        "id": "purchase-signature",
-        "expressionName": "PurchaseSignature",
-        "returnType": "string"
-      },
-      {
-        "id": "purchase-error",
-        "expressionName": "PurchaseError",
-        "returnType": "string"
-      },
-      {
-        "id": "purchases-signature",
-        "expressionName": "PurchasesSignature",
-        "returnType": "string"
-      },
-      {
-        "id": "product-id",
-        "expressionName": "ProductID",
-        "returnType": "string"
-      },
-      {
-        "id": "product-title",
-        "expressionName": "ProductTitle",
-        "returnType": "string"
-      },
-      {
-        "id": "product-description",
-        "expressionName": "ProductDescription",
-        "returnType": "string"
-      },
-      {
-        "id": "product-image-uri",
-        "expressionName": "ProductImageURI",
-        "returnType": "string"
-      },
-      {
-        "id": "product-price",
-        "expressionName": "ProductPrice",
-        "returnType": "string"
-      },
-      {
-        "id": "product-price-value",
-        "expressionName": "ProductPriceValue",
-        "returnType": "number"
-      },
-      {
-        "id": "product-price-currency-code",
-        "expressionName": "ProductPriceCurrencyCode",
-        "returnType": "string"
-      },
-      {
-        "id": "product-price-currency-image",
-        "expressionName": "ProductPriceCurrencyImage",
-        "returnType": "string",
-        "params": [
-          {
-            "id": "size",
-            "type": "string",
-            "initialValue": "medium"
-          }
+        "expressions": [
+            {
+                "id": "rewarded-ad-error",
+                "expressionName": "RewardedADError",
+                "returnType": "string"
+            }
         ]
-      }
-    ]
-  },
-  "player": {
-    "conditions": [
-      {
-        "id": "with-player-info",
-        "scriptName": "WithPlayerInfo",
-        "isCompatibleWithTriggers": false,
-        "isLooping": true,
-        "params": [
-          {
-            "id": "requestAuthorization",
-            "type": "boolean"
-          }
-        ]
-      },
-      {
-        "id": "current-player-is-authorized",
-        "scriptName": "CurrentPlayerIsAuthorized",
-        "isTrigger": false
-      },
-      {
-        "id": "current-player-info-access-granted",
-        "scriptName": "CurrentPlayerInfoAccessGranted",
-        "isTrigger": false
-      },
-      {
-        "id": "current-player-paying-status-check",
-        "scriptName": "CurrentPlayerPayingStatusCheck",
-        "params": [
-          {
-            "id": "value",
-            "type": "combo",
-            "items": [
-              "paying",
-              "partially_paying",
-              "not_paying",
-              "unknown"
-            ]
-          }
-        ]
-      }
-    ],
-    "actions": [
-      {
-        "id": "player-get-data",
-        "scriptName": "PlayerGetData",
-        "isAsync": true,
-        "params": [
-          {
-            "id": "jsonObject",
-            "type": "object",
-            "allowedPluginIds": [
-              "Json"
-            ]
-          },
-          {
-            "id": "keys",
-            "type": "string"
-          }
-        ]
-      },
-      {
-        "id": "player-get-stats",
-        "scriptName": "PlayerGetStats",
-        "isAsync": true,
-        "params": [
-          {
-            "id": "jsonObject",
-            "type": "object",
-            "allowedPluginIds": [
-              "Json"
-            ]
-          }
-        ]
-      },
-      {
-        "id": "player-set-data",
-        "scriptName": "PlayerSetData",
-        "isAsync": true,
-        "params": [
-          {
-            "id": "jsonObject",
-            "type": "object",
-            "allowedPluginIds": [
-              "Json"
-            ]
-          },
-          {
-            "id": "flush",
-            "type": "boolean",
-            "initialValue": "false"
-          }
-        ]
-      },
-      {
-        "id": "player-set-stats",
-        "scriptName": "PlayerSetStats",
-        "isAsync": true,
-        "params": [
-          {
-            "id": "jsonObject",
-            "type": "object",
-            "allowedPluginIds": [
-              "Json"
-            ]
-          }
-        ]
-      },
-      {
-        "id": "player-increment-stats",
-        "scriptName": "PlayerIncrementStats",
-        "isAsync": true,
-        "params": [
-          {
-            "id": "jsonObject",
-            "type": "object",
-            "allowedPluginIds": [
-              "Json"
-            ]
-          }
-        ]
-      }
-    ],
-    "expressions": [
-      {
-        "id": "current-player-unique-id",
-        "expressionName": "GetCurrentPlayerUniqueID",
-        "returnType": "string"
-      },
-      {
-        "id": "current-player-name",
-        "expressionName": "GetCurrentPlayerName",
-        "returnType": "string"
-      },
-      {
-        "id": "current-player-avatar",
-        "expressionName": "GetCurrentPlayerAvatar",
-        "params": [
-          {
-            "id": "size",
-            "type": "string",
-            "initialValue": "medium"
-          }
+    },
+    "sticky-banner": {
+        "conditions": [],
+        "actions": [
+            {
+                "id": "show-sticky-banner",
+                "scriptName": "ShowStickyBanner",
+                "params": []
+            },
+            {
+                "id": "hide-sticky-banner",
+                "scriptName": "HideStickyBanner",
+                "params": []
+            }
         ],
-        "returnType": "string"
-      },
-      {
-        "id": "current-player-avatar-small",
-        "expressionName": "PlayerAvatarSmall",
-        "returnType": "string"
-      },
-      {
-        "id": "current-player-avatar-medium",
-        "expressionName": "PlayerAvatarMedium",
-        "returnType": "string"
-      },
-      {
-        "id": "current-player-avatar-large",
-        "expressionName": "PlayerAvatarLarge",
-        "returnType": "string"
-      },
-      {
-        "id": "current-player-signature",
-        "expressionName": "GetCurrentPlayerSignature",
-        "returnType": "string"
-      },
-      {
-        "id": "current-player-paying-status",
-        "expressionName": "GetCurrentPlayerPayingStatus",
-        "returnType": "string"
-      }
-    ]
-  },
-  "environment": {
-    "conditions": [],
-    "actions": [],
-    "expressions": [
-      {
-        "id": "old-get-language",
-        "expressionName": "GetLanguage",
-        "returnType": "string",
-        "isDeprecated": true
-      },
-      {
-        "id": "old-get-tld",
-        "expressionName": "GetDomain",
-        "returnType": "string",
-        "isDeprecated": true
-      },
-      {
-        "id": "old-get-payload",
-        "expressionName": "GetPayload",
-        "returnType": "string",
-        "isDeprecated": true
-      },
-      {
-        "id": "old-get-app-id",
-        "expressionName": "GetAppID",
-        "returnType": "string",
-        "isDeprecated": true
-      },
-      {
-        "id": "get-language",
-        "expressionName": "EnvironmentLanguage",
-        "returnType": "string"
-      },
-      {
-        "id": "get-tld",
-        "expressionName": "EnvironmentDomain",
-        "returnType": "string"
-      },
-      {
-        "id": "get-payload",
-        "expressionName": "EnvironmentPayload",
-        "returnType": "string"
-      },
-      {
-        "id": "get-app-id",
-        "expressionName": "AppID",
-        "returnType": "string"
-      }
-    ]
-  },
-  "deviceInfo": {
-    "conditions": [
-      {
-        "id": "is-mobile",
-        "scriptName": "IsMobile"
-      },
-      {
-        "id": "is-desktop",
-        "scriptName": "IsDesktop"
-      },
-      {
-        "id": "is-tablet",
-        "scriptName": "IsTablet"
-      },
-      {
-        "id": "is-tv",
-        "scriptName": "IsTV"
-      }
-    ],
-    "actions": [],
-    "expressions": []
-  },
-  "events": {
-    "conditions": [
-      {
-        "id": "on-history-back-event",
-        "scriptName": "OnHistoryBackEvent",
-        "isTrigger": true
-      },
-      {
-        "id": "on-game-api-pause",
-        "scriptName": "OnGameAPIPause",
-        "isTrigger": true
-      },
-      {
-        "id": "on-game-api-resume",
-        "scriptName": "OnGameAPIResume",
-        "isTrigger": true
-      }
-    ],
-    "actions": [
-      {
-        "id": "dispatch-event",
-        "scriptName": "DispatchEvent",
-        "params": [
-          {
-            "id": "name",
-            "type": "combo",
-            "items": [
-              "EXIT"
-            ]
-          }
-        ]
-      }
-    ],
-    "expressions": []
-  },
-  "shortcut": {
-    "conditions": [
-      {
-        "id": "shortcut-can-show-prompt",
-        "scriptName": "ShortcutCanShowPrompt"
-      },
-      {
-        "id": "shortcut-added",
-        "scriptName": "OnShortcutAdded",
-        "isTrigger": true
-      }
-    ],
-    "actions": [
-      {
-        "id": "shortcut-show-prompt",
-        "scriptName": "ShortcutShowPrompt",
-        "highlight": false
-      }
-    ],
-    "expressions": []
-  },
-  "remote-config": {
-    "conditions": [
-      {
-        "id": "on-remote-config-ready",
-        "scriptName": "OnRemoteConfigReady",
-        "isTrigger": true
-      }
-    ],
-    "actions": [
-      {
-        "id": "remote-config-set-default",
-        "scriptName": "RemoteConfigSetDefault",
-        "params": [
-          {
-            "id": "key",
-            "type": "string"
-          },
-          {
-            "id": "value",
-            "type": "string"
-          }
-        ]
-      },
-      {
-        "id": "remote-config-set-client-feature",
-        "scriptName": "RemoteConfigSetClientFeature",
-        "params": [
-          {
-            "id": "name",
-            "type": "string"
-          },
-          {
-            "id": "value",
-            "type": "string"
-          }
-        ]
-      },
-      {
-        "id": "remote-config-fetch",
-        "scriptName": "RemoteConfigFetch",
-        "highlight": false
-      }
-    ],
-    "expressions": [
-      {
-        "id": "remote-config-get-flag",
-        "expressionName": "RemoteConfigGetFlag",
-        "params": [
-          {
-            "id": "name",
-            "type": "string"
-          }
+        "expressions": []
+    },
+    "leaderboards": {
+        "conditions": [
+            {
+                "id": "for-each-leaderboard-entry",
+                "scriptName": "ForEachLeaderboardEntry",
+                "isCompatibleWithTriggers": false,
+                "isLooping": true,
+                "params": [
+                    {
+                        "id": "leaderboardName",
+                        "type": "string"
+                    },
+                    {
+                        "id": "quantityTop",
+                        "type": "number",
+                        "initialValue": "5"
+                    },
+                    {
+                        "id": "includeUser",
+                        "type": "boolean",
+                        "initialValue": "false"
+                    },
+                    {
+                        "id": "quantityAround",
+                        "type": "number",
+                        "initialValue": "5"
+                    }
+                ]
+            },
+            {
+                "id": "current-leadeboard-description-invert-order",
+                "scriptName": "CurrentLeaderboardDescriptionInvertOrder",
+                "highlight": false
+            },
+            {
+                "id": "on-leaderboard-fetch-success",
+                "scriptName": "OnLeaderboardFetchSuccess",
+                "highlight": false,
+                "isTrigger": true,
+                "params": [
+                    {
+                        "id": "leaderboardName",
+                        "type": "string",
+                        "initialValue": ""
+                    },
+                    {
+                        "id": "quantityTop",
+                        "type": "number",
+                        "initialValue": "5"
+                    },
+                    {
+                        "id": "includeUser",
+                        "type": "boolean",
+                        "initialValue": "false"
+                    },
+                    {
+                        "id": "quantityAround",
+                        "type": "number",
+                        "initialValue": "5"
+                    }
+                ]
+            },
+            {
+                "id": "on-leaderboard-fetch-error",
+                "scriptName": "OnLeaderboardFetchError",
+                "highlight": false,
+                "isTrigger": true,
+                "params": [
+                    {
+                        "id": "leaderboardName",
+                        "type": "string",
+                        "initialValue": ""
+                    },
+                    {
+                        "id": "quantityTop",
+                        "type": "number",
+                        "initialValue": "5"
+                    },
+                    {
+                        "id": "includeUser",
+                        "type": "boolean",
+                        "initialValue": "false"
+                    },
+                    {
+                        "id": "quantityAround",
+                        "type": "number",
+                        "initialValue": "5"
+                    }
+                ]
+            },
+            {
+                "id": "for-each-in-leaderboard",
+                "scriptName": "ForEachInLeaderboard",
+                "highlight": false,
+                "isLooping": true
+            }
         ],
-        "returnType": "string"
-      }
-    ]
-  },
-  "tv": {
-    "conditions": [
-      {
-        "id": "tv-button-pressed",
-        "scriptName": "IsTVRemoteButtonPressed",
-        "isTrigger": false,
-        "isCompatibleWithTriggers": true,
-        "params": [
-          {
-            "id": "button",
-            "type": "combo",
-            "items": [
-              "up",
-              "down",
-              "left",
-              "right",
-              "ok"
-            ]
-          }
+        "actions": [
+            {
+                "id": "set-leaderboard-score",
+                "scriptName": "SetLeaderboardScore",
+                "params": [
+                    {
+                        "id": "leaderboardName",
+                        "type": "string"
+                    },
+                    {
+                        "id": "score",
+                        "type": "number"
+                    },
+                    {
+                        "id": "extraData",
+                        "type": "string",
+                        "initialValue": ""
+                    }
+                ]
+            },
+            {
+                "id": "leaderboard-fetch",
+                "scriptName": "LeaderboardFetch",
+                "isAsync": true,
+                "params": [
+                    {
+                        "id": "leaderboardName",
+                        "type": "string"
+                    },
+                    {
+                        "id": "quantityTop",
+                        "type": "number",
+                        "initialValue": "5"
+                    },
+                    {
+                        "id": "includeUser",
+                        "type": "boolean",
+                        "initialValue": "false"
+                    },
+                    {
+                        "id": "quantityAround",
+                        "type": "number",
+                        "initialValue": "5"
+                    }
+                ]
+            }
+        ],
+        "expressions": [
+            {
+                "id": "current-leadeboard-entry-rank",
+                "expressionName": "GetCurrentLeaderboardEntryRank",
+                "returnType": "number"
+            },
+            {
+                "id": "current-leadeboard-entry-score",
+                "expressionName": "GetCurrentLeaderboardEntryScore",
+                "returnType": "number"
+            },
+            {
+                "id": "current-leadeboard-entry-extra-data",
+                "expressionName": "GetCurrentLeaderboardEntryExtraData",
+                "returnType": "string"
+            },
+            {
+                "id": "current-leadeboard-entry-range-index",
+                "expressionName": "GetCurrentLeaderboardEntryRangeIndex",
+                "returnType": "number"
+            },
+            {
+                "id": "current-leadeboard-description-name",
+                "expressionName": "GetCurrentLeaderboardDescriptionName",
+                "returnType": "string"
+            },
+            {
+                "id": "current-leadeboard-description-type",
+                "expressionName": "GetCurrentLeaderboardDescriptionType",
+                "returnType": "string"
+            },
+            {
+                "id": "current-leadeboard-description-title",
+                "expressionName": "GetCurrentLeaderboardDescriptionTitle",
+                "params": [
+                    {
+                        "id": "lang",
+                        "type": "string"
+                    }
+                ],
+                "returnType": "string"
+            },
+            {
+                "id": "current-leadeboard-description-decimal-offset",
+                "expressionName": "GetCurrentLeaderboardDescriptionDecimalOffset",
+                "params": [
+                    {
+                        "id": "lang",
+                        "type": "string"
+                    }
+                ],
+                "returnType": "string"
+            },
+            {
+                "id": "current-player-unique-id",
+                "expressionName": "GetCurrentPlayerUniqueID",
+                "returnType": "string"
+            },
+            {
+                "id": "current-player-name",
+                "expressionName": "GetCurrentPlayerName",
+                "returnType": "string"
+            },
+            {
+                "id": "current-player-avatar",
+                "expressionName": "GetCurrentPlayerAvatar",
+                "params": [
+                    {
+                        "id": "size",
+                        "type": "string",
+                        "initialValue": "medium"
+                    }
+                ],
+                "returnType": "string"
+            },
+            {
+                "id": "current-player-avatar-small",
+                "expressionName": "PlayerAvatarSmall",
+                "returnType": "string"
+            },
+            {
+                "id": "current-player-avatar-medium",
+                "expressionName": "PlayerAvatarMedium",
+                "returnType": "string"
+            },
+            {
+                "id": "current-player-avatar-large",
+                "expressionName": "PlayerAvatarLarge",
+                "returnType": "string"
+            }
         ]
-      },
-      {
-        "id": "on-tv-button-press",
-        "scriptName": "OnTVRemoteButtonPress",
-        "isTrigger": true,
-        "params": [
-          {
-            "id": "button",
-            "type": "combo",
-            "items": [
-              "up",
-              "down",
-              "left",
-              "right",
-              "ok"
-            ]
-          }
+    },
+    "purchases": {
+        "actions": [
+            {
+                "id": "purchase",
+                "scriptName": "Purchase",
+                "params": [
+                    {
+                        "id": "productID",
+                        "type": "string"
+                    },
+                    {
+                        "id": "developerPayload",
+                        "type": "string"
+                    }
+                ]
+            },
+            {
+                "id": "consume-purchase",
+                "scriptName": "ConsumePurchase",
+                "params": [
+                    {
+                        "id": "purchaseToken",
+                        "type": "string"
+                    }
+                ],
+                "isAsync": true
+            },
+            {
+                "id": "purchases-fetch",
+                "scriptName": "PurchasesFetch",
+                "isAsync": true
+            },
+            {
+                "id": "catalog-fetch",
+                "scriptName": "CatalogFetch",
+                "isAsync": true
+            }
+        ],
+        "conditions": [
+            {
+                "id": "for-each-in-catalog",
+                "scriptName": "ForEachInCatalog",
+                "isLooping": true
+            },
+            {
+                "id": "for-each-purchase",
+                "scriptName": "ForEachPurchase",
+                "isLooping": true
+            },
+            {
+                "id": "on-purchase-success",
+                "scriptName": "OnPurchaseSuccess",
+                "isTrigger": true
+            },
+            {
+                "id": "on-purchase-error",
+                "scriptName": "OnPurchaseError",
+                "isTrigger": true
+            },
+            {
+                "id": "on-specific-purchase-success",
+                "scriptName": "OnSpecificPurchaseSuccess",
+                "params": [
+                    {
+                        "id": "productID",
+                        "type": "string"
+                    }
+                ],
+                "isTrigger": true
+            },
+            {
+                "id": "on-specific-purchase-error",
+                "scriptName": "OnSpecificPurchaseError",
+                "params": [
+                    {
+                        "id": "productID",
+                        "type": "string"
+                    }
+                ],
+                "isTrigger": true
+            },
+            {
+                "id": "on-catalog-fetch-success",
+                "scriptName": "OnCatalogFetchSuccess",
+                "isTrigger": true
+            },
+            {
+                "id": "on-catalog-fetch-error",
+                "scriptName": "OnCatalogFetchError",
+                "isTrigger": true
+            },
+            {
+                "id": "on-purchases-fetch-success",
+                "scriptName": "OnPurchasesFetchSuccess",
+                "isTrigger": true
+            },
+            {
+                "id": "on-purchases-fetch-error",
+                "scriptName": "OnPurchasesFetchError",
+                "isTrigger": true
+            }
+        ],
+        "expressions": [
+            {
+                "id": "purchase-token",
+                "expressionName": "PurchaseToken",
+                "returnType": "string"
+            },
+            {
+                "id": "current-purchase-token",
+                "expressionName": "CurrentPurchaseToken",
+                "returnType": "string"
+            },
+            {
+                "id": "purchase-developer-payload",
+                "expressionName": "PurchaseDeveloperPayload",
+                "returnType": "string"
+            },
+            {
+                "id": "current-purchase-developer-payload",
+                "expressionName": "CurrentPurchaseDeveloperPayload",
+                "returnType": "string"
+            },
+            {
+                "id": "purchase-signature",
+                "expressionName": "PurchaseSignature",
+                "returnType": "string"
+            },
+            {
+                "id": "purchase-error",
+                "expressionName": "PurchaseError",
+                "returnType": "string"
+            },
+            {
+                "id": "purchases-signature",
+                "expressionName": "PurchasesSignature",
+                "returnType": "string"
+            },
+            {
+                "id": "product-id",
+                "expressionName": "ProductID",
+                "returnType": "string"
+            },
+            {
+                "id": "current-purchases-product-id",
+                "expressionName": "CurrentPurchasesProductID",
+                "returnType": "string"
+            },
+            {
+                "id": "current-catalog-product-id",
+                "expressionName": "CurrentCatalogProductID",
+                "returnType": "string"
+            },
+            {
+                "id": "product-title",
+                "expressionName": "ProductTitle",
+                "returnType": "string"
+            },
+            {
+                "id": "product-description",
+                "expressionName": "ProductDescription",
+                "returnType": "string"
+            },
+            {
+                "id": "product-image-uri",
+                "expressionName": "ProductImageURI",
+                "returnType": "string"
+            },
+            {
+                "id": "product-price",
+                "expressionName": "ProductPrice",
+                "returnType": "string"
+            },
+            {
+                "id": "product-price-value",
+                "expressionName": "ProductPriceValue",
+                "returnType": "number"
+            },
+            {
+                "id": "product-price-currency-code",
+                "expressionName": "ProductPriceCurrencyCode",
+                "returnType": "string"
+            },
+            {
+                "id": "product-price-currency-image",
+                "expressionName": "ProductPriceCurrencyImage",
+                "returnType": "string",
+                "params": [
+                    {
+                        "id": "size",
+                        "type": "string",
+                        "initialValue": "medium"
+                    }
+                ]
+            }
         ]
-      },
-      {
-        "id": "on-tv-button-release",
-        "scriptName": "OnTVRemoteButtonRelease",
-        "isTrigger": true,
-        "params": [
-          {
-            "id": "button",
-            "type": "combo",
-            "items": [
-              "up",
-              "down",
-              "left",
-              "right",
-              "ok"
-            ]
-          }
+    },
+    "player": {
+        "conditions": [
+            {
+                "id": "with-player-info",
+                "scriptName": "WithPlayerInfo",
+                "isCompatibleWithTriggers": false,
+                "isLooping": true,
+                "params": [
+                    {
+                        "id": "requestAuthorization",
+                        "type": "boolean"
+                    }
+                ]
+            },
+            {
+                "id": "on-player-info-fetch-success",
+                "scriptName": "OnPlayerInfoFetchSuccess",
+                "isTrigger": true
+            },
+            {
+                "id": "on-player-info-fetch-error",
+                "scriptName": "OnPlayerInfoFetchError",
+                "isTrigger": true
+            },
+            {
+                "id": "current-player-is-authorized",
+                "scriptName": "CurrentPlayerIsAuthorized",
+                "isTrigger": false
+            },
+            {
+                "id": "current-player-info-access-granted",
+                "scriptName": "CurrentPlayerInfoAccessGranted",
+                "isTrigger": false
+            },
+            {
+                "id": "current-player-paying-status-check",
+                "scriptName": "CurrentPlayerPayingStatusCheck",
+                "params": [
+                    {
+                        "id": "value",
+                        "type": "combo",
+                        "items": ["paying", "partially_paying", "not_paying", "unknown"]
+                    }
+                ]
+            }
+        ],
+        "actions": [
+            {
+                "id": "player-info-fetch",
+                "scriptName": "PlayerInfoFetch",
+                "isAsync": true,
+                "params": [
+                    {
+                        "id": "requestPersonalInfo",
+                        "type": "boolean"
+                    }
+                ]
+            },
+            {
+                "id": "player-get-data",
+                "scriptName": "PlayerGetData",
+                "isAsync": true,
+                "params": [
+                    {
+                        "id": "jsonObject",
+                        "type": "object",
+                        "allowedPluginIds": ["Json"]
+                    },
+                    {
+                        "id": "keys",
+                        "type": "string"
+                    }
+                ]
+            },
+            {
+                "id": "player-get-stats",
+                "scriptName": "PlayerGetStats",
+                "isAsync": true,
+                "params": [
+                    {
+                        "id": "jsonObject",
+                        "type": "object",
+                        "allowedPluginIds": ["Json"]
+                    }
+                ]
+            },
+            {
+                "id": "player-set-data",
+                "scriptName": "PlayerSetData",
+                "isAsync": true,
+                "params": [
+                    {
+                        "id": "jsonObject",
+                        "type": "object",
+                        "allowedPluginIds": ["Json"]
+                    },
+                    {
+                        "id": "flush",
+                        "type": "boolean",
+                        "initialValue": "false"
+                    }
+                ]
+            },
+            {
+                "id": "player-set-stats",
+                "scriptName": "PlayerSetStats",
+                "isAsync": true,
+                "params": [
+                    {
+                        "id": "jsonObject",
+                        "type": "object",
+                        "allowedPluginIds": ["Json"]
+                    }
+                ]
+            },
+            {
+                "id": "player-increment-stats",
+                "scriptName": "PlayerIncrementStats",
+                "isAsync": true,
+                "params": [
+                    {
+                        "id": "jsonObject",
+                        "type": "object",
+                        "allowedPluginIds": ["Json"]
+                    }
+                ]
+            }
+        ],
+        "expressions": [
+            {
+                "id": "player-unique-id",
+                "expressionName": "GetPlayerUniqueID",
+                "returnType": "string"
+            },
+            {
+                "id": "player-name",
+                "expressionName": "GetPlayerName",
+                "returnType": "string"
+            },
+            {
+                "id": "player-avatar",
+                "expressionName": "GetPlayerAvatar",
+                "params": [
+                    {
+                        "id": "size",
+                        "type": "string",
+                        "initialValue": "medium"
+                    }
+                ],
+                "returnType": "string"
+            },
+            {
+                "id": "player-avatar-small",
+                "expressionName": "PlayerAvatarSmall",
+                "returnType": "string"
+            },
+            {
+                "id": "player-avatar-medium",
+                "expressionName": "PlayerAvatarMedium",
+                "returnType": "string"
+            },
+            {
+                "id": "player-avatar-large",
+                "expressionName": "PlayerAvatarLarge",
+                "returnType": "string"
+            },
+            {
+                "id": "current-player-signature",
+                "expressionName": "GetCurrentPlayerSignature",
+                "returnType": "string"
+            },
+            {
+                "id": "current-player-paying-status",
+                "expressionName": "GetCurrentPlayerPayingStatus",
+                "returnType": "string"
+            }
         ]
-      }
-    ],
-    "actions": [],
-    "expressions": []
-  },
-  "review": {
-    "actions": [
-      {
-        "id": "request-review",
-        "scriptName": "RequestReview"
-      }
-    ],
-    "conditions": [
-      {
-        "id": "can-review",
-        "scriptName": "CanReview"
-      },
-      {
-        "id": "on-review-success",
-        "scriptName": "OnReviewSuccess",
-        "isTrigger": true
-      },
-      {
-        "id": "on-review-cancel",
-        "scriptName": "OnReviewCancel",
-        "isTrigger": true
-      }
-    ],
-    "expressions": []
-  },
-  "games": {
-    "conditions": [
-      {
-        "id": "get-all-games",
-        "scriptName": "GetAllGames",
-        "isLooping": true,
-        "isCompatibleWithTriggers": false
-      },
-      {
-        "id": "get-game-by-id",
-        "scriptName": "GetGameByID",
-        "isLooping": true,
-        "isCompatibleWithTriggers": false,
-        "params": [
-          {
-            "id": "id",
-            "type": "number"
-          }
+    },
+    "environment": {
+        "conditions": [],
+        "actions": [],
+        "expressions": [
+            {
+                "id": "old-get-language",
+                "expressionName": "GetLanguage",
+                "returnType": "string",
+                "isDeprecated": true
+            },
+            {
+                "id": "old-get-tld",
+                "expressionName": "GetDomain",
+                "returnType": "string",
+                "isDeprecated": true
+            },
+            {
+                "id": "old-get-payload",
+                "expressionName": "GetPayload",
+                "returnType": "string",
+                "isDeprecated": true
+            },
+            {
+                "id": "old-get-app-id",
+                "expressionName": "GetAppID",
+                "returnType": "string",
+                "isDeprecated": true
+            },
+            {
+                "id": "get-language",
+                "expressionName": "EnvironmentLanguage",
+                "returnType": "string"
+            },
+            {
+                "id": "get-tld",
+                "expressionName": "EnvironmentDomain",
+                "returnType": "string"
+            },
+            {
+                "id": "get-payload",
+                "expressionName": "EnvironmentPayload",
+                "returnType": "string"
+            },
+            {
+                "id": "get-app-id",
+                "expressionName": "AppID",
+                "returnType": "string"
+            }
         ]
-      },
-      {
-        "id": "is-current-game-available",
-        "scriptName": "IsCurrentGameAvailable",
-        "isInvertible": true,
-        "isCompatibleWithTriggers": false
-      }
-    ],
-    "actions": [],
-    "expressions": [
-      {
-        "id": "current-game-app-id",
-        "expressionName": "CurrentGameAppID",
-        "returnType": "string"
-      },
-      {
-        "id": "current-game-title",
-        "expressionName": "CurrentGameTitle",
-        "returnType": "string"
-      },
-      {
-        "id": "current-game-url",
-        "expressionName": "CurrentGameURL",
-        "returnType": "string"
-      },
-      {
-        "id": "current-game-coverURL",
-        "expressionName": "CurrentGameCoverURL",
-        "returnType": "string"
-      },
-      {
-        "id": "current-game-iconURL",
-        "expressionName": "CurrentGameIconURL",
-        "returnType": "string"
-      },
-      {
-        "id": "developerURL",
-        "expressionName": "DeveloperURL",
-        "returnType": "string"
-      }
-    ]
-  },
-  "misc": {
-    "conditions": [
-      {
-        "id": "throttle",
-        "scriptName": "Throttle",
-        "isLooping": true,
-        "isCompatibleWithTriggers": false,
-        "params": [
-          {
-            "id": "seconds",
-            "type": "number"
-          }
+    },
+    "deviceInfo": {
+        "conditions": [
+            {
+                "id": "is-mobile",
+                "scriptName": "IsMobile"
+            },
+            {
+                "id": "is-desktop",
+                "scriptName": "IsDesktop"
+            },
+            {
+                "id": "is-tablet",
+                "scriptName": "IsTablet"
+            },
+            {
+                "id": "is-tv",
+                "scriptName": "IsTV"
+            }
+        ],
+        "actions": [],
+        "expressions": []
+    },
+    "events": {
+        "conditions": [
+            {
+                "id": "on-history-back-event",
+                "scriptName": "OnHistoryBackEvent",
+                "isTrigger": true
+            },
+            {
+                "id": "on-game-api-pause",
+                "scriptName": "OnGameAPIPause",
+                "isTrigger": true
+            },
+            {
+                "id": "on-game-api-resume",
+                "scriptName": "OnGameAPIResume",
+                "isTrigger": true
+            }
+        ],
+        "actions": [
+            {
+                "id": "dispatch-event",
+                "scriptName": "DispatchEvent",
+                "params": [
+                    {
+                        "id": "name",
+                        "type": "combo",
+                        "items": ["EXIT"]
+                    }
+                ]
+            }
+        ],
+        "expressions": []
+    },
+    "shortcut": {
+        "conditions": [
+            {
+                "id": "shortcut-can-show-prompt",
+                "scriptName": "ShortcutCanShowPrompt"
+            },
+            {
+                "id": "shortcut-added",
+                "scriptName": "OnShortcutAdded",
+                "isTrigger": true
+            }
+        ],
+        "actions": [
+            {
+                "id": "shortcut-show-prompt",
+                "scriptName": "ShortcutShowPrompt",
+                "highlight": false
+            }
+        ],
+        "expressions": []
+    },
+    "remote-config": {
+        "conditions": [
+            {
+                "id": "on-remote-config-ready",
+                "scriptName": "OnRemoteConfigReady",
+                "isTrigger": true
+            },
+            {
+                "id": "on-remote-config-fetch-success",
+                "scriptName": "OnRemoteConfigFetchSuccess",
+                "isTrigger": true
+            },
+            {
+                "id": "on-remote-config-fetch-error",
+                "scriptName": "OnRemoteConfigFetchError",
+                "isTrigger": true
+            }
+        ],
+        "actions": [
+            {
+                "id": "remote-config-set-default",
+                "scriptName": "RemoteConfigSetDefault",
+                "params": [
+                    {
+                        "id": "key",
+                        "type": "string"
+                    },
+                    {
+                        "id": "value",
+                        "type": "string"
+                    }
+                ]
+            },
+            {
+                "id": "remote-config-set-client-feature",
+                "scriptName": "RemoteConfigSetClientFeature",
+                "params": [
+                    {
+                        "id": "name",
+                        "type": "string"
+                    },
+                    {
+                        "id": "value",
+                        "type": "string"
+                    }
+                ]
+            },
+            {
+                "id": "remote-config-fetch",
+                "scriptName": "RemoteConfigFetch",
+                "highlight": false,
+                "isAsync": true
+            }
+        ],
+        "expressions": [
+            {
+                "id": "remote-config-get-flag",
+                "expressionName": "RemoteConfigGetFlag",
+                "params": [
+                    {
+                        "id": "name",
+                        "type": "string"
+                    }
+                ],
+                "returnType": "string"
+            }
         ]
-      },
-      {
-        "id": "debounce",
-        "scriptName": "Debounce",
-        "isLooping": true,
-        "isCompatibleWithTriggers": false,
-        "params": [
-          {
-            "id": "seconds",
-            "type": "number"
-          }
+    },
+    "tv": {
+        "conditions": [
+            {
+                "id": "tv-button-pressed",
+                "scriptName": "IsTVRemoteButtonPressed",
+                "isTrigger": false,
+                "isCompatibleWithTriggers": true,
+                "params": [
+                    {
+                        "id": "button",
+                        "type": "combo",
+                        "items": ["up", "down", "left", "right", "ok"]
+                    }
+                ]
+            },
+            {
+                "id": "on-tv-button-press",
+                "scriptName": "OnTVRemoteButtonPress",
+                "isTrigger": true,
+                "params": [
+                    {
+                        "id": "button",
+                        "type": "combo",
+                        "items": ["up", "down", "left", "right", "ok"]
+                    }
+                ]
+            },
+            {
+                "id": "on-tv-button-release",
+                "scriptName": "OnTVRemoteButtonRelease",
+                "isTrigger": true,
+                "params": [
+                    {
+                        "id": "button",
+                        "type": "combo",
+                        "items": ["up", "down", "left", "right", "ok"]
+                    }
+                ]
+            }
+        ],
+        "actions": [],
+        "expressions": []
+    },
+    "review": {
+        "actions": [
+            {
+                "id": "request-review",
+                "scriptName": "RequestReview"
+            }
+        ],
+        "conditions": [
+            {
+                "id": "can-review",
+                "scriptName": "CanReview"
+            },
+            {
+                "id": "on-review-success",
+                "scriptName": "OnReviewSuccess",
+                "isTrigger": true
+            },
+            {
+                "id": "on-review-cancel",
+                "scriptName": "OnReviewCancel",
+                "isTrigger": true
+            }
+        ],
+        "expressions": []
+    },
+    "games": {
+        "conditions": [
+            {
+                "id": "get-all-games",
+                "scriptName": "GetAllGames",
+                "isLooping": true,
+                "isCompatibleWithTriggers": false
+            },
+            {
+                "id": "get-game-by-id",
+                "scriptName": "GetGameByID",
+                "isLooping": true,
+                "isCompatibleWithTriggers": false,
+                "params": [
+                    {
+                        "id": "id",
+                        "type": "number"
+                    }
+                ]
+            },
+            {
+                "id": "on-all-games-fetch-success",
+                "scriptName": "OnAllGamesFetchSuccess",
+                "isTrigger": true
+            },
+            {
+                "id": "on-all-games-fetch-error",
+                "scriptName": "OnAllGamesFetchError",
+                "isTrigger": true
+            },
+            {
+                "id": "on-game-by-id-fetch-success",
+                "scriptName": "OnGameByIDFetchSuccess",
+                "isTrigger": true,
+                "params": [
+                    {
+                        "id": "id",
+                        "type": "number"
+                    }
+                ]
+            },
+            {
+                "id": "on-game-by-id-fetch-error",
+                "scriptName": "OnGameByIDFetchError",
+                "isTrigger": true,
+                "params": [
+                    {
+                        "id": "id",
+                        "type": "number"
+                    }
+                ]
+            },
+            {
+                "id": "for-each-game",
+                "scriptName": "ForEachGame",
+                "isLooping": true
+            },
+            {
+                "id": "is-current-game-available",
+                "scriptName": "IsCurrentGameAvailable",
+                "isInvertible": true,
+                "isCompatibleWithTriggers": false
+            }
+        ],
+        "actions": [
+            {
+                "id": "all-games-fetch",
+                "scriptName": "AllGamesFetch",
+                "isAsync": true
+            },
+            {
+                "id": "game-by-id-fetch",
+                "scriptName": "GameByIDFetch",
+                "isAsync": true,
+                "params": [
+                    {
+                        "id": "id",
+                        "type": "number"
+                    }
+                ]
+            }
+        ],
+        "expressions": [
+            {
+                "id": "current-game-app-id",
+                "expressionName": "CurrentGameAppID",
+                "returnType": "string"
+            },
+            {
+                "id": "current-game-title",
+                "expressionName": "CurrentGameTitle",
+                "returnType": "string"
+            },
+            {
+                "id": "current-game-url",
+                "expressionName": "CurrentGameURL",
+                "returnType": "string"
+            },
+            {
+                "id": "current-game-coverURL",
+                "expressionName": "CurrentGameCoverURL",
+                "returnType": "string"
+            },
+            {
+                "id": "current-game-iconURL",
+                "expressionName": "CurrentGameIconURL",
+                "returnType": "string"
+            },
+            {
+                "id": "game-app-id",
+                "expressionName": "GameAppID",
+                "returnType": "string"
+            },
+            {
+                "id": "game-title",
+                "expressionName": "GameTitle",
+                "returnType": "string"
+            },
+            {
+                "id": "game-url",
+                "expressionName": "GameURL",
+                "returnType": "string"
+            },
+            {
+                "id": "game-coverURL",
+                "expressionName": "GameCoverURL",
+                "returnType": "string"
+            },
+            {
+                "id": "game-iconURL",
+                "expressionName": "GameIconURL",
+                "returnType": "string"
+            },
+            {
+                "id": "developerURL",
+                "expressionName": "DeveloperURL",
+                "returnType": "string"
+            }
         ]
-      }
-    ],
-    "actions": [
-      {
-        "id": "initialize-ysdk",
-        "scriptName": "InitializeYSDK",
-        "isAsync": true
-      },
-      {
-        "id": "loading-api-ready",
-        "scriptName": "LoadingAPIReady",
-        "highlight": true
-      },
-      {
-        "id": "gameplay-api-start",
-        "scriptName": "GameplayAPIStart"
-      },
-      {
-        "id": "gameplay-api-stop",
-        "scriptName": "GameplayAPIStop"
-      }
-    ],
-    "expressions": [
-      {
-        "id": "server-time",
-        "expressionName": "ServerTime",
-        "returnType": "number"
-      }
-    ]
-  }
+    },
+    "misc": {
+        "conditions": [
+            {
+                "id": "throttle-new",
+                "scriptName": "ThrottleNew",
+                "params": [
+                    {
+                        "id": "id",
+                        "type": "string"
+                    },
+                    {
+                        "id": "seconds",
+                        "type": "number"
+                    }
+                ]
+            },
+            {
+                "id": "debounce-end",
+                "scriptName": "DebounceEnd",
+                "isTrigger": true,
+                "params": [
+                    {
+                        "id": "id",
+                        "type": "string"
+                    }
+                ]
+            },
+            {
+                "id": "throttle",
+                "scriptName": "Throttle",
+                "isLooping": true,
+                "isCompatibleWithTriggers": false,
+                "params": [
+                    {
+                        "id": "seconds",
+                        "type": "number"
+                    }
+                ]
+            },
+            {
+                "id": "debounce",
+                "scriptName": "Debounce",
+                "isLooping": true,
+                "isCompatibleWithTriggers": false,
+                "params": [
+                    {
+                        "id": "seconds",
+                        "type": "number"
+                    }
+                ]
+            }
+        ],
+        "actions": [
+            {
+                "id": "initialize-ysdk",
+                "scriptName": "InitializeYSDK",
+                "isAsync": true
+            },
+            {
+                "id": "loading-api-ready",
+                "scriptName": "LoadingAPIReady",
+                "highlight": true
+            },
+            {
+                "id": "gameplay-api-start",
+                "scriptName": "GameplayAPIStart"
+            },
+            {
+                "id": "gameplay-api-stop",
+                "scriptName": "GameplayAPIStop"
+            },
+            {
+                "id": "debounce",
+                "scriptName": "Debounce",
+                "params": [
+                    {
+                        "id": "id",
+                        "type": "string"
+                    },
+                    {
+                        "id": "seconds",
+                        "type": "number",
+                        "initialValue": "1"
+                    }
+                ]
+            }
+        ],
+        "expressions": [
+            {
+                "id": "server-time",
+                "expressionName": "ServerTime",
+                "returnType": "number"
+            }
+        ]
+    }
 }

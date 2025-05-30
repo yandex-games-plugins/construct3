@@ -1,16 +1,20 @@
 {
-  "json.schemas": [
-    {
-      "fileMatch": ["addon.json"],
-      "url": "https://raw.githubusercontent.com/Scirra/Construct-Addon-SDK/main/plugin-sdk/v1/plugin.addon.schema.json"
+    "json.schemas": [
+        {
+            "fileMatch": ["addon.json"],
+            "url": "https://raw.githubusercontent.com/Scirra/Construct-Addon-SDK/main/plugin-sdk/v2/plugin.addon.schema.json"
+        },
+        {
+            "fileMatch": ["aces.json"],
+            "url": "https://raw.githubusercontent.com/Scirra/Construct-Addon-SDK/main/plugin-sdk/v2/aces.schema.json"
+        },
+        {
+            "fileMatch": ["**/lang/*.json"],
+            "url": "https://raw.githubusercontent.com/Scirra/Construct-Addon-SDK/main/plugin-sdk/v2/plugin.lang.schema.json"
+        }
+    ],
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
-    {
-      "fileMatch": ["aces.json"],
-      "url": "https://raw.githubusercontent.com/Scirra/Construct-Addon-SDK/main/plugin-sdk/v1/aces.schema.json"
-    },
-    {
-      "fileMatch": ["**/lang/*.json"],
-      "url": "https://raw.githubusercontent.com/Scirra/Construct-Addon-SDK/main/plugin-sdk/v1/plugin.lang.schema.json"
-    }
-  ]
+    "editor.formatOnSave": true
 }

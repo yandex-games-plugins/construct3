@@ -1,279 +1,277 @@
 declare global {
-  const YaGames: {
-    init(opts?: {
-      screen: {
-        fullscreen?: boolean;
-        orientation?: {
-          value: 'portrait' | 'landscape';
-          lock?: boolean;
-        };
-      };
-    }): Promise<YSDK>;
-  };
+    const YaGames: {
+        init(opts?: {
+            screen: {
+                fullscreen?: boolean;
+                orientation?: {
+                    value: 'portrait' | 'landscape';
+                    lock?: boolean;
+                };
+            };
+        }): Promise<YSDK>;
+    };
 }
 
-export as namespace types;
-
 export interface YSDK {
-  environment: Environment;
+    environment: Environment;
 
-  deviceInfo: DeviceInfo;
+    deviceInfo: DeviceInfo;
 
-  features: Partial<{
-    LoadingAPI: {
-      ready(): void;
-    };
-  }>;
-
-  clipboard: {
-    writeText(text: string): void;
-  };
-
-  screen: {
-    fullscreen: {
-      STATUS_ON: 'on';
-      STATUS_OFF: 'off';
-      status: string;
-      request(): Promise<void>;
-      exit(): Promise<void>;
-    };
-  };
-
-  getStorage(): Promise<SafeStorage>;
-
-  auth: {
-    openAuthDialog(): Promise<void>;
-  };
-
-  getPlayer<TSigned extends boolean = false>(opts: {
-    signed?: TSigned;
-  }): Promise<TSigned extends true ? Signed<Player> : Player>;
-
-  feedback: {
-    canReview(): Promise<{
-      value: boolean;
-      reason?: FeedbackError;
+    features: Partial<{
+        LoadingAPI: {
+            ready(): void;
+        };
     }>;
-    requestReview(): Promise<{ feedbackSent: boolean }>;
-  };
 
-  adv: {
-    showFullscreenAdv(opts?: {
-      callbacks?: {
-        onOpen?: () => void;
-        onClose?: (wasShown: boolean) => void;
-        onError?: (error: string) => void;
-        onOffline?: () => void;
-      };
-    }): void;
+    clipboard: {
+        writeText(text: string): void;
+    };
 
-    showRewardedVideo(opts?: {
-      callbacks?: {
-        onOpen?: () => void;
-        onClose?: (wasShown: boolean) => void;
-        onError?: (error: string) => void;
-        onRewarded?: () => void;
-      };
-    }): void;
+    screen: {
+        fullscreen: {
+            STATUS_ON: 'on';
+            STATUS_OFF: 'off';
+            status: string;
+            request(): Promise<void>;
+            exit(): Promise<void>;
+        };
+    };
 
-    showBannerAdv(): Promise<{ reason?: StickyAdvError }>;
+    getStorage(): Promise<SafeStorage>;
 
-    hideBannerAdv(): void;
+    auth: {
+        openAuthDialog(): Promise<void>;
+    };
 
-    getBannerAdvStatus(): Promise<{
-      stickyAdvIsShowing: boolean;
-      reason?: StickyAdvError;
-    }>;
-  };
+    getPlayer<TSigned extends boolean = false>(opts: {
+        signed?: TSigned;
+    }): Promise<TSigned extends true ? Signed<Player> : Player>;
 
-  EVENTS: {
-    EXIT: ESdkEventName.EXIT;
-    HISTORY_BACK: ESdkEventName.HISTORY_BACK;
-  };
+    feedback: {
+        canReview(): Promise<{
+            value: boolean;
+            reason?: FeedbackError;
+        }>;
+        requestReview(): Promise<{ feedbackSent: boolean }>;
+    };
 
-  dispatchEvent(eventName: ESdkEventName, detail?: any): Promise<unknown>;
+    adv: {
+        showFullscreenAdv(opts?: {
+            callbacks?: {
+                onOpen?: () => void;
+                onClose?: (wasShown: boolean) => void;
+                onError?: (error: string) => void;
+                onOffline?: () => void;
+            };
+        }): void;
 
-  onEvent(eventName: ESdkEventName, listener: Function): () => void;
+        showRewardedVideo(opts?: {
+            callbacks?: {
+                onOpen?: () => void;
+                onClose?: (wasShown: boolean) => void;
+                onError?: (error: string) => void;
+                onRewarded?: () => void;
+            };
+        }): void;
 
-  shortcut: {
-    canShowPrompt(): Promise<{ canShow: boolean }>;
-    showPrompt(): Promise<{ outcome: 'accepted' | 'rejected' }>;
-  };
+        showBannerAdv(): Promise<{ reason?: StickyAdvError }>;
 
-  getPayments<TSigned extends boolean = false>(opts?: { signed?: TSigned }): Promise<Payments<TSigned>>;
+        hideBannerAdv(): void;
 
-  getLeaderboards(): Promise<Leaderboards>;
+        getBannerAdvStatus(): Promise<{
+            stickyAdvIsShowing: boolean;
+            reason?: StickyAdvError;
+        }>;
+    };
 
-  getFlags(params?: GetFlagsParams): Promise<IFlags>;
+    EVENTS: {
+        EXIT: ESdkEventName.EXIT;
+        HISTORY_BACK: ESdkEventName.HISTORY_BACK;
+    };
+
+    dispatchEvent(eventName: ESdkEventName, detail?: any): Promise<unknown>;
+
+    onEvent(eventName: ESdkEventName, listener: Function): () => void;
+
+    shortcut: {
+        canShowPrompt(): Promise<{ canShow: boolean }>;
+        showPrompt(): Promise<{ outcome: 'accepted' | 'rejected' }>;
+    };
+
+    getPayments<TSigned extends boolean = false>(opts?: { signed?: TSigned }): Promise<Payments<TSigned>>;
+
+    getLeaderboards(): Promise<Leaderboards>;
+
+    getFlags(params?: GetFlagsParams): Promise<IFlags>;
 }
 
 interface IFlags {
-  [key: string]: string;
+    [key: string]: string;
 }
 
 interface ClientFeature {
-  name: string;
-  value: string;
+    name: string;
+    value: string;
 }
 
 interface GetFlagsParams {
-  defaultFlags?: IFlags;
-  clientFeatures?: ClientFeature[];
+    defaultFlags?: IFlags;
+    clientFeatures?: ClientFeature[];
 }
 
 type Signed<T> = T & { signature: string };
 
 export interface Environment {
-  get app(): {
-    id: string;
-  };
-  get browser(): {
-    lang: string;
-  };
-  get i18n(): {
-    lang: ISO_639_1;
-    tld: TopLevelDomain;
-  };
-  get payload(): string | null;
+    get app(): {
+        id: string;
+    };
+    get browser(): {
+        lang: string;
+    };
+    get i18n(): {
+        lang: ISO_639_1;
+        tld: TopLevelDomain;
+    };
+    get payload(): string | null;
 }
 
 export interface DeviceInfo {
-  get type(): string;
-  isMobile(): boolean;
-  isTablet(): boolean;
-  isDesktop(): boolean;
-  isTV(): boolean;
+    get type(): string;
+    isMobile(): boolean;
+    isTablet(): boolean;
+    isDesktop(): boolean;
+    isTV(): boolean;
 }
 
 export type SafeStorage = typeof localStorage;
 
 export interface Player {
-  getUniqueID(): string;
-  getName(): string;
-  getPhoto(size: 'small' | 'medium' | 'large'): string;
-  getIDsPerGame(): Promise<{ appID: number; userID: string }[]>;
-  getMode(): 'lite' | '';
-  getData<TData>(keys?: (keyof TData)[]): Promise<Partial<TData>>;
-  setData<TData>(data: Partial<TData>, flush?: boolean): Promise<void>;
-  getStats<TStats>(keys?: (keyof TStats)[]): Promise<Partial<TStats>>;
-  setStats<TStats extends Record<string, number>>(stats: Partial<TStats>): Promise<void>;
-  incrementStats<TStats extends Record<string, number>>(stats: Partial<TStats>): Promise<Partial<TStats>>;
+    getUniqueID(): string;
+    getName(): string;
+    getPhoto(size: 'small' | 'medium' | 'large'): string;
+    getIDsPerGame(): Promise<{ appID: number; userID: string }[]>;
+    getMode(): 'lite' | '';
+    getData<TData>(keys?: (keyof TData)[]): Promise<Partial<TData>>;
+    setData<TData>(data: Partial<TData>, flush?: boolean): Promise<void>;
+    getStats<TStats>(keys?: (keyof TStats)[]): Promise<Partial<TStats>>;
+    setStats<TStats extends Record<string, number>>(stats: Partial<TStats>): Promise<void>;
+    incrementStats<TStats extends Record<string, number>>(stats: Partial<TStats>): Promise<Partial<TStats>>;
 }
 
 export interface Purchase {
-  productID: string;
-  purchaseToken: string;
-  developerPayload?: string;
+    productID: string;
+    purchaseToken: string;
+    developerPayload?: string;
 }
 
 export interface Product {
-  id: string;
-  title: string;
-  description: string;
-  imageURI: string;
-  /**
-   * @description String in format: "\<price_value\> \<currency_code\>"
-   */
-  price: string;
-  priceValue: string;
-  priceCurrencyCode: string;
-  getPriceCurrencyImage(size: ECurrencyImageSize): string;
+    id: string;
+    title: string;
+    description: string;
+    imageURI: string;
+    /**
+     * @description String in format: "\<price_value\> \<currency_code\>"
+     */
+    price: string;
+    priceValue: string;
+    priceCurrencyCode: string;
+    getPriceCurrencyImage(size: ECurrencyImageSize): string;
 }
 
 export interface Payments<TSigned extends boolean = false> {
-  getPurchases(): Promise<TSigned extends true ? Signed<Purchase[]> : Purchase[]>;
-  getCatalog(): Promise<Product[]>;
-  purchase(opts?: {
-    id: string;
-    developerPayload?: string;
-  }): Promise<TSigned extends true ? Signed<Purchase> : Purchase>;
-  consumePurchase(token: string): Promise<void>;
+    getPurchases(): Promise<TSigned extends true ? Signed<Purchase[]> : Purchase[]>;
+    getCatalog(): Promise<Product[]>;
+    purchase(opts?: {
+        id: string;
+        developerPayload?: string;
+    }): Promise<TSigned extends true ? Signed<Purchase> : Purchase>;
+    consumePurchase(token: string): Promise<void>;
 }
 
 export enum FeedbackError {
-  NO_AUTH = 'NO_AUTH',
-  GAME_RATED = 'GAME_RATED',
-  REVIEW_ALREADY_REQUESTED = 'REVIEW_ALREADY_REQUESTED',
-  UNKNOWN = 'UNKNOWN',
+    NO_AUTH = 'NO_AUTH',
+    GAME_RATED = 'GAME_RATED',
+    REVIEW_ALREADY_REQUESTED = 'REVIEW_ALREADY_REQUESTED',
+    UNKNOWN = 'UNKNOWN',
 }
 
 export enum StickyAdvError {
-  ADV_IS_NOT_CONNECTED = 'ADV_IS_NOT_CONNECTED',
-  UNKNOWN = 'UNKNOWN',
+    ADV_IS_NOT_CONNECTED = 'ADV_IS_NOT_CONNECTED',
+    UNKNOWN = 'UNKNOWN',
 }
 
 export enum ESdkEventName {
-  EXIT = 'EXIT',
-  HISTORY_BACK = 'HISTORY_BACK',
+    EXIT = 'EXIT',
+    HISTORY_BACK = 'HISTORY_BACK',
 }
 
 export enum ECurrencyImageSize {
-  SMALL = 'small',
-  MEDIUM = 'medium',
-  SVG = 'svg',
+    SMALL = 'small',
+    MEDIUM = 'medium',
+    SVG = 'svg',
 }
 
 export interface Leaderboards {
-  getLeaderboardDescription(leaderboardName: string): Promise<LeaderboardDescription>;
+    getLeaderboardDescription(leaderboardName: string): Promise<LeaderboardDescription>;
 
-  setLeaderboardScore(leaderboardName: string, score: number, extraData?: string): Promise<void>;
+    setLeaderboardScore(leaderboardName: string, score: number, extraData?: string): Promise<void>;
 
-  /**
-   * @throws {{code: string}}
-   */
-  getLeaderboardPlayerEntry(leaderboardName: string): Promise<LeaderboardEntry>;
+    /**
+     * @throws {{code: string}}
+     */
+    getLeaderboardPlayerEntry(leaderboardName: string): Promise<LeaderboardEntry>;
 
-  getLeaderboardEntries(
-    leaderboardName: string,
-    opts?: {
-      includeUser?: boolean;
-      quantityAround?: number;
-      quantityTop?: number;
-    },
-  ): Promise<LeaderboardEntriesData>;
+    getLeaderboardEntries(
+        leaderboardName: string,
+        opts?: {
+            includeUser?: boolean;
+            quantityAround?: number;
+            quantityTop?: number;
+        }
+    ): Promise<LeaderboardEntriesData>;
 }
 
 export interface LeaderboardEntriesData {
-  leaderboard: LeaderboardDescription;
-  ranges: { start: number; size: number }[];
-  userRank: number;
-  entries: LeaderboardEntry[];
+    leaderboard: LeaderboardDescription;
+    ranges: { start: number; size: number }[];
+    userRank: number;
+    entries: LeaderboardEntry[];
 }
 
 export interface LeaderboardEntry {
-  score: number;
-  extraData?: string;
-  rank: number;
-  player: {
-    getAvatarSrc(size: 'small' | 'medium' | 'large'): string;
-    getAvatarSrcSet(size: 'small' | 'medium' | 'large'): string;
-    lang: string;
-    publicName: string;
-    scopePermissions: {
-      avatar: string;
-      public_name: string;
+    score: number;
+    extraData?: string;
+    rank: number;
+    player: {
+        getAvatarSrc(size: 'small' | 'medium' | 'large'): string;
+        getAvatarSrcSet(size: 'small' | 'medium' | 'large'): string;
+        lang: string;
+        publicName: string;
+        scopePermissions: {
+            avatar: string;
+            public_name: string;
+        };
+        uniqueID: string;
     };
-    uniqueID: string;
-  };
-  formattedScore: string;
+    formattedScore: string;
 }
 
 export interface LeaderboardDescription {
-  appID: string;
-  default: boolean;
-  description: {
-    invert_sort_order: boolean;
-    score_format: {
-      options: {
-        decimal_offset: number;
-      };
+    appID: string;
+    default: boolean;
+    description: {
+        invert_sort_order: boolean;
+        score_format: {
+            options: {
+                decimal_offset: number;
+            };
+        };
+        type: 'numberic' | 'time';
     };
-    type: 'numberic' | 'time';
-  };
-  name: string;
-  title: {
-    [lang: string]: string;
-  };
+    name: string;
+    title: {
+        [lang: string]: string;
+    };
 }
 
 /* prettier-ignore */

@@ -1,26 +1,36 @@
 {
   "name": "yagames-construct",
   "version": "1.0.0",
+  "private": true,
   "description": "",
-  "main": "scripts/build.js",
-  "scripts": {
-    "build": "node scripts/build.js",
-    "dev": "node scripts/dev.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@gitlab.com/lis-games/contruct-ysdk-plugin.git"
-  },
-  "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://gitlab.com/lis-games/contruct-ysdk-plugin/issues"
+  "author": "Yandex",
+  "engines": {
+      "node": "22.15.0"
   },
-  "homepage": "https://gitlab.com/lis-games/contruct-ysdk-plugin#readme",
+  "scripts": {
+      "build": "node scripts/build.js",
+      "lint": "eslint .",
+      "lint:fix": "eslint . --fix"
+  },
+  "main": "scripts/build.js",
+  "dependencies": {
+      "archiver": "6.0.2"
+  },
   "devDependencies": {
-    "archiver": "^5.3.1",
-    "cors": "^2.8.5",
-    "express": "^4.18.2",
-    "prettier": "^2.8.8"
+      "@typescript-eslint/eslint-plugin": "5.61.0",
+      "@typescript-eslint/parser": "5.61.0",
+      "eslint": "8.57.1",
+      "eslint-config-prettier": "9.1.0",
+      "eslint-plugin-prettier": "4.2.1",
+      "prettier": "2.8.8"
+  },
+  "bugs": {
+      "url": "https://github.com/yandex-games-plugins/construct3/issues"
+  },
+  "homepage": "https://github.com/yandex-games-plugins/construct3",
+  "repository": {
+      "type": "git",
+      "url": "https://github.com/yandex-games-plugins/construct3.git"
   }
 }

@@ -1,0 +1,27 @@
+{
+    "extends": [
+        "eslint:recommended",
+        "plugin:prettier/recommended"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaVersion": 2020,
+        "sourceType": "commonjs"
+    },
+    "env": {
+        "browser": true,
+        "commonjs": true,
+        "node": true,
+        "es2020": true
+    },
+    "plugins": ["@typescript-eslint"],
+    "root": true,
+    "rules": {
+        "dot-notation": 2,
+        "prettier/prettier": 2,
+        "no-useless-computed-key": 2,
+        "no-case-declarations": 0,
+        "no-unused-vars": 0,
+        "no-useless-constructor": 2
+    }
+}

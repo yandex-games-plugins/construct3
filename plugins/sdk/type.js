@@ -1,7 +1,3 @@
-const SDK = self.SDK;
+const SDK = globalThis.SDK;
 
-SDK.Plugins.yagames_sdk.Type = class YandexGamesSDKType extends SDK.ITypeBase {
-  constructor(sdkPlugin, iObjectType) {
-    super(sdkPlugin, iObjectType);
-  }
-};
+SDK.Plugins.yagames_sdk.Type = class YandexGamesSDKType extends SDK.ITypeBase {};
