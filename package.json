@@ -1,36 +1,36 @@
 {
-  "name": "yagames-construct",
-  "version": "1.0.0",
-  "private": true,
-  "description": "",
-  "license": "ISC",
-  "author": "Yandex",
-  "engines": {
-      "node": "22.15.0"
-  },
-  "scripts": {
-      "build": "node scripts/build.js",
-      "lint": "eslint .",
-      "lint:fix": "eslint . --fix"
-  },
-  "main": "scripts/build.js",
-  "dependencies": {
-      "archiver": "6.0.2"
-  },
-  "devDependencies": {
-      "@typescript-eslint/eslint-plugin": "5.61.0",
-      "@typescript-eslint/parser": "5.61.0",
-      "eslint": "8.57.1",
-      "eslint-config-prettier": "9.1.0",
-      "eslint-plugin-prettier": "4.2.1",
-      "prettier": "2.8.8"
-  },
-  "bugs": {
-      "url": "https://github.com/yandex-games-plugins/construct3/issues"
-  },
-  "homepage": "https://github.com/yandex-games-plugins/construct3",
-  "repository": {
-      "type": "git",
-      "url": "https://github.com/yandex-games-plugins/construct3.git"
-  }
+    "name": "yagames-construct",
+    "version": "1.0.0",
+    "private": true,
+    "description": "",
+    "license": "ISC",
+    "author": "Yandex",
+    "engines": {
+        "node": "22.15.0"
+    },
+    "scripts": {
+        "build": "node scripts/build.js",
+        "lint": "eslint .",
+        "lint:fix": "eslint . --fix"
+    },
+    "main": "scripts/build.js",
+    "dependencies": {
+        "archiver": "6.0.2"
+    },
+    "devDependencies": {
+        "@typescript-eslint/eslint-plugin": "5.61.0",
+        "@typescript-eslint/parser": "5.61.0",
+        "eslint": "8.57.1",
+        "eslint-config-prettier": "9.1.0",
+        "eslint-plugin-prettier": "4.2.1",
+        "prettier": "2.8.8"
+    },
+    "bugs": {
+        "url": "https://github.com/yandex-games-plugins/construct3/issues"
+    },
+    "homepage": "https://github.com/yandex-games-plugins/construct3",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/yandex-games-plugins/construct3.git"
+    }
 }

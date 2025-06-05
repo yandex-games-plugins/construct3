@@ -186,7 +186,7 @@
                     "on-purchase-error": {
                         "list-name": "Any purchase error",
                         "display-text": "Any purchase error",
-                        "description": "Runs when error accured while purchasing product."
+                        "description": "Runs when error occurred while purchasing product."
                     },
                     "on-specific-purchase-success": {
                         "list-name": "Specific product purchase success",
@@ -202,7 +202,7 @@
                     "on-specific-purchase-error": {
                         "list-name": "Specific product purchase failure",
                         "display-text": "Purchase [b]{0}[/b] failure",
-                        "description": "Runs when error accured while purchasing specific product.",
+                        "description": "Runs when error occurred while purchasing specific product.",
                         "params": {
                             "productID": {
                                 "name": "ID",
@@ -290,7 +290,7 @@
                     },
                     "throttle-new": {
                         "list-name": "Not more than once in X seconds",
-                        "display-text": "Not more than once in [b]{1}[/b] seconds",
+                        "display-text": "Not more than once in [b]{1}[/b] seconds. (ID: [b]{0}[/b])",
                         "description": "Skips subsequent executions for some time after the last execution.",
                         "params": {
                             "id": {
@@ -304,13 +304,13 @@
                         }
                     },
                     "debounce-end": {
-                        "list-name": "After the timer expires",
-                        "display-text": "After the timer [b]{0}[/b] expires",
+                        "list-name": "On a deferred event",
+                        "display-text": "to a deferred event [b]{0}[/b]",
                         "description": "Delays execution of code for some time after the last call",
                         "params": {
                             "id": {
-                                "name": "ID",
-                                "desc": "Timer ID"
+                                "name": "Event ID",
+                                "desc": "Unique Event ID"
                             }
                         }
                     },
@@ -412,14 +412,14 @@
                         }
                     },
                     "is-current-game-available": {
-                        "list-name": "Current game is available",
-                        "display-text": "Current game is available",
-                        "description": "Checks if currently selected game is currently avaible on the current platform and domain. (Works only with \"For each game\")"
+                        "list-name": "Game is available",
+                        "display-text": "Game is available",
+                        "description": "Checks if game is avaible on the current platform and domain. (Works only with \"Game is successfully fetched\")"
                     },
                     "on-leaderboard-fetch-success": {
                         "list-name": "Leaderboard is successfully fetched",
                         "display-text": "Leaderboard [b]{0}[/b] is successfully fetched with top: [b]{1}[/b], user: [b]{2}[/b], around: [b]{3}[/b]",
-                        "description": "Runs when leaderboard was successfully fetched.",
+                        "description": "Runs when leaderboard was successfully fetched with passed parameters.",
                         "params": {
                             "leaderboardName": {
                                 "name": "Leaderboard Name",
@@ -442,7 +442,7 @@
                     "on-leaderboard-fetch-error": {
                         "list-name": "Failure to fetch leaderboard",
                         "display-text": "Failure to fetch leaderboard [b]{0}[/b] with top: [b]{1}[/b], user: [b]{2}[/b], around: [b]{3}[/b]",
-                        "description": "Runs when error accured while leaderboard fetching.",
+                        "description": "Runs when error occurred while leaderboard fetching with passed parameters.",
                         "params": {
                             "leaderboardName": {
                                 "name": "Leaderboard Name",
@@ -475,7 +475,7 @@
                     "on-purchases-fetch-error": {
                         "list-name": "Failure to fetch purchases",
                         "display-text": "Failure to fetch purchases",
-                        "description": "Runs when error accured while purchases fetching."
+                        "description": "Runs when error occurred while purchases fetching."
                     },
                     "on-catalog-fetch-success": {
                         "list-name": "Catalog is successfully fetched",
@@ -485,7 +485,7 @@
                     "on-catalog-fetch-error": {
                         "list-name": "Failure to fetch catalog",
                         "display-text": "Failure to fetch catalog",
-                        "description": "Runs when error accured while catalog fetching."
+                        "description": "Runs when error occurred while catalog fetching."
                     },
                     "on-player-info-fetch-success": {
                         "list-name": "Player info is successfully fetched",
@@ -495,7 +495,7 @@
                     "on-player-info-fetch-error": {
                         "list-name": "Failure to fetch player info",
                         "display-text": "Failure to fetch player info",
-                        "description": "Runs when error accured while player info fetching."
+                        "description": "Runs when error occurred while player info fetching."
                     },
                     "on-remote-config-fetch-success": {
                         "list-name": "Remote config is successfully fetched",
@@ -505,7 +505,7 @@
                     "on-remote-config-fetch-error": {
                         "list-name": "Failure to fetch remote config",
                         "display-text": "Failure to fetch remote config",
-                        "description": "Runs when error accured while remote config fetching."
+                        "description": "Runs when error occurred while remote config fetching."
                     },
                     "on-all-games-fetch-success": {
                         "list-name": "Developer's games are successfully fetched",
@@ -515,27 +515,27 @@
                     "on-all-games-fetch-error": {
                         "list-name": "Failure to fetch developer's games",
                         "display-text": "Failure to fetch developer's games",
-                        "description": "Runs when error accured while developer's games fetching."
+                        "description": "Runs when error occurred while developer's games fetching."
                     },
                     "on-game-by-id-fetch-success": {
                         "list-name": "Game is successfully fetched",
-                        "display-text": "Game with ID: [b]{0}[/b] is successfully fetched",
+                        "display-text": "Game with ID [b]{0}[/b] is successfully fetched",
                         "description": "Runs when game was successfully fetched.",
                         "params": {
                             "id": {
-                                "name": "App ID",
-                                "desc": "App ID"
+                                "name": "ID",
+                                "desc": "Game ID"
                             }
                         }
                     },
                     "on-game-by-id-fetch-error": {
                         "list-name": "Failure to fetch game",
-                        "display-text": "Failure to fetch game with ID: [b]{0}[/b]",
-                        "description": "Runs when error accured while game fetching.",
+                        "display-text": "Failure to fetch game with ID [b]{0}[/b]",
+                        "description": "Runs when error occurred while game fetching.",
                         "params": {
                             "id": {
-                                "name": "App ID",
-                                "desc": "App ID"
+                                "name": "ID",
+                                "desc": "Game ID"
                             }
                         }
                     },
@@ -547,24 +547,24 @@
                 },
                 "actions": {
                     "initialize-ysdk": {
-                        "list-name": "Initialize Yandex.Games SDK",
-                        "display-text": "Initialize Yandex.Games SDK",
-                        "description": "Manually initializes Yandex.Games SDK. (use only if automatic initialization is disabled)"
+                        "list-name": "Initialize Yandex Games SDK",
+                        "display-text": "Initialize Yandex Games SDK",
+                        "description": "Manually initializes Yandex Games SDK. (use only if automatic initialization is disabled)"
                     },
                     "loading-api-ready": {
                         "list-name": "Game loading is complete",
                         "display-text": "Game loading is complete",
-                        "description": "Sends information to Yandex.Games that the game download is complete."
+                        "description": "Sends information to Yandex Games that the game download is complete."
                     },
                     "gameplay-api-start": {
                         "list-name": "Mark gameplay start",
                         "display-text": "Mark gameplay start",
-                        "description": "Sends information to Yandex.Games that the gameplay section has started."
+                        "description": "Sends information to Yandex Games that the gameplay section has started."
                     },
                     "gameplay-api-stop": {
                         "list-name": "Mark gameplay stop",
                         "display-text": "Mark gameplay stop",
-                        "description": "Sends information to Yandex.Games that the gameplay section has ended."
+                        "description": "Sends information to Yandex Games that the gameplay section has ended."
                     },
                     "show-fullscreen-ad": {
                         "list-name": "Show fullscreen ad",
@@ -639,12 +639,12 @@
                     },
                     "player-get-data": {
                         "list-name": "Get player data",
-                        "display-text": "Get player data with keys: {1} and store in {0}",
-                        "description": "Requests player data from Yandex.Games.",
+                        "display-text": "Get player data with keys: [b]{1}[/b] and store in [b]{0}[/b]",
+                        "description": "Requests player data from Yandex Games.",
                         "params": {
                             "jsonObject": {
                                 "name": "JSON Object",
-                                "desc": "JSON object to store player data from Yandex.Games."
+                                "desc": "JSON object to store player data from Yandex Games."
                             },
                             "keys": {
                                 "name": "Keys",
@@ -654,23 +654,23 @@
                     },
                     "player-get-stats": {
                         "list-name": "Get player stats",
-                        "display-text": "Get player stats and store in {0}",
-                        "description": "Requests player stats from Yandex.Games.",
+                        "display-text": "Get player stats and store in [b]{0}[/b]",
+                        "description": "Requests player stats from Yandex Games.",
                         "params": {
                             "jsonObject": {
                                 "name": "JSON Object",
-                                "desc": "JSON object to store player stats from Yandex.Games."
+                                "desc": "JSON object to store player stats from Yandex Games."
                             }
                         }
                     },
                     "player-set-data": {
                         "list-name": "Set player data",
-                        "display-text": "Set player data from {0}. Flush: {1}.",
-                        "description": "Sets player data in Yandex.Games.",
+                        "display-text": "Set player data from [b]{0}[/b]. Flush: [b]{1}[/b].",
+                        "description": "Sets player data in Yandex Games.",
                         "params": {
                             "jsonObject": {
                                 "name": "JSON Object",
-                                "desc": "JSON object to set player data in Yandex.Games."
+                                "desc": "JSON object to set player data in Yandex Games."
                             },
                             "flush": {
                                 "name": "Flush",
@@ -680,23 +680,23 @@
                     },
                     "player-set-stats": {
                         "list-name": "Set player stats",
-                        "display-text": "Set player stats from {0}",
-                        "description": "Sets player stats in Yandex.Games.",
+                        "display-text": "Set player stats from [b]{0}[/b]",
+                        "description": "Sets player stats in Yandex Games.",
                         "params": {
                             "jsonObject": {
                                 "name": "JSON Object",
-                                "desc": "JSON object to set player stats in Yandex.Games."
+                                "desc": "JSON object to set player stats in Yandex Games."
                             }
                         }
                     },
                     "player-increment-stats": {
                         "list-name": "Increment player stats",
-                        "display-text": "Increment player stats from {0}",
-                        "description": "Increments player stats in Yandex.Games.",
+                        "display-text": "Increment player stats from [b]{0}[/b]",
+                        "description": "Increments player stats in Yandex Games.",
                         "params": {
                             "jsonObject": {
                                 "name": "JSON Object",
-                                "desc": "JSON object to increment player stats in Yandex.Games."
+                                "desc": "JSON object to increment player stats in Yandex Games."
                             }
                         }
                     },
@@ -851,7 +851,7 @@
                     },
                     "player-info-fetch": {
                         "list-name": "Fetch player info",
-                        "display-text": "Fetch player info",
+                        "display-text": "Fetch player info. With personal info: [b]{0}[/b]",
                         "description": "Fetch personal info for further use.",
                         "params": {
                             "requestPersonalInfo": {
@@ -867,7 +867,7 @@
                     },
                     "game-by-id-fetch": {
                         "list-name": "Fetch game by ID",
-                        "display-text": "Fetch game by ID",
+                        "display-text": "Fetch game by ID [b]{0}[/b]",
                         "description": "Fetch game by ID for further use.",
                         "params": {
                             "id": {
@@ -937,15 +937,15 @@
                         "description": "[DEPRECATED] Identifier of the your application in Yandex.Games."
                     },
                     "current-leadeboard-entry-rank": {
-                        "translated-name": "Player position in leaderboard",
+                        "translated-name": "Current player position in leaderboard",
                         "description": "The position obtained by comparing the score of all players."
                     },
                     "current-leadeboard-entry-score": {
-                        "translated-name": "Player score in leaderboard",
+                        "translated-name": "Current player score in leaderboard",
                         "description": "The score obtained by the player in the game."
                     },
                     "current-leadeboard-entry-extra-data": {
-                        "translated-name": "Player extra data in leaderboard",
+                        "translated-name": "Current player extra data in leaderboard",
                         "description": "Optional metadata sent with the game score."
                     },
                     "current-leadeboard-entry-range-index": {
@@ -1021,31 +1021,31 @@
                         "description": "String, the product ID."
                     },
                     "product-title": {
-                        "translated-name": "Product title",
+                        "translated-name": "Current product title in catalog",
                         "description": "String, the product name."
                     },
                     "product-description": {
-                        "translated-name": "Product description",
+                        "translated-name": "Current product description in catalog",
                         "description": "String, the product description."
                     },
                     "product-image-uri": {
-                        "translated-name": "Product image URI",
+                        "translated-name": "Current product image URI in catalog",
                         "description": "String, the product image URI."
                     },
                     "product-price": {
-                        "translated-name": "Product price",
+                        "translated-name": "Current product price in catalog",
                         "description": "String, the product price in the <price> <currency code> format. For example, \"25 YAN\"."
                     },
                     "product-price-value": {
-                        "translated-name": "Product price value",
+                        "translated-name": "Current product price value in catalog",
                         "description": "String, the product price in the <price> format. For example, \"25\"."
                     },
                     "product-price-currency-code": {
-                        "translated-name": "Product price currency code",
+                        "translated-name": "Current product price currency code in catalog",
                         "description": "String, the currency code (\"YAN\")."
                     },
                     "product-price-currency-image": {
-                        "translated-name": "Product price currency image",
+                        "translated-name": "Current product price currency image in catalog",
                         "description": "String, the icon address. You must specify \"medium\", \"small\", or \"svg\" as the size parameter.",
                         "params": {
                             "size": {
@@ -1055,11 +1055,11 @@
                         }
                     },
                     "player-unique-id": {
-                        "translated-name": "Player unique ID",
+                        "translated-name": "Player ID",
                         "description": "Unique identifier of player."
                     },
                     "current-player-unique-id": {
-                        "translated-name": "Current player unique ID in leaderboard",
+                        "translated-name": "Current player ID in leaderboard",
                         "description": "Unique identifier of player."
                     },
                     "player-name": {
@@ -1091,35 +1091,35 @@
                         }
                     },
                     "player-avatar-small": {
-                        "translated-name": "Small player avatar",
+                        "translated-name": "Player small avatar",
                         "description": "String, URL of small player avatar."
                     },
                     "current-player-avatar-small": {
-                        "translated-name": "Current player in leaderboard small avatar",
+                        "translated-name": "Current player small avatar in leaderboard",
                         "description": "String, URL of small player avatar."
                     },
                     "player-avatar-medium": {
-                        "translated-name": "Medium player avatar",
+                        "translated-name": "Player medium avatar",
                         "description": "String, URL of medium player avatar."
                     },
                     "current-player-avatar-medium": {
-                        "translated-name": "Current player in leaderboard medium avatar",
+                        "translated-name": "Current player medium avatar in leaderboard",
                         "description": "String, URL of medium player avatar."
                     },
                     "player-avatar-large": {
-                        "translated-name": "Large player avatar",
+                        "translated-name": "Player large avatar",
                         "description": "String, URL of large player avatar."
                     },
                     "current-player-avatar-large": {
-                        "translated-name": "Current player in leaderboard large avatar",
+                        "translated-name": "Current player large avata in leaderboard",
                         "description": "String, URL of large player avatar."
                     },
                     "current-player-signature": {
-                        "translated-name": "Signature",
+                        "translated-name": "Player signature",
                         "description": "String contains user data from the Yandex profile and the signature. It comprises two Base64-encoded strings"
                     },
                     "current-player-paying-status": {
-                        "translated-name": "Paying status",
+                        "translated-name": "Player paying status",
                         "description": "String, paying status of player. (paying / partially_paying / not_paying / unknown)"
                     },
                     "remote-config-get-flag": {
@@ -1134,27 +1134,47 @@
                     },
                     "server-time": {
                         "translated-name": "Server time",
-                        "description": "Returns the current time on the server in milliseconds. (Works only with \"For each game\" and \"Select Game By ID\")"
+                        "description": "Returns the current time on the server in milliseconds."
                     },
                     "current-game-app-id": {
-                        "translated-name": "Current game app ID",
-                        "description": "Returns the unique identifier (App ID) of the current game. (Works only with \"For each game\" and \"Select Game by ID\")"
+                        "translated-name": "Current game ID",
+                        "description": "Returns the unique identifier (ID) of the current game. (Works only with \"For each game in developer's games\")"
                     },
                     "current-game-title": {
                         "translated-name": "Current game title",
-                        "description": "Returns the title of the current game. (Works only with \"For each game\" and \"Select Game by ID\")"
+                        "description": "Returns the title of the current game. (Works only with \"For each game in developer's games\")"
                     },
                     "current-game-url": {
                         "translated-name": "Current game URL",
-                        "description": "Returns the URL of the current game. (Works only with \"For each game\" and \"Select Game by ID\")"
+                        "description": "Returns the URL of the current game. (Works only with \"For each game in developer's games\")"
                     },
                     "current-game-coverURL": {
                         "translated-name": "Current game cover URL",
-                        "description": "Returns the URL of the cover image for the current game. (Works only with \"For each game\" and \"Select Game by ID\")"
+                        "description": "Returns the URL of the cover image for the current game. (Works only with \"For each game in developer's games\")"
                     },
                     "current-game-iconURL": {
                         "translated-name": "Current game icon URL",
-                        "description": "Returns the URL of the icon for the current game. (Works only with \"For each game\" and \"Select Game by ID\")"
+                        "description": "Returns the URL of the icon for the current game. (Works only with \"For each game in developer's games\")"
+                    },
+                    "game-app-id": {
+                        "translated-name": "Fetched game ID",
+                        "description": "Returns the unique identifier (ID) of the game. (Works only with \"Game is successfully fetched\")"
+                    },
+                    "game-title": {
+                        "translated-name": "Fetched game title",
+                        "description": "Returns the title of the game. (Works only with \"Game is successfully fetched\")"
+                    },
+                    "game-url": {
+                        "translated-name": "Fetched game URL",
+                        "description": "Returns the URL of the game. (Works only with \"Game is successfully fetched\")"
+                    },
+                    "game-coverURL": {
+                        "translated-name": "Fetched game cover URL",
+                        "description": "Returns the URL of the cover image for the game. (Works only with \"Game is successfully fetched\")"
+                    },
+                    "game-iconURL": {
+                        "translated-name": "Fetched game icon URL",
+                        "description": "Returns the URL of the icon for the game. (Works only with \"Game is successfully fetched\")"
                     },
                     "developerURL": {
                         "translated-name": "Developer URL",

@@ -8,7 +8,7 @@ these games is added to the device cache during the first gaming session).
 
 ## Repository plugins
 
-- **YandexGamesSDK**, main plugin that allows you to interact with Yandex.Games SDKs, easily localise your
+- **YandexGamesSDK**, main plugin that allows you to interact with Yandex Games SDK, easily localise your
   games and more!
 
 - **AdaptiveText**, additional plugin for auto-scaling text visualisations.
@@ -22,7 +22,7 @@ versions of plugins and add them to your Construct 3 editor.
 
 ### 2. Documentation
 
-Check out the [Documentation](https://plugins.lisgames.ru/) to get more info about how to work with plugins.
+Check out the [Documentation](https://yandex.ru/dev/games/doc/ru/sdk/construct-3/about) to get more info about how to work with plugins.
 
 ### 3. Community
 

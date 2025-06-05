@@ -32,7 +32,7 @@ Due to the features of the Construct 3 engine, you will primarily focus on addin
 visual language of Construct. This is not as difficult as it may seem, but there are a few caveats regarding
 things like asynchronous operations.
 
-# Adding New Functionality from the Yandex.Games SDK
+# Adding New Functionality from the Yandex Games SDK
 
 If you want to provide users with access to new functionality from the Yandex.Games SDK, the addon in the
 `plugins/sdk` directory, called `YandexGamesSDK`, is of interest to you.

@@ -220,6 +220,7 @@
                 "scriptName": "ForEachLeaderboardEntry",
                 "isCompatibleWithTriggers": false,
                 "isLooping": true,
+                "isDeprecated": true,
                 "params": [
                     {
                         "id": "leaderboardName",
@@ -653,6 +654,7 @@
                 "scriptName": "WithPlayerInfo",
                 "isCompatibleWithTriggers": false,
                 "isLooping": true,
+                "isDeprecated": true,
                 "params": [
                     {
                         "id": "requestAuthorization",
@@ -955,7 +957,8 @@
             {
                 "id": "on-remote-config-ready",
                 "scriptName": "OnRemoteConfigReady",
-                "isTrigger": true
+                "isTrigger": true,
+                "isDeprecated": true
             },
             {
                 "id": "on-remote-config-fetch-success",
@@ -1092,13 +1095,15 @@
                 "id": "get-all-games",
                 "scriptName": "GetAllGames",
                 "isLooping": true,
-                "isCompatibleWithTriggers": false
+                "isCompatibleWithTriggers": false,
+                "isDeprecated": true
             },
             {
                 "id": "get-game-by-id",
                 "scriptName": "GetGameByID",
                 "isLooping": true,
                 "isCompatibleWithTriggers": false,
+                "isDeprecated": true,
                 "params": [
                     {
                         "id": "id",
@@ -1258,6 +1263,7 @@
                 "scriptName": "Throttle",
                 "isLooping": true,
                 "isCompatibleWithTriggers": false,
+                "isDeprecated": true,
                 "params": [
                     {
                         "id": "seconds",
@@ -1270,6 +1276,7 @@
                 "scriptName": "Debounce",
                 "isLooping": true,
                 "isCompatibleWithTriggers": false,
+                "isDeprecated": true,
                 "params": [
                     {
                         "id": "seconds",

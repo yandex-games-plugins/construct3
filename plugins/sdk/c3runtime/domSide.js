@@ -183,7 +183,7 @@
             this.ysdk.features.PluginEngineDataReporterAPI.report({
                 engineName: 'Construct',
                 engineVersion: '3', // TODO: find a way to get version from runtime in "rXXX" format
-                pluginName: 'yagames_sdk by LisGames',
+                pluginName: 'yagames_sdk by Yandex',
                 pluginVersion: '3.0.0',
             });
 

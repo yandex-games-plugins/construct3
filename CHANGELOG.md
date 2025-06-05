@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## YandexGamesSDK - [3.0.0] - 2025.06.05
+
+Note: The release includes porting plugin to Addon SDK V2. Some functionality is marked as deprecated and will be removed in the future.
+
+### Added
+
+- New `Fetch leaderboard` action
+- New `Fetch purchases` action
+- New `Fetch catalog` action
+- New `Fetch player info` action
+- New `Fetch all developer's games` action
+- New `Fetch game by ID`
+- New `Delay execution` action. With `On a deferred event` works as `Debounce`
+
 ## YandexGamesSDK - [2.16.0] - 2024.11.18
 
 ### Added
