@@ -37,6 +37,7 @@ SDK.Plugins.yagames_sdk = class YandexGamesSDK extends SDK.IPluginBase {
         this._info.SetProperties([
             new SDK.PluginProperty('text', 'default-localization-language', 'en'),
             new SDK.PluginProperty('check', 'automatic-initialization', true),
+            new SDK.PluginProperty('integer', 'metrika-counter-id', 0),
         ]);
 
         SDK.Lang.PopContext();

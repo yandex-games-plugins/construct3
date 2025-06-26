@@ -1318,6 +1318,21 @@
                         "initialValue": "1"
                     }
                 ]
+            },
+            {
+                "id": "metrika-goals",
+                "scriptName": "ReachGoal",
+                "params": [
+                    {
+                        "id": "target",
+                        "type": "string"
+                    },
+                    {
+                        "id": "goalData",
+                        "type": "object",
+                        "allowedPluginIds": ["Json"]
+                    }
+                ]
             }
         ],
         "expressions": [

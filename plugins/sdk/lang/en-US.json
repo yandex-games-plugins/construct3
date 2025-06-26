@@ -15,6 +15,10 @@
                     "automatic-initialization": {
                         "name": "Automatic initialization",
                         "desc": "If enabled, plugin will automatically initialize Yandex.Games SDK."
+                    },
+                    "metrika-counter-id": {
+                        "name": "Counter ID in Metrika",
+                        "desc": "If added, ypu can send goals to Yandex Metrics"
                     }
                 },
                 "aceCategories": {
@@ -855,7 +859,7 @@
                         "description": "Fetch personal info for further use.",
                         "params": {
                             "requestPersonalInfo": {
-                                "name": "With personal info",
+                                "name": "Personal info",
                                 "desc": "Fetch personal info"
                             }
                         }
@@ -873,6 +877,21 @@
                             "id": {
                                 "name": "App ID",
                                 "desc": "App ID for fetch"
+                            }
+                        }
+                    },
+                    "metrika-goals": {
+                        "list-name": "Send goal",
+                        "display-text": "Send goal [b]{0}[/b] to Yandex Metrics",
+                        "description": "Send goal if counter ID was passed.",
+                        "params": {
+                            "target": {
+                                "name": "Goal name",
+                                "desc": "Goal name in Yandex Metrics"
+                            },
+                            "goalData": {
+                                "name": "Additional goal data",
+                                "desc": "Choose JSON"
                             }
                         }
                     }

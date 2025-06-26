@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## YandexGamesSDK - [3.0.1] - 2025.06.27
+
+### Added
+
+- New `Send goal` action
+
 ## YandexGamesSDK - [3.0.0] - 2025.06.05
 
 Note: The release includes porting plugin to Addon SDK V2. Some functionality is marked as deprecated and will be removed in the future.

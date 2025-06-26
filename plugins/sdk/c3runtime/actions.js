@@ -423,6 +423,13 @@ const Actions = {
     },
 
     //#endregion
+
+    ReachGoal(target, goalData) {
+        this._postToDOM('ysdk-reach-goal', {
+            target,
+            goalData,
+        });
+    },
 };
 
 globalThis.C3.Plugins.yagames_sdk.Acts = Actions;

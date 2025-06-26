@@ -274,6 +274,7 @@ class YandexGamesSDKInstance extends globalThis.ISDKInstanceBase {
 
         const defaultLanguage = properties[0];
         const autoInitialization = properties[1];
+        const metrikaCounterId = properties[2];
 
         /** @type {types.YSDK["environment"]} */
         this.environment = {
@@ -305,6 +306,8 @@ class YandexGamesSDKInstance extends globalThis.ISDKInstanceBase {
 
         /** @type {string | undefined} */
         this.fullscreenADError = undefined;
+
+        this.metrikaCounterId = metrikaCounterId;
 
         this._addDOMMessageHandler(
             'ysdk-fullscreen-ad-callback',
