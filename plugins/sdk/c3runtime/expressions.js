@@ -44,52 +44,52 @@ const Expressions = {
 
     /** @this {YandexGamesSDKInstance} */
     GetCurrentLeaderboardEntryRank() {
-        if (!this.forEachLeaderbordEntryLoopData) {
+        if (!this.forEachLeaderboardEntryLoopData) {
             this.logDeveloperMistake(
                 `You are trying to use "Player position in leaderboard" expression outside of "For each player in leaderboard" loop!`
             );
             return -1;
         }
-        const loopData = this.forEachLeaderbordEntryLoopData;
+        const loopData = this.forEachLeaderboardEntryLoopData;
         const currentEntry = loopData.entriesData.entries[loopData.currentIndex];
         return currentEntry.rank;
     },
 
     /** @this {YandexGamesSDKInstance} */
     GetCurrentLeaderboardEntryScore() {
-        if (!this.forEachLeaderbordEntryLoopData) {
+        if (!this.forEachLeaderboardEntryLoopData) {
             this.logDeveloperMistake(
                 `You are trying to use "Player score in leaderboard" expression outside of "For each player in leaderboard" loop!`
             );
             return -1;
         }
-        const loopData = this.forEachLeaderbordEntryLoopData;
+        const loopData = this.forEachLeaderboardEntryLoopData;
         const currentEntry = loopData.entriesData.entries[loopData.currentIndex];
         return currentEntry.score;
     },
 
     /** @this {YandexGamesSDKInstance} */
     GetCurrentLeaderboardEntryExtraData() {
-        if (!this.forEachLeaderbordEntryLoopData) {
+        if (!this.forEachLeaderboardEntryLoopData) {
             this.logDeveloperMistake(
                 `You are trying to use "Player extra data in leaderboard" expression outside of "For each player in leaderboard" loop!`
             );
             return '';
         }
-        const loopData = this.forEachLeaderbordEntryLoopData;
+        const loopData = this.forEachLeaderboardEntryLoopData;
         const currentEntry = loopData.entriesData.entries[loopData.currentIndex];
         return currentEntry.extraData || '';
     },
 
     /** @this {YandexGamesSDKInstance} */
     GetCurrentLeaderboardEntryRangeIndex() {
-        if (!this.forEachLeaderbordEntryLoopData) {
+        if (!this.forEachLeaderboardEntryLoopData) {
             this.logDeveloperMistake(
                 `You are trying to use "Range index of requested leaderboard" expression outside of "For each player in leaderboard" loop!`
             );
             return 0;
         }
-        const loopData = this.forEachLeaderbordEntryLoopData;
+        const loopData = this.forEachLeaderboardEntryLoopData;
 
         for (let entriesAmount = 0, i = 0; i < loopData.entriesData.ranges.length; i++) {
             entriesAmount += loopData.entriesData.ranges[i].size;
@@ -103,51 +103,51 @@ const Expressions = {
 
     /** @this {YandexGamesSDKInstance} */
     GetCurrentLeaderboardDescriptionName() {
-        if (!this.forEachLeaderbordEntryLoopData) {
+        if (!this.forEachLeaderboardEntryLoopData) {
             this.logDeveloperMistake(
-                `You are trying to use "Leaderboad name" expression outside of "For each player in leaderboard" loop!`
+                `You are trying to use "Leaderboard name" expression outside of "For each player in leaderboard" loop!`
             );
             return '';
         }
-        const leaderboard = this.forEachLeaderbordEntryLoopData.entriesData.leaderboard;
+        const leaderboard = this.forEachLeaderboardEntryLoopData.entriesData.leaderboard;
         return leaderboard.name || '';
     },
 
     /** @this {YandexGamesSDKInstance} */
     GetCurrentLeaderboardDescriptionType() {
-        if (!this.forEachLeaderbordEntryLoopData) {
+        if (!this.forEachLeaderboardEntryLoopData) {
             this.logDeveloperMistake(
-                `You are trying to use "Leaderboad type" expression outside of "For each player in leaderboard" loop!`
+                `You are trying to use "Leaderboard type" expression outside of "For each player in leaderboard" loop!`
             );
             return '';
         }
-        const loopData = this.forEachLeaderbordEntryLoopData;
+        const loopData = this.forEachLeaderboardEntryLoopData;
         const currentEntry = loopData.entriesData.entries[loopData.currentIndex];
         return currentEntry.extraData || '';
     },
 
     /** @this {YandexGamesSDKInstance} */
     GetCurrentLeaderboardDescriptionTitle() {
-        if (!this.forEachLeaderbordEntryLoopData) {
+        if (!this.forEachLeaderboardEntryLoopData) {
             this.logDeveloperMistake(
-                `You are trying to use "Leaderboad title" expression outside of "For each player in leaderboard" loop!`
+                `You are trying to use "Leaderboard title" expression outside of "For each player in leaderboard" loop!`
             );
             return '';
         }
-        const loopData = this.forEachLeaderbordEntryLoopData;
+        const loopData = this.forEachLeaderboardEntryLoopData;
         const currentEntry = loopData.entriesData.entries[loopData.currentIndex];
         return currentEntry.extraData || '';
     },
 
     /** @this {YandexGamesSDKInstance} */
     GetCurrentLeaderboardDescriptionDecimalOffset() {
-        if (!this.forEachLeaderbordEntryLoopData) {
+        if (!this.forEachLeaderboardEntryLoopData) {
             this.logDeveloperMistake(
-                `You are trying to use "Leaderboad decimal offset" expression outside of "For each player in leaderboard" loop!`
+                `You are trying to use "Leaderboard decimal offset" expression outside of "For each player in leaderboard" loop!`
             );
             return '';
         }
-        const loopData = this.forEachLeaderbordEntryLoopData;
+        const loopData = this.forEachLeaderboardEntryLoopData;
         const currentEntry = loopData.entriesData.entries[loopData.currentIndex];
         return currentEntry.extraData || '';
     },
@@ -419,8 +419,8 @@ const Expressions = {
 
     /** @this {YandexGamesSDKInstance} */
     GetCurrentPlayerUniqueID() {
-        if (this.forEachLeaderbordEntryLoopData) {
-            const loopData = this.forEachLeaderbordEntryLoopData;
+        if (this.forEachLeaderboardEntryLoopData) {
+            const loopData = this.forEachLeaderboardEntryLoopData;
             const currentEntry = loopData.entriesData.entries[loopData.currentIndex];
 
             return currentEntry.player.uniqueID;
@@ -447,8 +447,8 @@ const Expressions = {
 
     /** @this {YandexGamesSDKInstance} */
     GetCurrentPlayerName() {
-        if (this.forEachLeaderbordEntryLoopData) {
-            const loopData = this.forEachLeaderbordEntryLoopData;
+        if (this.forEachLeaderboardEntryLoopData) {
+            const loopData = this.forEachLeaderboardEntryLoopData;
             const currentEntry = loopData.entriesData.entries[loopData.currentIndex];
 
             return currentEntry.player.publicName;
@@ -476,8 +476,8 @@ const Expressions = {
      * @param {"small"|"medium"|"large"} size
      */
     GetCurrentPlayerAvatar(size) {
-        if (this.forEachLeaderbordEntryLoopData) {
-            const loopData = this.forEachLeaderbordEntryLoopData;
+        if (this.forEachLeaderboardEntryLoopData) {
+            const loopData = this.forEachLeaderboardEntryLoopData;
             const currentEntry = loopData.entriesData.entries[loopData.currentIndex];
 
             return currentEntry.player.avatarSrc[size] || '';
@@ -514,8 +514,8 @@ const Expressions = {
     },
 
     CurrentPlayerAvatarSmall() {
-        if (this.forEachLeaderbordEntryLoopData) {
-            const loopData = this.forEachLeaderbordEntryLoopData;
+        if (this.forEachLeaderboardEntryLoopData) {
+            const loopData = this.forEachLeaderboardEntryLoopData;
             const currentEntry = loopData.entriesData.entries[loopData.currentIndex];
 
             return currentEntry.player.avatarSrc.small || '';
@@ -542,8 +542,8 @@ const Expressions = {
     },
 
     CurrentPlayerAvatarMedium() {
-        if (this.forEachLeaderbordEntryLoopData) {
-            const loopData = this.forEachLeaderbordEntryLoopData;
+        if (this.forEachLeaderboardEntryLoopData) {
+            const loopData = this.forEachLeaderboardEntryLoopData;
             const currentEntry = loopData.entriesData.entries[loopData.currentIndex];
 
             return currentEntry.player.avatarSrc.medium || '';
@@ -570,8 +570,8 @@ const Expressions = {
     },
 
     CurrentPlayerAvatarLarge() {
-        if (this.forEachLeaderbordEntryLoopData) {
-            const loopData = this.forEachLeaderbordEntryLoopData;
+        if (this.forEachLeaderboardEntryLoopData) {
+            const loopData = this.forEachLeaderboardEntryLoopData;
             const currentEntry = loopData.entriesData.entries[loopData.currentIndex];
 
             return currentEntry.player.avatarSrc.large || '';

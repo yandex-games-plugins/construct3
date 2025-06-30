@@ -407,7 +407,7 @@ class YandexGamesSDKInstance extends globalThis.ISDKInstanceBase {
          */
 
         /** @type {{entriesData: RuntimeEntries;["currentIndex"]: number} | undefined} */
-        this.forEachLeaderbordEntryLoopData = undefined;
+        this.forEachLeaderboardEntryLoopData = undefined;
 
         //#endregion
 

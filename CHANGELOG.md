@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## YandexGamesSDK - [3.0.2] - 2025.06.30
+
+### Fixed
+
+- Some names and descriptions of actions, conditions and expressions
+- Fix addition goal data in `Send goal` action
+
 ## YandexGamesSDK - [3.0.1] - 2025.06.27
 
 ### Added

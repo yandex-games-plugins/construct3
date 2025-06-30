@@ -147,22 +147,22 @@ const Conditions = {
 
     /** @this {YandexGamesSDKInstance} */
     ForEachInLeaderboard() {
-        const loopData = this.forEachLeaderbordEntryLoopData.entriesData.entries || [];
+        const loopData = this.forEachLeaderboardEntryLoopData.entriesData.entries || [];
 
-        each(this.runtime, loopData, i => (this.forEachLeaderbordEntryLoopData.currentIndex = i));
+        each(this.runtime, loopData, i => (this.forEachLeaderboardEntryLoopData.currentIndex = i));
 
         return false;
     },
 
     /** @this {YandexGamesSDKInstance} */
     CurrentLeaderboardDescriptionInvertOrder() {
-        if (!this.forEachLeaderbordEntryLoopData) {
+        if (!this.forEachLeaderboardEntryLoopData) {
             this.logDeveloperMistake(
                 `You are trying to use "Invert order of leaderboard" condition outside of "For each player in leaderboard" loop!`
             );
             return '';
         }
-        const leaderboard = this.forEachLeaderbordEntryLoopData.entriesData.leaderboard;
+        const leaderboard = this.forEachLeaderboardEntryLoopData.entriesData.leaderboard;
         return leaderboard.description.invert_sort_order;
     },
 
@@ -409,7 +409,7 @@ const Conditions = {
 
     /** @this {YandexGamesSDKInstance} */
     IsCurrentGameAvailable() {
-        return this.currentGameByID?.isAvaliable ?? false;
+        return this.currentGameByID?.isAvailable ?? false;
     },
 
     //#endregion

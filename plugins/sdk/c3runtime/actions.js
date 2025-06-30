@@ -205,7 +205,7 @@ const Actions = {
                 this.currentIncludeUser = includeUser;
 
                 if (entriesData) {
-                    this.forEachLeaderbordEntryLoopData = { entriesData };
+                    this.forEachLeaderboardEntryLoopData = { entriesData };
                     this._trigger(this.conditions.OnLeaderboardFetchSuccess);
 
                     return;
@@ -425,9 +425,11 @@ const Actions = {
     //#endregion
 
     ReachGoal(target, goalData) {
+        const instance = goalData?.getFirstInstance();
+        const data = instance?.getJsonDataCopy() || {};
         this._postToDOM('ysdk-reach-goal', {
             target,
-            goalData,
+            goalData: data,
         });
     },
 };

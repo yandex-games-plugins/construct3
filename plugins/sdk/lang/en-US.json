@@ -17,8 +17,8 @@
                         "desc": "If enabled, plugin will automatically initialize Yandex.Games SDK."
                     },
                     "metrika-counter-id": {
-                        "name": "Counter ID in Metrika",
-                        "desc": "If added, ypu can send goals to Yandex Metrics"
+                        "name": "Counter ID in Yandex Metrica",
+                        "desc": "If added, you can send goals to Yandex Metrica"
                     }
                 },
                 "aceCategories": {
@@ -58,12 +58,12 @@
                     "on-fullscreen-ad-error": {
                         "list-name": "Fullscreen AD error",
                         "display-text": "Fullscreen AD error",
-                        "description": "Exectues when fullscreen ad error occured."
+                        "description": "Executes when fullscreen ad error occurred."
                     },
                     "on-fullscreen-ad-offline": {
                         "list-name": "Fullscreen AD offline",
                         "display-text": "Fullscreen AD offline",
-                        "description": "Exectues when there is not internet connection to show fullscreen ad."
+                        "description": "Executes when there is no internet connection to show fullscreen ad."
                     },
                     "on-rewarded-ad-open": {
                         "list-name": "Specific rewarded AD opened",
@@ -101,7 +101,7 @@
                     "on-rewarded-ad-error": {
                         "list-name": "Specific rewarded AD failed",
                         "display-text": "Rewarded ad [b]{0}[/b] error",
-                        "description": "Exectues when specific rewarded ad error occured.",
+                        "description": "Executes when specific rewarded ad error occurred.",
                         "params": {
                             "id": {
                                 "name": "Tag",
@@ -122,7 +122,7 @@
                     "on-any-rewarded-ad-error": {
                         "list-name": "Any rewarded AD failed",
                         "display-text": "Any rewarded ad failed",
-                        "description": "Exectues when any rewarded ad error occured."
+                        "description": "Executes when any rewarded ad error occurred."
                     },
                     "is-mobile": {
                         "list-name": "Game is running on mobile",
@@ -278,8 +278,8 @@
                         "description": "Indicates that shortcut was added to home screen."
                     },
                     "can-review": {
-                        "list-name": "Review avaliable",
-                        "display-text": "Review avaliable",
+                        "list-name": "Review available",
+                        "display-text": "Review available",
                         "description": "Checks if the user can leave a review."
                     },
                     "on-review-success": {
@@ -418,7 +418,7 @@
                     "is-current-game-available": {
                         "list-name": "Game is available",
                         "display-text": "Game is available",
-                        "description": "Checks if game is avaible on the current platform and domain. (Works only with \"Game is successfully fetched\")"
+                        "description": "Checks if game is available on the current platform and domain. (Works only with \"Game is successfully fetched\")"
                     },
                     "on-leaderboard-fetch-success": {
                         "list-name": "Leaderboard is successfully fetched",
@@ -503,7 +503,7 @@
                     },
                     "on-remote-config-fetch-success": {
                         "list-name": "Remote config is successfully fetched",
-                        "display-text": "Player info is successfully fetched",
+                        "display-text": "Remote config is successfully fetched",
                         "description": "Runs when remote config was successfully fetched."
                     },
                     "on-remote-config-fetch-error": {
@@ -899,11 +899,11 @@
                 "expressions": {
                     "fullscreen-ad-error": {
                         "translated-name": "Fullscreen AD error",
-                        "description": "Contains error message if error occured while showing fullscreen ad. (Works only with \"Fullscreen AD error\" condition)"
+                        "description": "Contains error message if error occurred while showing fullscreen ad. (Works only with \"Fullscreen AD error\" condition)"
                     },
                     "rewarded-ad-error": {
                         "translated-name": "Rewarded AD error",
-                        "description": "Contains error message if error occured while showing rewarded ad. (Works only with \"Rewarded AD error\" condition)"
+                        "description": "Contains error message if error occurred while showing rewarded ad. (Works only with \"Rewarded AD error\" condition)"
                     },
                     "current-localization-language": {
                         "translated-name": "Current localization language",
@@ -972,7 +972,7 @@
                         "description": "When requesting positions from the leaderboard, several intervals of values can be formed."
                     },
                     "current-leadeboard-description-name": {
-                        "translated-name": "Leaderboad name",
+                        "translated-name": "Leaderboard name",
                         "description": "Technical name of the leaderboard. (not intended for users to see)"
                     },
                     "current-leadeboard-description-type": {
@@ -1021,7 +1021,7 @@
                     },
                     "purchase-error": {
                         "translated-name": "Purchase error",
-                        "description": "String, error message if error occured while purchasing product. (Works only with \"Any purchase error\" and \"Specific product purchase failure\")"
+                        "description": "String, error message if error occurred while purchasing product. (Works only with \"Any purchase error\" and \"Specific product purchase failure\")"
                     },
                     "purchases-signature": {
                         "translated-name": "Purchases list signature",
@@ -1130,7 +1130,7 @@
                         "description": "String, URL of large player avatar."
                     },
                     "current-player-avatar-large": {
-                        "translated-name": "Current player large avata in leaderboard",
+                        "translated-name": "Current player large avatar in leaderboard",
                         "description": "String, URL of large player avatar."
                     },
                     "current-player-signature": {
