@@ -509,6 +509,14 @@ class YandexGamesSDKInstance extends globalThis.ISDKInstanceBase {
                 case 'game_api_resume':
                     this._trigger(this.conditions.OnGameAPIResume);
                     break;
+                case this.ysdk.EVENTS.ACCOUNT_SELECTION_DIALOG_CLOSED:
+                    this._trigger(this.conditions.OnAccountSelectionDialogClosed);
+                    break;
+                case this.ysdk.EVENTS.ACCOUNT_SELECTION_DIALOG_OPENED:
+                    this._trigger(this.conditions.OnAccountSelectionDialogOpened);
+                    break;
+                default:
+                    break;
             }
         });
 

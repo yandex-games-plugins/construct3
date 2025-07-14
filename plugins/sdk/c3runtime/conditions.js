@@ -442,6 +442,14 @@ const Conditions = {
 
     //#endregion
 
+    OnAccountSelectionDialogOpened() {
+        return true;
+    },
+
+    OnAccountSelectionDialogClosed() {
+        return true;
+    },
+
     /** @deprecated */
     ForEachLeaderboardEntry(leaderboardName, quantityTop, includeUser, quantityAround) {
         return false;

@@ -225,6 +225,18 @@
                 this.domHandler.PostToRuntime('ysdk-handle-event', { type: 'game_api_resume' });
             });
 
+            this.ysdk.on(this.ysdk.EVENTS.ACCOUNT_SELECTION_DIALOG_CLOSED, () => {
+                this.domHandler.PostToRuntime('ysdk-handle-event', {
+                    type: this.ysdk.EVENTS.ACCOUNT_SELECTION_DIALOG_CLOSED,
+                });
+            });
+
+            this.ysdk.on(this.ysdk.EVENTS.ACCOUNT_SELECTION_DIALOG_OPENED, () => {
+                this.domHandler.PostToRuntime('ysdk-handle-event', {
+                    type: this.ysdk.EVENTS.ACCOUNT_SELECTION_DIALOG_OPENED,
+                });
+            });
+
             await Promise.all([this.YSDKUpdateCanShowShortcutPrompt(), this.YSDKUpdateCanReview()]);
         }
 

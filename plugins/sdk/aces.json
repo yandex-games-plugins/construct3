@@ -914,6 +914,16 @@
                 "id": "on-game-api-resume",
                 "scriptName": "OnGameAPIResume",
                 "isTrigger": true
+            },
+            {
+                "id": "on-account-selection-dialog-closed",
+                "scriptName": "OnAccountSelectionDialogClosed",
+                "isTrigger": true
+            },
+            {
+                "id": "on-account-selection-dialog-opened",
+                "scriptName": "OnAccountSelectionDialogOpened",
+                "isTrigger": true
             }
         ],
         "actions": [

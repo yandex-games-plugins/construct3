@@ -267,6 +267,16 @@
                         "display-text": "On [b]Resume[/b] event",
                         "description": "Triggers when platform signals that the game is should be resumed."
                     },
+                    "on-account-selection-dialog-closed": {
+                        "list-name": "On account selection dialog closed event",
+                        "display-text": "On account selection dialog closed event",
+                        "description": "Triggers when player closes account selection dialog"
+                    },
+                    "on-account-selection-dialog-opened": {
+                        "list-name": "On account selection dialog opened event",
+                        "display-text": "On account selection dialog opened event",
+                        "description": "Triggers when player opens account selection dialog"
+                    },
                     "shortcut-can-show-prompt": {
                         "list-name": "Can show shortcut prompt",
                         "display-text": "Can show shortcut prompt",
@@ -882,7 +892,7 @@
                     },
                     "metrika-goals": {
                         "list-name": "Send goal",
-                        "display-text": "Send goal [b]{0}[/b] to Yandex Metrics",
+                        "display-text": "Send goal [b]{0}[/b] to Yandex Metrics, additional data: [b]{1}[/b]",
                         "description": "Send goal if counter ID was passed.",
                         "params": {
                             "target": {
