@@ -1352,5 +1352,139 @@
                 "returnType": "number"
             }
         ]
+    },
+    "multiplayer": {
+        "actions": [
+            {
+                "id": "multiplayer-init",
+                "scriptName": "MultiplayerInit",
+                "isAsync": true,
+                "params": [
+                    {
+                        "id": "count",
+                        "type": "number"
+                    },
+                    {
+                        "id": "maxOpponentTurnTime",
+                        "type": "number"
+                    },
+                    {
+                        "id": "metaObject",
+                        "type": "object",
+                        "allowedPluginIds": ["Json"]
+                    }
+                ]
+            },
+            {
+                "id": "multiplayer-commit",
+                "scriptName": "MultiplayerCommit",
+                "params": [
+                    {
+                        "id": "payloadObject",
+                        "type": "object",
+                        "allowedPluginIds": ["Json"]
+                    }
+                ]
+            },
+            {
+                "id": "multiplayer-push",
+                "scriptName": "MultiplayerPush",
+                "params": [
+                    {
+                        "id": "metaObject",
+                        "type": "object",
+                        "allowedPluginIds": ["Json"]
+                    }
+                ]
+            },
+            {
+                "id": "multiplayer-get-payload",
+                "scriptName": "MultiplayerGetPayload",
+                "params": [
+                    {
+                        "id": "jsonObject",
+                        "type": "object",
+                        "allowedPluginIds": ["Json"]
+                    }
+                ]
+            },
+            {
+                "id": "multiplayer-get-meta",
+                "scriptName": "MultiplayerGetMeta",
+                "params": [
+                    {
+                        "id": "jsonObject",
+                        "type": "object",
+                        "allowedPluginIds": ["Json"]
+                    }
+                ]
+            }
+        ],
+        "conditions": [
+            {
+                "id": "on-multiplayer-init",
+                "scriptName": "OnMultiplayerInit",
+                "isTrigger": true
+            },
+            {
+                "id": "on-multiplayer-sessions-transaction",
+                "scriptName": "OnMultiplayerSessionsTransaction",
+                "isTrigger": true
+            },
+            {
+                "id": "on-multiplayer-sessions-finish",
+                "scriptName": "OnMultiplayerSessionsFinish",
+                "isTrigger": true
+            },
+            {
+                "id": "for-each-transaction",
+                "scriptName": "ForEachTransaction",
+                "isLooping": true
+            },
+            {
+                "id": "for-each-opponent",
+                "scriptName": "ForEachOpponent",
+                "isLooping": true
+            }
+        ],
+        "expressions": [
+            {
+                "id": "current-opponent-id",
+                "expressionName": "GetCurrentOpponentId",
+                "returnType": "string"
+            },
+            {
+                "id": "current-transaction-id",
+                "expressionName": "GetCurrentTransactionID",
+                "returnType": "string"
+            },
+            {
+                "id": "current-transaction-time",
+                "expressionName": "GetCurrentTransactionTime",
+                "returnType": "number"
+            },
+            {
+                "id": "current-session-id",
+                "expressionName": "GetCurrentSessionID",
+                "returnType": "string"
+            },
+            {
+                "id": "current-session-player",
+                "expressionName": "GetCurrentSessionPlayer",
+                "returnType": "string",
+                "params": [
+                    {
+                        "id": "field",
+                        "type": "string",
+                        "initialValue": "name"
+                    }
+                ]
+            },
+            {
+                "id": "current-multiplayer-finish-opponent-id",
+                "expressionName": "GetCurrentFinishOpponentId",
+                "returnType": "string"
+            }
+        ]
     }
 }

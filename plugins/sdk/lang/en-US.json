@@ -37,7 +37,8 @@
                     "tv": "TV",
                     "review": "Review",
                     "games": "Games",
-                    "misc": "Misc"
+                    "misc": "Misc",
+                    "multiplayer": "Multiplayer"
                 },
                 "conditions": {
                     "on-fullscreen-ad-close": {
@@ -557,6 +558,31 @@
                         "list-name": "For each game in developer's games",
                         "display-text": "For each game in developer's games",
                         "description": "Iterates through developer's games."
+                    },
+                    "on-multiplayer-init": {
+                        "list-name": "On multiplayer initialization",
+                        "display-text": "Multiplayer initialized",
+                        "description": "Triggers when multiplayer is initialized"
+                    },
+                    "on-multiplayer-sessions-transaction": {
+                        "list-name": "On multiplayer session transactions",
+                        "display-text": "Multiplayer session transactions received",
+                        "description": "Triggers when multiplayer session transactions are received"
+                    },
+                    "on-multiplayer-sessions-finish": {
+                        "list-name": "On multiplayer session finish",
+                        "display-text": "Multiplayer session finished",
+                        "description": "Triggers when multiplayer session is finished"
+                    },
+                    "for-each-transaction": {
+                        "list-name": "For each transaction",
+                        "display-text": "For each transaction",
+                        "description": "Iterates through each transaction in the event"
+                    },
+                    "for-each-opponent": {
+                        "list-name": "For each opponent",
+                        "display-text": "For each opponent",
+                        "description": "Iterates through each opponent in opponents list"
                     }
                 },
                 "actions": {
@@ -904,6 +930,69 @@
                                 "desc": "Choose JSON"
                             }
                         }
+                    },
+                    "multiplayer-init": {
+                        "list-name": "Initialize multiplayer",
+                        "display-text": "Initialize multiplayer. Sessions count: [b]{0}[/b], turn time: [b]{1}[/b] ms, meta: [b]{2}[/b]",
+                        "description": "Returns list of sessions and triggers On multiplayer initialization event",
+                        "params": {
+                            "count": {
+                                "name": "Sessions count",
+                                "desc": "Number of sessions to request"
+                            },
+                            "maxOpponentTurnTime": {
+                                "name": "Turn time",
+                                "desc": "Turn time in milliseconds"
+                            },
+                            "metaObject": {
+                                "name": "Meta",
+                                "desc": "Metadata in JSON format"
+                            }
+                        }
+                    },
+                    "multiplayer-commit": {
+                        "list-name": "Commit transaction",
+                        "display-text": "Commit transaction with data [b]{0}[/b]",
+                        "description": "Commits transaction to current session with specified data",
+                        "params": {
+                            "payloadObject": {
+                                "name": "Data",
+                                "desc": "Data in string format"
+                            }
+                        }
+                    },
+                    "multiplayer-push": {
+                        "list-name": "Push session",
+                        "display-text": "Push session with metadata [b]{0}[/b]",
+                        "description": "Saves game session with specified metadata",
+                        "params": {
+                            "metaObject": {
+                                "name": "Metadata",
+                                "desc": "Metadata in JSON format"
+                            }
+                        }
+                    },
+                    "multiplayer-get-payload": {
+                        "list-name": "Get current transaction data",
+                        "display-text": "Get current transaction data and store in [b]{0}[/b]",
+                        "description": "Gets current transaction data and stores it in JSON",
+                        "params": {
+                            "jsonObject": {
+                                "name": "JSON Object",
+                                "desc": "Object to store the data"
+                            }
+                        }
+                    },
+                    "multiplayer-get-meta": {
+                        "list-name": "Get current session metadata",
+                        "display-text": "Get current session metadata and store in [b]{0}[/b]",
+                        "description": "Gets current session metadata and stores it in JSON",
+                        "params": {
+                            "jsonObject": {
+                                "name": "JSON Object",
+                                "desc": "Object to store the metadata"
+                            }
+                        }
                     }
                 },
                 "expressions": {
@@ -1208,6 +1297,36 @@
                     "developerURL": {
                         "translated-name": "Developer URL",
                         "description": "Returns the URL of the developer's page."
+                    },
+                    "current-opponent-id": {
+                        "translated-name": "Session ID in event",
+                        "description": "Returns ID of session in event"
+                    },
+                    "current-transaction-id": {
+                        "translated-name": "Current transaction ID in transactions list (with For each transaction loop)",
+                        "description": "Returns ID of current transaction"
+                    },
+                    "current-transaction-time": {
+                        "translated-name": "Current transaction time in transactions list (with For each transaction loop)",
+                        "description": "Returns time from game start of current transaction"
+                    },
+                    "current-session-id": {
+                        "translated-name": "Current session ID in sessions list",
+                        "description": "Returns ID of current session in sessions list"
+                    },
+                    "current-session-player": {
+                        "translated-name": "Current session player data",
+                        "description": "Returns the current session player data by key (name, avatar)",
+                        "params": {
+                            "field": {
+                                "name": "Key",
+                                "desc": "Key to get data"
+                            }
+                        }
+                    },
+                    "current-multiplayer-finish-opponent-id": {
+                        "translated-name": "Session ID in finish event",
+                        "description": "Returns session ID in finish event"
                     }
                 }
             }

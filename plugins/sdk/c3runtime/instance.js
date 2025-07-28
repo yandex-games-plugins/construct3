@@ -509,11 +509,20 @@ class YandexGamesSDKInstance extends globalThis.ISDKInstanceBase {
                 case 'game_api_resume':
                     this._trigger(this.conditions.OnGameAPIResume);
                     break;
-                case this.ysdk.EVENTS.ACCOUNT_SELECTION_DIALOG_CLOSED:
+                case 'ACCOUNT_SELECTION_DIALOG_CLOSED':
                     this._trigger(this.conditions.OnAccountSelectionDialogClosed);
                     break;
-                case this.ysdk.EVENTS.ACCOUNT_SELECTION_DIALOG_OPENED:
+                case 'ACCOUNT_SELECTION_DIALOG_OPENED':
                     this._trigger(this.conditions.OnAccountSelectionDialogOpened);
+                    break;
+                case 'multiplayer-sessions-transaction':
+                    this.currentMultiplayerOpponentId = e.opponentId;
+                    this.currentMultiplayerTransactions = e.transactions;
+                    this._trigger(this.conditions.OnMultiplayerSessionsTransaction);
+                    break;
+                case 'multiplayer-sessions-finish':
+                    this.currentMultiplayerFinishOpponentId = e.opponentId;
+                    this._trigger(this.conditions.OnMultiplayerSessionsFinish);
                     break;
                 default:
                     break;

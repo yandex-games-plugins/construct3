@@ -450,6 +450,38 @@ const Conditions = {
         return true;
     },
 
+    OnMultiplayerInit() {
+        return true;
+    },
+
+    OnMultiplayerSessionsTransaction() {
+        return true;
+    },
+
+    OnMultiplayerSessionsFinish() {
+        return true;
+    },
+
+    ForEachTransaction() {
+        const loopData = this.currentMultiplayerTransactions || [];
+
+        each(this.runtime, loopData, i => {
+            this.currentTransactionPayload = loopData[i].payload;
+            this.currentTransactionID = loopData[i].id;
+            this.currentTransactionTime = loopData[i].time;
+        });
+
+        return false;
+    },
+
+    ForEachOpponent() {
+        const loopData = this.opponents || [];
+
+        each(this.runtime, loopData, i => (this.currentOpponent = loopData[i]));
+
+        return false;
+    },
+
     /** @deprecated */
     ForEachLeaderboardEntry(leaderboardName, quantityTop, includeUser, quantityAround) {
         return false;

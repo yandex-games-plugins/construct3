@@ -428,9 +428,41 @@ const Actions = {
         const instance = goalData?.getFirstInstance();
         const data = instance?.getJsonDataCopy() || {};
         this._postToDOM('ysdk-reach-goal', {
+            metrikaCounterId: this.metrikaCounterId,
             target,
             goalData: data,
         });
+    },
+
+    MultiplayerInit(count, maxOpponentTurnTime, metaObject) {
+        const instance = metaObject?.getFirstInstance();
+        const meta = instance?.getJsonDataCopy() || {};
+        return this._postToDOMAsync('ysdk-multiplayer-init', { count, maxOpponentTurnTime, meta }).then(res => {
+            this.opponents = res;
+            this._trigger(this.conditions.OnMultiplayerInit);
+        });
+    },
+
+    MultiplayerCommit(payloadObject) {
+        const instance = payloadObject?.getFirstInstance();
+        const payload = instance?.getJsonDataCopy() || {};
+        this._postToDOM('ysdk-multiplayer-commit', { payload });
+    },
+
+    MultiplayerPush(metaObject) {
+        const instance = metaObject?.getFirstInstance();
+        const meta = instance?.getJsonDataCopy() || {};
+        this._postToDOM('ysdk-multiplayer-push', { meta });
+    },
+
+    MultiplayerGetPayload(jsonObject) {
+        const instance = jsonObject.getFirstInstance();
+        instance.setJsonDataCopy(this.currentTransactionPayload);
+    },
+
+    MultiplayerGetMeta(jsonObject) {
+        const instance = jsonObject.getFirstInstance();
+        instance.setJsonDataCopy(this.currentOpponent?.meta);
     },
 };
 

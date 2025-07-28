@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## YandexGamesSDK - [3.1.0] - 2025.07.28
+
+### Added
+
+- Multiplayer
+- Account selection dialog event listener
+
 ## YandexGamesSDK - [3.0.2] - 2025.06.30
 
 ### Fixed

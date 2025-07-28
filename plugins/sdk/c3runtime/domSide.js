@@ -151,6 +151,12 @@
             this.domHandler.AddRuntimeMessageHandler('ysdk-get-game-by-id', this.YSDKGetGameByID.bind(this));
 
             this.domHandler.AddRuntimeMessageHandler('ysdk-reach-goal', this.YSDKReachGoal.bind(this));
+
+            this.domHandler.AddRuntimeMessageHandler('ysdk-multiplayer-init', this.YSDKMultiplayerInit.bind(this));
+
+            this.domHandler.AddRuntimeMessageHandler('ysdk-multiplayer-commit', this.YSDKMultiplayerCommit.bind(this));
+
+            this.domHandler.AddRuntimeMessageHandler('ysdk-multiplayer-push', this.YSDKMultiplayerPush.bind(this));
         }
 
         async LoadYSDKScript() {
@@ -186,10 +192,10 @@
                 engineName: 'Construct',
                 engineVersion: '3', // TODO: find a way to get version from runtime in "rXXX" format
                 pluginName: 'yagames_sdk by Yandex',
-                pluginVersion: '3.0.2',
+                pluginVersion: '3.1.0',
             });
 
-            console.log('%c YandexGamesSDK for Construct 3 v3.0.2 ', 'background: #14151f; color: #fb923c');
+            console.log('%c YandexGamesSDK for Construct 3 v3.1.0 ', 'background: #14151f; color: #fb923c');
 
             return {
                 environment: {
@@ -234,6 +240,21 @@
             this.ysdk.on(this.ysdk.EVENTS.ACCOUNT_SELECTION_DIALOG_OPENED, () => {
                 this.domHandler.PostToRuntime('ysdk-handle-event', {
                     type: this.ysdk.EVENTS.ACCOUNT_SELECTION_DIALOG_OPENED,
+                });
+            });
+
+            this.ysdk.on('multiplayer-sessions-transaction', ({ opponentId, transactions }) => {
+                this.domHandler.PostToRuntime('ysdk-handle-event', {
+                    type: 'multiplayer-sessions-transaction',
+                    opponentId,
+                    transactions,
+                });
+            });
+
+            this.ysdk.on('multiplayer-sessions-finish', opponentId => {
+                this.domHandler.PostToRuntime('ysdk-handle-event', {
+                    type: 'multiplayer-sessions-finish',
+                    opponentId,
                 });
             });
 
@@ -716,9 +737,29 @@
         }
 
         YSDKReachGoal(params) {
-            if (!this.ysdk || !this.metrikaCounterId) return;
+            const { metrikaCounterId, target, goalData } = params;
 
-            this.ysdk.analytics.yaMetrikaCounter.reachGoal(this.metrikaCounterId, params.target, params.goalData);
+            if (!this.ysdk || !metrikaCounterId) return;
+
+            this.ysdk.analytics.yaMetrikaCounter.reachGoal(metrikaCounterId, target, goalData);
+        }
+
+        async YSDKMultiplayerInit(params) {
+            if (!this.ysdk) return;
+
+            return await this.ysdk.multiplayer.sessions.init({ ...params, isEventBased: true });
+        }
+
+        YSDKMultiplayerCommit(params) {
+            if (!this.ysdk) return;
+
+            this.ysdk.multiplayer.sessions.commit(params.payload);
+        }
+
+        YSDKMultiplayerPush(params) {
+            if (!this.ysdk) return;
+
+            this.ysdk.multiplayer.sessions.push(params.meta);
         }
     }
 

@@ -838,6 +838,34 @@ const Expressions = {
     },
 
     //#endregion
+
+    //#region Multiplayer
+
+    GetCurrentOpponentId() {
+        return this.currentMultiplayerOpponentId ?? '';
+    },
+
+    GetCurrentTransactionID() {
+        return this.currentTransactionID ?? '';
+    },
+
+    GetCurrentTransactionTime() {
+        return this.currentTransactionTime ?? 0;
+    },
+
+    GetCurrentSessionID() {
+        return this.currentOpponent?.id ?? '';
+    },
+
+    GetCurrentSessionPlayer(field) {
+        return this.currentOpponent?.player[field] ?? '';
+    },
+
+    GetCurrentFinishOpponentId() {
+        return this.currentMultiplayerFinishOpponentId ?? '';
+    },
+
+    //#endregion
 };
 
 globalThis.C3.Plugins.yagames_sdk.Exps = Expressions;
