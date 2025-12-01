@@ -1,6 +1,25 @@
 ﻿{
     "text": {
-        "conditions": [],
+        "conditions": [
+            {
+                "id": "is-bold",
+                "scriptName": "IsBold"
+            },
+            {
+                "id": "is-italic",
+                "scriptName": "IsItalic"
+            },
+            {
+                "id": "compare-text",
+                "scriptName": "CompareText",
+                "params": [
+                    {
+                        "id": "Text",
+                        "type": "string"
+                    }
+                ]
+            }
+        ],
         "actions": [
             {
                 "id": "set-text",

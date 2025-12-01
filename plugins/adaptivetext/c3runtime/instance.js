@@ -1,11 +1,15 @@
-const C3 = self.C3;
+const C3 = globalThis.C3;
 
 const HorizontalAlignments = ['left', 'center', 'right'];
 const VerticalAlignments = ['top', 'center', 'bottom'];
 
-C3.Plugins.yagames_adaptivetext.Instance = class AdaptiveTextInstance extends C3.SDKWorldInstanceBase {
-    constructor(inst, properties) {
-        super(inst);
+const DEFAULT_SIZE = 16;
+
+C3.Plugins.yagames_adaptivetext.Instance = class AdaptiveTextInstance extends globalThis.ISDKWorldInstanceBase {
+    constructor() {
+        super();
+
+        const properties = this._getInitProperties();
 
         this._text = '';
         this._font = 'Arial';
@@ -14,10 +18,9 @@ C3.Plugins.yagames_adaptivetext.Instance = class AdaptiveTextInstance extends C3
         this._italic = false;
         this._horizontalAlign = 0;
         this._verticalAlign = 0;
-        this._forceAdapt = true;
+        this._forceAdapt = false;
         this._debugBorder = true;
 
-        // Lazy-created renderer text object
         this._rendererText = null;
 
         if (properties) {
@@ -33,46 +36,40 @@ C3.Plugins.yagames_adaptivetext.Instance = class AdaptiveTextInstance extends C3
         }
     }
 
-    Release() {
-        super.Release();
-    }
-
     _MaybeCreateRendererText(renderer) {
         if (this._rendererText) return;
 
-        this._rendererText = renderer.CreateRendererText();
+        this._rendererText = renderer.createRendererText();
         this._dirtyText = true;
-        this._rendererText.SetFontSize(this._calculatedFontSize);
-
-        this._rendererText.SetIsAsync?.(false);
+        this._rendererText.sizePt = this._calculatedFontSize || DEFAULT_SIZE;
     }
 
-    Draw(renderer) {
+    _draw(renderer) {
         this._MaybeCreateRendererText(renderer);
 
-        const worldInfo = this.GetWorldInfo();
-        const layer = worldInfo.GetLayer();
-        const textZoom = layer.GetRenderScale();
-        this._rendererText.SetSize(worldInfo.GetWidth(), worldInfo.GetHeight(), textZoom);
+        const layer = this.layer;
+        const textZoom = layer.renderScale;
+        this._rendererText.setSize(this.width, this.height, textZoom);
 
-        const color = worldInfo.GetPremultipliedColor();
-        this._rendererText.SetColorRgb(color.getR(), color.getG(), color.getB());
+        this._rendererText.setColor(this.colorRgb);
 
         if (this._dirtyText) {
+            this._dirtyText = false;
+
             if (this._text.length <= 0) return;
 
-            this._rendererText.SetFontName(this._font);
-            this._rendererText.SetText(this._text);
-            this._rendererText.SetHorizontalAlignment(this._horizontalAlign);
-            this._rendererText.SetVerticalAlignment(this._verticalAlign);
-            this._rendererText.SetFontSize(this._baseFontSize);
+            this._rendererText.fontFace = this._font;
+            this._rendererText.text = this._text;
+            this._rendererText.horizontalAlign = this._horizontalAlign;
+            this._rendererText.verticalAlign = this._verticalAlign;
+            this._rendererText.sizePt = this._baseFontSize;
+            this._rendererText.isBold = this._bold;
+            this._rendererText.isItalic = this._italic;
 
-            if (!this._rendererText.GetTexture()) return;
-
-            const width = worldInfo.GetWidth();
-            const height = worldInfo.GetHeight();
-            const wrapWidth = this._rendererText.GetTextWidth();
-            const wrapHeight = this._rendererText.GetTextHeight();
+            const width = this.width;
+            const height = this.height;
+            const wrapWidth = this._rendererText.textWidth;
+            const wrapHeight = this._rendererText.textHeight;
 
             if (this._forceAdapt || width < wrapWidth || height < wrapHeight) {
                 if (width / height < wrapWidth / wrapHeight) {
@@ -80,22 +77,34 @@ C3.Plugins.yagames_adaptivetext.Instance = class AdaptiveTextInstance extends C3
                 } else {
                     this._calculatedFontSize = Math.floor(this._baseFontSize * (height / wrapHeight));
                 }
-                this._rendererText.SetFontSize(this._calculatedFontSize);
+                this._rendererText.sizePt = this._calculatedFontSize;
             }
-
-            this._dirtyText = false;
         }
 
-        const texture = this._rendererText.GetTexture();
+        const texture = this._rendererText.getTexture();
         if (!texture) return;
 
-        renderer.SetTexture(texture);
+        renderer.setTexture(texture);
 
-        let quad = worldInfo.GetBoundingQuad();
-        if (this._runtime.IsPixelRoundingEnabled()) {
-            quad = worldInfo.PixelRoundQuad(quad);
+        let quad = this.getBoundingQuad();
+
+        if (this.runtime.isPixelRoundingEnabled) {
+            const x = this.x;
+            const y = this.y;
+            const offsetX = Math.round(x) - x;
+            const offsetY = Math.round(y) - y;
+
+            if (offsetX !== 0 || offsetY !== 0) {
+                quad = new DOMQuad(
+                    new DOMPoint(quad.p1.x + offsetX, quad.p1.y + offsetY),
+                    new DOMPoint(quad.p2.x + offsetX, quad.p2.y + offsetY),
+                    new DOMPoint(quad.p3.x + offsetX, quad.p3.y + offsetY),
+                    new DOMPoint(quad.p4.x + offsetX, quad.p4.y + offsetY)
+                );
+            }
         }
-        renderer.Quad3(quad, this._rendererText.GetTexRect());
+
+        renderer.quad3(quad, this._rendererText.getTexRect());
     }
 
     SaveToJson() {
@@ -129,92 +138,70 @@ C3.Plugins.yagames_adaptivetext.Instance = class AdaptiveTextInstance extends C3
     _SetText(value) {
         this._text = value;
         this._dirtyText = true;
-        this._runtime.UpdateRender();
+        this.runtime.sdk.updateRender();
     }
 
     GetText() {
-        return this._text;
+        return this._rendererText?.text || '';
     }
 
     _SetFont(value) {
         this._font = value;
         this._dirtyText = true;
-        this._runtime.UpdateRender();
+        this.runtime.sdk.updateRender();
     }
 
     GetFont() {
-        return this._font;
+        return this._rendererText?.fontFace || '';
     }
 
     _SetBaseFontSize(value) {
         this._baseFontSize = value;
         this._dirtyText = true;
-        this._runtime.UpdateRender();
+        this.runtime.sdk.updateRender();
     }
 
     GetBaseFontSize() {
-        return this._baseFontSize;
+        return this._rendererText?.sizePt || 0;
     }
 
     _SetBold(value) {
         this._bold = value;
         this._dirtyText = true;
-        this._runtime.UpdateRender();
+        this.runtime.sdk.updateRender();
     }
 
     GetBold() {
-        return this._bold;
+        return this._rendererText?.isBold || false;
     }
 
     _SetItalic(value) {
         this._italic = value;
         this._dirtyText = true;
-        this._runtime.UpdateRender();
+        this.runtime.sdk.updateRender();
     }
 
     GetItalic() {
-        return this._italic;
+        return this._rendererText?.isItalic || false;
     }
 
     _SetHorizontalAlign(value) {
         this._horizontalAlign = HorizontalAlignments[value];
         this._dirtyText = true;
-        this._runtime.UpdateRender();
+        this.runtime.sdk.updateRender();
     }
 
     GetHorizontalAlign() {
-        return this._horizontalAlign;
+        return this._rendererText?.horizontalAlign;
     }
 
     _SetVerticalAlign(value) {
         this._verticalAlign = VerticalAlignments[value];
         this._dirtyText = true;
-        this._runtime.UpdateRender();
+        this.runtime.sdk.updateRender();
     }
 
     GetVerticalAlign() {
-        return this._verticalAlign;
-    }
-
-    GetScriptInterfaceClass() {
-        return self.IAdaptiveTextInstance;
-    }
-};
-
-const map = new WeakMap();
-
-self.IAdaptiveTextInstance = class IAdaptiveTextInstance extends self.IWorldInstance {
-    constructor() {
-        super();
-
-        map.set(this, self.IInstance._GetInitInst().GetSdkInstance());
-    }
-
-    set text(t) {
-        map.get(this)._SetText(t);
-    }
-
-    get text() {
-        return map.get(this).GetText();
+        return this._rendererText?.verticalAlign;
     }
 };

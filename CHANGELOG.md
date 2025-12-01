@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## AdaptiveText - [2.0.0] - 2025.12.01
+
+Note: The release includes porting to Addon SDK V2. This version is only supported since R455 engine version.
+
+### Changes
+
+- The default value for Force adapt is now false
+
+### Fixed
+
+- Some editor bugs
+
 ## YandexGamesSDK - [3.1.0] - 2025.07.28
 
 ### Added

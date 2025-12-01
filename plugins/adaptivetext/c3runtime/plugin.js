@@ -1,7 +1,3 @@
-const C3 = self.C3;
+const C3 = globalThis.C3;
 
-C3.Plugins.yagames_adaptivetext = class AdaptiveTextPlugin extends C3.SDKPluginBase {
-    Release() {
-        super.Release();
-    }
-};
+C3.Plugins.yagames_adaptivetext = class AdaptiveTextPlugin extends globalThis.ISDKPluginBase {};

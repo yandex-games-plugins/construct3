@@ -58,11 +58,33 @@
                 "aceCategories": {
                     "text": "Text"
                 },
-                "conditions": {},
+                "conditions": {
+                    "is-bold": {
+                        "list-name": "Font is bold",
+                        "display-text": "Font is bold",
+                        "description": "Check the font is bold."
+                    },
+                    "is-italic": {
+                        "list-name": "Font is italic",
+                        "display-text": "Font is italic",
+                        "description": "Check the font is italic."
+                    },
+                    "compare-text": {
+                        "list-name": "Compare text",
+                        "display-text": "Compare text with [b]{0}[/b]",
+                        "description": "Compare the passed text with the object text.",
+                        "params": {
+                            "Text": {
+                                "name": "Text",
+                                "desc": "Text for comparison."
+                            }
+                        }
+                    }
+                },
                 "actions": {
                     "set-text": {
                         "list-name": "Set text",
-                        "display-text": "Set text to [i]{0}[/i]",
+                        "display-text": "Set text to [b]{0}[/b]",
                         "description": "Set the text of this object.",
                         "params": {
                             "value": {
@@ -73,7 +95,7 @@
                     },
                     "set-font": {
                         "list-name": "Set font",
-                        "display-text": "Set font to [i]{0}[/i]",
+                        "display-text": "Set font to [b]{0}[/b]",
                         "description": "Set the font face used to display text.",
                         "params": {
                             "value": {
@@ -84,7 +106,7 @@
                     },
                     "set-base-font-size": {
                         "list-name": "Set base font size",
-                        "display-text": "Set base font size to [i]{0}[/i]",
+                        "display-text": "Set base font size to [b]{0}[/b]",
                         "description": "Sets the base font size, in pixels.",
                         "params": {
                             "value": {
@@ -95,34 +117,34 @@
                     },
                     "set-bold": {
                         "list-name": "Set bold",
-                        "display-text": "Set bold to [i]{0}[/i]",
+                        "display-text": "Set bold to [b]{0}[/b]",
                         "description": "Sets the bold style of text.",
                         "params": {
                             "value": {
                                 "name": "Bold",
-                                "desc": "Type [b]true[/b] to set bold style, or [b]false[/b] to remove bold style."
+                                "desc": "Set bold style."
                             }
                         }
                     },
                     "set-italic": {
                         "list-name": "Set italic",
-                        "display-text": "Set italic to [i]{0}[/i]",
+                        "display-text": "Set italic to [b]{0}[/b]",
                         "description": "Sets the italic style of text.",
                         "params": {
                             "value": {
                                 "name": "Italic",
-                                "desc": "Type [b]true[/b] to set italic style, or [b]false[/b] to remove italic style."
+                                "desc": "Set italic style."
                             }
                         }
                     },
                     "set-horizontal-align": {
                         "list-name": "Set horizontal align",
-                        "display-text": "Set horizontal align to [i]{0}[/i]",
+                        "display-text": "Set horizontal align to [b]{0}[/b]",
                         "description": "Sets the horizontal align of text.",
                         "params": {
                             "value": {
                                 "name": "Horizontal align",
-                                "desc": "Select new horizontal align for text.",
+                                "desc": "Select horizontal align for text.",
                                 "items": {
                                     "left": "Left",
                                     "center": "Center",
@@ -133,12 +155,12 @@
                     },
                     "set-vertical-align": {
                         "list-name": "Set vertical align",
-                        "display-text": "Set vertical align to [i]{0}[/i]",
+                        "display-text": "Set vertical align to [b]{0}[/b]",
                         "description": "Sets the vertical align of text.",
                         "params": {
                             "value": {
                                 "name": "Vertical align",
-                                "desc": "Select new vertical align for text.",
+                                "desc": "Select vertical align for text.",
                                 "items": {
                                     "top": "Top",
                                     "center": "Center",

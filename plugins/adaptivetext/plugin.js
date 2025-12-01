@@ -1,22 +1,20 @@
-const SDK = self.SDK;
+const SDK = globalThis.SDK;
 
 const PLUGIN = {
     ID: 'yagames_adaptivetext',
-    VERSION: '1.3.0',
     CATEGORY: 'general',
 };
 
 let app = null;
 
-const PLUGIN_CLASS = (SDK.Plugins.yagames_adaptivetext = class AdaptiveTextPlugin extends SDK.IPluginBase {
+SDK.Plugins.yagames_adaptivetext = class AdaptiveTextPlugin extends SDK.IPluginBase {
     constructor() {
         super(PLUGIN.ID);
 
         SDK.Lang.PushContext('plugins.' + PLUGIN.ID.toLowerCase());
 
-        this._info.SetName(self.lang('.name'));
-        this._info.SetDescription(self.lang('.description'));
-        this._info.SetVersion(PLUGIN.VERSION);
+        this._info.SetName(globalThis.lang('.name'));
+        this._info.SetDescription(globalThis.lang('.description'));
         this._info.SetCategory(PLUGIN.CATEGORY);
         this._info.SetAuthor('LisGames');
         this._info.SetHelpUrl(self.lang('.help-url'));
@@ -54,7 +52,7 @@ const PLUGIN_CLASS = (SDK.Plugins.yagames_adaptivetext = class AdaptiveTextPlugi
                 initialValue: 'center',
                 items: ['top', 'center', 'bottom'],
             }),
-            new SDK.PluginProperty('check', 'forceAdapt', true),
+            new SDK.PluginProperty('check', 'forceAdapt', false),
             new SDK.PluginProperty('check', 'debugBorder', true),
         ]);
 
@@ -62,6 +60,6 @@ const PLUGIN_CLASS = (SDK.Plugins.yagames_adaptivetext = class AdaptiveTextPlugi
 
         SDK.Lang.PopContext();
     }
-});
+};
 
-PLUGIN_CLASS.Register(PLUGIN.ID, PLUGIN_CLASS);
+SDK.Plugins.yagames_adaptivetext.Register(PLUGIN.ID, SDK.Plugins.yagames_adaptivetext);

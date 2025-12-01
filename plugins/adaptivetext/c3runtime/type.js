@@ -1,9 +1,3 @@
-const C3 = self.C3;
+const C3 = globalThis.C3;
 
-C3.Plugins.yagames_adaptivetext.Type = class AdaptiveTextType extends C3.SDKTypeBase {
-    Release() {
-        super.Release();
-    }
-
-    OnCreate() {}
-};
+C3.Plugins.yagames_adaptivetext.Type = class AdaptiveTextType extends globalThis.ISDKObjectTypeBase {};

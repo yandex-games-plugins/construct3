@@ -1,4 +1,4 @@
-const SDK = self.SDK;
+const SDK = globalThis.SDK;
 
 SDK.Plugins.yagames_adaptivetext.Instance = class AdaptiveTextInstance extends SDK.IWorldInstanceBase {
     constructor(sdkType, inst) {
@@ -73,7 +73,7 @@ SDK.Plugins.yagames_adaptivetext.Instance = class AdaptiveTextInstance extends S
             const wrapHeight = this._webglText.GetTextHeight();
             const forceAdapt = this._inst.GetPropertyValue('forceAdapt');
 
-            if (forceAdapt || width < wrapWidth || height < wrapHeight) {
+            if ((forceAdapt || width < wrapWidth || height < wrapHeight) && wrapHeight > 0 && wrapWidth > 0) {
                 if (width / height < wrapWidth / wrapHeight) {
                     this._calculatedFontSize = Math.floor(baseFontSize * (width / wrapWidth));
                 } else {
